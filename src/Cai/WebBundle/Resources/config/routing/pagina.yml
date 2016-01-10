@@ -1,0 +1,24 @@
+pagina_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:Pagina:index" }
+    methods:  GET
+
+pagina_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:Pagina:show" }
+    methods:  GET
+
+pagina_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:Pagina:new" }
+    methods:  [GET, POST]
+
+pagina_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:Pagina:edit" }
+    methods:  [GET, POST]
+
+pagina_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:Pagina:delete" }
+    methods:  DELETE

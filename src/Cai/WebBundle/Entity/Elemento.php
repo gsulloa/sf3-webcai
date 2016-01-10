@@ -2,23 +2,36 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Elemento
+ *
+ * @ORM\Table(name="elemento")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\ElementoRepository")
  */
 class Elemento
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255)
      */
     private $titulo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
 

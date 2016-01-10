@@ -2,33 +2,50 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Pagina
+ *
+ * @ORM\Table(name="pagina")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\PaginaRepository")
  */
 class Pagina
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255)
      */
     private $titulo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cuerpo", type="text")
      */
     private $cuerpo;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime")
      */
     private $fecha;
 

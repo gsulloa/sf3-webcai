@@ -2,60 +2,87 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Contacto
+ *
+ * @ORM\Table(name="contacto")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\ContactoRepository")
  */
 class Contacto
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="lema", type="string", length=255)
      */
     private $lema;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=255)
      */
     private $direccion;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=255)
      */
     private $telefono;
 
     /**
      * @var string
-     */
-    private $twitter;
-
-    /**
-     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255)
      */
     private $facebook;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="youtube", type="string", length=255)
      */
     private $youtube;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255)
      */
     private $mail;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="vimeo", type="string", length=255)
      */
-    private $descripcion;
+    private $vimeo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text")
      */
-    private $vimeo;
+    private $descripcion;
 
 
     /**
@@ -141,30 +168,6 @@ class Contacto
     }
 
     /**
-     * Set twitter
-     *
-     * @param string $twitter
-     *
-     * @return Contacto
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-
-        return $this;
-    }
-
-    /**
-     * Get twitter
-     *
-     * @return string
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
      * Set facebook
      *
      * @param string $facebook
@@ -186,6 +189,30 @@ class Contacto
     public function getFacebook()
     {
         return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return Contacto
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
     }
 
     /**
@@ -237,30 +264,6 @@ class Contacto
     }
 
     /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     *
-     * @return Contacto
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get descripcion
-     *
-     * @return string
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
      * Set vimeo
      *
      * @param string $vimeo
@@ -282,6 +285,30 @@ class Contacto
     public function getVimeo()
     {
         return $this->vimeo;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Contacto
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
     }
 }
 

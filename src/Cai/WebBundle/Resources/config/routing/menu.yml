@@ -1,0 +1,24 @@
+menu_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:Menu:index" }
+    methods:  GET
+
+menu_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:Menu:show" }
+    methods:  GET
+
+menu_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:Menu:new" }
+    methods:  [GET, POST]
+
+menu_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:Menu:edit" }
+    methods:  [GET, POST]
+
+menu_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:Menu:delete" }
+    methods:  DELETE

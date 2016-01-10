@@ -56,50 +56,50 @@
                 <li {{ tab == 'cai_web_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_web_homepage') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
-                {#
-                <li {{ tab == 'imagen' ? 'class="active"' : '' }}>
-                    <a href="{{ path('imagen') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
+
+                <li {{ tab == 'imagen_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('imagen_index') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
                 </li>
-                <li {{ tab == 'entrada' ? 'class="active"' : '' }}>
-                    <a href="{{ path('entrada') }}"><i class="fa fa-file-text fa-fw"></i> Entradas</a>
+                <li {{ tab == 'entrada_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('entrada_index') }}"><i class="fa fa-file-text fa-fw"></i> Entradas</a>
                 </li>
-                <li {{ tab == 'pagina' ? 'class="active"' : '' }}>
-                    <a href="{{ path('pagina') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
+                <li {{ tab == 'pagina_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('pagina_index') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
                 </li>
                 {% if is_granted('ROLE_EDITOR') %}
-                <li {{ tab == 'menu' ? 'class="active"' : '' }}>
-                    <a href="{{ path('menu') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
+                <li {{ tab == 'menu_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('menu_index') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
                 </li>
-                <li {{ tab == 'tipo' ? 'class="active"' : '' }}>
-                    <a href="{{ path('tipo') }}"><i class="fa fa-bookmark fa-fw"></i> Tipo</a>
+                <li {{ tab == 'tipo_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('tipo_index') }}"><i class="fa fa-bookmark fa-fw"></i> Tipo</a>
                 </li>
-                <li {{ tab == 'persona' ? 'class="active"' : '' }}>
-                    <a href="{{ path('persona') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
+                <li {{ tab == 'persona_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('persona_index') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
                 </li>
-                <li {{ tab == 'slider' ? 'class="active"' : '' }}>
-                    <a href="{{ path('slider') }}"><i class="fa fa-book fa-fw"></i> Slider</a>
+                <li {{ tab == 'slider_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('slider_index') }}"><i class="fa fa-book fa-fw"></i> Slider</a>
                 </li>
-                <li {{ tab == 'contacto' ? 'class="active"' : '' }}>
-                    <a href="{{ path('contacto') }}"><i class="fa fa-info-circle fa-fw"></i> Contacto</a>
+                <li {{ tab == 'contacto_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('contacto_index') }}"><i class="fa fa-info-circle fa-fw"></i> Contacto</a>
                 </li>
-                <li {{ tab == 'evento' ? 'class="active"' : '' }}>
-                    <a href="{{ path('evento') }}"><i class="fa fa-calendar fa-fw"></i> Eventos</a>
+                <li {{ tab == 'evento_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('evento_index') }}"><i class="fa fa-calendar fa-fw"></i> Eventos</a>
                 </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                <li {{ tab == 'user' ? 'class="active"' : '' }}>
-                    <a href="{{ path('user') }}"><i class="fa fa-user-plus fa-fw"></i> User</a>
+                <li {{ tab == 'user_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('user_index') }}"><i class="fa fa-user-plus fa-fw"></i> User</a>
                 </li>
-                <li {{ tab == 'categoria' ? 'class="active"' : '' }}>
-                    <a href="{{ path('categoria') }}"><i class="fa fa-list-alt fa-fw"></i> Categoria</a>
+                <li {{ tab == 'categoria_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('categoria_index') }}"><i class="fa fa-list-alt fa-fw"></i> Categoria</a>
                 </li>
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                <li {{ tab == 'role' ? 'class="active"' : '' }}>
-                    <a href="{{ path('role') }}"><i class="fa fa-home fa-fw"></i> Role</a>
+                <li {{ tab == 'role_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('role_index') }}"><i class="fa fa-home fa-fw"></i> Role</a>
                 </li>
                 {% endif %}
-#}
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

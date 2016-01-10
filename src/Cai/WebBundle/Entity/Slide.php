@@ -2,23 +2,36 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Slide
+ *
+ * @ORM\Table(name="slide")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\SlideRepository")
  */
 class Slide
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var int
+     *
+     * @ORM\Column(name="posicion", type="integer")
      */
     private $posicion;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
 

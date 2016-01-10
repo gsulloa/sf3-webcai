@@ -2,50 +2,73 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Persona
+ *
+ * @ORM\Table(name="persona")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\PersonaRepository")
  */
 class Persona
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="apellido", type="string", length=255)
      */
     private $apellido;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cargo", type="string", length=255)
      */
     private $cargo;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255)
      */
     private $mail;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255)
      */
-    private $facebook;
+    private $twitter;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255)
      */
-    private $twitter;
+    private $facebook;
 
 
     /**
@@ -179,30 +202,6 @@ class Persona
     }
 
     /**
-     * Set facebook
-     *
-     * @param string $facebook
-     *
-     * @return Persona
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-
-        return $this;
-    }
-
-    /**
-     * Get facebook
-     *
-     * @return string
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
      * Set twitter
      *
      * @param string $twitter
@@ -224,6 +223,30 @@ class Persona
     public function getTwitter()
     {
         return $this->twitter;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return Persona
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
     }
 }
 

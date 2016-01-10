@@ -1,0 +1,24 @@
+elemento_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:Elemento:index" }
+    methods:  GET
+
+elemento_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:Elemento:show" }
+    methods:  GET
+
+elemento_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:Elemento:new" }
+    methods:  [GET, POST]
+
+elemento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:Elemento:edit" }
+    methods:  [GET, POST]
+
+elemento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:Elemento:delete" }
+    methods:  DELETE

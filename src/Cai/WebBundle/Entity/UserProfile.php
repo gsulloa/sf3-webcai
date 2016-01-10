@@ -2,38 +2,57 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * UserProfile
+ *
+ * @ORM\Table(name="user_profile")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\UserProfileRepository")
  */
 class UserProfile
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="apellido", type="string", length=255)
      */
     private $apellido;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255)
      */
     private $mail;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=255)
      */
     private $celular;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="n_identificador", type="string", length=255, unique=true)
      */
     private $nIdentificador;
 

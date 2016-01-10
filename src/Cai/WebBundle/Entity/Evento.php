@@ -2,28 +2,43 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Evento
+ *
+ * @ORM\Table(name="evento")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\EventoRepository")
  */
 class Evento
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime")
      */
     private $fecha;
 

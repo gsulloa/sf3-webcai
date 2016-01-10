@@ -2,23 +2,36 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Imagen
+ *
+ * @ORM\Table(name="imagen")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\ImagenRepository")
  */
 class Imagen
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="filename", type="string", length=255)
      */
     private $filename;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="filenamebinary", type="string", length=255, unique=true)
      */
     private $filenamebinary;
 

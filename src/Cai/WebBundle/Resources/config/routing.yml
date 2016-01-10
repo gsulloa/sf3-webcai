@@ -1,3 +1,44 @@
+cai_web_categoria:
+    resource: "@CaiWebBundle/Resources/config/routing/categoria.yml"
+    prefix:   /categoria
+cai_web_contacto:
+    resource: "@CaiWebBundle/Resources/config/routing/contacto.yml"
+    prefix:   /contacto
+cai_web_elemento:
+    resource: "@CaiWebBundle/Resources/config/routing/elemento.yml"
+    prefix:   /elemento
+cai_web_entrada:
+    resource: "@CaiWebBundle/Resources/config/routing/entrada.yml"
+    prefix:   /entrada
+cai_web_evento:
+    resource: "@CaiWebBundle/Resources/config/routing/evento.yml"
+    prefix:   /evento
+cai_web_imagen:
+    resource: "@CaiWebBundle/Resources/config/routing/imagen.yml"
+    prefix:   /imagen
+cai_web_menu:
+    resource: "@CaiWebBundle/Resources/config/routing/menu.yml"
+    prefix:   /menu
+cai_web_pagina:
+    resource: "@CaiWebBundle/Resources/config/routing/pagina.yml"
+    prefix:   /pagina
+cai_web_persona:
+    resource: "@CaiWebBundle/Resources/config/routing/persona.yml"
+    prefix:   /persona
+cai_web_slide:
+    resource: "@CaiWebBundle/Resources/config/routing/slide.yml"
+    prefix:   /slide
+cai_web_slider:
+    resource: "@CaiWebBundle/Resources/config/routing/slider.yml"
+    prefix:   /slider
+cai_web_tipo:
+    resource: "@CaiWebBundle/Resources/config/routing/tipo.yml"
+    prefix:   /tipo
+cai_web_userprofile:
+    resource: "@CaiWebBundle/Resources/config/routing/userprofile.yml"
+    prefix:   /userprofile
+
+
 cai_web_homepage:
     path:     /
     defaults: { _controller: CaiWebBundle:Default:index }

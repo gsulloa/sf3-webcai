@@ -1,0 +1,24 @@
+userprofile_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:UserProfile:index" }
+    methods:  GET
+
+userprofile_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:UserProfile:show" }
+    methods:  GET
+
+userprofile_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:UserProfile:new" }
+    methods:  [GET, POST]
+
+userprofile_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:UserProfile:edit" }
+    methods:  [GET, POST]
+
+userprofile_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:UserProfile:delete" }
+    methods:  DELETE

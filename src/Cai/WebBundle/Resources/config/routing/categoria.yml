@@ -1,0 +1,24 @@
+categoria_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:Categoria:index" }
+    methods:  GET
+
+categoria_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:Categoria:show" }
+    methods:  GET
+
+categoria_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:Categoria:new" }
+    methods:  [GET, POST]
+
+categoria_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:Categoria:edit" }
+    methods:  [GET, POST]
+
+categoria_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:Categoria:delete" }
+    methods:  DELETE
