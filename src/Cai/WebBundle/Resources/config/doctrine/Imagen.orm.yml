@@ -1,0 +1,19 @@
+Cai\WebBundle\Entity\Imagen:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\ImagenRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        filename:
+            type: string
+            length: 255
+        filenamebinary:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }

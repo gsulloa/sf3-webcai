@@ -1,0 +1,17 @@
+Cai\WebBundle\Entity\Slider:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\SliderRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titulo:
+            type: string
+            length: 255
+        time:
+            type: integer
+    lifecycleCallbacks: {  }

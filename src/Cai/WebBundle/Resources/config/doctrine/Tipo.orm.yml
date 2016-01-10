@@ -1,0 +1,15 @@
+Cai\WebBundle\Entity\Tipo:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\TipoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        etiqueta:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

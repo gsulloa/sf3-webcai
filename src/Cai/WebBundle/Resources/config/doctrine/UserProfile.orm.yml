@@ -1,0 +1,30 @@
+Cai\WebBundle\Entity\UserProfile:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\UserProfileRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: 255
+        apellido:
+            type: string
+            length: 255
+        mail:
+            type: string
+            length: 255
+        celular:
+            type: string
+            length: 255
+            nullable: true
+        nIdentificador:
+            type: string
+            length: 255
+            unique: true
+            column: n_identificador
+    lifecycleCallbacks: {  }

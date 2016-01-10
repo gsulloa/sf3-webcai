@@ -1,0 +1,19 @@
+Cai\WebBundle\Entity\Categoria:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\CategoriaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        etiqueta:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,18 @@
+Cai\WebBundle\Entity\Elemento:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\ElementoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titulo:
+            type: string
+            length: 255
+        path:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+Cai\WebBundle\Entity\Entrada:
+    type: entity
+    table: null
+    repositoryClass: Cai\WebBundle\Repository\EntradaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titulo:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+            unique: true
+        cuerpo:
+            type: string
+            length: 255
+        fecha:
+            type: datetime
+    lifecycleCallbacks: {  }
