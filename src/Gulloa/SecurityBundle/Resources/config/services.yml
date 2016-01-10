@@ -1,0 +1,4 @@
+services:
+#    gulloa_security.example:
+#        class: Gulloa\SecurityBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

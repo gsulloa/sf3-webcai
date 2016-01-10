@@ -1,0 +1,20 @@
+gulloa_security_user:
+    resource: "@GulloaSecurityBundle/Resources/config/routing/user.yml"
+    prefix:   /backend/user
+gulloa_security_role:
+    resource: "@GulloaSecurityBundle/Resources/config/routing/role.yml"
+    prefix:   /backend/role
+
+login_route:
+    path:     /login
+    defaults: { _controller: GulloaSecurityBundle:Security:login }
+
+login_check:
+    path: /login_check
+
+logout:
+    path:   /logout
+
+default_target:
+    path:   /loginRedirect
+    defaults: { _controller: GulloaSecurityBundle:Default:index }
