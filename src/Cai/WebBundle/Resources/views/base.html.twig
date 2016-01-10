@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CAi - Backend{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('public/font-awesome-4.5.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}" >
+    {% block stylesheets %}{% endblock %}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('public/icon/apple-icon-57x57.png') }}" >
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('public/icon/apple-icon-60x60.png')  }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('public/icon/apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/icon/apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('public/icon/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('public/icon/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('public/icon/apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('public/icon/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/icon/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('public/icon/android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/icon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('public/icon/favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/icon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('public/icon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('public/icon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/icon/favicon.ico') }}" />
+    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/sb-admin.css') }}"/>
+    {#
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    #}
+</head>
+<body>
+<div id="wrapper">
+    {% set tab = app.request.attributes.get('_route') %}
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('cai_web_homepage') }}">
+                <img class="logotipo" src="{{ asset('public/images/CAi.png') }}">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <br/><br/>
+                <li {{ tab == 'cai_web_homepage' ? 'class="active"' : '' }}>
+                    <a href="{{ path('cai_web_homepage') }}"><i class="fa fa-home fa-fw"></i> Home</a>
+                </li>
+                {#
+                <li {{ tab == 'imagen' ? 'class="active"' : '' }}>
+                    <a href="{{ path('imagen') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
+                </li>
+                <li {{ tab == 'entrada' ? 'class="active"' : '' }}>
+                    <a href="{{ path('entrada') }}"><i class="fa fa-file-text fa-fw"></i> Entradas</a>
+                </li>
+                <li {{ tab == 'pagina' ? 'class="active"' : '' }}>
+                    <a href="{{ path('pagina') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
+                </li>
+                {% if is_granted('ROLE_EDITOR') %}
+                <li {{ tab == 'menu' ? 'class="active"' : '' }}>
+                    <a href="{{ path('menu') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
+                </li>
+                <li {{ tab == 'tipo' ? 'class="active"' : '' }}>
+                    <a href="{{ path('tipo') }}"><i class="fa fa-bookmark fa-fw"></i> Tipo</a>
+                </li>
+                <li {{ tab == 'persona' ? 'class="active"' : '' }}>
+                    <a href="{{ path('persona') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
+                </li>
+                <li {{ tab == 'slider' ? 'class="active"' : '' }}>
+                    <a href="{{ path('slider') }}"><i class="fa fa-book fa-fw"></i> Slider</a>
+                </li>
+                <li {{ tab == 'contacto' ? 'class="active"' : '' }}>
+                    <a href="{{ path('contacto') }}"><i class="fa fa-info-circle fa-fw"></i> Contacto</a>
+                </li>
+                <li {{ tab == 'evento' ? 'class="active"' : '' }}>
+                    <a href="{{ path('evento') }}"><i class="fa fa-calendar fa-fw"></i> Eventos</a>
+                </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li {{ tab == 'user' ? 'class="active"' : '' }}>
+                    <a href="{{ path('user') }}"><i class="fa fa-user-plus fa-fw"></i> User</a>
+                </li>
+                <li {{ tab == 'categoria' ? 'class="active"' : '' }}>
+                    <a href="{{ path('categoria') }}"><i class="fa fa-list-alt fa-fw"></i> Categoria</a>
+                </li>
+                {% endif %}
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <li {{ tab == 'role' ? 'class="active"' : '' }}>
+                    <a href="{{ path('role') }}"><i class="fa fa-home fa-fw"></i> Role</a>
+                </li>
+                {% endif %}
+#}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-key"></i>
+                        Acceso:
+                        {% for rol in app.user.roles %}
+                            [ {{ rol }} ]
+                        {% endfor %}
+                        | <i class="fa fa-user"></i> {{ app.user.username|upper }}<b class="caret"></b>&nbsp;&nbsp;
+                    </a>
+                    <ul class="dropdown-menu">
+                        {#
+                        {% if(app.user.id is defined) %}
+                            <li {{ route_active(tab, 'profile') ? 'class="active"' : '' }}>
+                                <a href="{{ path('profile', { firstname: app.user.firstname, lastname: app.user.lastname }) }}"><i class="fa fa-user fa-fw"></i> Mi Perfil</a>
+                            </li>
+                        {% endif %}
+                        #}
+                        <li><a href="{{ path('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="page-wrapper" class="container">
+        {% block body %}{% endblock %}
+    </div>
+    {% block footer %}{% endblock %}
+</div>
+
+{% block javascripts %}
+    {#{{ include('SciBackendBundle:includes:scripts.html.twig') }}#}
+{% endblock %}
+</body>
+</html>
