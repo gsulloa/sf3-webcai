@@ -1,4 +1,6 @@
-sf3-gulloaSecurity
-==================
+Web CAi 2016
+==============
+Estado: **Development**
 
-A Symfony project created on January 10, 2016, 1:26 pm.
+Esta web cuenta con las funcionalidades minimas que entregaba la antigua web en Wordpress, agregando funcionalidades a la medida,
+como lo es el ser el Servidor Web para la AppCAi
