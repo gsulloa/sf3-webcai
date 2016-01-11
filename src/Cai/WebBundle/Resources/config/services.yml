@@ -1,7 +1,7 @@
 services:
-#    cai_web.auxiliar:
-#       class: Cai\WebBundle\Utils\Auxiliar
-#       arguments: [ @doctrine.orm.entity_manager]
+    cai_web.auxiliar:
+       class: Cai\WebBundle\Utils\Auxiliar
+       arguments: [ "@doctrine.orm.entity_manager"]
     cai_web.images:
        class: Cai\WebBundle\Utils\ImagesEditor
 #    cai_web.example:
