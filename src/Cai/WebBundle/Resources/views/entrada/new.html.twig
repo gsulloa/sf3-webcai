@@ -1,16 +1,109 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
-{% block body %}
-    <h1>Entrada creation</h1>
+
+{% block body -%}
+    <h1>Crear Entrada</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_row(form.titulo) }}
+    {{ form_row(form.cuerpo) }}
+    {{ form_row(form.fecha) }}
+    <div class="row" id="0">
+        <div class="col-md-4">
+            <div id="slide_0" class="slide_img">
+                <img class="img" id="img_slide_0" src="{{ asset('public/images/no-foto.png') }}" >
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="img_selector btn btn-primary" id="img_selector_slide_0">Escoger imágen</div>
+            </div>
+            <input name="img_slide_0" id="img_slide_0" type="hidden">
+        </div>
+    </div>
+    {{ form_row(form.categorias) }}
+    <input type="submit" value="Crear" />
     {{ form_end(form) }}
 
-    <ul>
+    {% include 'CaiWebBundle:ImageSelector:selector.html.twig' %}
+    <ul class="record_actions">
         <li>
-            <a href="{{ path('entrada_index') }}">Back to the list</a>
+            <a href="{{ path('entrada_index') }}">
+                Volver
+            </a>
         </li>
     </ul>
+{% endblock %}
+{% block stylesheets %}
+    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
+    <style>
+        .slide_img{
+            width:220px;
+            height:220px;
+            padding:10px;
+            border:1px solid #aaaaaa;
+        }
+        .img{
+            max-height:200px;
+            max-width: 200px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ asset('public/css/image_selector.css') }}" type="text/css">
+{% endblock %}
+{% block javascripts %}
+    <script>
+        CKEDITOR.replace( 'entrada_cuerpo' );
+    </script>
+    <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
+    <script>
+        //Imagenes actualmente cargadas
+        var images_count = 12;
+        //Detecta final del div
+        $('#image_selector_div').scroll(function() {
+            if($(this).scrollTop() +$(this).outerHeight() >=  $(this)[0].scrollHeight) {
+                //Ajax para cargar nuevas imagenes
+                $.ajax({
+                    url: Routing.generate('scroll_pagination_image',{'start':images_count}),
+                    type: "GET",
+                    success: function(data) {
+                        //entregar de a 12 imagenes
+                        images_count = images_count + 12;
+                        //formar JSON con data recibida
+                        data = JSON.parse(data);
+                        var rows = [];
+                        //Crear las rows necesarias
+                        for (i = 0; i < data.length / 4; i++) {
+                            rows.push($('<div class="row"></div>'))
+                        }
+
+                        var created_images_count = 0;
+                        var new_image;
+                        //Crear las imagenes del json
+                        for(image in data){
+                            new_col = $('<div class="col-md-3 col_selecting_image"></div>');
+                            new_image = $('<img id="image_'+data[image].id+'" class="selecting_image img-responsive" src="{{ asset('uploads/biblioteca/imagenes/') }}'+data[image].filenamebinary+'/small-'+data[image].filename+'">');
+                            //Asigna los eventos para seleccionarlas
+                            $(new_image).click(function () {
+                                $('.col_selecting_image').css('background-color','white');
+                                $(this).parent().css('background-color','blue');
+                                selected_image = $(this)[0];
+                            });
+                            $(new_image).dblclick(function () {
+                                changeImage();
+                            });
+                            new_col.append(new_image);
+                            //Agrega a la row indicada
+                            rows[parseInt(created_images_count++ / 4)].append(new_col);
+                        }
+                        //agrega las rows al div
+                        for(row in rows){
+                            $('#image_selector_div').append(rows[row]);
+                        }
+                    }
+                });
+
+            }
+        });
+    </script>
 {% endblock %}

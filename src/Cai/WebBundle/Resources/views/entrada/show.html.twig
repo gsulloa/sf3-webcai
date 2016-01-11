@@ -1,44 +1,43 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
-
-{% block body %}
+{% block body -%}
     <h1>Entrada</h1>
 
-    <table>
+    <table class="record_properties">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entrada.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ entrada.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ entrada.slug }}</td>
-            </tr>
-            <tr>
-                <th>Cuerpo</th>
-                <td>{{ entrada.cuerpo }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{% if entrada.fecha %}{{ entrada.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entrada.id }}</td>
+        </tr>
+        <tr>
+            <th>Titulo</th>
+            <td>{{ entrada.titulo }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ entrada.slug }}</td>
+        </tr>
+        <tr>
+            <th>Cuerpo</th>
+            <td>{{ entrada.cuerpo | raw }}</td>
+        </tr>
+        <tr>
+            <th>Fecha</th>
+            <td>{{ entrada.fecha|date('Y-m-d H:i:s') }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <ul>
+    <ul class="record_actions">
         <li>
-            <a href="{{ path('entrada_index') }}">Back to the list</a>
+            <a href="{{ path('entrada_index') }}">
+                Back to the list
+            </a>
         </li>
         <li>
-            <a href="{{ path('entrada_edit', { 'id': entrada.id }) }}">Edit</a>
+            <a href="{{ path('entrada_edit', { 'id': entrada.id }) }}">
+                Edit
+            </a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        <li>{{ form(delete_form) }}</li>
     </ul>
 {% endblock %}

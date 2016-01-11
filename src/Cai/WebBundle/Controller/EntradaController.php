@@ -35,21 +35,31 @@ class EntradaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $auxiliar = $this->get('cai_web.auxiliar');
         $entrada = new Entrada();
         $form = $this->createForm('Cai\WebBundle\Form\EntradaType', $entrada);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //generar Slug
+            $this->generatingSlug($entrada);
+            //agregar creado por usuario logeado
+            $entrada->setUser($this->getUser());
+            //agregar imagen
+            $image = $em->getRepository('CaiWebBundle:Imagen')->find(substr($request->request->get('img_slide_0'),6));
+            $entrada->setImagen($image);
             $em->persist($entrada);
             $em->flush();
 
             return $this->redirectToRoute('entrada_show', array('id' => $entrada->getId()));
         }
+        $images = $auxiliar->getImages();
 
         return $this->render('CaiWebBundle:Entrada:new.html.twig', array(
             'entrada' => $entrada,
             'form' => $form->createView(),
+            'images' => $images,
         ));
     }
 
@@ -124,5 +134,36 @@ class EntradaController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @param Entrada $entity
+     * Generar Slug unico
+     */
+    private function generatingSlug(Entrada $entity)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $aux = $this->get('cai_web.auxiliar');
+        $slug = $aux->toAscii($entity->getTitulo());
+        $querySlug = $slug . '%';
+        $entradas = $em->createQuery("
+                    SELECT entrada
+                    FROM CaiWebBundle:Entrada entrada
+                    WHERE entrada.slug LIKE '$querySlug'
+            ")->getResult();
+        $generateSlug = true;
+        for ($i = 0; $i < sizeof($entradas); $i++) {
+            if ($entradas[$i]->getId() == $entity->getId()) {
+                $generateSlug = false;
+            }
+            $entradas[$i] = $entradas[$i]->getSlug();
+        }
+        if ($generateSlug) {
+            $slug = $aux->slugGenerator($slug, $entradas);
+        } else {
+            $slug = $entity->getSlug();
+        }
+        $entity->setSlug($slug);
+        //
     }
 }

@@ -16,9 +16,9 @@ class EntradaType extends AbstractType
     {
         $builder
             ->add('titulo')
-            ->add('slug')
             ->add('cuerpo')
-            ->add('fecha', 'datetime')
+            ->add('fecha')
+            ->add('categorias')
         ;
     }
     

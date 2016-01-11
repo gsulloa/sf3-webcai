@@ -1,27 +1,33 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Entrada list</h1>
+    <h1>Entradas</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Slug</th>
-                <th>Cuerpo</th>
-                <th>Fecha</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Titulo</th>
+            <th>Imágen</th>
+            <th>Autor</th>
+            <th>Categorías</th>
+            <th>Fecha publicación</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for entrada in entradas %}
             <tr>
-                <td><a href="{{ path('entrada_show', { 'id': entrada.id }) }}">{{ entrada.id }}</a></td>
                 <td>{{ entrada.titulo }}</td>
-                <td>{{ entrada.slug }}</td>
-                <td>{{ entrada.cuerpo }}</td>
-                <td>{% if entrada.fecha %}{{ entrada.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entrada.imagen is not null %}<img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ entrada.imagen.filenamebinary }}/small-{{ entrada.imagen.filename }}">{% endif %}</td>
+                <td>{{ entrada.user }}</td>
+                <td>
+                    <ul>
+                        {% for categoria in entrada.categorias %}
+                            <li>{{ categoria }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{% if entrada.fecha %}{{ entrada.fecha|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
@@ -39,7 +45,9 @@
 
     <ul>
         <li>
-            <a href="{{ path('entrada_new') }}">Create a new entry</a>
+            <a href="{{ path('entrada_new') }}">
+                Create a new entry
+            </a>
         </li>
     </ul>
 {% endblock %}
