@@ -249,3 +249,4 @@ class Persona
         return $this->facebook;
     }
 }
+

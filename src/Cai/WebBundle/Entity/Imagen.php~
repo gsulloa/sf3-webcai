@@ -7,16 +7,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * UserProfile
+ * Imagen
  *
- * @ORM\Table(name="user_profile")
- * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\UserProfileRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="web_imagen")
+ * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\ImagenRepository")
  */
-class UserProfile
+class Imagen
 {
+    private $deleteForm;
+    private $temp;
+
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,39 +27,37 @@ class UserProfile
     private $id;
 
     /**
-     * @var string
+     * Get id
      *
-     * @ORM\Column(name="nombre", type="string", length=255)
+     * @return integer
      */
-    private $nombre;
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="apellido", type="string", length=255)
+     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
      */
-    private $apellido;
+    protected $filename;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255)
+     * @ORM\Column(name="filenamebinary", type="string", length=255, nullable=false)
      */
-    private $mail;
+    protected $filenamebinary;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="celular", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Entrada", mappedBy="imagen")
      */
-    private $celular;
+    protected $entradas;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="n_identificador", type="string", length=255, unique=true)
+     * @ORM\OneToMany(targetEntity="Slide", mappedBy="imagen")
      */
-    private $nIdentificador;
+    protected $slide;
 
     /**
      *
@@ -68,156 +68,6 @@ class UserProfile
      * @Assert\NotBlank()
      */
     protected $file;
-    protected $temp;
-    /**
-     *
-     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
-     */
-    protected $filename;
-
-    /**
-     * @ORM\OneToOne(targetEntity="\Gulloa\SecurityBundle\Entity\User", inversedBy="profile")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $user;
-
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     *
-     * @return UserProfile
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set apellido
-     *
-     * @param string $apellido
-     *
-     * @return UserProfile
-     */
-    public function setApellido($apellido)
-    {
-        $this->apellido = $apellido;
-
-        return $this;
-    }
-
-    /**
-     * Get apellido
-     *
-     * @return string
-     */
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return UserProfile
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * Set celular
-     *
-     * @param string $celular
-     *
-     * @return UserProfile
-     */
-    public function setCelular($celular)
-    {
-        $this->celular = $celular;
-
-        return $this;
-    }
-
-    /**
-     * Get celular
-     *
-     * @return string
-     */
-    public function getCelular()
-    {
-        return $this->celular;
-    }
-
-    /**
-     * Set nIdentificador
-     *
-     * @param string $nIdentificador
-     *
-     * @return UserProfile
-     */
-    public function setNIdentificador($nIdentificador)
-    {
-        $this->nIdentificador = $nIdentificador;
-
-        return $this;
-    }
-
-    /**
-     * Get nIdentificador
-     *
-     * @return string
-     */
-    public function getNIdentificador()
-    {
-        return $this->nIdentificador;
-    }
-
-
-
-    /////////////////////////////////
-    //Upload
-    ////////////////////////////////
 
     /**
      * Sets file.
@@ -228,12 +78,12 @@ class UserProfile
     {
         $this->file = $file;
         // check if we have an old image path
-        if (isset($this->filename)) {
+        if (isset($this->filenamebinary)) {
             // store the old name to delete after the update
-            $this->temp = $this->filename;
-            $this->filename = null;
+            $this->temp = $this->filenamebinary;
+            $this->filenamebinary = null;
         } else {
-            $this->filename = 'initial';
+            $this->filenamebinary = 'initial';
         }
     }
 
@@ -249,16 +99,16 @@ class UserProfile
 
     public function getAbsolutePath()
     {
-        return null === $this->filename
+        return null === $this->filenamebinary
             ? null
             : $this->getUploadRootDir() . $this->filename;
     }
 
     public function getWebPath()
     {
-        return null === $this->filename
+        return null === $this->filenamebinary
             ? null
-            : $this->getUploadDir();
+            : $this->getUploadDir() . '/' . $this->filenamebinary;
     }
 
     protected function getUploadRootDir()
@@ -272,7 +122,7 @@ class UserProfile
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/biblioteca/profile/';
+        return 'uploads/biblioteca/imagenes/' . $this->filenamebinary . '/';
     }
 
     /**
@@ -291,7 +141,8 @@ class UserProfile
 
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
-            $this->filename = $this->nombre . '.' . $extension; //$this->user->getUsername() $extension;
+            $this->filenamebinary = $filename;
+            $this->filename = $this->filename . '.' . $extension;
             //$this->filename = $this->getFile()->getClientOriginalName();
         }
     }
@@ -312,21 +163,29 @@ class UserProfile
 
         # ruta de la imagen a redimensionar
         $imagen = $this->getUploadRootDir() . $this->filename;
+        //TEST
+
+        # ruta de la imagen final, si se pone el mismo nombre que la imagen, esta se sobreescribe
+        $imagen_final_small = $this->getUploadRootDir() . 'small-' . $this->filename;
+        $imagen_final_medium = $this->getUploadRootDir() . 'medium-' . $this->filename;
 
         global $kernel;
+
         if ('AppCache' == get_class($kernel)) {
             $kernel = $kernel->getKernel();
         }
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
 
-        $imgEditor->smart_resize_image($imagen, null, 200, 200, true, $imagen, true, false, 100);
+        $imgEditor->smart_resize_image($imagen,null,800,800,true,$imagen_final_medium,false,false,50);
+        $imgEditor->smart_resize_image($imagen,null,200,200,true,$imagen_final_small,false,false,50);
 
         /*
         if (!is_dir($this->getUploadRootDir().'/small/')) {
             mkdir($this->getUploadRootDir().'/small/', 0777, true);
         }*/
         ## FIN CONFIGURACION #############################
+
 
 
         // check if we have an old image
@@ -348,15 +207,17 @@ class UserProfile
     {
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
+            unlink($this->getUploadRootDir() . '/small-' . $this->filename);
+            unlink($this->getUploadRootDir() . '/medium-' . $this->filename);
+            rmdir($this->getUploadDir());
         }
     }
-
 
     /**
      * Set filename
      *
      * @param string $filename
-     * @return UserProfile
+     * @return Imagen
      */
     public function setFilename($filename)
     {
@@ -376,26 +237,115 @@ class UserProfile
     }
 
     /**
-     * Set user
+     * Set filenamebinary
      *
-     * @param \Gulloa\SecurityBundle\Entity\User $user
-     *
-     * @return UserProfile
+     * @param string $filenamebinary
+     * @return Imagen
      */
-    public function setUser(\Gulloa\SecurityBundle\Entity\User $user = null)
+    public function setFilenamebinary($filenamebinary)
     {
-        $this->user = $user;
+        $this->filenamebinary = $filenamebinary;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get filenamebinary
      *
-     * @return \Gulloa\SecurityBundle\Entity\User
+     * @return string
      */
-    public function getUser()
+    public function getFilenamebinary()
     {
-        return $this->user;
+        return $this->filenamebinary;
+    }
+
+    public function getDeleteForm()
+    {
+        return $this->deleteForm;
+    }
+
+    public function setDeleteForm($deleteForm)
+    {
+        $this->deleteForm = $deleteForm;
+    }
+
+    public function __toString()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add entradas
+     *
+     * @param \Cai\WebBundle\Entity\Entrada $entradas
+     * @return Imagen
+     */
+    public function addEntrada(\Cai\WebBundle\Entity\Entrada $entradas)
+    {
+        $this->entradas[] = $entradas;
+
+        return $this;
+    }
+
+    /**
+     * Remove entradas
+     *
+     * @param \Cai\WebBundle\Entity\Entrada $entradas
+     */
+    public function removeEntrada(\Cai\WebBundle\Entity\Entrada $entradas)
+    {
+        $this->entradas->removeElement($entradas);
+    }
+
+    /**
+     * Get entradas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntradas()
+    {
+        return $this->entradas;
+    }
+
+    /**
+     * Add slide
+     *
+     * @param \Cai\WebBundle\Entity\Slide $slide
+     * @return Imagen
+     */
+    public function addSlide(\Cai\WebBundle\Entity\Slide $slide)
+    {
+        $this->slide[] = $slide;
+
+        return $this;
+    }
+
+    /**
+     * Remove slide
+     *
+     * @param \Cai\WebBundle\Entity\Slide $slide
+     */
+    public function removeSlide(\Cai\WebBundle\Entity\Slide $slide)
+    {
+        $this->slide->removeElement($slide);
+    }
+
+    /**
+     * Get slide
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSlide()
+    {
+        return $this->slide;
     }
 }
+

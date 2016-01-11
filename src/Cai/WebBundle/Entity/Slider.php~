@@ -99,45 +99,5 @@ class Slider
     {
         return $this->time;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->slides = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add slide
-     *
-     * @param \Cai\WebBundle\Entity\Slide $slide
-     *
-     * @return Slider
-     */
-    public function addSlide(\Cai\WebBundle\Entity\Slide $slide)
-    {
-        $this->slides[] = $slide;
-
-        return $this;
-    }
-
-    /**
-     * Remove slide
-     *
-     * @param \Cai\WebBundle\Entity\Slide $slide
-     */
-    public function removeSlide(\Cai\WebBundle\Entity\Slide $slide)
-    {
-        $this->slides->removeElement($slide);
-    }
-
-    /**
-     * Get slides
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSlides()
-    {
-        return $this->slides;
-    }
 }
+

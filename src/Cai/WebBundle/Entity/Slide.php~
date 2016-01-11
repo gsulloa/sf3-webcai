@@ -106,52 +106,5 @@ class Slide
     {
         return $this->path;
     }
-
-    /**
-     * Set slider
-     *
-     * @param \Cai\WebBundle\Entity\Slider $slider
-     *
-     * @return Slide
-     */
-    public function setSlider(\Cai\WebBundle\Entity\Slider $slider = null)
-    {
-        $this->slider = $slider;
-
-        return $this;
-    }
-
-    /**
-     * Get slider
-     *
-     * @return \Cai\WebBundle\Entity\Slider
-     */
-    public function getSlider()
-    {
-        return $this->slider;
-    }
-
-    /**
-     * Set imagen
-     *
-     * @param \Cai\WebBundle\Entity\Imagen $imagen
-     *
-     * @return Slide
-     */
-    public function setImagen(\Cai\WebBundle\Entity\Imagen $imagen = null)
-    {
-        $this->imagen = $imagen;
-
-        return $this;
-    }
-
-    /**
-     * Get imagen
-     *
-     * @return \Cai\WebBundle\Entity\Imagen
-     */
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
 }
+

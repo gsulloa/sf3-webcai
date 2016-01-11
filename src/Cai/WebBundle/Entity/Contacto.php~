@@ -311,3 +311,4 @@ class Contacto
         return $this->descripcion;
     }
 }
+

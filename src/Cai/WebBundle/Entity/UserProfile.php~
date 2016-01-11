@@ -374,28 +374,4 @@ class UserProfile
     {
         return $this->filename;
     }
-
-    /**
-     * Set user
-     *
-     * @param \Gulloa\SecurityBundle\Entity\User $user
-     *
-     * @return UserProfile
-     */
-    public function setUser(\Gulloa\SecurityBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Gulloa\SecurityBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

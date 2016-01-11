@@ -49,6 +49,24 @@ class Entrada
      */
     private $fecha;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Categoria", inversedBy="entradas")
+     * @ORM\JoinTable(name="web_entrada_categoria")
+     */
+    private $categorias;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\Gulloa\SecurityBundle\Entity\User", inversedBy="entradas")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Imagen",inversedBy="entradas")
+     * @ORM\JoinColumn(name="imagen_id", referencedColumnName="id")
+     */
+    private $imagen;
+
 
     /**
      * Get id
@@ -155,5 +173,93 @@ class Entrada
     {
         return $this->fecha;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add categoria
+     *
+     * @param \Cai\WebBundle\Entity\Categoria $categoria
+     *
+     * @return Entrada
+     */
+    public function addCategoria(\Cai\WebBundle\Entity\Categoria $categoria)
+    {
+        $this->categorias[] = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * Remove categoria
+     *
+     * @param \Cai\WebBundle\Entity\Categoria $categoria
+     */
+    public function removeCategoria(\Cai\WebBundle\Entity\Categoria $categoria)
+    {
+        $this->categorias->removeElement($categoria);
+    }
+
+    /**
+     * Get categorias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategorias()
+    {
+        return $this->categorias;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Gulloa\SecurityBundle\Entity\User $user
+     *
+     * @return Entrada
+     */
+    public function setUser(\Gulloa\SecurityBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Gulloa\SecurityBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set imagen
+     *
+     * @param \Cai\WebBundle\Entity\Imagen $imagen
+     *
+     * @return Entrada
+     */
+    public function setImagen(\Cai\WebBundle\Entity\Imagen $imagen = null)
+    {
+        $this->imagen = $imagen;
+
+        return $this;
+    }
+
+    /**
+     * Get imagen
+     *
+     * @return \Cai\WebBundle\Entity\Imagen
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+}

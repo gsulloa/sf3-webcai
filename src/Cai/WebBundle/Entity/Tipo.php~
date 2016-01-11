@@ -67,45 +67,5 @@ class Tipo
     {
         return $this->etiqueta;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->pagina = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add pagina
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $pagina
-     *
-     * @return Tipo
-     */
-    public function addPagina(\Cai\WebBundle\Entity\Pagina $pagina)
-    {
-        $this->pagina[] = $pagina;
-
-        return $this;
-    }
-
-    /**
-     * Remove pagina
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $pagina
-     */
-    public function removePagina(\Cai\WebBundle\Entity\Pagina $pagina)
-    {
-        $this->pagina->removeElement($pagina);
-    }
-
-    /**
-     * Get pagina
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPagina()
-    {
-        return $this->pagina;
-    }
 }
+

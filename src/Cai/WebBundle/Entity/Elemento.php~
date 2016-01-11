@@ -105,52 +105,5 @@ class Elemento
     {
         return $this->path;
     }
-
-    /**
-     * Set menu
-     *
-     * @param \Cai\WebBundle\Entity\Menu $menu
-     *
-     * @return Elemento
-     */
-    public function setMenu(\Cai\WebBundle\Entity\Menu $menu = null)
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
-
-    /**
-     * Get menu
-     *
-     * @return \Cai\WebBundle\Entity\Menu
-     */
-    public function getMenu()
-    {
-        return $this->menu;
-    }
-
-    /**
-     * Set submenu
-     *
-     * @param \Cai\WebBundle\Entity\Menu $submenu
-     *
-     * @return Elemento
-     */
-    public function setSubmenu(\Cai\WebBundle\Entity\Menu $submenu = null)
-    {
-        $this->submenu = $submenu;
-
-        return $this;
-    }
-
-    /**
-     * Get submenu
-     *
-     * @return \Cai\WebBundle\Entity\Menu
-     */
-    public function getSubmenu()
-    {
-        return $this->submenu;
-    }
 }
+

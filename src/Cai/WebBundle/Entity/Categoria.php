@@ -35,6 +35,26 @@ class Categoria
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="\Gulloa\SecurityBundle\Entity\User", mappedBy="categorias")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Entrada", mappedBy="categorias")
+     */
+    private $entradas;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Pagina", mappedBy="categorias")
+     */
+    private $paginas;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Evento",mappedBy="categoria")
+     */
+    private $eventos;
+
 
     /**
      * Get id
@@ -93,5 +113,150 @@ class Categoria
     {
         return $this->slug;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->paginas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add user
+     *
+     * @param \Gulloa\SecurityBundle\Entity\User $user
+     *
+     * @return Categoria
+     */
+    public function addUser(\Gulloa\SecurityBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Gulloa\SecurityBundle\Entity\User $user
+     */
+    public function removeUser(\Gulloa\SecurityBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Add entrada
+     *
+     * @param \Cai\WebBundle\Entity\Entrada $entrada
+     *
+     * @return Categoria
+     */
+    public function addEntrada(\Cai\WebBundle\Entity\Entrada $entrada)
+    {
+        $this->entradas[] = $entrada;
+
+        return $this;
+    }
+
+    /**
+     * Remove entrada
+     *
+     * @param \Cai\WebBundle\Entity\Entrada $entrada
+     */
+    public function removeEntrada(\Cai\WebBundle\Entity\Entrada $entrada)
+    {
+        $this->entradas->removeElement($entrada);
+    }
+
+    /**
+     * Get entradas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntradas()
+    {
+        return $this->entradas;
+    }
+
+    /**
+     * Add pagina
+     *
+     * @param \Cai\WebBundle\Entity\Pagina $pagina
+     *
+     * @return Categoria
+     */
+    public function addPagina(\Cai\WebBundle\Entity\Pagina $pagina)
+    {
+        $this->paginas[] = $pagina;
+
+        return $this;
+    }
+
+    /**
+     * Remove pagina
+     *
+     * @param \Cai\WebBundle\Entity\Pagina $pagina
+     */
+    public function removePagina(\Cai\WebBundle\Entity\Pagina $pagina)
+    {
+        $this->paginas->removeElement($pagina);
+    }
+
+    /**
+     * Get paginas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPaginas()
+    {
+        return $this->paginas;
+    }
+
+    /**
+     * Add evento
+     *
+     * @param \Cai\WebBundle\Entity\Evento $evento
+     *
+     * @return Categoria
+     */
+    public function addEvento(\Cai\WebBundle\Entity\Evento $evento)
+    {
+        $this->eventos[] = $evento;
+
+        return $this;
+    }
+
+    /**
+     * Remove evento
+     *
+     * @param \Cai\WebBundle\Entity\Evento $evento
+     */
+    public function removeEvento(\Cai\WebBundle\Entity\Evento $evento)
+    {
+        $this->eventos->removeElement($evento);
+    }
+
+    /**
+     * Get eventos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEventos()
+    {
+        return $this->eventos;
+    }
+}

@@ -133,28 +133,5 @@ class Evento
     {
         return $this->fecha;
     }
-
-    /**
-     * Set categoria
-     *
-     * @param \Cai\WebBundle\Entity\Categoria $categoria
-     *
-     * @return Evento
-     */
-    public function setCategoria(\Cai\WebBundle\Entity\Categoria $categoria = null)
-    {
-        $this->categoria = $categoria;
-
-        return $this;
-    }
-
-    /**
-     * Get categoria
-     *
-     * @return \Cai\WebBundle\Entity\Categoria
-     */
-    public function getCategoria()
-    {
-        return $this->categoria;
-    }
 }
+
