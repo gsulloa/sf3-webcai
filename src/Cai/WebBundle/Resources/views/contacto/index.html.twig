@@ -1,55 +1,46 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Contacto list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Lema</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Facebook</th>
-                <th>Twitter</th>
-                <th>Youtube</th>
-                <th>Mail</th>
-                <th>Vimeo</th>
-                <th>Descripcion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <h1>Contacto</h1>
+    <table class="table table-bordered table-hover">
         <tbody>
-        {% for contacto in contactos %}
-            <tr>
-                <td><a href="{{ path('contacto_show', { 'id': contacto.id }) }}">{{ contacto.id }}</a></td>
-                <td>{{ contacto.lema }}</td>
-                <td>{{ contacto.direccion }}</td>
-                <td>{{ contacto.telefono }}</td>
-                <td>{{ contacto.facebook }}</td>
-                <td>{{ contacto.twitter }}</td>
-                <td>{{ contacto.youtube }}</td>
-                <td>{{ contacto.mail }}</td>
-                <td>{{ contacto.vimeo }}</td>
-                <td>{{ contacto.descripcion }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('contacto_show', { 'id': contacto.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('contacto_edit', { 'id': contacto.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+        <tr>
+            <th>Lema</th>
+            <td>{{ contacto.lema }}</td>
+        </tr>
+        <tr>
+            <th>Direccion</th>
+            <td>{{ contacto.direccion }}</td>
+        </tr>
+        <tr>
+            <th>Telefono</th>
+            <td>{{ contacto.telefono }}</td>
+        </tr>
+        <tr>
+            <th>Twitter</th>
+            <td>{{ contacto.twitter }}</td>
+        </tr>
+        <tr>
+            <th>Facebook</th>
+            <td>{{ contacto.facebook }}</td>
+        </tr>
+        <tr>
+            <th>Youtube</th>
+            <td>{{ contacto.youtube }}</td>
+        </tr>
+        <tr>
+            <th>Mail</th>
+            <td>{{ contacto.mail }}</td>
+        </tr>
+        <tr>
+            <th>Vimeo</th>
+            <td>{{ contacto.vimeo }}</td>
+        </tr>
+        <tr>
+            <th>Descripcion</th>
+            <td>{{ contacto.descripcion }}</td>
+        </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('contacto_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('contacto_edit') }}" class="btn btn-default">Editar</a>
 {% endblock %}

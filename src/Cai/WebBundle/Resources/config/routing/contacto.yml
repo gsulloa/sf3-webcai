@@ -2,23 +2,7 @@ contacto_index:
     path:     /
     defaults: { _controller: "CaiWebBundle:Contacto:index" }
     methods:  GET
-
-contacto_show:
-    path:     /{id}/show
-    defaults: { _controller: "CaiWebBundle:Contacto:show" }
-    methods:  GET
-
-contacto_new:
-    path:     /new
-    defaults: { _controller: "CaiWebBundle:Contacto:new" }
-    methods:  [GET, POST]
-
 contacto_edit:
-    path:     /{id}/edit
+    path:     /edit
     defaults: { _controller: "CaiWebBundle:Contacto:edit" }
     methods:  [GET, POST]
-
-contacto_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "CaiWebBundle:Contacto:delete" }
-    methods:  DELETE
