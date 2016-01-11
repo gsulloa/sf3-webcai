@@ -1,10 +1,27 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .slide_img{
+            width:220px;
+            height:220px;
+            padding:10px;
+            border:1px solid #aaaaaa;
+        }
+        .img{
+            max-height:200px;
+            max-width: 200px;
+        }
 
-{% block body %}
-    <h1>Slider</h1>
+    </style>
+    <link rel="stylesheet" href="{{ asset('public/css/image_selector.css') }}" type="text/css">
 
-    <table>
-        <tbody>
+{% endblock %}
+{% block body -%}
+    <div class="row">
+        <h1>Slider</h1>
+
+        <table class="table table-bordered">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ slider.id }}</td>
@@ -15,22 +32,240 @@
             </tr>
             <tr>
                 <th>Time</th>
-                <td>{{ slider.time }}</td>
+                <td>{{ slider.time }} ms</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
-    <ul>
+    <div class="row">
+        <hr>
+        <h2>Slides</h2>
+        <button class="btn btn-default text-right" id="add_slide">Agregar Slide</button>
+        <br><br>
+
+
+        <form action="{{ path('slides_generate',{'id':slider.id}) }}" method="post" id="slides-form-generator">
+            <div class="container" id="slides">
+                {% if slider.slides | length > 0 %}
+                    {% set i = 0 %}
+                    {% for slide in slider.slides %}
+                        <div class="row" id="{{ i }}">
+                            <div class="col-md-4">
+                                <div id="slide_{{ i }}" class="slide_img" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                    <img class="img" id="img_slide_{{ i }}" draggable="true" ondragstart="drag(event)" src=" {{ asset('uploads/biblioteca/imagenes/') }}{{ slide.imagen.filenamebinary }}/small-{{ slide.imagen }} " >
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <label for="path_slide_{{ i }}">Path: </label>
+                                    <input name="path_slide_{{ i }}" class="path" type="text" id="path_slide_{{ i }}" value="{{ slide.path }}">
+                                </div>
+                                <div class="row">
+                                    <div class="img_selector btn btn-primary" id="img_selector_slide_{{ i }}">Escoger imágen</div>
+                                </div>
+                                <div class="row">
+                                    <div id="delete_{{ i }}" class="delete_slide btn btn-danger">Eliminar</div>
+                                </div>
+                                <input name="img_slide_{{ i }}" id="img_slide_{{ i }}" value="image_{{ slide.imagen.id }}" type="hidden">
+                            </div>
+                        </div>
+                        <br>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <input type="submit" class="btn btn-default" value="Guardar Slides">
+        </form>
+    </div>
+
+    <ul class="record_actions">
         <li>
-            <a href="{{ path('slider_index') }}">Back to the list</a>
+            <a href="{{ path('slider_index') }}">
+                Volver
+            </a>
         </li>
         <li>
-            <a href="{{ path('slider_edit', { 'id': slider.id }) }}">Edit</a>
+            <a href="{{ path('slider_edit', { 'id': slider.id }) }}">
+                Editar
+            </a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        <li>{{ form(delete_form) }}</li>
     </ul>
+
+    {% include 'CaiWebBundle:ImageSelector:selector.html.twig' %}
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var count = {{ slider.slides | length }};
+
+        $('#add_slide').click(function () {
+            //crear div de class row
+            var row = $('<div class="row" id="'+count+'"></div>');
+
+            //Crear visualizador
+            //crear div de class col-md-4
+            var col_img = $('<div class="col-md-4"></div> ');
+            //crear div con bordes, identificador de slide y con drop activado
+            var div_slide_droppable = $('<div id="slide_'+count+'" class="slide_img" ondrop="drop(event)" ondragover="allowDrop(event)"></div>');
+            //crear imagen draggable
+            var img_draggable = $('<img class="img" id="img_slide_'+count+'" draggable="true" ondragstart="drag(event)" src="{{ asset('public/images/no-foto.png') }}" >');
+
+
+            //Crear Formulario
+            // crear div class col-md-8
+            var col_form = $('<div class="col-md-8"></div> ');
+            // crear rows
+            var col_form_row1 =  $('<div class="row"></div>');
+            var col_form_row2 =  $('<div class="row"></div>');
+            var col_form_row3 =  $('<div class="row"></div>');
+            // crear label path
+            var path_label = $('<label for="path_slide'+count+'">Path: </label>');
+            //crear input path
+            var path_input = $('<input  name="path_slide_'+count+'" class="path" type="text" id="path_slide_'+count+'">');
+            //evento para guardar path
+            $(path_input).keyup(function () {
+                $(this).attr("value", $(this).val());
+            });
+            //crear btn imagen selector
+            var img_selector = $('<div class="img_selector btn btn-primary" id="img_selector_slide_'+count+'">Escoger imágen</div>');
+            //agregar evento image selector
+            $(img_selector).click(function () {
+                show_image_selector($(this));
+            });
+            //crear btn delete slide
+            var delete_slide = $('<div id="delete_'+count+'" class="delete_slide btn btn-danger">Eliminar</div>');
+            //agregarle evento de eliminar slide
+            $(delete_slide).click(function () {
+                deleting_slide($(this))
+            });
+            var hidden_image = $('<input name="img_slide_'+count+'" id="img_slide_'+count+'"  type="hidden">');
+            //unir todo al html
+            //visualizador
+            div_slide_droppable.append(img_draggable);
+            col_img.append(div_slide_droppable);
+            row.append(col_img);
+            //formulario
+            col_form_row1.append(path_label,path_input);
+            col_form_row2.append(img_selector);
+            col_form_row3.append(delete_slide);
+            col_form.append(col_form_row1,col_form_row2,col_form_row3,hidden_image);
+            row.append(col_form);
+            $('#slides').append(row,$('<br>'));
+            count++;
+        });
+
+        //EVENTOS
+        $('.delete_slide').click(function () {
+            deleting_slide($(this))
+        });
+        $('.path').keyup(function () {
+            $(this).attr("value", $(this).val());
+        });
+
+
+        //elimina un slide.
+        function deleting_slide(element){
+            element.parent().parent().parent().remove();
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            //Obtiene la row origen
+            var origenRow = $('#'+data).parent().parent().parent();
+
+            //Obtiene la row destino
+            var target = ev.target;
+            var targetRow;
+            if($(target)[0].nodeName == "IMG"){
+                targetRow = $(target).parent().parent().parent();
+            }else if($(target)[0].nodeName == "DIV"){
+                targetRow = $(target).parent().parent();
+            }
+            //Intercambia el contenido de los row
+            var aux = origenRow.html();
+            origenRow.html(targetRow.html());
+            targetRow.html(aux);
+
+            //Entregarle nuevamente los eventos
+            origenRow.find('.path').keyup(function () {
+                $(this).attr("value", $(this).val());
+            });
+            targetRow.find('.path').keyup(function () {
+                $(this).attr("value", $(this).val());
+            });
+            origenRow.find('.delete_slide').click(function () {
+                deleting_slide($(this))
+            });
+            targetRow.find('.delete_slide').click(function () {
+                deleting_slide($(this))
+            });
+            origenRow.find('.img_selector').click(function () {
+                show_image_selector($(this));
+            });
+            targetRow.find('.img_selector').click(function () {
+                show_image_selector($(this));
+            });
+        }
+    </script>
+    <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
+    <script>
+        //Imagenes actualmente cargadas
+        var images_count = 12;
+        //Detecta final del div
+        $('#image_selector_div').scroll(function() {
+            if($(this).scrollTop() +$(this).outerHeight() >=  $(this)[0].scrollHeight) {
+                //Ajax para cargar nuevas imagenes
+                $.ajax({
+                    url: Routing.generate('scroll_pagination_image',{'start':images_count}),
+                    type: "GET",
+                    success: function(data) {
+                        //entregar de a 12 imagenes
+                        images_count = images_count + 12;
+                        //formar JSON con data recibida
+                        data = JSON.parse(data);
+                        var rows = [];
+                        //Crear las rows necesarias
+                        for (i = 0; i < data.length / 4; i++) {
+                            rows.push($('<div class="row"></div>'))
+                        }
+
+                        var created_images_count = 0;
+                        var new_image;
+                        //Crear las imagenes del json
+                        for(image in data){
+                            new_col = $('<div class="col-md-3 col_selecting_image"></div>');
+                            new_image = $('<img id="image_'+data[image].id+'" class="selecting_image img-responsive" src="{{ asset('uploads/biblioteca/imagenes/') }}'+data[image].filenamebinary+'/small-'+data[image].filename+'">');
+                            //Asigna los eventos para seleccionarlas
+                            $(new_image).click(function () {
+                                $('.col_selecting_image').css('background-color','white');
+                                $(this).parent().css('background-color','blue');
+                                selected_image = $(this)[0];
+                            });
+                            $(new_image).dblclick(function () {
+                                changeImage();
+                            });
+                            new_col.append(new_image);
+                            //Agrega a la row indicada
+                            rows[parseInt(created_images_count++ / 4)].append(new_col);
+                        }
+                        //agrega las rows al div
+                        for(row in rows){
+                            $('#image_selector_div').append(rows[row]);
+                        }
+                    }
+                });
+
+            }
+        });
+    </script>
 {% endblock %}

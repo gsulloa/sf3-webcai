@@ -2,6 +2,7 @@
 
 namespace Cai\WebBundle\Controller;
 
+use Cai\WebBundle\Entity\Slide;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -59,11 +60,14 @@ class SliderController extends Controller
      */
     public function showAction(Slider $slider)
     {
+        $em = $this->getDoctrine()->getManager();
+        $images = $em->getRepository('CaiWebBundle:Imagen')->findAll();
         $deleteForm = $this->createDeleteForm($slider);
 
         return $this->render('CaiWebBundle:Slider:show.html.twig', array(
             'slider' => $slider,
             'delete_form' => $deleteForm->createView(),
+            'images'    => $images,
         ));
     }
 
@@ -124,5 +128,45 @@ class SliderController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function slidesGenerateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CaiWebBundle:Slider')->find($id);
+        $data = $request->request->all();
+        $slides = $entity->getSlides();
+        if (sizeof($entity->getSlides()) < sizeof($data) / 2) {
+            while (sizeof($entity->getSlides()) !== sizeof($data) / 2) {
+                $slide = new Slide();
+                $entity->addSlide($slide);
+                $slide->setSlider($entity);
+            }
+        } elseif (sizeof($entity->getSlides()) > sizeof($data) / 2) {
+            while (sizeof($entity->getSlides()) !== sizeof($data) / 2) {
+                $slide_to_delete = $entity->getSlides()->last();
+                $entity->removeSlide($slide_to_delete);
+                $em->remove($slide_to_delete);
+            }
+        }
+        $i = 0;
+        foreach ($data as $key => $item) {
+            if (strpos($key, 'path_slide') !== false) {
+                $slides[intval($i / 2)]->setPath($item);
+            } elseif (strpos($key, 'img_slide') !== false) {
+                $image = $em->getRepository('CaiWebBundle:Imagen')->find(substr($item, 6));
+                //$image->setSlide($slide);
+                $slides[intval($i / 2)]->setImagen($image);
+            }
+            $slides[intval($i / 2)]->setPosicion(intval($i / 2));
+            $i++;
+        }
+        foreach ($slides as $slide) {
+            $em->persist($slide);
+        }
+        $em->flush();
+        return $this->redirect($this->generateUrl('slider_show', array(
+            'id' => $id
+        )));
     }
 }

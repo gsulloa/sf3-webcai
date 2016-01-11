@@ -1,30 +1,30 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
-{% block body %}
-    <h1>Slider list</h1>
+{% block body -%}
+    <h1>Sliders</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Time</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Time</th>
+            <th>Acción</th>
+        </tr>
         </thead>
         <tbody>
-        {% for slider in sliders %}
+        {% for entity in sliders %}
             <tr>
-                <td><a href="{{ path('slider_show', { 'id': slider.id }) }}">{{ slider.id }}</a></td>
-                <td>{{ slider.titulo }}</td>
-                <td>{{ slider.time }}</td>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.titulo }}</td>
+                <td>{{ entity.time }} ms</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('slider_show', { 'id': slider.id }) }}">show</a>
+                            <a href="{{ path('slider_show', { 'id': entity.id }) }}">Ver</a>
                         </li>
                         <li>
-                            <a href="{{ path('slider_edit', { 'id': slider.id }) }}">edit</a>
+                            <a href="{{ path('slider_edit', { 'id': entity.id }) }}">Editar</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,9 @@
 
     <ul>
         <li>
-            <a href="{{ path('slider_new') }}">Create a new entry</a>
+            <a href="{{ path('slider_new') }}">
+                Create a new entry
+            </a>
         </li>
     </ul>
 {% endblock %}

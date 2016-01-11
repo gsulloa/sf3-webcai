@@ -1,0 +1,13 @@
+<div id="image_selector_div" hidden>
+    {% set count = 0 %}
+    {% for image in images %}
+        {% if count == 0 %}<div class="row">{% endif %}
+        <div class="col-md-3 col_selecting_image">
+            <img id="image_{{ image.id }}" class="selecting_image img-responsive" src="{{ asset('uploads/biblioteca/imagenes/') }}{{ image.filenamebinary }}/small-{{ image }}"/>
+        </div>
+        {% set count = count + 1 %}
+        {% if count == 4 %}</div><br>{% set count = 0 %}{% endif %}
+    {% endfor %}
+    {% if count < 4 and count != 0 %}</div>{% endif %}
+</div>
+<div id="image_selector_background" hidden />
