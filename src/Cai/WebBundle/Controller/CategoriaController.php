@@ -24,7 +24,7 @@ class CategoriaController extends Controller
 
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
 
-        return $this->render('categoria/index.html.twig', array(
+        return $this->render('CaiWebBundle:Categoria:index.html.twig', array(
             'categorias' => $categorias,
         ));
     }
@@ -35,20 +35,20 @@ class CategoriaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $categorium = new Categoria();
-        $form = $this->createForm('Cai\WebBundle\Form\CategoriaType', $categorium);
+        $categoria = new Categoria();
+        $form = $this->createForm('Cai\WebBundle\Form\CategoriaType', $categoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($categorium);
+            $em->persist($categoria);
             $em->flush();
 
             return $this->redirectToRoute('categoria_show', array('id' => $categoria->getId()));
         }
 
-        return $this->render('categoria/new.html.twig', array(
-            'categorium' => $categorium,
+        return $this->render('CaiWebBundle:Categoria:new.html.twig', array(
+            'categoria' => $categoria,
             'form' => $form->createView(),
         ));
     }
@@ -57,12 +57,12 @@ class CategoriaController extends Controller
      * Finds and displays a Categoria entity.
      *
      */
-    public function showAction(Categoria $categorium)
+    public function showAction(Categoria $categoria)
     {
-        $deleteForm = $this->createDeleteForm($categorium);
+        $deleteForm = $this->createDeleteForm($categoria);
 
-        return $this->render('categoria/show.html.twig', array(
-            'categorium' => $categorium,
+        return $this->render('CaiWebBundle:Categoria:show.html.twig', array(
+            'categoria' => $categoria,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -71,22 +71,22 @@ class CategoriaController extends Controller
      * Displays a form to edit an existing Categoria entity.
      *
      */
-    public function editAction(Request $request, Categoria $categorium)
+    public function editAction(Request $request, Categoria $categoria)
     {
-        $deleteForm = $this->createDeleteForm($categorium);
-        $editForm = $this->createForm('Cai\WebBundle\Form\CategoriaType', $categorium);
+        $deleteForm = $this->createDeleteForm($categoria);
+        $editForm = $this->createForm('Cai\WebBundle\Form\CategoriaType', $categoria);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($categorium);
+            $em->persist($categoria);
             $em->flush();
 
-            return $this->redirectToRoute('categoria_edit', array('id' => $categorium->getId()));
+            return $this->redirectToRoute('categoria_edit', array('id' => $categoria->getId()));
         }
 
-        return $this->render('categoria/edit.html.twig', array(
-            'categorium' => $categorium,
+        return $this->render('CaiWebBundle:Categoria:edit.html.twig', array(
+            'categoria' => $categoria,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -96,14 +96,14 @@ class CategoriaController extends Controller
      * Deletes a Categoria entity.
      *
      */
-    public function deleteAction(Request $request, Categoria $categorium)
+    public function deleteAction(Request $request, Categoria $categoria)
     {
-        $form = $this->createDeleteForm($categorium);
+        $form = $this->createDeleteForm($categoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($categorium);
+            $em->remove($categoria);
             $em->flush();
         }
 
@@ -113,14 +113,14 @@ class CategoriaController extends Controller
     /**
      * Creates a form to delete a Categoria entity.
      *
-     * @param Categoria $categorium The Categoria entity
+     * @param Categoria $categoria The Categoria entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Categoria $categorium)
+    private function createDeleteForm(Categoria $categoria)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('categoria_delete', array('id' => $categorium->getId())))
+            ->setAction($this->generateUrl('categoria_delete', array('id' => $categoria->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

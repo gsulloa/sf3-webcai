@@ -1,0 +1,41 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Elemento list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Path</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for elemento in elementos %}
+            <tr>
+                <td><a href="{{ path('elemento_show', { 'id': elemento.id }) }}">{{ elemento.id }}</a></td>
+                <td>{{ elemento.titulo }}</td>
+                <td>{{ elemento.path }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('elemento_show', { 'id': elemento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('elemento_edit', { 'id': elemento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('elemento_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

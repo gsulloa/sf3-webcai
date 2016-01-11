@@ -1,0 +1,41 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Slider list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for slider in sliders %}
+            <tr>
+                <td><a href="{{ path('slider_show', { 'id': slider.id }) }}">{{ slider.id }}</a></td>
+                <td>{{ slider.titulo }}</td>
+                <td>{{ slider.time }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('slider_show', { 'id': slider.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('slider_edit', { 'id': slider.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('slider_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

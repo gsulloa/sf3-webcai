@@ -1,0 +1,55 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Contacto list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lema</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Facebook</th>
+                <th>Twitter</th>
+                <th>Youtube</th>
+                <th>Mail</th>
+                <th>Vimeo</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contacto in contactos %}
+            <tr>
+                <td><a href="{{ path('contacto_show', { 'id': contacto.id }) }}">{{ contacto.id }}</a></td>
+                <td>{{ contacto.lema }}</td>
+                <td>{{ contacto.direccion }}</td>
+                <td>{{ contacto.telefono }}</td>
+                <td>{{ contacto.facebook }}</td>
+                <td>{{ contacto.twitter }}</td>
+                <td>{{ contacto.youtube }}</td>
+                <td>{{ contacto.mail }}</td>
+                <td>{{ contacto.vimeo }}</td>
+                <td>{{ contacto.descripcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('contacto_show', { 'id': contacto.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contacto_edit', { 'id': contacto.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contacto_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

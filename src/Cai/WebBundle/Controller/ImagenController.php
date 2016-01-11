@@ -24,7 +24,7 @@ class ImagenController extends Controller
 
         $imagens = $em->getRepository('CaiWebBundle:Imagen')->findAll();
 
-        return $this->render('imagen/index.html.twig', array(
+        return $this->render('CaiWebBundle:Imagen:index.html.twig', array(
             'imagens' => $imagens,
         ));
     }
@@ -47,7 +47,7 @@ class ImagenController extends Controller
             return $this->redirectToRoute('imagen_show', array('id' => $imagen->getId()));
         }
 
-        return $this->render('imagen/new.html.twig', array(
+        return $this->render('CaiWebBundle:imagen:new.html.twig', array(
             'imagen' => $imagen,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class ImagenController extends Controller
     {
         $deleteForm = $this->createDeleteForm($imagen);
 
-        return $this->render('imagen/show.html.twig', array(
+        return $this->render('CaiWebBundle:imagen:show.html.twig', array(
             'imagen' => $imagen,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class ImagenController extends Controller
             return $this->redirectToRoute('imagen_edit', array('id' => $imagen->getId()));
         }
 
-        return $this->render('imagen/edit.html.twig', array(
+        return $this->render('CaiWebBundle:imagen:edit.html.twig', array(
             'imagen' => $imagen,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

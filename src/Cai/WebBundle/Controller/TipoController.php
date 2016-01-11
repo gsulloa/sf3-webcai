@@ -24,7 +24,7 @@ class TipoController extends Controller
 
         $tipos = $em->getRepository('CaiWebBundle:Tipo')->findAll();
 
-        return $this->render('tipo/index.html.twig', array(
+        return $this->render('CaiWebBundle:Tipo:index.html.twig', array(
             'tipos' => $tipos,
         ));
     }
@@ -47,7 +47,7 @@ class TipoController extends Controller
             return $this->redirectToRoute('tipo_show', array('id' => $tipo->getId()));
         }
 
-        return $this->render('tipo/new.html.twig', array(
+        return $this->render('CaiWebBundle:Tipo:new.html.twig', array(
             'tipo' => $tipo,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class TipoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($tipo);
 
-        return $this->render('tipo/show.html.twig', array(
+        return $this->render('CaiWebBundle:Tipo:show.html.twig', array(
             'tipo' => $tipo,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class TipoController extends Controller
             return $this->redirectToRoute('tipo_edit', array('id' => $tipo->getId()));
         }
 
-        return $this->render('tipo/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Tipo:edit.html.twig', array(
             'tipo' => $tipo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

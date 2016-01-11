@@ -1,0 +1,45 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Pagina list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Cuerpo</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pagina in paginas %}
+            <tr>
+                <td><a href="{{ path('pagina_show', { 'id': pagina.id }) }}">{{ pagina.id }}</a></td>
+                <td>{{ pagina.titulo }}</td>
+                <td>{{ pagina.slug }}</td>
+                <td>{{ pagina.cuerpo }}</td>
+                <td>{% if pagina.fecha %}{{ pagina.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pagina_show', { 'id': pagina.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pagina_edit', { 'id': pagina.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pagina_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

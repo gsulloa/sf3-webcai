@@ -24,7 +24,7 @@ class PersonaController extends Controller
 
         $personas = $em->getRepository('CaiWebBundle:Persona')->findAll();
 
-        return $this->render('persona/index.html.twig', array(
+        return $this->render('CaiWebBundle:Persona:index.html.twig', array(
             'personas' => $personas,
         ));
     }
@@ -47,7 +47,7 @@ class PersonaController extends Controller
             return $this->redirectToRoute('persona_show', array('id' => $persona->getId()));
         }
 
-        return $this->render('persona/new.html.twig', array(
+        return $this->render('CaiWebBundle:Persona:new.html.twig', array(
             'persona' => $persona,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class PersonaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($persona);
 
-        return $this->render('persona/show.html.twig', array(
+        return $this->render('CaiWebBundle:Persona:show.html.twig', array(
             'persona' => $persona,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class PersonaController extends Controller
             return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
         }
 
-        return $this->render('persona/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Persona:edit.html.twig', array(
             'persona' => $persona,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

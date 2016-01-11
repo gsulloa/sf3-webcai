@@ -24,7 +24,7 @@ class PaginaController extends Controller
 
         $paginas = $em->getRepository('CaiWebBundle:Pagina')->findAll();
 
-        return $this->render('pagina/index.html.twig', array(
+        return $this->render('CaiWebBundle:Pagina:index.html.twig', array(
             'paginas' => $paginas,
         ));
     }
@@ -47,7 +47,7 @@ class PaginaController extends Controller
             return $this->redirectToRoute('pagina_show', array('id' => $pagina->getId()));
         }
 
-        return $this->render('pagina/new.html.twig', array(
+        return $this->render('CaiWebBundle:Pagina:new.html.twig', array(
             'pagina' => $pagina,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class PaginaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($pagina);
 
-        return $this->render('pagina/show.html.twig', array(
+        return $this->render('CaiWebBundle:Pagina:show.html.twig', array(
             'pagina' => $pagina,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class PaginaController extends Controller
             return $this->redirectToRoute('pagina_edit', array('id' => $pagina->getId()));
         }
 
-        return $this->render('pagina/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Pagina:edit.html.twig', array(
             'pagina' => $pagina,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -24,7 +24,7 @@ class SlideController extends Controller
 
         $slides = $em->getRepository('CaiWebBundle:Slide')->findAll();
 
-        return $this->render('slide/index.html.twig', array(
+        return $this->render('CaiWebBundle:Slide:index.html.twig', array(
             'slides' => $slides,
         ));
     }
@@ -47,7 +47,7 @@ class SlideController extends Controller
             return $this->redirectToRoute('slide_show', array('id' => $slide->getId()));
         }
 
-        return $this->render('slide/new.html.twig', array(
+        return $this->render('CaiWebBundle:Slide:new.html.twig', array(
             'slide' => $slide,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class SlideController extends Controller
     {
         $deleteForm = $this->createDeleteForm($slide);
 
-        return $this->render('slide/show.html.twig', array(
+        return $this->render('CaiWebBundle:Slide:show.html.twig', array(
             'slide' => $slide,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class SlideController extends Controller
             return $this->redirectToRoute('slide_edit', array('id' => $slide->getId()));
         }
 
-        return $this->render('slide/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Slide:edit.html.twig', array(
             'slide' => $slide,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -24,7 +24,7 @@ class EntradaController extends Controller
 
         $entradas = $em->getRepository('CaiWebBundle:Entrada')->findAll();
 
-        return $this->render('entrada/index.html.twig', array(
+        return $this->render('CaiWebBundle:Entrada:index.html.twig', array(
             'entradas' => $entradas,
         ));
     }
@@ -47,7 +47,7 @@ class EntradaController extends Controller
             return $this->redirectToRoute('entrada_show', array('id' => $entrada->getId()));
         }
 
-        return $this->render('entrada/new.html.twig', array(
+        return $this->render('CaiWebBundle:Entrada:new.html.twig', array(
             'entrada' => $entrada,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class EntradaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($entrada);
 
-        return $this->render('entrada/show.html.twig', array(
+        return $this->render('CaiWebBundle:Entrada:show.html.twig', array(
             'entrada' => $entrada,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class EntradaController extends Controller
             return $this->redirectToRoute('entrada_edit', array('id' => $entrada->getId()));
         }
 
-        return $this->render('entrada/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Entrada:edit.html.twig', array(
             'entrada' => $entrada,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

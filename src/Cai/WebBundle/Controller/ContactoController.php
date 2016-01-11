@@ -24,7 +24,7 @@ class ContactoController extends Controller
 
         $contactos = $em->getRepository('CaiWebBundle:Contacto')->findAll();
 
-        return $this->render('contacto/index.html.twig', array(
+        return $this->render('CaiWebBundle:Contacto:index.html.twig', array(
             'contactos' => $contactos,
         ));
     }
@@ -47,7 +47,7 @@ class ContactoController extends Controller
             return $this->redirectToRoute('contacto_show', array('id' => $contacto->getId()));
         }
 
-        return $this->render('contacto/new.html.twig', array(
+        return $this->render('CaiWebBundle:Contacto:new.html.twig', array(
             'contacto' => $contacto,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class ContactoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($contacto);
 
-        return $this->render('contacto/show.html.twig', array(
+        return $this->render('CaiWebBundle:Contacto:show.html.twig', array(
             'contacto' => $contacto,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class ContactoController extends Controller
             return $this->redirectToRoute('contacto_edit', array('id' => $contacto->getId()));
         }
 
-        return $this->render('contacto/edit.html.twig', array(
+        return $this->render('CaiWebBundle:Contacto:edit.html.twig', array(
             'contacto' => $contacto,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

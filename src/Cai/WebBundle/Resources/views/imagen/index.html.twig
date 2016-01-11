@@ -1,0 +1,41 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Imagen list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Filename</th>
+                <th>Filenamebinary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imagen in imagens %}
+            <tr>
+                <td><a href="{{ path('imagen_show', { 'id': imagen.id }) }}">{{ imagen.id }}</a></td>
+                <td>{{ imagen.filename }}</td>
+                <td>{{ imagen.filenamebinary }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagen_show', { 'id': imagen.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagen_edit', { 'id': imagen.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagen_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
