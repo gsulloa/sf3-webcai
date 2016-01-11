@@ -60,8 +60,8 @@ class SliderController extends Controller
      */
     public function showAction(Slider $slider)
     {
-        $em = $this->getDoctrine()->getManager();
-        $images = $em->getRepository('CaiWebBundle:Imagen')->findAll();
+        $auxiliar = $this->get('cai_web.auxiliar');
+        $images = $auxiliar->getImages();
         $deleteForm = $this->createDeleteForm($slider);
 
         return $this->render('CaiWebBundle:Slider:show.html.twig', array(

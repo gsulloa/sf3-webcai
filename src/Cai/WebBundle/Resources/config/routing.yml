@@ -1,3 +1,6 @@
+cai_web_ajax:
+    resource: "@CaiWebBundle/Resources/config/routing/ajax.yml"
+    prefix:   /ajax
 cai_web_categoria:
     resource: "@CaiWebBundle/Resources/config/routing/categoria.yml"
     prefix:   /categoria
