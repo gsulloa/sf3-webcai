@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Categoria
  *
- * @ORM\Table(name="categoria")
+ * @ORM\Table(name="web_categoria")
  * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\CategoriaRepository")
  */
 class Categoria

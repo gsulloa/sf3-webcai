@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Slide
  *
- * @ORM\Table(name="slide")
+ * @ORM\Table(name="web_slide")
  * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\SlideRepository")
  */
 class Slide

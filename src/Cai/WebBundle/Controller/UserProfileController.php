@@ -44,7 +44,7 @@ class UserProfileController extends Controller
             $em->persist($userProfile);
             $em->flush();
 
-            return $this->redirectToRoute('userprofile_show', array('id' => $userprofile->getId()));
+            return $this->redirectToRoute('userprofile_show', array('id' => $userProfile->getId()));
         }
 
         return $this->render('userprofile/new.html.twig', array(

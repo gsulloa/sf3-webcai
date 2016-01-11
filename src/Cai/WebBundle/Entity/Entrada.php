@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Entrada
  *
- * @ORM\Table(name="entrada")
+ * @ORM\Table(name="web_entrada")
  * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\EntradaRepository")
  */
 class Entrada

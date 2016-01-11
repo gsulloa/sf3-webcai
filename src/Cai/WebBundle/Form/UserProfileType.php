@@ -20,6 +20,10 @@ class UserProfileType extends AbstractType
             ->add('mail')
             ->add('celular')
             ->add('nIdentificador')
+            ->add('file', null, array(
+                'required' => false,
+                'label' => "Imágen"
+            ))
         ;
     }
     
