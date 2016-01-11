@@ -22,10 +22,10 @@ class ImagenController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $imagens = $em->getRepository('CaiWebBundle:Imagen')->findAll();
+        $imagenes = $em->getRepository('CaiWebBundle:Imagen')->findAll();
 
         return $this->render('CaiWebBundle:Imagen:index.html.twig', array(
-            'imagens' => $imagens,
+            'imagenes' => $imagenes,
         ));
     }
 
@@ -67,30 +67,7 @@ class ImagenController extends Controller
         ));
     }
 
-    /**
-     * Displays a form to edit an existing Imagen entity.
-     *
-     */
-    public function editAction(Request $request, Imagen $imagen)
-    {
-        $deleteForm = $this->createDeleteForm($imagen);
-        $editForm = $this->createForm('Cai\WebBundle\Form\ImagenType', $imagen);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($imagen);
-            $em->flush();
-
-            return $this->redirectToRoute('imagen_edit', array('id' => $imagen->getId()));
-        }
-
-        return $this->render('CaiWebBundle:imagen:edit.html.twig', array(
-            'imagen' => $imagen,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Deletes a Imagen entity.

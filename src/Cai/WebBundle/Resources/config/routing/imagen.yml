@@ -13,11 +13,6 @@ imagen_new:
     defaults: { _controller: "CaiWebBundle:Imagen:new" }
     methods:  [GET, POST]
 
-imagen_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "CaiWebBundle:Imagen:edit" }
-    methods:  [GET, POST]
-
 imagen_delete:
     path:     /{id}/delete
     defaults: { _controller: "CaiWebBundle:Imagen:delete" }

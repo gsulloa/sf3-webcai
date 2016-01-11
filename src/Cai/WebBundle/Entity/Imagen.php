@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="web_imagen")
  * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\ImagenRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Imagen
 {
@@ -142,7 +143,12 @@ class Imagen
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
             $this->filenamebinary = $filename;
-            $this->filename = $this->filename . '.' . $extension;
+            global $kernel;
+            if ('AppCache' == get_class($kernel)) {
+                $kernel = $kernel->getKernel();
+            }
+            $auxiliar = $kernel->getContainer()->get('cai_web.auxiliar');
+            $this->filename = $auxiliar->toAscii($this->filename) . '.' . $extension;
             //$this->filename = $this->getFile()->getClientOriginalName();
         }
     }

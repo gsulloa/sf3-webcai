@@ -1,41 +1,38 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
-{% block body %}
-    <h1>Imagen list</h1>
+{% block stylesheets %}
+    <style>
+        .selective_image {
+            margin: auto;
+        }
+        .selective_image:hover {
+            opacity: .7;
+        }
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Filename</th>
-                <th>Filenamebinary</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for imagen in imagens %}
-            <tr>
-                <td><a href="{{ path('imagen_show', { 'id': imagen.id }) }}">{{ imagen.id }}</a></td>
-                <td>{{ imagen.filename }}</td>
-                <td>{{ imagen.filenamebinary }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('imagen_show', { 'id': imagen.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('imagen_edit', { 'id': imagen.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('imagen_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+        .row{
+            max-width:90%;
+        }
+    </style>
 {% endblock %}
+
+{% block body -%}
+    <h1>Imágenes <a href="{{ path('imagen_new') }}" class="btn btn-primary">Subir nueva Imágen</a></h1>
+<br>
+    <div class="container">
+    {% set count = 0 %}
+    {% for image in imagenes %}
+        {% if count == 0 %}<div class="row">{% endif %}
+        <div class="col-md-3">
+            <a href="{{ path('imagen_show',{'id':image.id}) }}"><img class="img-responsive selective_image" src="{{ asset('uploads/biblioteca/imagenes/') }}{{ image.filenamebinary }}/small-{{ image }}"/></a>
+        </div>
+        {% set count = count + 1 %}
+        {% if count == 4 %}</div><br>{% set count = 0 %}{% endif %}
+    {% endfor %}
+    {% if count < 4 and count != 0 %}</div>{% endif %}
+</div>
+    {# display navigation
+<div class="text-center">
+    {{ knp_pagination_render(imagenes) }}
+</div>#}
+
+    {% endblock %}
