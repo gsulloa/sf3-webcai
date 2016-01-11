@@ -41,6 +41,7 @@ class CategoriaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->generatingSlug($categoria);
             $em->persist($categoria);
             $em->flush();
 
@@ -124,5 +125,35 @@ class CategoriaController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @param Categoria $entity
+     * Generar Slug unico
+     */
+    private function generatingSlug(Categoria $entity){
+        $em = $this->getDoctrine()->getManager();
+        $aux = $this->get('cai_web.auxiliar');
+        $slug = $aux->toAscii($entity->getEtiqueta());
+        $querySlug = $slug . '%';
+        $categorias = $em->createQuery("
+                    SELECT categoria
+                    FROM CaiWebBundle:Categoria categoria
+                    WHERE categoria.slug LIKE '$querySlug'
+            ")->getResult();
+        $generateSlug = true;
+        for($i = 0;$i < sizeof($categorias);$i++){
+            if($categorias[$i]->getId() == $entity->getId()){
+                $generateSlug = false;
+            }
+            $categorias[$i] = $categorias[$i]->getSlug();
+        }
+        if($generateSlug) {
+            $slug = $aux->slugGenerator($slug, $categorias);
+        }else{
+            $slug = $entity->getSlug();
+        }
+        $entity->setSlug($slug);
+        //
     }
 }

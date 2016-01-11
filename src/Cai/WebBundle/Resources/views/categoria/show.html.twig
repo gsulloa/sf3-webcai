@@ -7,15 +7,15 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ categorium.id }}</td>
+                <td>{{ categoria.id }}</td>
             </tr>
             <tr>
                 <th>Etiqueta</th>
-                <td>{{ categorium.etiqueta }}</td>
+                <td>{{ categoria.etiqueta }}</td>
             </tr>
             <tr>
                 <th>Slug</th>
-                <td>{{ categorium.slug }}</td>
+                <td>{{ categoria.slug }}</td>
             </tr>
         </tbody>
     </table>
@@ -25,7 +25,7 @@
             <a href="{{ path('categoria_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}">Edit</a>
+            <a href="{{ path('categoria_edit', { 'id': categoria.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

@@ -1,30 +1,28 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Categoria list</h1>
+    <h1>Categorias</h1>
 
-    <table>
+    <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Etiqueta</th>
-                <th>Slug</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Etiqueta</th>
+            <th>Slug</th>
+            <th>Acciones</th>
+        </tr>
         </thead>
         <tbody>
-        {% for categorium in categorias %}
+        {% for categoria in categorias %}
             <tr>
-                <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
-                <td>{{ categorium.etiqueta }}</td>
-                <td>{{ categorium.slug }}</td>
+                <td>{{ categoria.etiqueta }}</td>
+                <td>{{ categoria.slug }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('categoria_show', { 'id': categorium.id }) }}">show</a>
+                            <a href="{{ path('categoria_show', { 'id': categoria.id }) }}">Ver</a>
                         </li>
                         <li>
-                            <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}">edit</a>
+                            <a href="{{ path('categoria_edit', { 'id': categoria.id }) }}">Editar</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +33,9 @@
 
     <ul>
         <li>
-            <a href="{{ path('categoria_new') }}">Create a new entry</a>
+            <a href="{{ path('categoria_new') }}">
+                Crear nueva categoría
+            </a>
         </li>
     </ul>
 {% endblock %}
