@@ -1,3 +1,6 @@
+cai_web_uploader:
+    resource: "@CaiWebBundle/Resources/config/routing/uploader.yml"
+    prefix:   /upload
 cai_web_ajax:
     resource: "@CaiWebBundle/Resources/config/routing/ajax.yml"
     prefix:   /ajax

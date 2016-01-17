@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class Imagen
 {
-    private $deleteForm;
     private $temp;
 
     /**
@@ -39,7 +38,7 @@ class Imagen
 
     /**
      *
-     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
+     * @ORM\Column(name="filename", type="string", length=255, nullable=true)
      */
     protected $filename;
 
@@ -148,8 +147,11 @@ class Imagen
                 $kernel = $kernel->getKernel();
             }
             $auxiliar = $kernel->getContainer()->get('cai_web.auxiliar');
-            $this->filename = $auxiliar->toAscii($this->filename) . '.' . $extension;
-            //$this->filename = $this->getFile()->getClientOriginalName();
+            if ($this->filename != null) {
+                $this->filename = $auxiliar->toAscii($this->filename) . '.' . $extension;
+            }else {
+                $this->filename = $this->getFile()->getClientOriginalName();
+            }
         }
     }
 

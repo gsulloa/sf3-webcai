@@ -1,0 +1,8 @@
+uploader:
+    path: /
+    defaults: { _controller: CaiWebBundle:Upload:uploader }
+
+uploader_upload:
+    path: /upload
+    defaults: { _controller: CaiWebBundle:Upload:upload }
+    methods: POST

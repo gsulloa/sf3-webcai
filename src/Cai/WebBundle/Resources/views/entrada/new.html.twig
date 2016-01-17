@@ -64,7 +64,7 @@
             if($(this).scrollTop() +$(this).outerHeight() >=  $(this)[0].scrollHeight) {
                 //Ajax para cargar nuevas imagenes
                 $.ajax({
-                    url: Routing.generate('scroll_pagination_image',{'start':images_count}),
+                    url: '{{ path('scroll_pagination_image') }}/' + images_count,//Routing.generate('scroll_pagination_image',{'start':images_count}),
                     type: "GET",
                     success: function(data) {
                         //entregar de a 12 imagenes

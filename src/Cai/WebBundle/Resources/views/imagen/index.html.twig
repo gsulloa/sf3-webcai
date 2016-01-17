@@ -16,7 +16,11 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Imágenes <a href="{{ path('imagen_new') }}" class="btn btn-primary">Subir nueva Imágen</a></h1>
+    <h1>Imágenes
+        <a href="{{ path('imagen_new') }}" class="btn btn-primary">Subir nueva Imágen</a>
+        <a href="{{ path('uploader') }}" class="btn btn-danger">Multiuploader</a>
+    </h1>
+
 <br>
     <div class="container">
     {% set count = 0 %}
