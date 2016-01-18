@@ -14,8 +14,6 @@ class UploadController extends Controller
     }
 
     public function uploadAction(Request $request){
-
-        $data = array();
         $filesSet = $request->query->get('files');
         if(isset($filesSet))
         {
@@ -31,14 +29,17 @@ class UploadController extends Controller
                 $imagen->preUpload();
                 $em->persist($imagen);
                 $imagen->upload();
+                $em->flush();
+
+                $imagen = $em->getRepository('CaiWebBundle:Imagen')->findOneByFilenamebinary($imagen->getFilenamebinary());
 
                 $imagenes[] = array(
                     'filename' => $imagen->getFilename(),
-                    'filenamebinary' => $imagen->getFilenamebinary()
+                    'filenamebinary' => $imagen->getFilenamebinary(),
+                    'id' => $imagen->getId()
                 );
 
             }
-            $em->flush();
             $data = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files, 'imagenes' => $imagenes);
         }
         else

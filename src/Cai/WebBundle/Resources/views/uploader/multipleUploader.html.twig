@@ -1,11 +1,20 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <form method="post">
-        <input id="imagenes" type="file" name="imagenes[]" multiple class="upload-input">
-    </form>
-    <button  id="upload" class="btn btn-default upload-input">Upload</button>
-    <div class="container" id="imagenes">
+    <div class="row">
+        <div class="col-md-3">
+            <form method="post">
+                <input id="imagenes" type="file" name="imagenes[]" multiple class="upload-input">
+            </form>
+            <button  id="upload" class="btn btn-default upload-input">Upload</button>
+        </div>
+        <div class="col-md-9" hidden id="uploading-gif">
+            <img src="{{ asset('public/images/uploading.gif') }}" class="img-responsive" style="max-width: 50px;" >
+        </div>
+    </div>
+    <div class="container" id="uploaded-images">
+        <h1>Imágenes subidas</h1>
+        <div class="row row-uploaded-images"></div>
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -24,6 +33,7 @@
         function uploadFiles(event)
         {
             $('.upload-input').prop('disabled', true);
+            $('#uploading-gif').show();
             event.stopPropagation(); // Stop stuff happening
             event.preventDefault(); // Totally stop stuff happening
 
@@ -49,7 +59,7 @@
                         {
                             // Success so call function to process the form
                             console.log(data);
-                            addImagen(data['imagenes'][0]['filenamebinary'],data['imagenes'][0]['filename']);
+                            addImagen(data['imagenes'][0]['filenamebinary'],data['imagenes'][0]['filename'],data['imagenes'][0]['id']);
                             submitForm(event, data);
                         }
                         else
@@ -102,16 +112,33 @@
                     complete: function()
                     {
                         $('.upload-input').prop('disabled', false);
+                        $('#uploading-gif').hide();
                         $('input[type=file]').val('');
                     }
                 });
             }
         }
 
-        function addImagen(filenamebinary, filename){
+        function addImagen(filenamebinary, filename, id){
             console.log('{{ asset('uploads/biblioteca/imagenes/') }}'+filenamebinary+'/small-'+filename);
             var imagen = $('<img src="{{ asset('uploads/biblioteca/imagenes/') }}'+filenamebinary+'/small-'+filename+'">');
-            $('#imagenes').append(imagen);
+            var direccionamiento = $('<a href="{{ path('imagen_index') }}' + id + '/show"></a>');
+            var col_imagen = $('<div class="col-md-3"></div>');
+            var row_selected = false;
+            while(!row_selected) {
+                var rowLength = $('.row-uploaded-images').length;
+                var row = $('.row-uploaded-images')[rowLength - 1];
+                if ($(row).children().length < 4){
+                    row_selected = true
+                }else{
+                    var newRow = $('<div class="row row-uploaded-images"></div>');
+                    $('#uploaded-images').append(newRow);
+                    console.log('sadf');
+                }
+            }
+            direccionamiento.append(imagen);
+            col_imagen.append(direccionamiento);
+            $(row).append(col_imagen);
         }
     </script>
 {% endblock %}
