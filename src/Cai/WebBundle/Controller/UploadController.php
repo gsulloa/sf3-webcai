@@ -22,6 +22,7 @@ class UploadController extends Controller
             $em = $this->getDoctrine()->getManager();
             $error = false;
             $files = array();
+            $imagenes = array();
             foreach($request->files->all() as $file)
             {
                 $imagen = new Imagen();
@@ -31,9 +32,14 @@ class UploadController extends Controller
                 $em->persist($imagen);
                 $imagen->upload();
 
+                $imagenes[] = array(
+                    'filename' => $imagen->getFilename(),
+                    'filenamebinary' => $imagen->getFilenamebinary()
+                );
+
             }
             $em->flush();
-            $data = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files);
+            $data = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files, 'imagenes' => $imagenes);
         }
         else
         {
