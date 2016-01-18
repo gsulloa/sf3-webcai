@@ -24,7 +24,7 @@ class UserProfileController extends Controller
 
         $userProfiles = $em->getRepository('CaiWebBundle:UserProfile')->findAll();
 
-        return $this->render('CaiWebBundle:Userprofile:index.html.twig', array(
+        return $this->render('CaiWebBundle:userprofile:index.html.twig', array(
             'userProfiles' => $userProfiles,
         ));
     }
@@ -47,7 +47,7 @@ class UserProfileController extends Controller
             return $this->redirectToRoute('userprofile_show', array('id' => $userProfile->getId()));
         }
 
-        return $this->render('CaiWebBundle:Userprofile:new.html.twig', array(
+        return $this->render('CaiWebBundle:userprofile:new.html.twig', array(
             'userProfile' => $userProfile,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class UserProfileController extends Controller
     {
         $deleteForm = $this->createDeleteForm($userProfile);
 
-        return $this->render('CaiWebBundle:Userprofile:show.html.twig', array(
+        return $this->render('CaiWebBundle:userprofile:show.html.twig', array(
             'userProfile' => $userProfile,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class UserProfileController extends Controller
             return $this->redirectToRoute('userprofile_edit', array('id' => $userProfile->getId()));
         }
 
-        return $this->render('CaiWebBundle:Userprofile:edit.html.twig', array(
+        return $this->render('CaiWebBundle:userprofile:edit.html.twig', array(
             'userProfile' => $userProfile,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

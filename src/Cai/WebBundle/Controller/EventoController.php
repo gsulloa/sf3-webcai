@@ -24,7 +24,7 @@ class EventoController extends Controller
 
         $eventos = $em->getRepository('CaiWebBundle:Evento')->findAll();
 
-        return $this->render('CaiWebBundle:Evento:index.html.twig', array(
+        return $this->render('CaiWebBundle:evento:index.html.twig', array(
             'eventos' => $eventos,
         ));
     }
@@ -47,7 +47,7 @@ class EventoController extends Controller
             return $this->redirectToRoute('evento_show', array('id' => $evento->getId()));
         }
 
-        return $this->render('CaiWebBundle:Evento:new.html.twig', array(
+        return $this->render('CaiWebBundle:evento:new.html.twig', array(
             'evento' => $evento,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class EventoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($evento);
 
-        return $this->render('CaiWebBundle:Evento:show.html.twig', array(
+        return $this->render('CaiWebBundle:evento:show.html.twig', array(
             'evento' => $evento,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class EventoController extends Controller
             return $this->redirectToRoute('evento_edit', array('id' => $evento->getId()));
         }
 
-        return $this->render('CaiWebBundle:Evento:edit.html.twig', array(
+        return $this->render('CaiWebBundle:evento:edit.html.twig', array(
             'evento' => $evento,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

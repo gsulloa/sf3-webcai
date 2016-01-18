@@ -24,7 +24,7 @@ class MenuController extends Controller
 
         $menus = $em->getRepository('CaiWebBundle:Menu')->findAll();
 
-        return $this->render('CaiWebBundle:Menu:index.html.twig', array(
+        return $this->render('CaiWebBundle:menu:index.html.twig', array(
             'menus' => $menus,
         ));
     }
@@ -47,7 +47,7 @@ class MenuController extends Controller
             return $this->redirectToRoute('menu_show', array('id' => $menu->getId()));
         }
 
-        return $this->render('CaiWebBundle:Menu:new.html.twig', array(
+        return $this->render('CaiWebBundle:menu:new.html.twig', array(
             'menu' => $menu,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class MenuController extends Controller
     {
         $deleteForm = $this->createDeleteForm($menu);
 
-        return $this->render('CaiWebBundle:Menu:show.html.twig', array(
+        return $this->render('CaiWebBundle:menu:show.html.twig', array(
             'menu' => $menu,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class MenuController extends Controller
             return $this->redirectToRoute('menu_edit', array('id' => $menu->getId()));
         }
 
-        return $this->render('CaiWebBundle:Menu:edit.html.twig', array(
+        return $this->render('CaiWebBundle:menu:edit.html.twig', array(
             'menu' => $menu,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

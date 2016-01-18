@@ -24,7 +24,7 @@ class ElementoController extends Controller
 
         $elementos = $em->getRepository('CaiWebBundle:Elemento')->findAll();
 
-        return $this->render('CaiWebBundle:Elemento:index.html.twig', array(
+        return $this->render('CaiWebBundle:elemento:index.html.twig', array(
             'elementos' => $elementos,
         ));
     }
@@ -47,7 +47,7 @@ class ElementoController extends Controller
             return $this->redirectToRoute('elemento_show', array('id' => $elemento->getId()));
         }
 
-        return $this->render('CaiWebBundle:Elemento:new.html.twig', array(
+        return $this->render('CaiWebBundle:elemento:new.html.twig', array(
             'elemento' => $elemento,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class ElementoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($elemento);
 
-        return $this->render('CaiWebBundle:Elemento:show.html.twig', array(
+        return $this->render('CaiWebBundle:elemento:show.html.twig', array(
             'elemento' => $elemento,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -85,7 +85,7 @@ class ElementoController extends Controller
             return $this->redirectToRoute('elemento_edit', array('id' => $elemento->getId()));
         }
 
-        return $this->render('CaiWebBundle:Elemento:edit.html.twig', array(
+        return $this->render('CaiWebBundle:elemento:edit.html.twig', array(
             'elemento' => $elemento,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

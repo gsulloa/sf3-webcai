@@ -25,7 +25,7 @@ class SliderController extends Controller
 
         $sliders = $em->getRepository('CaiWebBundle:Slider')->findAll();
 
-        return $this->render('CaiWebBundle:Slider:index.html.twig', array(
+        return $this->render('CaiWebBundle:slider:index.html.twig', array(
             'sliders' => $sliders,
         ));
     }
@@ -48,7 +48,7 @@ class SliderController extends Controller
             return $this->redirectToRoute('slider_show', array('id' => $slider->getId()));
         }
 
-        return $this->render('CaiWebBundle:Slider:new.html.twig', array(
+        return $this->render('CaiWebBundle:slider:new.html.twig', array(
             'slider' => $slider,
             'form' => $form->createView(),
         ));
@@ -64,7 +64,7 @@ class SliderController extends Controller
         $images = $auxiliar->getImages();
         $deleteForm = $this->createDeleteForm($slider);
 
-        return $this->render('CaiWebBundle:Slider:show.html.twig', array(
+        return $this->render('CaiWebBundle:slider:show.html.twig', array(
             'slider' => $slider,
             'delete_form' => $deleteForm->createView(),
             'images'    => $images,
@@ -89,7 +89,7 @@ class SliderController extends Controller
             return $this->redirectToRoute('slider_edit', array('id' => $slider->getId()));
         }
 
-        return $this->render('CaiWebBundle:Slider:edit.html.twig', array(
+        return $this->render('CaiWebBundle:slider:edit.html.twig', array(
             'slider' => $slider,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

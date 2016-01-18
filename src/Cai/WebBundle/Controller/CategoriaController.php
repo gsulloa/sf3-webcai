@@ -24,7 +24,7 @@ class CategoriaController extends Controller
 
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
 
-        return $this->render('CaiWebBundle:Categoria:index.html.twig', array(
+        return $this->render('CaiWebBundle:categoria:index.html.twig', array(
             'categorias' => $categorias,
         ));
     }
@@ -48,7 +48,7 @@ class CategoriaController extends Controller
             return $this->redirectToRoute('categoria_show', array('id' => $categoria->getId()));
         }
 
-        return $this->render('CaiWebBundle:Categoria:new.html.twig', array(
+        return $this->render('CaiWebBundle:categoria:new.html.twig', array(
             'categoria' => $categoria,
             'form' => $form->createView(),
         ));
@@ -62,7 +62,7 @@ class CategoriaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($categoria);
 
-        return $this->render('CaiWebBundle:Categoria:show.html.twig', array(
+        return $this->render('CaiWebBundle:categoria:show.html.twig', array(
             'categoria' => $categoria,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -86,7 +86,7 @@ class CategoriaController extends Controller
             return $this->redirectToRoute('categoria_edit', array('id' => $categoria->getId()));
         }
 
-        return $this->render('CaiWebBundle:Categoria:edit.html.twig', array(
+        return $this->render('CaiWebBundle:categoria:edit.html.twig', array(
             'categoria' => $categoria,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
