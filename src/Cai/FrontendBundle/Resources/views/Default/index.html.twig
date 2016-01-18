@@ -6,9 +6,8 @@
     <style>
         .container{
             position: absolute;
-            top: 10%;
+            top: 7%;
             width: 80%;
-            background-color: #FBD307;
             padding: 5%;
             border-radius: 40px;
             margin-left: 10%;
@@ -25,11 +24,15 @@
 {% endblock %}
 {% block body %}
     <div class="container center-block" style="">
-        <div class="row">
-            <img src="{{ asset('public/images/CAi.png') }}" class="center-block">
+        <div class="row text-center">
+            <img src="{{ asset('public/images/CAi.png') }}">
         </div>
-        <div class="row">
-            <h1 class="text-center">Página en Remodelación</h1>
+        <div class="row text-center">
+            <h1>Página en Remodelación</h1>
+            <h3 class="">Contáctanos en:</h3>
+            <a href="mail:contacto@cai.cl"><i class="fa fa-envelope-o"></i></a> &nbsp  contacto@cai.cl<br>
+            <a href="https://www.facebook.com/caiuc/"><i class="fa fa-facebook"></i></a> &nbsp /caiuc<br>
+            <a href="https://twitter.com/CAiPUC"><i class="fa fa-twitter"></i></a>&nbsp /CAiPUC
         </div>
     </div>
 {% endblock %}

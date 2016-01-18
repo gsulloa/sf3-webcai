@@ -109,7 +109,7 @@
         }
 
         function addImagen(filenamebinary, filename){
-            console.log(filenamebinary);
+            console.log('{{ asset('uploads/biblioteca/imagenes/') }}'+filenamebinary+'/small-'+filename);
             var imagen = $('<img src="{{ asset('uploads/biblioteca/imagenes/') }}'+filenamebinary+'/small-'+filename+'">');
             $('#imagenes').append(imagen);
         }
