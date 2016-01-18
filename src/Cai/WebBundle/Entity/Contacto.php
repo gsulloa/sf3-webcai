@@ -80,11 +80,18 @@ class Contacto
     /**
      * @var string
      *
+     * @ORM\Column(name="instagram", type="string", length=255)
+     */
+    private $instagram;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
 
-
+    
     /**
      * Get id
      *
@@ -309,5 +316,29 @@ class Contacto
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * Set instagram
+     *
+     * @param string $instagram
+     *
+     * @return Contacto
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    /**
+     * Get instagram
+     *
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
     }
 }

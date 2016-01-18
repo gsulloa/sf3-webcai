@@ -20,6 +20,7 @@ class ContactoType extends AbstractType
             ->add('telefono')
             ->add('facebook')
             ->add('twitter')
+            ->add('instagram')
             ->add('youtube')
             ->add('mail')
             ->add('vimeo')

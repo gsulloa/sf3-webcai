@@ -26,7 +26,8 @@ class LoadContactoData extends AbstractFixture implements OrderedFixtureInterfac
             ->setTelefono('+56 22 354 4759')
             ->setTwitter('caipuc')
             ->setVimeo('caiuc')
-            ->setYoutube('caiuctv');
+            ->setYoutube('caiuctv')
+            ->setInstagram('caipuc');
         $manager->persist($contacto);
         $manager->flush();
     }

@@ -6,9 +6,8 @@
     <style>
         .container{
             position: absolute;
-            top: 2%;
             width: 80%;
-            padding: 5%;
+            padding: 3%;
             border-radius: 40px;
             margin-left: 10%;
         }
@@ -33,6 +32,7 @@
             <h3><a href="mail:{{ contacto.mail }}"><i class="fa fa-envelope-o"></i></a>&nbsp {{ contacto.mail }}</h3>
             <h3><a href="https://www.facebook.com/{{ contacto.facebook }}/"><i class="fa fa-facebook"></i></a>&nbsp /{{ contacto.facebook }}<br></h3>
             <h3><a href="https://twitter.com/{{ contacto.twitter }}"><i class="fa fa-twitter"></i></a>&nbsp /{{ contacto.twitter }}</h3>
+            <h3><a href="https://www.instagram.com/{{ contacto.instagram }}/"><i class="fa fa-instagram"></i></a>&nbsp /{{ contacto.instagram }} </h3>
         </div>
     </div>
 {% endblock %}

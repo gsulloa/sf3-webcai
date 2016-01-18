@@ -80,11 +80,18 @@ class Contacto
     /**
      * @var string
      *
+     * @ORM\Column(name="instagram", type="string", length=255)
+     */
+    private $instagram;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
 
-
+    
     /**
      * Get id
      *
@@ -311,4 +318,3 @@ class Contacto
         return $this->descripcion;
     }
 }
-
