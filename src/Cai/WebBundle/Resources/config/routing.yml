@@ -48,3 +48,7 @@ cai_web_userprofile:
 cai_web_homepage:
     path:     /
     defaults: { _controller: CaiWebBundle:Default:index }
+
+testing_mail:
+    path:     /test/mail
+    defaults: { _controller: CaiWebBundle:Test:mail }
