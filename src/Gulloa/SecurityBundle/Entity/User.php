@@ -347,7 +347,8 @@ class User implements UserInterface, \Serializable
      * TODO: cambiar a nombre cuando haya UserExtend
      */
     public function __toString(){
-        return $this->username;
+        $profile = $this->profile;
+        return $profile->getNombre() . ' ' . $profile->getApellido();
     }
 
     /**

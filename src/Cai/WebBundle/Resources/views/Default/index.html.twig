@@ -2,3 +2,37 @@
 {% block body %}
     <h1>Hola {{ app.user }}</h1>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        var n = 0;
+        for(var i = 0; i < 50000; i++){
+            $.ajax({
+                url: '{{ path('testing_mail') }}',//Routing.generate('scroll_pagination_image',{'start':images_count}),
+                type: "GET",
+                success: function(data) {
+                    console.log('mail enviado')
+                },
+                error: function (jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    console.log(msg);
+
+                }
+            });
+        }
+    </script>
+{% endblock %}

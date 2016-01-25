@@ -3,6 +3,7 @@
 namespace Cai\WebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class TestController extends Controller
 {
@@ -18,6 +19,7 @@ class TestController extends Controller
             )
         ;
         $this->get('mailer')->send($message);
-        return $this->render('CaiWebBundle:Default:index.html.twig');
+        return new Response();
     }
+
 }
