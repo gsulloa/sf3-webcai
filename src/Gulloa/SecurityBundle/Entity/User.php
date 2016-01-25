@@ -38,6 +38,21 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $activation_token;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Role",inversedBy="users")
      * @ORM\JoinTable(name="user_role")
      */
@@ -358,4 +373,76 @@ class User implements UserInterface, \Serializable
         return $this->profile;
     }
 
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set activationToken
+     *
+     * @param string $activationToken
+     *
+     * @return User
+     */
+    public function setActivationToken($activationToken)
+    {
+        $this->activation_token = $activationToken;
+
+        return $this;
+    }
+
+    /**
+     * Get activationToken
+     *
+     * @return string
+     */
+    public function getActivationToken()
+    {
+        return $this->activation_token;
+    }
+
+    /**
+     * Set active
+     *
+     * @param  $active
+     *
+     * @return User
+     */
+    public function setActive( $active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

@@ -16,6 +16,8 @@ class RegistroController extends Controller
      */
     public function newAction(Request $request)
     {
+
+
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('default_target');
         }
@@ -47,7 +49,6 @@ class RegistroController extends Controller
             $mail = true;
             if( !filter_var($userProfile->getMail(), FILTER_VALIDATE_EMAIL) ||
                 ((strpos($userProfile->getMail(),"@uc.cl") === false) && (strpos($userProfile->getMail(),"@ing.puc.cl") === false))
-
             ){
                 $mail = false;
                 $form_profile->get('mail')->addError(new FormError('Mail con mal formato, o no es mail @uc.cl o @ing.puc.cl'));
@@ -61,7 +62,12 @@ class RegistroController extends Controller
 
                 $encoder = $this->container->get('security.password_encoder');
                 $encoded = $encoder->encodePassword($user, $user->getPassword());
-                $user->setPassword($encoded);
+                $user->setPassword($encoded)
+                    ->setToken(bin2hex(random_bytes(50)))
+                    ->setActivationToken(bin2hex(random_bytes(50)))
+                    ->setActive(false)
+                ;
+
 
                 $em->persist($user);
                 $em->flush();

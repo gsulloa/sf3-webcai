@@ -38,6 +38,21 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $activation_token;
+
+    /**
+     * @ORM\Column(type="bool")
+     */
+    private $active;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Role",inversedBy="users")
      * @ORM\JoinTable(name="user_role")
      */
@@ -359,4 +374,3 @@ class User implements UserInterface, \Serializable
     }
 
 }
-
