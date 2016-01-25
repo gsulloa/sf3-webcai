@@ -19,6 +19,7 @@ class EventoType extends AbstractType
             ->add('nombre')
             ->add('descripcion')
             ->add('fecha', DateTimeType::class)
+            ->add('categoria')
         ;
     }
     
