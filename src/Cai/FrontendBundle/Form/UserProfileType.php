@@ -1,6 +1,6 @@
 <?php
 
-namespace Cai\WebBundle\Form;
+namespace Cai\FrontendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +17,7 @@ class UserProfileType extends AbstractType
         $builder
             ->add('nombre')
             ->add('apellido')
+            ->add('sexo')
             ->add('mail')
             ->add('celular')
             ->add('rut')
@@ -24,8 +25,6 @@ class UserProfileType extends AbstractType
                 'required' => false,
                 'label' => "Imágen"
             ))
-            ->add('user')
-            ->add('sexo')
         ;
     }
     

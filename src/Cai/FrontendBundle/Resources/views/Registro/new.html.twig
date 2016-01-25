@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>UserProfile creation</h1>
+
+    {{ form_start(form_profile) }}
+    {{ form_row(form_user.username) }}
+    {{ form_row(form_user.password) }}
+    <label for="second_password">Repite tu contraseña</label><input type="password" id="second_password" name="second_password"><br>
+    {{ form_row(form_profile.nombre) }}
+    {{ form_row(form_profile.apellido) }}
+    {{ form_row(form_profile.sexo) }}
+    {{ form_row(form_profile.mail) }}
+    {{ form_row(form_profile.celular) }}
+    {{ form_row(form_profile.rut) }}
+    {{ form_row(form_profile.file) }}
+    {{ form_row(form_user._token) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form_profile) }}
+
+
+    <ul>
+        <li>
+            <a href="{{ path('userprofile_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

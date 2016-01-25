@@ -1,3 +1,7 @@
+cai_frontend_registro:
+    resource: "@CaiFrontendBundle/Resources/config/routing/registro.yml"
+    prefix:   /registro
+
 cai_frontend_homepage:
     path:     /
     defaults: { _controller: CaiFrontendBundle:Default:index }

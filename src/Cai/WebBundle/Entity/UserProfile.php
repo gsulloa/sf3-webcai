@@ -55,9 +55,16 @@ class UserProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="n_identificador", type="string", length=255, unique=true)
+     * @ORM\Column(name="rut", type="string", length=255, unique=true)
      */
-    private $nIdentificador;
+    private $rut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexo", type="string", length=255)
+     */
+    private $sexo;
 
     /**
      *
@@ -65,13 +72,12 @@ class UserProfile
      *  maxSize="15360k",
      * mimeTypes = {"image/png","image/jpeg","image/gif"}
      * )
-     * @Assert\NotBlank()
      */
     protected $file;
     protected $temp;
     /**
      *
-     * @ORM\Column(name="filename", type="string", length=255, nullable=false)
+     * @ORM\Column(name="filename", type="string", length=255, nullable=true)
      */
     protected $filename;
 
@@ -189,30 +195,6 @@ class UserProfile
         return $this->celular;
     }
 
-    /**
-     * Set nIdentificador
-     *
-     * @param string $nIdentificador
-     *
-     * @return UserProfile
-     */
-    public function setNIdentificador($nIdentificador)
-    {
-        $this->nIdentificador = $nIdentificador;
-
-        return $this;
-    }
-
-    /**
-     * Get nIdentificador
-     *
-     * @return string
-     */
-    public function getNIdentificador()
-    {
-        return $this->nIdentificador;
-    }
-
 
 
     /////////////////////////////////
@@ -291,7 +273,7 @@ class UserProfile
 
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
-            $this->filename = $this->nombre . '.' . $extension; //$this->user->getUsername() $extension;
+            $this->filename = $this->user->getUsername() . '.' . $extension; //$this->user->getUsername() $extension;
             //$this->filename = $this->getFile()->getClientOriginalName();
         }
     }
@@ -397,5 +379,53 @@ class UserProfile
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set rut
+     *
+     * @param string $rut
+     *
+     * @return UserProfile
+     */
+    public function setRut($rut)
+    {
+        $this->rut = $rut;
+
+        return $this;
+    }
+
+    /**
+     * Get rut
+     *
+     * @return string
+     */
+    public function getRut()
+    {
+        return $this->rut;
+    }
+
+    /**
+     * Set sexo
+     *
+     * @param string $sexo
+     *
+     * @return UserProfile
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
     }
 }

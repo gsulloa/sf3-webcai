@@ -17,6 +17,22 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
+            <tr>
+                <th>Foto</th>
+                {% if user.profile.filename is not null %}{% set image = asset('uploads/biblioteca/profile/') ~ user.profile.filename %}
+                {% else %}{% set image = asset('public/images/no-foto-profile.png') %}{% endif %}
+                <td><img class="img-responsive img-circle" src="{{ image }}"> </td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>
+                    <ul>
+                        {% for role in user.roles %}
+                        <li>{{ role }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
         </tbody>
     </table>
 
