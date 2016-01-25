@@ -8,6 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        if($this->getUser() !== null){
+            if(!$this->getUser()->getActive()){
+                return $this->redirectToRoute('logout');
+            }
+        }
         if ($this->get('security.authorization_checker')->isGranted('ROLE_JEFE_DE_COMISION')) {
             return $this->redirect($this->generateUrl('cai_web_homepage'));
         }

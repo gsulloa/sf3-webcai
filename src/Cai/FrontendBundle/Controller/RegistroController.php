@@ -7,6 +7,7 @@ use Gulloa\SecurityBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RegistroController extends Controller
 {
@@ -28,6 +29,7 @@ class RegistroController extends Controller
         $form_user = $this->createForm('Gulloa\SecurityBundle\Form\UserType', $user);
         $form_user->handleRequest($request);
         $userProfile->setUser($user);
+        $user->setProfile($userProfile);
         $form_profile->handleRequest($request);
 
         if($form_profile->isSubmitted()) {
@@ -67,6 +69,7 @@ class RegistroController extends Controller
                     ->setActivationToken(bin2hex(random_bytes(50)))
                     ->setActive(false)
                 ;
+                $this->registrationMail($user);
 
 
                 $em->persist($user);
@@ -82,5 +85,45 @@ class RegistroController extends Controller
             'form_profile' => $form_profile->createView(),
             'form_user' => $form_user->createView()
         ));
+    }
+
+    public function activeUserAction($token){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GulloaSecurityBundle:User')->findOneBy(array('activation_token' => $token));
+        if($user !== null){
+            $user->setActivationToken('')
+                ->setActive(1);
+            $em->flush();
+            return $this->redirectToRoute('login_route');
+        }
+        return new Response('');
+
+    }
+
+    private function registrationMail(User $user){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('[CAi] Registro con exito !')
+            ->setFrom('no-reply@caiuc.cl')
+            ->setTo($user->getProfile()->getMail())
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'CaiFrontendBundle:mailing:activation.html.twig',
+                    array('user' => $user)
+                ),
+                'text/html'
+            )
+            /*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+        $this->get('mailer')->send($message);
     }
 }

@@ -1,0 +1,7 @@
+<h1>Hola {{ user.profile.nombre }} {{ user.profile.apellido }}</h1>
+<h2>Te haz registrado con éxito</h2>
+
+<p>Debes activar tu cuenta, y para ello debes ingresar al siguiente <a href="{{ url('user_activation', {'token':user.activationToken}) }}">link</a></p>
+<p>Si tu no enviaste esta solicitud de registro, por favor contactate con nosotros en <a href="mail:contacto@cai.cl"></a></p>
+
+<h3>Gracias por registrarte !</h3>
