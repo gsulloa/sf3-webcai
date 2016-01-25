@@ -123,6 +123,10 @@ class Categoria
         $this->paginas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->etiqueta;
+    }
 
     /**
      * Add user
