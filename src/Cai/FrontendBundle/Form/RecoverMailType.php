@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserProfileType extends AbstractType
+class RecoverMailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,16 +15,7 @@ class UserProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('apellido')
-            ->add('sexo')
             ->add('mail')
-            ->add('celular')
-            ->add('rut')
-            ->add('file', null, array(
-                'required' => false,
-                'label' => "Imágen"
-            ))
         ;
     }
     

@@ -17,15 +17,13 @@ class RegistroController extends Controller
      */
     public function newAction(Request $request)
     {
-
-
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('default_target');
         }
 
         $userProfile = new UserProfile();
         $user = new User();
-        $form_profile = $this->createForm('Cai\FrontendBundle\Form\UserProfileType', $userProfile);
+        $form_profile = $this->createForm('Cai\FrontendBundle\Form\RegisterType', $userProfile);
         $form_user = $this->createForm('Gulloa\SecurityBundle\Form\UserType', $user);
         $form_user->handleRequest($request);
         $userProfile->setUser($user);
@@ -48,6 +46,10 @@ class RegistroController extends Controller
                 $rutUnico = false;
                 $form_profile->get('rut')->addError(new FormError('El RUT ya está utilizado'));
             }
+            $mail_unique = false;
+            if($em->getRepository('CaiWebBundle:Userprofile')->findOneByRut($userProfile->getMail()) !== null){
+                $mail_unique = true;
+            }
             $mail = true;
             if( !filter_var($userProfile->getMail(), FILTER_VALIDATE_EMAIL) ||
                 ((strpos($userProfile->getMail(),"@uc.cl") === false) && (strpos($userProfile->getMail(),"@ing.puc.cl") === false))
@@ -56,9 +58,8 @@ class RegistroController extends Controller
                 $form_profile->get('mail')->addError(new FormError('Mail con mal formato, o no es mail @uc.cl o @ing.puc.cl'));
             }
 
-            if ($form_profile->isValid() && $form_user->isValid() && $claves_coinciden && $usernameUnico && $rutUnico && $mail) {
+            if ($form_profile->isValid() && $form_user->isValid() && $claves_coinciden && $usernameUnico && $rutUnico && $mail && $mail_unique) {
                 $em->persist($userProfile);
-
                 $role = $em->getRepository('GulloaSecurityBundle:Role')->findOneByEtiqueta('ROLE_USER');
                 $user->addRole($role);
 
@@ -100,6 +101,44 @@ class RegistroController extends Controller
 
     }
 
+    public function recoverAction(Request $request){
+        $profile = new UserProfile();
+        $form_rut = $this->createForm('Cai\FrontendBundle\Form\RecoverRutType', $profile);
+        $form_mail = $this->createForm('Cai\FrontendBundle\Form\RecoverMailType', $profile);
+        $form_rut->handleRequest($request);
+        $form_mail->handleRequest($request);
+
+        $recovering = false;
+        $profile_found = null;
+        if ($form_rut->isSubmitted() && $form_rut->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $profile_found = $em->getRepository('CaiWebBundle:UserProfile')->findOneByRut($profile->getRut());
+            $recovering = true;
+        }elseif($form_mail->isSubmitted() && $form_mail->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $profile_found = $em->getRepository('CaiWebBundle:UserProfile')->findOneByMail($profile->getMail());
+            $recovering = true;
+        }
+
+        if($recovering && $profile_found !==null){
+            $new_password = bin2hex(random_bytes(10));
+            $encoder = $this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($profile_found->getUser(), $new_password);
+            $profile_found->getUser()->setPassword($encoded)
+                ->setToken(bin2hex(random_bytes(50)))
+            ;
+            $em->flush();
+            $this->recoverPasswordMail($profile_found->getUser(),$new_password);
+
+        }
+
+        return $this->render('CaiFrontendBundle:recover:form.html.twig', array(
+            'profile' => $profile,
+            'form_mail' => $form_mail->createView(),
+            'form_rut'  => $form_rut->createView(),
+        ));
+    }
+
     private function registrationMail(User $user){
         $message = \Swift_Message::newInstance()
             ->setSubject('[CAi] Registro con exito !')
@@ -113,17 +152,26 @@ class RegistroController extends Controller
                 ),
                 'text/html'
             )
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'Emails/registration.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-            */
         ;
         $this->get('mailer')->send($message);
     }
+
+    private function recoverPasswordMail(User $user, $password){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('[CAi] Nueva clave')
+            ->setFrom('no-reply@caiuc.cl')
+            ->setTo($user->getProfile()->getMail())
+            ->setBody(
+                $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                    'CaiFrontendBundle:mailing:recovering.html.twig',
+                    array('user' => $user,
+                        'password' => $password)
+                ),
+                'text/html'
+            )
+        ;
+        $this->get('mailer')->send($message);
+    }
+
 }
