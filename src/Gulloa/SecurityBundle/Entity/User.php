@@ -48,6 +48,11 @@ class User implements UserInterface, \Serializable
     private $activation_token;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $password_token;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $active;
@@ -445,5 +450,29 @@ class User implements UserInterface, \Serializable
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set passwordToken
+     *
+     * @param string $passwordToken
+     *
+     * @return User
+     */
+    public function setPasswordToken($passwordToken)
+    {
+        $this->password_token = $passwordToken;
+
+        return $this;
+    }
+
+    /**
+     * Get passwordToken
+     *
+     * @return string
+     */
+    public function getPasswordToken()
+    {
+        return $this->password_token;
     }
 }

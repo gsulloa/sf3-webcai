@@ -3,10 +3,12 @@
 namespace Cai\FrontendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserProfileType extends AbstractType
+class RegisterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,6 +19,11 @@ class UserProfileType extends AbstractType
         $builder
             ->add('nombre')
             ->add('apellido')
+            ->add('sexo',ChoiceType::class,array(
+                'choices' => array(
+                    'M' => "m",
+                    'F' => "f")
+            ))
             ->add('mail')
             ->add('celular')
             ->add('rut')

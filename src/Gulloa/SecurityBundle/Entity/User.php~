@@ -48,7 +48,12 @@ class User implements UserInterface, \Serializable
     private $activation_token;
 
     /**
-     * @ORM\Column(type="bool")
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $password_token;
+
+    /**
+     * @ORM\Column(type="boolean")
      */
     private $active;
 
@@ -347,7 +352,8 @@ class User implements UserInterface, \Serializable
      * TODO: cambiar a nombre cuando haya UserExtend
      */
     public function __toString(){
-        return $this->username;
+        $profile = $this->profile;
+        return $profile->getNombre() . ' ' . $profile->getApellido();
     }
 
     /**
@@ -373,4 +379,76 @@ class User implements UserInterface, \Serializable
         return $this->profile;
     }
 
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set activationToken
+     *
+     * @param string $activationToken
+     *
+     * @return User
+     */
+    public function setActivationToken($activationToken)
+    {
+        $this->activation_token = $activationToken;
+
+        return $this;
+    }
+
+    /**
+     * Get activationToken
+     *
+     * @return string
+     */
+    public function getActivationToken()
+    {
+        return $this->activation_token;
+    }
+
+    /**
+     * Set active
+     *
+     * @param  $active
+     *
+     * @return User
+     */
+    public function setActive( $active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

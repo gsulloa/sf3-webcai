@@ -1,9 +1,9 @@
-<h1>Hola {{ user.profile.nombre }} {{ user.profile.apellido }}</h1>
+<h1>Hola {{ user }}</h1>
 <h2>Tu solicitud de recuperar contraseña se ha realizado con exito</h2>
+<p>Para completar el cambio debes ingresar hacer click <a href="{{ url('change_password',{'token':user.passwordToken}) }}">aquí</a>
+    (El enlace solo sirve una vez)</p>
 
-<p>Tu nombre de usuario es: {{ user.username }}</p>
-<p>Tu nueva contraseña es: <b>{{ password }}</b></p>
-<p>Si deseas puedes cambiar tu contraseña en editar perfil</p>
+<p>Si tu no haz realizado esta acción, haz click <a href="{{ url('recover_error',{'token':user.passwordToken}) }}">aquí</a></p>
 
 <p>Recuerda que si lo deseas puedes contactarte con nostros a <a href="mail:cai@cai.cl">cai@cai.cl</a> </p>
 

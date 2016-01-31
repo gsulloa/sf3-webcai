@@ -4,11 +4,11 @@
     <h1>Recuperar Contraseña</h1>
 
     {{ form_start(form_mail) }}
-    {{ form_widget(form_mail.mail) }}
+    {{ form_row(form_mail.mail) }}
     <input type="submit" value="Create" />
     {{ form_end(form_mail) }}
     {{ form_start(form_rut) }}
-    {{ form_widget(form_rut.rut) }}
+    {{ form_row(form_rut.rut) }}
     <input type="submit" value="Create" />
     {{ form_end(form_rut) }}
 {% endblock %}

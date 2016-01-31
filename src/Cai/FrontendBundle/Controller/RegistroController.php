@@ -46,9 +46,10 @@ class RegistroController extends Controller
                 $rutUnico = false;
                 $form_profile->get('rut')->addError(new FormError('El RUT ya está utilizado'));
             }
-            $mail_unique = false;
-            if($em->getRepository('CaiWebBundle:Userprofile')->findOneByRut($userProfile->getMail()) !== null){
-                $mail_unique = true;
+            $mail_unique = true;
+            if($em->getRepository('CaiWebBundle:Userprofile')->findOneByMail($userProfile->getMail()) !== null){
+                $mail_unique = false;
+                $form_profile->get('mail')->addError(new FormError('Mail ya utilizado'));
             }
             $mail = true;
             if( !filter_var($userProfile->getMail(), FILTER_VALIDATE_EMAIL) ||
@@ -57,8 +58,8 @@ class RegistroController extends Controller
                 $mail = false;
                 $form_profile->get('mail')->addError(new FormError('Mail con mal formato, o no es mail @uc.cl o @ing.puc.cl'));
             }
-
             if ($form_profile->isValid() && $form_user->isValid() && $claves_coinciden && $usernameUnico && $rutUnico && $mail && $mail_unique) {
+
                 $em->persist($userProfile);
                 $role = $em->getRepository('GulloaSecurityBundle:Role')->findOneByEtiqueta('ROLE_USER');
                 $user->addRole($role);
@@ -102,6 +103,10 @@ class RegistroController extends Controller
     }
 
     public function recoverAction(Request $request){
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('default_target');
+        }
+
         $profile = new UserProfile();
         $form_rut = $this->createForm('Cai\FrontendBundle\Form\RecoverRutType', $profile);
         $form_mail = $this->createForm('Cai\FrontendBundle\Form\RecoverMailType', $profile);
@@ -121,15 +126,10 @@ class RegistroController extends Controller
         }
 
         if($recovering && $profile_found !==null){
-            $new_password = bin2hex(random_bytes(10));
-            $encoder = $this->container->get('security.password_encoder');
-            $encoded = $encoder->encodePassword($profile_found->getUser(), $new_password);
-            $profile_found->getUser()->setPassword($encoded)
-                ->setToken(bin2hex(random_bytes(50)))
-            ;
+            $password_token = bin2hex(random_bytes(15));
+            $profile_found->getUser()->setPasswordToken($password_token);
             $em->flush();
-            $this->recoverPasswordMail($profile_found->getUser(),$new_password);
-
+            $this->recoverPasswordMail($profile_found->getUser());
         }
 
         return $this->render('CaiFrontendBundle:recover:form.html.twig', array(
@@ -137,6 +137,57 @@ class RegistroController extends Controller
             'form_mail' => $form_mail->createView(),
             'form_rut'  => $form_rut->createView(),
         ));
+    }
+
+    public function changeAction(Request $request, $token){
+        if($token === null) {
+            $user = $this->getUser();
+        }else{
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('GulloaSecurityBundle:User')->findOneBy(array(
+                'password_token'    => $token
+            ));
+            if($user === null){
+                throw $this->createNotFoundException('Token de cambio no encontrado');
+            }else{
+                $user->setPasswordToken(null);
+                $em->flush();
+            }
+        }
+        $form = $this->createForm('Cai\FrontendBundle\Form\ChangePasswordType', $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() ) {
+            $correct_password = $user->getPassword() == $request->request->get('second_password');
+            if($correct_password){
+                $em = $this->getDoctrine()->getManager();
+                $pass = $user->getPassword();
+                $encoder = $this->get('security.password_encoder');
+                $encoded = $encoder->encodePassword($user, $pass);
+                $user->setPassword($encoded)
+                    ->setToken(bin2hex(random_bytes(50)))
+                ;
+                $em->flush();
+                return $this->redirectToRoute('login_route');
+            }
+            $form->get('password')->addError(new FormError('Las contraseñas no son iguales'));
+        }
+        return $this->render('CaiFrontendBundle:profile:change_password.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function recoverNotAction($token){
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('GulloaSecurityBundle:User')->findOneBy(array(
+            'password_token'    => $token
+        ));
+        if($user === null){
+            throw $this->createNotFoundException('Token de cambio no encontrado');
+        }
+        $user->setPasswordToken(null);
+        $em->flush();
+        return $this->redirectToRoute('login_route');
     }
 
     private function registrationMail(User $user){
@@ -156,17 +207,16 @@ class RegistroController extends Controller
         $this->get('mailer')->send($message);
     }
 
-    private function recoverPasswordMail(User $user, $password){
+    private function recoverPasswordMail(User $user){
         $message = \Swift_Message::newInstance()
-            ->setSubject('[CAi] Nueva clave')
+            ->setSubject('[CAi] Recuperar Contraseña')
             ->setFrom('no-reply@caiuc.cl')
             ->setTo($user->getProfile()->getMail())
             ->setBody(
                 $this->renderView(
                 // app/Resources/views/Emails/registration.html.twig
                     'CaiFrontendBundle:mailing:recovering.html.twig',
-                    array('user' => $user,
-                        'password' => $password)
+                    array('user' => $user)
                 ),
                 'text/html'
             )

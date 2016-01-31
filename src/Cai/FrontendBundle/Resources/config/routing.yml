@@ -1,3 +1,7 @@
+cai_frontend_password:
+    resource: "@CaiFrontendBundle/Resources/config/routing/password.yml"
+    prefix:   /password
+
 cai_frontend_registro:
     resource: "@CaiFrontendBundle/Resources/config/routing/registro.yml"
     prefix:   /registro
@@ -10,6 +14,4 @@ user_activation:
     path:     /activar/{token}
     defaults: { _controller: CaiFrontendBundle:Registro:activeUser }
 
-recover_password:
-    path:     /recover_password
-    defaults: { _controller: CaiFrontendBundle:Registro:recover }
+
