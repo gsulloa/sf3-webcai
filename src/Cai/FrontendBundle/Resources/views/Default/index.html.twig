@@ -22,6 +22,20 @@
             min-height: 200px;
             border: solid;
         }
+        .footer{
+            background-color: grey;
+        }
+        .footer-text{
+            color: whitesmoke;
+        }
+        .fixed {
+            position:fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            opacity:1;
+        }
 
     </style>
     <style>
@@ -30,34 +44,34 @@
         }
         #custom-bootstrap-menu.navbar-default {
             font-size: 15px;
-            background-color: rgba(251, 211, 7, 0.55);
+            background-color: rgba(251, 211, 7, 1);
             border-width: 1px;
             border-radius: 50px;
         }
         #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
             color: rgba(36, 36, 36, 1);
-            background-color: rgba(251, 211, 7, 0.22);
+            background-color: rgba(251, 211, 7, 1);
         }
         #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
         #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
             color: rgba(36, 36, 36, 1);
-            background-color: rgba(251, 211, 7, 0.71);
+            background-color: rgba(255, 231, 92, 1);
         }
         #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
         #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
         #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
             color: rgba(36, 36, 36, 1);
-            background-color: rgba(251, 211, 7, 1);
+            background-color: rgba(255, 226, 61, 1);
         }
         #custom-bootstrap-menu.navbar-default .navbar-toggle {
-            border-color: #fbd307;
+            border-color: #ffe23d;
         }
         #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
         #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
-            background-color: #fbd307;
+            background-color: #ffe23d;
         }
         #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
-            background-color: #fbd307;
+            background-color: #ffe23d;
         }
         #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
         #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
@@ -124,6 +138,15 @@
                 root.find('.sub-menu:visible').hide();
             });
         });
+
+        var pos = $('#custom-bootstrap-menu').position().top;
+        $(window).bind('scroll', function () {
+            if ($(window).scrollTop() > pos) {
+                $('#custom-bootstrap-menu').addClass('fixed');
+            } else {
+                $('#custom-bootstrap-menu').removeClass('fixed');
+            }
+        });
     </script>
     <script>
         $(document).ready(function(){
@@ -131,18 +154,19 @@
                 ticker: true,
                 speed: 20000
             });
+            $('.news-slider').bxSlider({
+                mode: 'vertical',
+                minSlides: 2,
+                pager: false
+            });
+            $('.slider-slider').bxSlider({
+                auto: true,
+                pause: 3000,
+                mode: 'fade',
+                captions: true
+            });
         });
-        $('.news-slider').bxSlider({
-            mode: 'vertical',
-            minSlides: 2,
-            pager: false
-        });
-        $('.slider-slider').bxSlider({
-            auto: true,
-            pause: 3000,
-            mode: 'fade',
-            captions: true
-        });
+
     </script>
 {% endblock %}
 {% block body %}
@@ -375,6 +399,23 @@
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
                 </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="footer-text">Centro de Alumnos de Ingeniería</h3>
+                <hr>
+                <p class="footer-text">{{ contacto.descripcion }}</p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="footer-text">Contacto</h3>
+                <h4 class="footer-text"><i class="fa fa-envelope-o"></i>&nbsp {{ contacto.mail }}</h4>
+                <h4 class="footer-text"><i class="fa fa-map-marker"></i>&nbsp {{ contacto.direccion }}</h4>
+                <h4 class="footer-text"><i class="fa fa-phone-square"></i>&nbsp {{ contacto.telefono }}</h4>
+
             </div>
         </div>
     </div>

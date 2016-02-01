@@ -23,7 +23,7 @@ class LoadContactoData extends AbstractFixture implements OrderedFixtureInterfac
             ->setFacebook('caiuc')
             ->setLema('Porque juntos somos Escuela')
             ->setMail('contacto@cai.cl')
-            ->setTelefono('+56 22 354 4759')
+            ->setTelefono('+56 2 2354 4759')
             ->setTwitter('caipuc')
             ->setVimeo('caiuc')
             ->setYoutube('caiuctv')
