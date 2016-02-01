@@ -24,7 +24,7 @@ class EntradaController extends Controller
 
         $entradas = $em->getRepository('CaiWebBundle:Entrada')->findAll();
 
-        return $this->render('CaiWebBundle:entrada:index.html.twig', array(
+        return $this->render('CaiWebBundle:entrada:mantenimiento.html.twig', array(
             'entradas' => $entradas,
         ));
     }

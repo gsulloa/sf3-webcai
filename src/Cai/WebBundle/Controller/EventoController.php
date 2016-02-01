@@ -24,7 +24,7 @@ class EventoController extends Controller
 
         $eventos = $em->getRepository('CaiWebBundle:Evento')->findAll();
 
-        return $this->render('CaiWebBundle:evento:index.html.twig', array(
+        return $this->render('CaiWebBundle:evento:mantenimiento.html.twig', array(
             'eventos' => $eventos,
         ));
     }

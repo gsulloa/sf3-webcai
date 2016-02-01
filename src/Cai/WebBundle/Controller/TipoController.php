@@ -24,7 +24,7 @@ class TipoController extends Controller
 
         $tipos = $em->getRepository('CaiWebBundle:Tipo')->findAll();
 
-        return $this->render('CaiWebBundle:tipo:index.html.twig', array(
+        return $this->render('CaiWebBundle:tipo:mantenimiento.html.twig', array(
             'tipos' => $tipos,
         ));
     }

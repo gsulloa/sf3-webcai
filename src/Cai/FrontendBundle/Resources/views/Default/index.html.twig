@@ -4,35 +4,384 @@
 {% endblock %}
 {% block stylesheets %}
     <style>
-        .container{
+        .cai{
+            background-color: #FBD307
+        }
+        .top-nav, .header{
+            padding: 10px;
+        }
+        #logo{
+            padding: 10px;
+            margin-top: 25px;
+        }
+
+        .red-social{
+            font-size: 30px;
+        }
+        .new{
+            min-height: 200px;
+            border: solid;
+        }
+
+    </style>
+    <style>
+        #custom-bootstrap-menu.navbar-default .navbar-brand {
+            color: rgba(119, 119, 119, 1);
+        }
+        #custom-bootstrap-menu.navbar-default {
+            font-size: 15px;
+            background-color: rgba(251, 211, 7, 0.55);
+            border-width: 1px;
+            border-radius: 50px;
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+            color: rgba(36, 36, 36, 1);
+            background-color: rgba(251, 211, 7, 0.22);
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+            color: rgba(36, 36, 36, 1);
+            background-color: rgba(251, 211, 7, 0.71);
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+        #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+            color: rgba(36, 36, 36, 1);
+            background-color: rgba(251, 211, 7, 1);
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-toggle {
+            border-color: #fbd307;
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+            background-color: #fbd307;
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+            background-color: #fbd307;
+        }
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+            background-color: #fbd307;
+        }
+
+    </style>
+    <style>
+        .dropdown-menu>li
+        {	position:relative;
+            -webkit-user-select: none; /* Chrome/Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+ */
+            /* Rules below not implemented in browsers yet */
+            -o-user-select: none;
+            user-select: none;
+            cursor:pointer;
+        }
+        .dropdown-menu .sub-menu {
+            left: 100%;
             position: absolute;
-            width: 80%;
-            padding: 3%;
-            border-radius: 40px;
-            margin-left: 10%;
+            top: 0;
+            display:none;
+            margin-top: -1px;
+            border-top-left-radius:0;
+            border-bottom-left-radius:0;
+            border-left-color:#fff;
+            box-shadow:none;
         }
-        .row{
-            width: 100%;
+        .right-caret:after,.left-caret:after
+        {	content:"";
+            border-bottom: 5px solid transparent;
+            border-top: 5px solid transparent;
+            display: inline-block;
+            height: 0;
+            vertical-align: middle;
+            width: 0;
+            margin-left:5px;
         }
-        img{
-            max-width: 200px;
-            min-width: 100px;
-            width: 80%;
+        .right-caret:after
+        {	border-left: 5px solid #ffaf46;
+        }
+        .left-caret:after
+        {	border-right: 5px solid #ffaf46;
         }
     </style>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $(".dropdown-menu > li > a.trigger").on("click",function(e){
+                var current=$(this).next();
+                var grandparent=$(this).parent().parent();
+                if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
+                    $(this).toggleClass('right-caret left-caret');
+                grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+                grandparent.find(".sub-menu:visible").not(current).hide();
+                current.toggle();
+                e.stopPropagation();
+            });
+            $(".dropdown-menu > li > a:not(.trigger)").on("click",function(){
+                var root=$(this).closest('.dropdown');
+                root.find('.left-caret').toggleClass('right-caret left-caret');
+                root.find('.sub-menu:visible').hide();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('.auspicios-slider').bxSlider({
+                ticker: true,
+                speed: 20000
+            });
+        });
+        $('.news-slider').bxSlider({
+            mode: 'vertical',
+            minSlides: 2,
+            pager: false
+        });
+        $('.slider-slider').bxSlider({
+            auto: true,
+            pause: 3000,
+            mode: 'fade',
+            captions: true
+        });
+    </script>
+{% endblock %}
 {% block body %}
-    <div class="container center-block" style="">
-        <div class="row text-center">
-            <img src="{{ asset('public/images/CAi.png') }}">
-        </div>
-        <div class="row text-center">
-            <h1>Página en Remodelación</h1>
-            <h3 class="">Contáctanos en:</h3>
-            <h3><a href="mail:{{ contacto.mail }}"><i class="fa fa-envelope-o"></i></a>&nbsp {{ contacto.mail }}</h3>
-            <h3><a href="https://www.facebook.com/{{ contacto.facebook }}/"><i class="fa fa-facebook"></i></a>&nbsp /{{ contacto.facebook }}<br></h3>
-            <h3><a href="https://twitter.com/{{ contacto.twitter }}"><i class="fa fa-twitter"></i></a>&nbsp /{{ contacto.twitter }}</h3>
-            <h3><a href="https://www.instagram.com/{{ contacto.instagram }}/"><i class="fa fa-instagram"></i></a>&nbsp /{{ contacto.instagram }} </h3>
+    <div class="container-fluid cai">
+        <div class="pull-right top-nav">
         </div>
     </div>
+    <div class="container header">
+        <div class="row pull-right">
+            <div class="col-xs-12">
+                <a href="#" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
+                <a href="#" class="btn btn-default">Login</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="{{ asset('public/images/Logo-letras-web.png') }}" class="img-responsive center-block" id="logo" />
+            </div>
+        </div>
+        <br>
+        <div class="row pull-left">
+            <div class="col-xs-12">
+                <a href="#" class="btn btn-default"><i class="fa fa-bars"></i> Categorias</a>
+                <a href="#" class="btn btn-default"><i class="fa fa-search"></i> Buscar</a>
+            </div>
+        </div>
+        <div class="row pull-right">
+            <div class="col-xs-12">
+                <a href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#">Inicio</a>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Elemento</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Elemento</a>
+                        </li>
+                        <li class="dropdown" style="position:relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="trigger right-caret">Level 1</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="#">Level 2</a></li>
+                                        <li>
+                                            <a class="trigger right-caret">Level 2</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="#">Level 3</a></li>
+                                                <li><a href="#">Level 3</a></li>
+                                                <li>
+                                                    <a class="trigger right-caret">Level 3</a>
+                                                    <ul class="dropdown-menu sub-menu">
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Level 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Level 1</a></li>
+                                <li><a href="#">Level 1</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Elemento</a>
+                        </li>
+                        <li class="dropdown" style="position:relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="trigger right-caret">Level 1</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="#">Level 2</a></li>
+                                        <li>
+                                            <a class="trigger right-caret">Level 2</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="#">Level 3</a></li>
+                                                <li><a href="#">Level 3</a></li>
+                                                <li>
+                                                    <a class="trigger right-caret">Level 3</a>
+                                                    <ul class="dropdown-menu sub-menu">
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Level 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Level 1</a></li>
+                                <li><a href="#">Level 1</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Elemento</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <h1 class="text-center">Noticias<small>Ver todas</small></h1>
+                    <ul class="news-slider">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new "><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new "><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                                <div class="col-md-4 new"><img src="{{ asset('public/images/Logo-letras-web.png') }}" /></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <div class="row">
+                    <ul class="slider-slider">
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row ">
+                    <h1 class="text-center">Calendario rapido</h1>
+                    <img src="{{ asset('public/images/calendar.jpg') }}" class="center-block">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row" style="width:100%;margin:auto">
+                    <h1>Auspiciadores</h1>
+                    <ul class="auspicios-slider">
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="row" style="width:100%;margin:auto">
+                    <ul class="auspicios-slider">
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                        <li>
+                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="row" style="width:100%;margin:auto">
+                    <div class="fb-page" data-href="https://www.facebook.com/caiuc/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/caiuc/"><a href="https://www.facebook.com/caiuc/">Centro de Alumnos de Ingeniería - CAi UC</a></blockquote></div></div>
+                </div>
+                <hr>
+                <div class="row" style="width:100%;margin:auto">
+                    <a class="twitter-timeline" href="https://twitter.com/CAiPUC" data-widget-id="454003571264978944">Tweets por el @CAiPUC.</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+
+
+
+
+

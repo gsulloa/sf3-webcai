@@ -24,7 +24,7 @@ class PaginaController extends Controller
 
         $paginas = $em->getRepository('CaiWebBundle:Pagina')->findAll();
 
-        return $this->render('CaiWebBundle:pagina:index.html.twig', array(
+        return $this->render('CaiWebBundle:pagina:mantenimiento.html.twig', array(
             'paginas' => $paginas,
         ));
     }

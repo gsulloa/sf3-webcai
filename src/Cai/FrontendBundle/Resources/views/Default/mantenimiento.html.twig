@@ -1,0 +1,38 @@
+{% extends 'CaiFrontendBundle::base.html.twig' %}
+{% block title %}
+    Centro de Alumnos de Ingeniería UC
+{% endblock %}
+{% block stylesheets %}
+    <style>
+        .container{
+            position: absolute;
+            width: 80%;
+            padding: 3%;
+            border-radius: 40px;
+            margin-left: 10%;
+        }
+        .row{
+            width: 100%;
+        }
+        img{
+            max-width: 200px;
+            min-width: 100px;
+            width: 80%;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container center-block" style="">
+        <div class="row text-center">
+            <img src="{{ asset('public/images/CAi.png') }}">
+        </div>
+        <div class="row text-center">
+            <h1>Página en Remodelación</h1>
+            <h3 class="">Contáctanos en:</h3>
+            <h3><a href="mail:{{ contacto.mail }}"><i class="fa fa-envelope-o"></i></a>&nbsp {{ contacto.mail }}</h3>
+            <h3><a href="https://www.facebook.com/{{ contacto.facebook }}/"><i class="fa fa-facebook"></i></a>&nbsp /{{ contacto.facebook }}<br></h3>
+            <h3><a href="https://twitter.com/{{ contacto.twitter }}"><i class="fa fa-twitter"></i></a>&nbsp /{{ contacto.twitter }}</h3>
+            <h3><a href="https://www.instagram.com/{{ contacto.instagram }}/"><i class="fa fa-instagram"></i></a>&nbsp /{{ contacto.instagram }} </h3>
+        </div>
+    </div>
+{% endblock %}

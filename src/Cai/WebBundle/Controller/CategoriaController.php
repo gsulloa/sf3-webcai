@@ -24,7 +24,7 @@ class CategoriaController extends Controller
 
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
 
-        return $this->render('CaiWebBundle:categoria:index.html.twig', array(
+        return $this->render('CaiWebBundle:categoria:mantenimiento.html.twig', array(
             'categorias' => $categorias,
         ));
     }

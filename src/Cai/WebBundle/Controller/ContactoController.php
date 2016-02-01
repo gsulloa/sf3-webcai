@@ -24,7 +24,7 @@ class ContactoController extends Controller
 
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
 
-        return $this->render('CaiWebBundle:contacto:index.html.twig', array(
+        return $this->render('CaiWebBundle:contacto:mantenimiento.html.twig', array(
             'contacto' => $contacto,
         ));
     }
