@@ -10,6 +10,10 @@ cai_frontend_homepage:
     path:     /
     defaults: { _controller: CaiFrontendBundle:Default:index }
 
+cai_frontend_propuesta:
+    path:     /{i}
+    defaults: { _controller: CaiFrontendBundle:Default:propuesta }
+
 user_activation:
     path:     /activar/{token}
     defaults: { _controller: CaiFrontendBundle:Registro:activeUser }
