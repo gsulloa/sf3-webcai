@@ -11,7 +11,7 @@ cai_frontend_homepage:
     defaults: { _controller: CaiFrontendBundle:Default:index }
 
 cai_frontend_propuesta:
-    path:     /{i}
+    path:     /p/{i}
     defaults: { _controller: CaiFrontendBundle:Default:propuesta }
 
 user_activation:

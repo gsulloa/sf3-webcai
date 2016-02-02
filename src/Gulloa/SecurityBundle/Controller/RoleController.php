@@ -24,7 +24,7 @@ class RoleController extends Controller
 
         $roles = $em->getRepository('GulloaSecurityBundle:Role')->findAll();
 
-        return $this->render('GulloaSecurityBundle:role:mantenimiento.html.twig', array(
+        return $this->render('GulloaSecurityBundle:role:index.html.twig', array(
             'roles' => $roles,
         ));
     }

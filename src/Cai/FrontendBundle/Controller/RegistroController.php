@@ -149,9 +149,6 @@ class RegistroController extends Controller
             ));
             if($user === null){
                 throw $this->createNotFoundException('Token de cambio no encontrado');
-            }else{
-                $user->setPasswordToken(null);
-                $em->flush();
             }
         }
         $form = $this->createForm('Cai\FrontendBundle\Form\ChangePasswordType', $user);

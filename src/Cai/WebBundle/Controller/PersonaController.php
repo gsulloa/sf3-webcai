@@ -24,7 +24,7 @@ class PersonaController extends Controller
 
         $personas = $em->getRepository('CaiWebBundle:Persona')->findAll();
 
-        return $this->render('CaiWebBundle:persona:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:persona:index.html.twig', array(
             'personas' => $personas,
         ));
     }

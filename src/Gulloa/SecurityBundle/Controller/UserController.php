@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $users = $em->getRepository('GulloaSecurityBundle:User')->findAll();
 
-        return $this->render('GulloaSecurityBundle:user:mantenimiento.html.twig', array(
+        return $this->render('GulloaSecurityBundle:user:index.html.twig', array(
             'users' => $users,
         ));
     }

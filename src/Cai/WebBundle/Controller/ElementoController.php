@@ -24,7 +24,7 @@ class ElementoController extends Controller
 
         $elementos = $em->getRepository('CaiWebBundle:Elemento')->findAll();
 
-        return $this->render('CaiWebBundle:elemento:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:elemento:index.html.twig', array(
             'elementos' => $elementos,
         ));
     }

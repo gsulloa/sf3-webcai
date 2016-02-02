@@ -24,7 +24,7 @@ class ImagenController extends Controller
 
         $imagenes = $em->getRepository('CaiWebBundle:Imagen')->findAll();
 
-        return $this->render('CaiWebBundle:imagen:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:imagen:index.html.twig', array(
             'imagenes' => $imagenes,
         ));
     }

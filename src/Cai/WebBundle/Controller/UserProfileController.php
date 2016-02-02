@@ -24,7 +24,7 @@ class UserProfileController extends Controller
 
         $userProfiles = $em->getRepository('CaiWebBundle:UserProfile')->findAll();
 
-        return $this->render('CaiWebBundle:userprofile:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:userprofile:index.html.twig', array(
             'userProfiles' => $userProfiles,
         ));
     }

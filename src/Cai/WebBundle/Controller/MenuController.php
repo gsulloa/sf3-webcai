@@ -24,7 +24,7 @@ class MenuController extends Controller
 
         $menus = $em->getRepository('CaiWebBundle:Menu')->findAll();
 
-        return $this->render('CaiWebBundle:menu:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:menu:index.html.twig', array(
             'menus' => $menus,
         ));
     }

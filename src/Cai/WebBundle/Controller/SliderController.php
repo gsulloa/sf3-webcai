@@ -25,7 +25,7 @@ class SliderController extends Controller
 
         $sliders = $em->getRepository('CaiWebBundle:Slider')->findAll();
 
-        return $this->render('CaiWebBundle:slider:mantenimiento.html.twig', array(
+        return $this->render('CaiWebBundle:slider:index.html.twig', array(
             'sliders' => $sliders,
         ));
     }

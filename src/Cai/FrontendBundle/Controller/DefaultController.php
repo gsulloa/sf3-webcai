@@ -10,7 +10,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        return $this->render('CaiFrontendBundle:Default:mantenimiento.html.twig',array(
+        return $this->render('CaiFrontendBundle:Default:index.html.twig',array(
             'contacto'  => $contacto
         ));
     }
@@ -19,8 +19,10 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $auspicios = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios');
         return $this->render('CaiFrontendBundle:Default:index'.$i.'.html.twig',array(
-            'contacto'  => $contacto
+            'contacto'  => $contacto,
+            'auspicios' => $auspicios
         ));
     }
 }
