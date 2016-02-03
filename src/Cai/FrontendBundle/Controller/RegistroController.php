@@ -20,6 +20,10 @@ class RegistroController extends Controller
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('default_target');
         }
+        $em = $this->getDoctrine()->getManager();
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
 
         $userProfile = new UserProfile();
         $user = new User();
@@ -85,7 +89,10 @@ class RegistroController extends Controller
             'userProfile' => $userProfile,
             'user'  => $user,
             'form_profile' => $form_profile->createView(),
-            'form_user' => $form_user->createView()
+            'form_user' => $form_user->createView(),
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
         ));
     }
 

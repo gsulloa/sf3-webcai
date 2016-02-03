@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'CaiFrontendBundle::layout.html.twig' %}
 
-{% block body %}
-    <h1>UserProfile creation</h1>
+{% block content %}
+    <h1>Registro</h1>
 
     {{ form_start(form_profile) }}
     {{ form_row(form_user.username) }}
@@ -15,13 +15,7 @@
     {{ form_row(form_profile.rut) }}
     {{ form_row(form_profile.file) }}
     {{ form_row(form_user._token) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Registrarme"  class="btn btn-primary"/>
     {{ form_end(form_profile) }}
 
-
-    <ul>
-        <li>
-            <a href="{{ path('userprofile_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
