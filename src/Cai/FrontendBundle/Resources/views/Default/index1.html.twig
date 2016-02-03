@@ -177,7 +177,7 @@
             });
             $('.slider-slider').bxSlider({
                 auto: true,
-                pause: 3000,
+                pause: {{ principal.time }},
                 mode: 'fade',
                 pager: false
             });
@@ -354,20 +354,15 @@
                     </ul>
                 </div>
                 <br>
+                <hr>
+                <br>
                 <div class="row">
                     <ul class="slider-slider">
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
-                        </li>
+                        {% for slide in principal.slides %}
+                            <li>
+                                <a href="{{ slide.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ slide.imagen.filenamebinary ~ '/' ~ slide.imagen.filename) }}" /></a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="row ">

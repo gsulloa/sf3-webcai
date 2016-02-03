@@ -20,10 +20,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         $auspicios = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios');
+        $principal = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:Default:index'.$i.'.html.twig',array(
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios,
             'auspicios_2' => $auspicios,
+            'principal'   => $principal
         ));
     }
 }

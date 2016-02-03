@@ -33,6 +33,10 @@
             opacity:1;
         }
 
+
+
+
+
     </style>
     <style>
         #custom-bootstrap-menu.navbar-default .navbar-brand {
@@ -146,10 +150,24 @@
     </script>
     <script>
         $(document).ready(function(){
-            $('.auspicios-slider').bxSlider({
+            $('.auspicios-slider-1').bxSlider({
                 ticker: true,
-                speed: 20000
+                speed: {{ auspicios_1.slides | length * auspicios_1.time }},
+                minSlides: 1,
+                maxSlides: 1,
+                tickerHover: true,
+                useCSS: false,
+                margin: 10
             });
+            $('.auspicios-slider-2').bxSlider({
+                ticker: true,
+                speed: {{ auspicios_2.slides | length * auspicios_2.time }},
+                minSlides: 1,
+                maxSlides: 1,
+                tickerHover: true,
+                useCSS: false
+            });
+
             $('.news-slider').bxSlider({
                 mode: 'vertical',
                 minSlides: 2,
@@ -159,7 +177,7 @@
             });
             $('.slider-slider').bxSlider({
                 auto: true,
-                pause: 3000,
+                pause: {{ principal.time }},
                 mode: 'fade',
                 pager: false
             });
@@ -304,20 +322,14 @@
             <div class="col-md-9">
                 <div class="row">
                     <ul class="slider-slider">
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" title="Titulo"/>
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/CAi.png') }}" title="Titulo"/>
-                        </li>
+                        {% for slide in principal.slides %}
+                            <li>
+                                <a href="{{ slide.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ slide.imagen.filenamebinary ~ '/' ~ slide.imagen.filename) }}" /></a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
+                <br><hr>
                 <div class="row">
                     <h1 class="text-center">Noticias<small>Ver todas</small></h1>
                     <ul class="news-slider">
@@ -351,7 +363,6 @@
                         </li>
                     </ul>
                 </div>
-                <br>
                 <div class="row ">
                     <h1 class="text-center">Calendario rapido</h1>
                     <img src="{{ asset('public/images/calendar.jpg') }}" class="center-block">
@@ -360,29 +371,21 @@
             <div class="col-md-3">
                 <div class="row" style="width:100%;margin:auto">
                     <h1>Auspiciadores</h1>
-                    <ul class="auspicios-slider">
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
+                    <ul class="auspicios-slider-1">
+                        {% for auspicio in auspicios_1.slides %}
+                            <li>
+                                <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/' ~ auspicio.imagen.filename) }}" /></a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="row" style="width:100%;margin:auto">
-                    <ul class="auspicios-slider">
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
+                    <ul class="auspicios-slider-2">
+                        {% for auspicio in auspicios_2.slides %}
+                            <li>
+                                <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/' ~ auspicio.imagen.filename) }}" /></a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="row" style="width:100%;margin:auto">
