@@ -45,4 +45,18 @@ class DefaultController extends Controller
             'auspicios_2' => $auspicios_2,
         ));
     }
+
+    public function noticiasAction(){
+        $em = $this->getDoctrine()->getManager();
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $entradas = $em->getRepository('CaiWebBundle:Entrada')->findAll();
+        return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
+            'noticias'       => $entradas,
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
+        ));
+    }
 }

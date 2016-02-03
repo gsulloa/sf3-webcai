@@ -31,7 +31,7 @@
     </div>
     <br><hr>
     <div class="row">
-        <h1 class="text-center">Noticias<small>Ver todas</small></h1>
+        <h1 class="text-center">Noticias<small><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></small></h1>
         <ul class="news-slider">
             {% set i = 0 %}
             {% for noticia in noticias %}
