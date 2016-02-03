@@ -18,6 +18,9 @@
             .top-nav, .header{
                 padding: 10px;
             }
+            .header{
+                padding-bottom: 0;
+            }
 
             .red-social{
                 font-size: 30px;
@@ -158,42 +161,48 @@
     </div>
     <div class="container header">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4">
+                <div class="row">&nbsp;</div><div class="row">&nbsp;</div>
+                <div class="row pull-left">
+                    <div class="col-xs-12">
+                        <a href="#" class="btn btn-default"><i class="fa fa-bars"></i> Categorias</a>
+                        <a href="#" class="btn btn-default"><i class="fa fa-search"></i> Buscar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
                 <a href="{{ path('cai_frontend_home') }}"><img src="{{ asset('public/images/Logo-letras-web.png') }}" style="width: 400px" class="img-responsive center-block" /></a>
             </div>
-            <div class="col-md-4 text-right">
-                {% if app.user %}
-                <h4>Hola {{ app.user }} &nbsp; <a href="{{ path('logout') }}" class="btn btn-danger">Logout</a></h4>
-                {% else %}
-                <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
-                <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
-                {% endif %}
-            </div>
-        </div>
-        <br>
-        <div class="row pull-left">
-            <div class="col-xs-12">
-                <a href="#" class="btn btn-default"><i class="fa fa-bars"></i> Categorias</a>
-                <a href="#" class="btn btn-default"><i class="fa fa-search"></i> Buscar</a>
-            </div>
-        </div>
-        <div class="row pull-right">
-            <div class="col-xs-12">
-                <a href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
+            <div class="col-md-4">
+                <div class="row pull-right">
+                    <div class="col-xs-12">
+                        {% if app.user %}
+                        <h4>Hola {{ app.user }} &nbsp; <a href="{{ path('logout') }}" class="btn btn-danger">Logout</a></h4>
+                        {% else %}
+                        <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
+                        <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row pull-right">
+                    <div class="col-xs-12">
+                        <a href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

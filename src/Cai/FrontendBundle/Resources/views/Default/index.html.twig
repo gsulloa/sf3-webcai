@@ -31,7 +31,7 @@
     </div>
     <br><hr>
     <div class="row">
-        <h1 class="text-center">Noticias<small><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></small></h1>
+        <h1 class="text-center">Noticias</h1>
         <ul class="news-slider">
             {% set i = 0 %}
             {% for noticia in noticias %}
@@ -63,8 +63,9 @@
             {% endif %}
         </ul>
     </div>
+    <p class="pull-right"><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></p>
     <div class="row ">
-        <h1 class="text-center">Calendario rapido</h1>
+        <h1 class="text-center">Calendario</h1>
         <img src="{{ asset('public/images/calendar.jpg') }}" class="center-block">
     </div>
 {% endblock %}
