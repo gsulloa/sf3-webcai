@@ -1,8 +1,8 @@
-{% extends 'CaiFrontendBundle::base.html.twig' %}
-{% block title %}
-    Centro de Alumnos de Ingeniería UC
-{% endblock %}
-{% block stylesheets %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}    Centro de Alumnos de Ingeniería UC{% endblock %}</title>
     <style>
         .container{
             position: absolute;
@@ -20,19 +20,43 @@
             width: 80%;
         }
     </style>
-{% endblock %}
-{% block body %}
-    <div class="container center-block" style="">
-        <div class="row text-center">
-            <img src="{{ asset('public/images/CAi.png') }}">
-        </div>
-        <div class="row text-center">
-            <h1>Página en Remodelación</h1>
-            <h3 class="">Contáctanos en:</h3>
-            <h3><a href="mail:{{ contacto.mail }}"><i class="fa fa-envelope-o"></i></a>&nbsp {{ contacto.mail }}</h3>
-            <h3><a href="https://www.facebook.com/{{ contacto.facebook }}/"><i class="fa fa-facebook"></i></a>&nbsp /{{ contacto.facebook }}<br></h3>
-            <h3><a href="https://twitter.com/{{ contacto.twitter }}"><i class="fa fa-twitter"></i></a>&nbsp /{{ contacto.twitter }}</h3>
-            <h3><a href="https://www.instagram.com/{{ contacto.instagram }}/"><i class="fa fa-instagram"></i></a>&nbsp /{{ contacto.instagram }} </h3>
-        </div>
+    <link rel="stylesheet" href="{{ asset('public/font-awesome-4.5.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}" >
+    <script src="{{ asset('public/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('public/icon/apple-icon-57x57.png') }}" >
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('public/icon/apple-icon-60x60.png')  }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('public/icon/apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/icon/apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('public/icon/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('public/icon/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('public/icon/apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('public/icon/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('public/icon/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('public/icon/android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/icon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('public/icon/favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/icon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('public/icon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('public/icon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/x-icon" href="{{ asset('public/icon/favicon.ico') }}" />
+</head>
+<body>
+<div class="container center-block" style="">
+    <div class="row text-center">
+        <img src="{{ asset('public/images/CAi.png') }}">
     </div>
-{% endblock %}
+    <div class="row text-center">
+        <h1>Página en Remodelación</h1>
+        <h3 class="">Contáctanos en:</h3>
+        <h3><a href="mail:{{ contacto.mail }}"><i class="fa fa-envelope-o"></i></a>&nbsp {{ contacto.mail }}</h3>
+        <h3><a href="https://www.facebook.com/{{ contacto.facebook }}/"><i class="fa fa-facebook"></i></a>&nbsp /{{ contacto.facebook }}<br></h3>
+        <h3><a href="https://twitter.com/{{ contacto.twitter }}"><i class="fa fa-twitter"></i></a>&nbsp /{{ contacto.twitter }}</h3>
+        <h3><a href="https://www.instagram.com/{{ contacto.instagram }}/"><i class="fa fa-instagram"></i></a>&nbsp /{{ contacto.instagram }} </h3>
+    </div>
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

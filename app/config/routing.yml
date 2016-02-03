@@ -1,3 +1,6 @@
+gulloa_security:
+    resource: "@GulloaSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
 cai_web:
     resource: "@CaiWebBundle/Resources/config/routing.yml"
     prefix:   /backend
@@ -5,11 +8,6 @@ cai_web:
 cai_frontend:
     resource: "@CaiFrontendBundle/Resources/config/routing.yml"
     prefix:   /
-
-gulloa_security:
-    resource: "@GulloaSecurityBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

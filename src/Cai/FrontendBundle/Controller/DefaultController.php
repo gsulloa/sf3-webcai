@@ -15,17 +15,34 @@ class DefaultController extends Controller
         ));
     }
 
-    public function propuestaAction($i)
+    public function homeAction()
     {
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $auspicios = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios');
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $principal = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Principal');
-        return $this->render('CaiFrontendBundle:Default:index'.$i.'.html.twig',array(
+        $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAll();
+        return $this->render('CaiFrontendBundle:Default:index.html.twig',array(
             'contacto'  => $contacto,
-            'auspicios_1' => $auspicios,
-            'auspicios_2' => $auspicios,
-            'principal'   => $principal
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
+            'principal'   => $principal,
+            'noticias'    => $noticias
+        ));
+    }
+
+    public function viewAction($slug){
+        $em = $this->getDoctrine()->getManager();
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlug($slug);
+        return $this->render('CaiFrontendBundle:Default:entrada.html.twig', array(
+            'entrada'       => $entrada,
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
         ));
     }
 }

@@ -1,0 +1,110 @@
+{% extends 'CaiFrontendBundle::layout.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('.news-slider').bxSlider({
+                mode: 'vertical',
+                minSlides: 2,
+                pager: false,
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+            $('.slider-slider').bxSlider({
+                auto: true,
+                pause: {{ principal.time }},
+                mode: 'fade',
+                pager: false
+            });
+        })
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <ul class="slider-slider">
+            {% for slide in principal.slides %}
+                <li>
+                    <a href="{{ slide.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ slide.imagen.filenamebinary ~ '/slider-' ~ slide.imagen.filename) }}" /></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br><hr>
+    <div class="row">
+        <h1 class="text-center">Noticias<small>Ver todas</small></h1>
+        <ul class="news-slider">
+            <li>
+                <div class="row">
+                    {% for noticia in noticias %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-responsive"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <h3><a href="{{ path('cai_frontend_view',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                                    <p>{{ noticia.fecha|date('Y-m-d h:i:s') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    {% for noticia in noticias %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-responsive"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <h3><a href="{{ path('cai_frontend_view',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                                    <p>{{ noticia.fecha|date('Y-m-d h:i:s') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    {% for noticia in noticias %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-responsive"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <h3><a href="{{ path('cai_frontend_view',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                                    <p>{{ noticia.fecha|date('Y-m-d h:i:s') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    {% for noticia in noticias %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-responsive"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <h3><a href="{{ path('cai_frontend_view',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                                    <p>{{ noticia.fecha|date('Y-m-d h:i:s') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="row ">
+        <h1 class="text-center">Calendario rapido</h1>
+        <img src="{{ asset('public/images/calendar.jpg') }}" class="center-block">
+    </div>
+{% endblock %}

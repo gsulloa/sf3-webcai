@@ -173,9 +173,13 @@ class Imagen
         $imagen = $this->getUploadRootDir() . $this->filename;
         //TEST
 
+
         # ruta de la imagen final, si se pone el mismo nombre que la imagen, esta se sobreescribe
         $imagen_final_small = $this->getUploadRootDir() . 'small-' . $this->filename;
-        $imagen_final_medium = $this->getUploadRootDir() . 'medium-' . $this->filename;
+        $imagen_final_auspicio = $this->getUploadRootDir() . 'auspicio-' . $this->filename;
+        $imagen_final_slider = $this->getUploadRootDir() . 'slider-' . $this->filename;
+        $imagen_final_noticia = $this->getUploadRootDir() . 'noticia-' . $this->filename;
+
 
         global $kernel;
 
@@ -185,8 +189,16 @@ class Imagen
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
 
-        $imgEditor->smart_resize_image($imagen,null,800,800,true,$imagen_final_medium,false,false,50);
+
         $imgEditor->smart_resize_image($imagen,null,200,200,true,$imagen_final_small,false,false,50);
+        $imgEditor->smart_resize_image($imagen,null,0,50,true,$imagen_final_auspicio,false,false,100);
+        $imgEditor->smart_resize_image($imagen,null,1000,500,true,$imagen_final_slider,false,false,100);
+        $imgEditor->smart_resize_image($imagen,null,150,150,true,$imagen_final_noticia,false,false,100);
+
+        $size =getimagesize($this->getUploadRootDir() . $this->filename);
+        if( $size[0] > 2000 || $size[1] > 2000){
+            $imgEditor->smart_resize_image($imagen,null,1000,1000,true,$this->getUploadRootDir() . $this->filename,true,false,100);
+        }
 
         /*
         if (!is_dir($this->getUploadRootDir().'/small/')) {

@@ -10,9 +10,13 @@ cai_frontend_homepage:
     path:     /
     defaults: { _controller: CaiFrontendBundle:Default:index }
 
-cai_frontend_propuesta:
-    path:     /p/{i}
-    defaults: { _controller: CaiFrontendBundle:Default:propuesta }
+cai_frontend_home:
+    path:     /home
+    defaults: { _controller: CaiFrontendBundle:Default:home }
+
+cai_frontend_view:
+    path:     /{slug}
+    defaults: { _controller: CaiFrontendBundle:Default:view }
 
 user_activation:
     path:     /activar/{token}

@@ -42,7 +42,155 @@
             js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=317044878472789";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-        {% block body %}{% endblock %}
+    <div class="container-fluid cai">
+        <div class="pull-right top-nav">
+        </div>
+    </div>
+    <div class="container header">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <a href="{{ path('cai_frontend_home') }}"><img src="{{ asset('public/images/Logo-letras-web.png') }}" style="width: 400px" class="img-responsive center-block" /></a>
+            </div>
+            <div class="col-md-4 text-right">
+                <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
+                <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
+            </div>
+        </div>
+        <br>
+        <div class="row pull-left">
+            <div class="col-xs-12">
+                <a href="#" class="btn btn-default"><i class="fa fa-bars"></i> Categorias</a>
+                <a href="#" class="btn btn-default"><i class="fa fa-search"></i> Buscar</a>
+            </div>
+        </div>
+        <div class="row pull-right">
+            <div class="col-xs-12">
+                <a href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="{{ path('cai_frontend_home') }}">Inicio</a>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Elemento</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Elemento</a>
+                        </li>
+                        <li class="dropdown" style="position:relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="trigger right-caret">Level 1</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="#">Level 2</a></li>
+                                        <li>
+                                            <a class="trigger right-caret">Level 2</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="#">Level 3</a></li>
+                                                <li><a href="#">Level 3</a></li>
+                                                <li>
+                                                    <a class="trigger right-caret">Level 3</a>
+                                                    <ul class="dropdown-menu sub-menu">
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Level 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Level 1</a></li>
+                                <li><a href="#">Level 1</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Elemento</a>
+                        </li>
+                        <li class="dropdown" style="position:relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="trigger right-caret">Level 1</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="#">Level 2</a></li>
+                                        <li>
+                                            <a class="trigger right-caret">Level 2</a>
+                                            <ul class="dropdown-menu sub-menu">
+                                                <li><a href="#">Level 3</a></li>
+                                                <li><a href="#">Level 3</a></li>
+                                                <li>
+                                                    <a class="trigger right-caret">Level 3</a>
+                                                    <ul class="dropdown-menu sub-menu">
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                        <li><a href="#">Level 4</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Level 2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Level 1</a></li>
+                                <li><a href="#">Level 1</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Elemento</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block body %}{% endblock %}
+    <br>
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="footer-text">Centro de Alumnos de Ingeniería</h3>
+                <hr>
+                <p class="footer-text">{{ contacto.descripcion }}</p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="footer-text">Contacto</h3>
+                <h4 class="footer-text"><i class="fa fa-envelope-o"></i>&nbsp {{ contacto.mail }}</h4>
+                <h4 class="footer-text"><i class="fa fa-map-marker"></i>&nbsp {{ contacto.direccion }}</h4>
+                <h4 class="footer-text"><i class="fa fa-phone-square"></i>&nbsp {{ contacto.telefono }}</h4>
+
+            </div>
+        </div>
+    </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
