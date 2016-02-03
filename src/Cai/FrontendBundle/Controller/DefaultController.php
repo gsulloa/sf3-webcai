@@ -22,7 +22,8 @@ class DefaultController extends Controller
         $auspicios = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios');
         return $this->render('CaiFrontendBundle:Default:index'.$i.'.html.twig',array(
             'contacto'  => $contacto,
-            'auspicios' => $auspicios
+            'auspicios_1' => $auspicios,
+            'auspicios_2' => $auspicios,
         ));
     }
 }

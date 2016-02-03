@@ -32,9 +32,10 @@
             z-index: 10000;
             opacity:1;
         }
-        .container, .col-md-4, .row{
-            padding: 0;
-        }
+
+
+
+
 
     </style>
     <style>
@@ -149,11 +150,22 @@
     </script>
     <script>
         $(document).ready(function(){
-            $('.auspicios-slider').bxSlider({
+            $('.auspicios-slider-1').bxSlider({
                 ticker: true,
-                speed: {{ auspicios.slides | length * auspicios.time }},
+                speed: {{ auspicios_1.slides | length * auspicios_1.time }},
                 minSlides: 1,
-                maxSlides: 1
+                maxSlides: 1,
+                tickerHover: true,
+                useCSS: false,
+                margin: 10
+            });
+            $('.auspicios-slider-2').bxSlider({
+                ticker: true,
+                speed: {{ auspicios_2.slides | length * auspicios_2.time }},
+                minSlides: 1,
+                maxSlides: 1,
+                tickerHover: true,
+                useCSS: false
             });
 
             $('.news-slider').bxSlider({
@@ -307,7 +319,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     <h1 class="text-center">Noticias<small>Ver todas</small></h1>
                     <ul class="news-slider">
@@ -363,28 +375,24 @@
                     <img src="{{ asset('public/images/calendar.jpg') }}" class="center-block">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="row" style="width:100%;margin:auto">
                     <h1>Auspiciadores</h1>
-                    <ul class="auspicios-slider">
-                        {% for auspicio in auspicios.slides %}
+                    <ul class="auspicios-slider-1">
+                        {% for auspicio in auspicios_1.slides %}
                         <li>
-                            <img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/' ~ auspicio.imagen.filename) }}" />
+                            <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/' ~ auspicio.imagen.filename) }}" /></a>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="row" style="width:100%;margin:auto">
-                    <ul class="auspicios-slider">
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
-                        <li>
-                            <img src="{{ asset('public/images/Logo-letras-web.png') }}" />
-                        </li>
+                    <ul class="auspicios-slider-2">
+                        {% for auspicio in auspicios_2.slides %}
+                            <li>
+                                <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/' ~ auspicio.imagen.filename) }}" /></a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="row" style="width:100%;margin:auto">
