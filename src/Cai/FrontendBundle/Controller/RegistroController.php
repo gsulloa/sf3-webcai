@@ -67,8 +67,8 @@ class RegistroController extends Controller
                 $encoder = $this->container->get('security.password_encoder');
                 $encoded = $encoder->encodePassword($user, $user->getPassword());
                 $user->setPassword($encoded)
-                    ->setToken(bin2hex(random_bytes(50)))
-                    ->setActivationToken(bin2hex(random_bytes(50)))
+                    ->setToken(bin2hex(random_bytes(25)))
+                    ->setActivationToken(bin2hex(random_bytes(25)))
                     ->setActive(false)
                 ;
                 $this->registrationMail($user);
