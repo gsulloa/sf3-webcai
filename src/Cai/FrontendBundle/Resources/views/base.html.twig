@@ -6,13 +6,25 @@
         <title>{% block title %}Centro de Alumnos de Ingeniería UC{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('public/font-awesome-4.5.0/css/font-awesome.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}" >
+
         <script src="{{ asset('public/js/jquery.min.js') }}"></script>
         <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+
+        <link href='{{ asset('public/fullcalendar/fullcalendar.css') }}' rel='stylesheet' />
+        <link href='{{ asset('public/fullcalendar/fullcalendar.print.css') }}' rel='stylesheet' media='print' />
+        <script src='{{ asset('public/moment-with-locales.min.js') }}'></script>
+        <script src='{{ asset('public/fullcalendar/fullcalendar.js') }}'></script>
+        <script src="{{ asset('public/fullcalendar/lang/es.js') }}"></script>
+
         <!-- bxSlider Javascript file -->
         <script src="{{ asset('public/bxslider/jquery.bxslider.min.js') }}"></script>
         <!-- bxSlider CSS file -->
         <link href="{{ asset('public/bxslider/jquery.bxslider.css') }}" rel="stylesheet" />
         <style>
+            #calendar {
+                max-width: 90%;
+                margin: 0 auto;
+            }
             .cai{
                 background-color: #FBD307
             }
