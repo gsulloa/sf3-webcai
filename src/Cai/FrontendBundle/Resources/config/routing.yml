@@ -11,8 +11,11 @@ cai_frontend_homepage:
     defaults: { _controller: CaiFrontendBundle:Default:index }
 
 cai_frontend_noticias:
-    path:     /noticias
-    defaults: { _controller: CaiFrontendBundle:Default:noticias }
+    path:     /noticias/{categoria}
+    defaults: { _controller: CaiFrontendBundle:Default:noticias, categoria: null }
+cai_frontend_busqueda:
+    path:     /buscar
+    defaults: { _controller: CaiFrontendBundle:Default:buscar }
 
 cai_frontend_home:
     path:     /home

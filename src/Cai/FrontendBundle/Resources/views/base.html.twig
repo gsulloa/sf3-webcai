@@ -44,6 +44,9 @@
                 z-index: 10000;
                 opacity:1;
             }
+            div.dropdown{
+                float:left;
+            }
         </style>
         <style>
             #custom-bootstrap-menu.navbar-default .navbar-brand {
@@ -166,8 +169,29 @@
                 <div class="row">&nbsp;</div><div class="row">&nbsp;</div>
                 <div class="row pull-left">
                     <div class="col-xs-12">
-                        <a href="#" class="btn btn-default"><i class="fa fa-bars"></i> Categorias</a>
-                        <a href="#" class="btn btn-default"><i class="fa fa-search"></i> Buscar</a>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle btn btn-default " data-toggle="dropdown"><i class="fa fa-bars"></i> Categorias <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% for categoria in categorias %}
+                                <li>
+                                    <a href="{{ path('cai_frontend_noticias', {'categoria':categoria.slug}) }}">{{ categoria }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><i class="fa fa-search"></i> Buscar<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <form method="get" action="{{ path('cai_frontend_busqueda') }}">
+                                        <div class="container-fluid">
+                                        <input type="text" name="texto">
+                                        <input type="submit" class="btn btn-primary">
+                                            </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,41 +280,6 @@
                             </ul>
                         </li>
 
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Elemento</a>
-                        </li>
-                        <li class="dropdown" style="position:relative">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submenu <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="trigger right-caret">Level 1</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="#">Level 2</a></li>
-                                        <li>
-                                            <a class="trigger right-caret">Level 2</a>
-                                            <ul class="dropdown-menu sub-menu">
-                                                <li><a href="#">Level 3</a></li>
-                                                <li><a href="#">Level 3</a></li>
-                                                <li>
-                                                    <a class="trigger right-caret">Level 3</a>
-                                                    <ul class="dropdown-menu sub-menu">
-                                                        <li><a href="#">Level 4</a></li>
-                                                        <li><a href="#">Level 4</a></li>
-                                                        <li><a href="#">Level 4</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Level 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Level 1</a></li>
-                                <li><a href="#">Level 1</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Elemento</a>
-                        </li>
                     </ul>
                 </div>
             </div>
