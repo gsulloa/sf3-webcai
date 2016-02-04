@@ -18,9 +18,9 @@ cai_frontend_home:
     path:     /home
     defaults: { _controller: CaiFrontendBundle:Default:home }
 
-cai_frontend_view:
-    path:     /{slug}
-    defaults: { _controller: CaiFrontendBundle:Default:view }
+cai_frontend_entrada:
+    path:     /entrada/{slug}
+    defaults: { _controller: CaiFrontendBundle:Default:entrada }
 
 user_activation:
     path:     /activar/{token}

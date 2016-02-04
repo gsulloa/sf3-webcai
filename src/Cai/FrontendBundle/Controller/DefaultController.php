@@ -33,7 +33,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function viewAction($slug){
+    public function entradaAction($slug){
         $em = $this->getDoctrine()->getManager();
         $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlug($slug);
         if(!$entrada){
