@@ -196,7 +196,7 @@ class Imagen
         $imgEditor->smart_resize_image($imagen,null,150,150,true,$imagen_final_noticia,false,false,100);
 
         $size =getimagesize($this->getUploadRootDir() . $this->filename);
-        if( $size[0] > 2000 || $size[1] > 2000){
+        if( $size[0] > 1500 || $size[1] > 1500){
             $imgEditor->smart_resize_image($imagen,null,1000,1000,true,$this->getUploadRootDir() . $this->filename,true,false,100);
         }
 
