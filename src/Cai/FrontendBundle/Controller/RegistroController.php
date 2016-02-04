@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class RegistroController extends Controller
 {
@@ -75,12 +76,11 @@ class RegistroController extends Controller
                     ->setActivationToken(bin2hex(random_bytes(25)))
                     ->setActive(false)
                 ;
-                $this->registrationMail($user);
-
-
                 $em->persist($user);
                 $em->flush();
-
+                $this->registrationMail($user);
+                $session = new Session();
+                $session->getFlashBag()->add('success','Te haz registrado correctamente. Revisa tu correo donde te llegará el enlace para activar tu cuenta.');
                 return $this->redirectToRoute('login_route');
             }
         }
@@ -97,15 +97,18 @@ class RegistroController extends Controller
     }
 
     public function activeUserAction($token){
+        $session = new Session();
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('GulloaSecurityBundle:User')->findOneBy(array('activation_token' => $token));
         if($user !== null){
-            $user->setActivationToken('')
+            $user->setActivationToken(null)
                 ->setActive(1);
             $em->flush();
+            $session->getFlashBag()->add('success','Tu cuenta ha sido activada con éxito.');
             return $this->redirectToRoute('login_route');
         }
-        return new Response('');
+        $session->getFlashBag()->add('error','El token de activación que ingresaste no existe. Si tu cuenta sigue inactiva por favor contactate con nosotros.');
+        return $this->redirectToRoute('login_route');
 
     }
 

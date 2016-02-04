@@ -10,9 +10,16 @@
 </head>
 <body>
 <div class="container">
-    {% if error %}
-        <div class="alert alert-warning">{{ error.messageKey|trans(error.messageData) }}</div>
-    {% endif %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-warning">
+        {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     <form class="form-signin" action="{{ path('login_check') }}" method="post">
         <a href="{{ path('cai_frontend_home') }}"><img class="img-responsive center-block" src="{{ asset('public/images/CAi.png') }}" style="max-height: 120px"></a>
         <br>
