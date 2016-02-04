@@ -3,7 +3,7 @@
     <meta property="og:url" content="{{ url('cai_frontend_view',{'slug':entrada.slug}) }}" />
     <meta property="og:title" content="{{ entrada.titulo }}" />
     <meta property="og:image" content="{{ absolute_url( asset('uploads/biblioteca/imagenes/' ~ entrada.imagen.filenamebinary ~ '/' ~ entrada.imagen.filename) ) }}" />
-    <meta property="og:description" content="{{ entrada.cuerpo | raw | slice(0,200) }}..." />
+    <meta property="og:description" content="{{ (entrada.cuerpo | raw) | slice(0,200) }}..." />
 
 {% endblock %}
 {% block title %}
