@@ -30,7 +30,7 @@ class RegistroController extends Controller
         $userProfile = new UserProfile();
         $user = new User();
         $form_profile = $this->createForm('Cai\FrontendBundle\Form\RegisterType', $userProfile);
-        $form_user = $this->createForm('Gulloa\SecurityBundle\Form\UserType', $user);
+        $form_user = $this->createForm('Cai\FrontendBundle\Form\UserType', $user);
         $form_user->handleRequest($request);
         $userProfile->setUser($user);
         $user->setProfile($userProfile);

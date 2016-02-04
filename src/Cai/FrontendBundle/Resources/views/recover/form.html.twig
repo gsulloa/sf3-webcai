@@ -1,4 +1,10 @@
 {% extends 'CaiFrontendBundle::layout.html.twig' %}
+{% form_theme form_mail with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
+{% form_theme form_rut with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
 
 {% block content %}
     <h1>Recuperar Contraseña</h1>
@@ -9,10 +15,20 @@
     {% endfor %}
     {{ form_start(form_mail) }}
     {{ form_row(form_mail.mail) }}
-    <input type="submit" value="Create" />
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <input type="submit" value="Enviar" class="btn-primary btn" />
+        </div>
+    </div>
     {{ form_end(form_mail) }}
     {{ form_start(form_rut) }}
     {{ form_row(form_rut.rut) }}
-    <input type="submit" value="Create" />
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <input type="submit" value="Enviar" class="btn-primary btn" />
+        </div>
+    </div>
     {{ form_end(form_rut) }}
 {% endblock %}

@@ -4,6 +4,7 @@ namespace Cai\FrontendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,7 +25,7 @@ class RegisterType extends AbstractType
                     'M' => "m",
                     'F' => "f")
             ))
-            ->add('mail')
+            ->add('mail',EmailType::class )
             ->add('celular')
             ->add('rut')
             ->add('file', null, array(

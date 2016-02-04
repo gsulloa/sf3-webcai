@@ -1,21 +1,41 @@
 {% extends 'CaiFrontendBundle::layout.html.twig' %}
+{% form_theme form_user with [
+            'bootstrap_3_horizontal_layout.html.twig'
+    ] %}
+{% form_theme form_profile with [
+            'bootstrap_3_horizontal_layout.html.twig'
+    ] %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        th{
+            padding-right: 15px;
+            text-align: right;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
-    <h1>Registro</h1>
 
+    <h1>Registro</h1>
     {{ form_start(form_profile) }}
-    {{ form_row(form_user.username) }}
-    {{ form_row(form_user.password) }}
-    <label for="second_password">Repite tu contraseña</label><input type="password" id="second_password" name="second_password"><br>
-    {{ form_row(form_profile.nombre) }}
-    {{ form_row(form_profile.apellido) }}
-    {{ form_row(form_profile.sexo) }}
-    {{ form_row(form_profile.mail) }}
-    {{ form_row(form_profile.celular) }}
-    {{ form_row(form_profile.rut) }}
+    {{ form_row(form_user.username, {'attr':{'placeholder':'username'} }) }}
+    {{ form_row(form_user.password, {'attr':{'placeholder':'password'} }) }}
+    <div class="form-group">
+        <label class="col-sm-2 control-label required" for="second_password">Repite tu contraseña</label>
+        <div class="col-sm-10">
+            <input type="password" id="second_password" name="second_password" required="required" maxlength="255" class="form-control" placeholder="password">
+        </div>
+    </div>
+    {{ form_row(form_profile.nombre, {'attr':{'placeholder':'Nombre'} }) }}
+    {{ form_row(form_profile.apellido, {'attr':{'placeholder':'Apellido'} }) }}
+    {{ form_row(form_profile.sexo, {'attr':{'placeholder':'Sexo'} }) }}
+    {{ form_row(form_profile.mail, {'attr':{'placeholder':'mail@uc.cl - mail@ing.puc.cl'} }) }}
+    {{ form_row(form_profile.celular, {'attr':{'placeholder':'9999 9999'} }) }}
+    {{ form_row(form_profile.rut, {'attr':{'placeholder':'99999999-9'} }) }}
     {{ form_row(form_profile.file) }}
     {{ form_row(form_user._token) }}
-        <input type="submit" value="Registrarme"  class="btn btn-primary"/>
+    <input type="submit" value="Registrarme" class="btn btn-primary"/>
     {{ form_end(form_profile) }}
 
 {% endblock %}
