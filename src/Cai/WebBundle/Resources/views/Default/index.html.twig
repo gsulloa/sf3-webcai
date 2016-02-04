@@ -1,5 +1,10 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     <h1>Hola {{ app.user }}</h1>
 {% endblock %}
 {#

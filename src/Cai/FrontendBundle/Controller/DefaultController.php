@@ -3,6 +3,7 @@
 namespace Cai\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -34,10 +35,14 @@ class DefaultController extends Controller
 
     public function viewAction($slug){
         $em = $this->getDoctrine()->getManager();
+        $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlug($slug);
+        if(!$entrada){
+            throw $this->createNotFoundException();
+        }
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlug($slug);
+
         return $this->render('CaiFrontendBundle:Default:entrada.html.twig', array(
             'entrada'       => $entrada,
             'contacto'  => $contacto,

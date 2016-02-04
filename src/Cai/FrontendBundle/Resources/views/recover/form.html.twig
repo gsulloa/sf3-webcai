@@ -1,8 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'CaiFrontendBundle::layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Recuperar Contraseña</h1>
-
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     {{ form_start(form_mail) }}
     {{ form_row(form_mail.mail) }}
     <input type="submit" value="Create" />

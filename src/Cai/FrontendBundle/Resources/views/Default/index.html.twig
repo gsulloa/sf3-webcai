@@ -20,6 +20,11 @@
     </script>
 {% endblock %}
 {% block content %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     <div class="row">
         <ul class="slider-slider">
             {% for slide in principal.slides %}

@@ -18,7 +18,7 @@ class RegistroController extends Controller
      */
     public function newAction(Request $request)
     {
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('default_target');
         }
         $em = $this->getDoctrine()->getManager();
@@ -113,11 +113,15 @@ class RegistroController extends Controller
     }
 
     public function recoverAction(Request $request){
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('default_target');
         }
-
+        $em = $this->getDoctrine()->getManager();
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $profile = new UserProfile();
+
         $form_rut = $this->createForm('Cai\FrontendBundle\Form\RecoverRutType', $profile);
         $form_mail = $this->createForm('Cai\FrontendBundle\Form\RecoverMailType', $profile);
         $form_rut->handleRequest($request);
@@ -140,12 +144,17 @@ class RegistroController extends Controller
             $profile_found->getUser()->setPasswordToken($password_token);
             $em->flush();
             $this->recoverPasswordMail($profile_found->getUser());
+            $session = new Session();
+            $session->getFlashBag()->add('success','Tu solicitud de recuperar la clave ha sido procesada con éxito. Revisa tu correo donde se indican los pasos que debes seguir');
         }
 
         return $this->render('CaiFrontendBundle:recover:form.html.twig', array(
             'profile' => $profile,
             'form_mail' => $form_mail->createView(),
             'form_rut'  => $form_rut->createView(),
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
         ));
     }
 
@@ -174,6 +183,8 @@ class RegistroController extends Controller
                     ->setToken(bin2hex(random_bytes(50)))
                 ;
                 $em->flush();
+                $session = new Session();
+                $session->getFlashBag()->add('success','El cambio de contraseña se ha realizado correctamente.');
                 return $this->redirectToRoute('login_route');
             }
             $form->get('password')->addError(new FormError('Las contraseñas no son iguales'));
@@ -194,6 +205,8 @@ class RegistroController extends Controller
         }
         $user->setPasswordToken(null);
         $em->flush();
+        $session = new Session();
+        $session->getFlashBag()->add('success','Token de cambio de contraseña eliminado correctamente.');
         return $this->redirectToRoute('login_route');
     }
 
