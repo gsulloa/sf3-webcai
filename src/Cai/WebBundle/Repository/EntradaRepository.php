@@ -65,4 +65,15 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('now',new \DateTime())
             ->getResult();
     }
+    public function findOneBySlugFront($slug){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT e
+                FROM CaiWebBundle:Entrada e
+                WHERE e.slug = :slug
+                AND e.fecha < :now"
+            )->setParameter('slug',$slug)
+            ->setParameter('now', new \DateTime())
+            ->getOneOrNullResult();
+    }
 }

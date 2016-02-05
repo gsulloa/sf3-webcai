@@ -38,7 +38,7 @@ class DefaultController extends Controller
 
     public function entradaAction($slug){
         $em = $this->getDoctrine()->getManager();
-        $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlug($slug);
+        $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlugFront($slug);
         if(!$entrada){
             throw $this->createNotFoundException();
         }
