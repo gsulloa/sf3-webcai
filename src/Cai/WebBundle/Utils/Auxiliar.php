@@ -32,7 +32,6 @@ class Auxiliar extends Controller
         if( !empty($replace) ) {
             $str = str_replace((array)$replace, ' ', $str);
         }
-        var_dump($str);
         //$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
         $clean = $this->stripAccents($str);
         $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
