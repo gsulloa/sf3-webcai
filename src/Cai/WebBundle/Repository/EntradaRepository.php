@@ -10,23 +10,36 @@ namespace Cai\WebBundle\Repository;
  */
 class EntradaRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findOrderedByCategoria($categoria){
+    public function findAll(){
         return $this->getEntityManager()
             ->createQuery('SELECT e
                 FROM CaiWebBundle:Entrada e
-                LEFT JOIN e.categorias categorias
-                WHERE categorias.id = ' . $categoria->getId(). '
                 ORDER BY e.fecha DESC
                 '
-            )->getResult();
+            )
+            ->getResult();
+    }
+    public function findOrderedByCategoria($categoria){
+        return $this->getEntityManager()
+            ->createQuery("SELECT e
+                FROM CaiWebBundle:Entrada e
+                LEFT JOIN e.categorias categorias
+                WHERE categorias.id = " . $categoria->getId(). "
+                AND e.fecha < :now
+                ORDER BY e.fecha DESC
+                "
+            )->setParameter('now', new \DateTime())
+            ->getResult();
     }
     public function findAllOrdered(){
         return $this->getEntityManager()
             ->createQuery('SELECT e
                 FROM CaiWebBundle:Entrada e
+                WHERE e.fecha < :now
                 ORDER BY e.fecha DESC
                 '
-            )->getResult();
+            )->setParameter('now', new \DateTime())
+            ->getResult();
     }
     public function findBySearchedText($text){
         return $this->getEntityManager()
@@ -34,18 +47,22 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 "SELECT e
             FROM CaiWebBundle:Entrada e
             WHERE e.titulo LIKE :texto
+            AND e.fecha < :now
             OR e.cuerpo LIKE :texto
           "
             )->setParameter('texto','%'.$text.'%')
+            ->setParameter('now',new \DateTime())
             ->getResult();
     }
     public function findAllForHome(){
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT e
+                "SELECT e
                 FROM CaiWebBundle:Entrada e
-                ORDER BY e.fecha DESC'
+                WHERE e.fecha < :now
+                ORDER BY e.fecha DESC"
             )->setMaxResults(12)
+            ->setParameter('now',new \DateTime())
             ->getResult();
     }
 }
