@@ -213,7 +213,7 @@
                 <div class="row pull-right">
                     <div class="col-xs-12">
                         {% if app.user %}
-                        <h4>Hola {{ app.user }} &nbsp; <a href="{{ path('logout') }}" class="btn btn-danger">Logout</a></h4>
+                        <h4>Hola {{ app.user }} &nbsp; <a href="{{ path('logout') }}" class="btn btn-danger">Logout</a><a href="{{ path('profile') }}" class="btn btn-default">Ver Perfil</a></h4>
                         {% else %}
                         <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
                         <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
