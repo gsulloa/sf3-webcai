@@ -188,6 +188,7 @@ class RegistroController extends Controller
         if($user === null){
             throw $this->createNotFoundException('Token de cambio no encontrado');
         }
+
         $form = $this->createForm('Cai\FrontendBundle\Form\ChangePasswordType', $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() ) {
@@ -199,6 +200,7 @@ class RegistroController extends Controller
                 $encoded = $encoder->encodePassword($user, $pass);
                 $user->setPassword($encoded)
                     ->setToken(bin2hex(random_bytes(25)))
+                    ->setPasswordToken(null)
                 ;
                 $em->flush();
                 $session = new Session();
@@ -207,9 +209,17 @@ class RegistroController extends Controller
             }
             $form->get('password')->addError(new FormError('Las contraseñas no son iguales'));
         }
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         return $this->render('CaiFrontendBundle:profile:change_password.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
+            'categorias' => $categorias
         ));
     }
 
