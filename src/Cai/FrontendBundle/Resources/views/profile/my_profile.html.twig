@@ -41,6 +41,16 @@
                         <th>RUT</th>
                         <td>{% if app.user.profile.rut %}{{ app.user.profile.rut }}{% endif %}</td>
                     </tr>
+                    <tr>
+                        <th>Categorías de Interes</th>
+                        <td>
+                            <ul class="list-unstyled">
+                            {% for categoria in app.user.categorias %}
+                                <li>{{ categoria }}</li>
+                            {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

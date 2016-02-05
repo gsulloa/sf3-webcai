@@ -15,6 +15,7 @@
     </style>
 {% endblock %}
 {% block javascripts %}
+    {{ parent() }}
     <script>
         function rut(){
             var myString = $(this).val();
@@ -65,6 +66,7 @@
     {{ form_row(form_profile.celular, {'attr':{'placeholder':'9999 9999'} }) }}
     {{ form_row(form_profile.rut, {'attr':{'placeholder':'99999999-9'} }) }}
     {{ form_row(form_profile.file) }}
+    {{ form_row(form_user.categorias) }}
     {{ form_row(form_user._token) }}
     <input type="submit" value="Registrarme" class="btn btn-primary"/>
     {{ form_end(form_profile) }}

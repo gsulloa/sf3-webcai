@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class ChangeCategoriasType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,12 +18,6 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username',null,array(
-                'label'=>'Nombre de Usuario'
-            ))
-            ->add('password', PasswordType::class,array(
-                'label'=>'Contraseña'
-            ))
             ->add('categorias',null,array(
                 'expanded' => true,
                 'label' => 'Categorías de Interes'

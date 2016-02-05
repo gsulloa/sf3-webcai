@@ -31,9 +31,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 8,
-     *      max = 15,
      *      minMessage = "La clave debe ser de al menos {{ limit }} caracteres",
-     *      maxMessage = "La clave debe ser de a lo más {{ limit }} caracteres"
      * )
      */
     private $password;

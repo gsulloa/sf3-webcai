@@ -70,9 +70,12 @@ class ProfileController extends Controller
         $oldPassword = $this->getUser()->getPassword();
         $em = $this->getDoctrine()->getManager();
         $profile = $this->getUser()->getProfile();
+        $user = $this->getUser();
+        $form_cat = $this->createForm('Cai\FrontendBundle\Form\ChangeCategoriasType', $user);
         $form = $this->createForm('Cai\FrontendBundle\Form\ChangeProfileType', $profile);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() ) {
+        $form_cat->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() && $form_cat->isValid() ) {
             $old = true;
             if(!password_verify($request->request->get('old_password'),$oldPassword)){
                 $old = false;
@@ -96,6 +99,7 @@ class ProfileController extends Controller
             }
             if($old && $rutUnico && $rutCorrecto){
                 $em->persist($profile);
+                $em->persist($user);
                 $em->flush();
                 $session = new Session();
                 $session->getFlashBag()->add('success','El cambio de la información se ha completado con éxito.');
@@ -107,7 +111,9 @@ class ProfileController extends Controller
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         return $this->render('CaiFrontendBundle:profile:change_user_info.html.twig', array(
             'profile' => $profile,
+            'user'    => $user,
             'form' => $form->createView(),
+            'form_cat' => $form_cat->createView(),
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
