@@ -1,0 +1,56 @@
+{% extends 'CaiFrontendBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="text-center">Mi Perfil</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                {% if app.user.profile.filename is not null %}{% set image = asset('uploads/biblioteca/profile/') ~ app.user.profile.filename %}
+                {% else %}{% set image = asset('public/images/no-foto-profile.png') %}{% endif %}
+                <img class="img-responsive img-circle center-block" src="{{ image }}"><br>
+                <a href="#" class="btn btn-primary">Cambiar Foto</a>
+
+            </div>
+            <div class="col-md-9">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ app.user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ app.user.profile.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Apellido</th>
+                        <td>{{ app.user.profile.apellido }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sexo</th>
+                        <td>{{ app.user.profile.sexo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mail</th>
+                        <td>{{ app.user.profile.mail }}</td>
+                    </tr>
+                    <tr>
+                        <th>Celular</th>
+                        <td>{% if app.user.profile.celular %}{{ app.user.profile.celular }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>RUT</th>
+                        <td>{% if app.user.profile.rut %}{{ app.user.profile.rut }}{% endif %}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a href="#" class="btn btn-default">Cambiar Información</a>
+                <a href="#" class="btn btn-default">Cambiar Contraseña</a>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

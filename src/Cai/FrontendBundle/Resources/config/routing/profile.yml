@@ -1,0 +1,3 @@
+profile:
+    path:     /
+    defaults: { _controller: CaiFrontendBundle:Profile:myProfile }
