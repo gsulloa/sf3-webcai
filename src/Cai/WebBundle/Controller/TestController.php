@@ -7,19 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TestController extends Controller
 {
-    public function mailAction(){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Testing')
-            ->setFrom(array('no-reply@caiuc.cl'=> ' No Reply CAi'))
-            ->setTo('gsulloa@uc.cl')
-            ->setBody(
-                    '<h1>Mail de prueba</h1>
-<p>Este es un mail de prueba jiji</p>',
-                'text/html'
-            )
-        ;
-        $this->get('mailer')->send($message);
-        return new Response();
+    public function mailAction($text){
+        $aux = $this->get('cai_web.auxiliar');
+        var_dump($aux->toAscii($text));
+        exit;
+        return $this->renderView('CaiWebBundle:Default:index.html.twig');
     }
 
 }
