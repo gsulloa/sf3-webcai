@@ -12,7 +12,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         return $this->render('CaiFrontendBundle:Default:mantenimiento.html.twig',array(
             'contacto'  => $contacto
@@ -86,9 +85,23 @@ class DefaultController extends Controller
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         if($categoria == null){
+            $seguimiento = new Seguimiento();
+            $seguimiento->setEtiqueta('noticias')
+                ->setFecha(new \DateTime())
+                ->setUser($this->getUser());
+            $em->persist($seguimiento);
+            $em->flush();
             $entradas = $em->getRepository('CaiWebBundle:Entrada')->findAllOrdered();
         }else{
             $categoria = $em->getRepository('CaiWebBundle:Categoria')->findOneBySlug($categoria);
+            $seguimiento = new Seguimiento();
+            $seguimiento->setEtiqueta('noticias')
+                ->setFecha(new \DateTime())
+                ->setUser($this->getUser())
+                ->setEtiquetaId($categoria->getId())
+            ;
+            $em->persist($seguimiento);
+            $em->flush();
             $entradas = $em->getRepository('CaiWebBundle:Entrada')->findOrderedByCategoria($categoria);
         }
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
@@ -102,6 +115,12 @@ class DefaultController extends Controller
     public function buscarAction(Request $request){
         $texto = $request->query->get('texto');
         $em = $this->getDoctrine()->getManager();
+        $seguimiento = new Seguimiento();
+        $seguimiento->setEtiqueta('buscar')
+            ->setFecha(new \DateTime())
+            ->setUser($this->getUser());
+        $em->persist($seguimiento);
+        $em->flush();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');

@@ -191,7 +191,7 @@ class Imagen
 
 
         $imgEditor->smart_resize_image($imagen,null,200,200,true,$imagen_final_small,false,false,50);
-        $imgEditor->smart_resize_image($imagen,null,0,50,true,$imagen_final_auspicio,false,false,100);
+        $imgEditor->smart_resize_image($imagen,null,250,50,true,$imagen_final_auspicio,false,false,100);
         $imgEditor->smart_resize_image($imagen,null,1000,500,true,$imagen_final_slider,false,false,100);
         $imgEditor->smart_resize_image($imagen,null,150,150,true,$imagen_final_noticia,false,false,100);
 
