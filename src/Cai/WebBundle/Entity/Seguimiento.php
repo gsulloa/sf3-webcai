@@ -43,6 +43,12 @@ class Seguimiento
     private $fecha;
 
     /**
+     * @var string
+     * @ORM\Column(name="text", type="string", length=255, nullable=true)
+     */
+    private $text;
+
+    /**
      * @ORM\ManyToOne(targetEntity="\Gulloa\SecurityBundle\Entity\User", inversedBy="seguimientos")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -154,5 +160,29 @@ class Seguimiento
     public function getEtiquetaId()
     {
         return $this->etiqueta_id;
+    }
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return Seguimiento
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

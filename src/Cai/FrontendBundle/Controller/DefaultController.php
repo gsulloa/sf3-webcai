@@ -118,7 +118,9 @@ class DefaultController extends Controller
         $seguimiento = new Seguimiento();
         $seguimiento->setEtiqueta('buscar')
             ->setFecha(new \DateTime())
-            ->setUser($this->getUser());
+            ->setUser($this->getUser())
+            ->setText($texto)
+        ;
         $em->persist($seguimiento);
         $em->flush();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
