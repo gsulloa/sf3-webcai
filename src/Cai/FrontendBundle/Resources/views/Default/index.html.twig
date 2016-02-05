@@ -107,7 +107,7 @@
     </div>
     <br><hr>
     <div class="row">
-        <h1 class="text-center">Noticias</h1>
+        <h1 class="text-center">{% if app.user %}Mis {% endif %}Noticias</h1>
         <ul class="news-slider">
             {% set i = 0 %}
             {% for noticia in noticias %}

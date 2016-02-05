@@ -33,7 +33,12 @@ class DefaultController extends Controller
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $principal = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Principal');
-        $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForHome();
+        if($this->isGranted('IS_AUTHENTICATED_FULLY')){
+            $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForUser($this->getUser());
+        }
+        else {
+            $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForHome();
+        }
         return $this->render('CaiFrontendBundle:Default:index.html.twig',array(
             'contacto'  => $contacto,
             'categorias' => $categorias,

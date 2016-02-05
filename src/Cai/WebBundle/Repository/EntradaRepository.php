@@ -76,4 +76,18 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('now', new \DateTime())
             ->getOneOrNullResult();
     }
+    public function findAllForUser($user){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT e
+                FROM CaiWebBundle:Entrada e
+                LEFT JOIN e.categorias categoria
+                WHERE e.fecha < :now
+                AND categoria in (:categorias)
+                ORDER BY e.fecha DESC"
+            )->setMaxResults(12)
+            ->setParameter('now',new \DateTime())
+            ->setParameter('categorias',$user->getCategorias())
+            ->getResult();
+    }
 }
