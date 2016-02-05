@@ -86,6 +86,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $profile;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Cai\WebBundle\Entity\Seguimiento",mappedBy="user")
+     */
+    private $seguimientos;
+
+    /**
      * Get id
      *
      * @return integer
@@ -224,6 +229,10 @@ class User implements AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->paginas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->seguimientos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -535,5 +544,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function isEnabled()
     {
         return $this->active;
+    }
+
+    /**
+     * Add seguimiento
+     *
+     * @param \Cai\WebBundle\Entity\Seguimiento $seguimiento
+     *
+     * @return User
+     */
+    public function addSeguimiento(\Cai\WebBundle\Entity\Seguimiento $seguimiento)
+    {
+        $this->seguimientos[] = $seguimiento;
+
+        return $this;
+    }
+
+    /**
+     * Remove seguimiento
+     *
+     * @param \Cai\WebBundle\Entity\Seguimiento $seguimiento
+     */
+    public function removeSeguimiento(\Cai\WebBundle\Entity\Seguimiento $seguimiento)
+    {
+        $this->seguimientos->removeElement($seguimiento);
+    }
+
+    /**
+     * Get seguimientos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeguimientos()
+    {
+        return $this->seguimientos;
     }
 }

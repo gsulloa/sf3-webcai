@@ -2,6 +2,7 @@
 
 namespace Cai\FrontendBundle\Controller;
 
+use Cai\WebBundle\Entity\Seguimiento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -11,6 +12,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         return $this->render('CaiFrontendBundle:Default:mantenimiento.html.twig',array(
             'contacto'  => $contacto
@@ -20,6 +22,12 @@ class DefaultController extends Controller
     public function homeAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $seguimiento = new Seguimiento();
+        $seguimiento->setEtiqueta('inicio')
+            ->setFecha(new \DateTime())
+            ->setUser($this->getUser());
+        $em->persist($seguimiento);
+        $em->flush();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
@@ -38,10 +46,19 @@ class DefaultController extends Controller
 
     public function entradaAction($slug){
         $em = $this->getDoctrine()->getManager();
+
         $entrada = $em->getRepository('CaiWebBundle:Entrada')->findOneBySlugFront($slug);
         if(!$entrada){
             throw $this->createNotFoundException();
         }
+        $seguimiento = new Seguimiento();
+        $seguimiento->setEtiqueta('entrada')
+            ->setFecha(new \DateTime())
+            ->setUser($this->getUser())
+            ->setEtiquetaId($entrada->getId())
+        ;
+        $em->persist($seguimiento);
+        $em->flush();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');

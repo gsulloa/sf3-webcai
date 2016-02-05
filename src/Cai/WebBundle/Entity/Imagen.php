@@ -150,7 +150,7 @@ class Imagen
             if ($this->filename != null) {
                 $this->filename = $auxiliar->toAscii($this->filename) . '.' . $extension;
             }else {
-                $this->filename = $this->getFile()->getClientOriginalName();
+                $this->filename = $auxiliar->toAscii($this->getFile()->getClientOriginalName()) . '.' . $extension;
             }
         }
     }
