@@ -141,14 +141,15 @@ class RegistroController extends Controller
             $profile_found = $em->getRepository('CaiWebBundle:UserProfile')->findOneByMail($profile->getMail());
             $recovering = true;
         }
-
+        $session = new Session();
         if($recovering && $profile_found !==null){
             $password_token = bin2hex(random_bytes(15));
             $profile_found->getUser()->setPasswordToken($password_token);
             $em->flush();
             $this->recoverPasswordMail($profile_found->getUser());
-            $session = new Session();
             $session->getFlashBag()->add('success','Tu solicitud de recuperar la clave ha sido procesada con éxito. Revisa tu correo donde se indican los pasos que debes seguir');
+        }else{
+            $session->getFlashBag()->add('error','No se ha encontrado un usuario registrado con esos datos.');
         }
 
         return $this->render('CaiFrontendBundle:recover:form.html.twig', array(

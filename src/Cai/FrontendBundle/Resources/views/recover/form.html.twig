@@ -13,6 +13,11 @@
             {{ flashMessage }}
         </div>
     {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     {{ form_start(form_mail) }}
     {{ form_row(form_mail.mail) }}
     <div class="form-group">
