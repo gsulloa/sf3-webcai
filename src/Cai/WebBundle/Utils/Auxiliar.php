@@ -60,8 +60,16 @@ class Auxiliar extends Controller
         $this->em = $entityManager;
     }
 
-    function stripAccents($str) {
+    public function stripAccents($str) {
         return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    }
+
+    public function dv($r)
+    {
+        $s = 1;
+        for ($m = 0; $r != 0; $r /= 10)
+            $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
+        return chr($s ? $s + 47 : 75);
     }
 
 }

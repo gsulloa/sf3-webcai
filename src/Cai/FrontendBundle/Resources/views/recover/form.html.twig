@@ -7,7 +7,7 @@
 ] %}
 
 {% block content %}
-    <h1>Recuperar Contraseña</h1>
+    <h1 class="text-center">Recuperar Contraseña</h1>
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success">
             {{ flashMessage }}

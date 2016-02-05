@@ -14,7 +14,34 @@
         }
     </style>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        function rut(){
+            var myString = $(this).val();
+            var isk = false;
+            if (myString.substr(-1).toLowerCase() == "k") {
+                isk = true
+            }
+            myString = myString.replace(/\D/g, '').substr(0, 9);
+            if (isk) {
+                myString = myString + "k"
+            }
+            myString = myString.substr(0, myString.length - 1) + "-" + myString.substr(-1);
+            $(this).val(myString);
+        }
+        function celular(){
+            var myString = $(this).val();
+            myString = myString.replace(/\D/g, '').substr(0, 8);
+            myString = myString.substr(0,4) + " " + myString.substr(4);
+            $(this).val(myString);
+        }
+        $("#register_rut").blur(rut);
+        $("#register_rut").keyup(rut);
+        $("#register_celular").blur(celular);
+        $("#register_celular").keyup(celular);
 
+    </script>
+{% endblock %}
 {% block content %}
 
     <h1>Registro</h1>
