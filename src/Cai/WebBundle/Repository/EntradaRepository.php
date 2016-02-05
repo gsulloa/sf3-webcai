@@ -10,4 +10,42 @@ namespace Cai\WebBundle\Repository;
  */
 class EntradaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findOrderedByCategoria($categoria){
+        return $this->getEntityManager()
+            ->createQuery('SELECT e
+                FROM CaiWebBundle:Entrada e
+                LEFT JOIN e.categorias categorias
+                WHERE categorias.id = ' . $categoria->getId(). '
+                ORDER BY e.fecha DESC
+                '
+            )->getResult();
+    }
+    public function findAllOrdered(){
+        return $this->getEntityManager()
+            ->createQuery('SELECT e
+                FROM CaiWebBundle:Entrada e
+                ORDER BY e.fecha DESC
+                '
+            )->getResult();
+    }
+    public function findBySearchedText($text){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT e
+            FROM CaiWebBundle:Entrada e
+            WHERE e.titulo LIKE :texto
+            OR e.cuerpo LIKE :texto
+          "
+            )->setParameter('texto','%'.$text.'%')
+            ->getResult();
+    }
+    public function findAllForHome(){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT e
+                FROM CaiWebBundle:Entrada e
+                ORDER BY e.fecha DESC'
+            )->setMaxResults(12)
+            ->getResult();
+    }
 }
