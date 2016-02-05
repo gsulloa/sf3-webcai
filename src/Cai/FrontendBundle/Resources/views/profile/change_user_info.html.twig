@@ -1,0 +1,65 @@
+{% extends 'CaiFrontendBundle::layout.html.twig' %}
+{% form_theme form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-error">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <h1>Cambiar Informacion de Perfil</h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <div class="form-group">
+        <label class="col-sm-2 control-label required" for="old_password">Contraseña antigua</label>
+        <div class="col-sm-10">
+            <input type="password" id="old_password" name="old_password" required="required" maxlength="255" class="form-control" placeholder="password">
+        </div></div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <input type="submit" value="Enviar" class="btn-primary btn" />
+            <a class="btn btn-default" href="{{ path('profile') }}">Volver</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function rut(){
+            var myString = $(this).val();
+            if(myString != "") {
+                var isk = false;
+                if (myString.substr(-1).toLowerCase() == "k") {
+                    isk = true
+                }
+                myString = myString.replace(/\D/g, '').substr(0, 9);
+                if (isk) {
+                    myString = myString + "k"
+                }
+                myString = myString.substr(0, myString.length - 1) + "-" + myString.substr(-1);
+                $(this).val(myString);
+            }
+        }
+        function celular(){
+            var myString = $(this).val();
+            if(myString != "") {
+                myString = myString.replace(/\D/g, '').substr(0, 8);
+                myString = myString.substr(0, 4) + " " + myString.substr(4);
+                $(this).val(myString);
+            }
+        }
+        $("#change_profile_rut").blur(rut);
+        $("#change_profile_rut").keyup(rut);
+        $("#change_profile_celular").blur(celular);
+        $("#change_profile_celular").keyup(celular);
+
+    </script>
+{% endblock %}

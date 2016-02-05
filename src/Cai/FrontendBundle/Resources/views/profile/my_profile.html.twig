@@ -8,7 +8,7 @@
                 {% if app.user.profile.filename is not null %}{% set image = asset('uploads/biblioteca/profile/') ~ app.user.profile.filename %}
                 {% else %}{% set image = asset('public/images/no-foto-profile.png') %}{% endif %}
                 <img class="img-responsive img-circle center-block" src="{{ image }}"><br>
-                <a href="#" class="btn btn-primary">Cambiar Foto</a>
+                <a href="{{ path('profile_change_photo') }}" class="btn btn-primary">Cambiar Foto</a>
 
             </div>
             <div class="col-md-9">
@@ -46,8 +46,8 @@
         </div>
         <div class="row">
             <div class="col-xs-12 text-center">
-                <a href="#" class="btn btn-default">Cambiar Información</a>
-                <a href="#" class="btn btn-default">Cambiar Contraseña</a>
+                <a href="{{ path('profile_change_info') }}" class="btn btn-default">Cambiar Información</a>
+                <a href="{{ path('profile_change_password') }}" class="btn btn-default">Cambiar Contraseña</a>
 
             </div>
         </div>

@@ -1,7 +1,12 @@
 profile:
     path:     /
     defaults: { _controller: CaiFrontendBundle:Profile:myProfile }
-
 profile_change_password:
     path:     /cambiar/password
     defaults: { _controller: CaiFrontendBundle:Profile:changePassword }
+profile_change_info:
+    path:     /cambiar/informacion
+    defaults: { _controller: CaiFrontendBundle:Profile:changeInfo }
+profile_change_photo:
+    path:     /cambiar/foto
+    defaults: { _controller: CaiFrontendBundle:Profile:changePhoto }
