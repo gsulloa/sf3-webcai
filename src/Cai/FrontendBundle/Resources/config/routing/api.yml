@@ -1,0 +1,5 @@
+api_get_events:
+    path:     /eventos
+    defaults: { _controller: CaiFrontendBundle:Api:events }
+    options:
+        expose: true

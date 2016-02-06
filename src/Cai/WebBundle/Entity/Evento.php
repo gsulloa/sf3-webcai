@@ -38,9 +38,22 @@ class Evento
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha_inicio", type="datetime")
      */
-    private $fecha;
+    private $fecha_inicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_fin", type="datetime")
+     */
+    private $fecha_fin;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="allDay", type="boolean")
+     */
+    private $allDay;
 
     /**
      * @var Categoria
@@ -110,29 +123,7 @@ class Evento
         return $this->descripcion;
     }
 
-    /**
-     * Set fecha
-     *
-     * @param \DateTime $fecha
-     *
-     * @return Evento
-     */
-    public function setFecha($fecha)
-    {
-        $this->fecha = $fecha;
-
-        return $this;
-    }
-
-    /**
-     * Get fecha
-     *
-     * @return \DateTime
-     */
-    public function getFecha()
-    {
-        return $this->fecha;
-    }
+    
 
     /**
      * Set categoria
@@ -156,5 +147,77 @@ class Evento
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * Set fechaInicio
+     *
+     * @param \DateTime $fechaInicio
+     *
+     * @return Evento
+     */
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fecha_inicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return \DateTime
+     */
+    public function getFechaInicio()
+    {
+        return $this->fecha_inicio;
+    }
+
+    /**
+     * Set fechaFin
+     *
+     * @param \DateTime $fechaFin
+     *
+     * @return Evento
+     */
+    public function setFechaFin($fechaFin)
+    {
+        $this->fecha_fin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fecha_fin;
+    }
+
+    /**
+     * Set allDay
+     *
+     * @param boolean $allDay
+     *
+     * @return Evento
+     */
+    public function setAllDay($allDay)
+    {
+        $this->allDay = $allDay;
+
+        return $this;
+    }
+
+    /**
+     * Get allDay
+     *
+     * @return boolean
+     */
+    public function getAllDay()
+    {
+        return $this->allDay;
     }
 }

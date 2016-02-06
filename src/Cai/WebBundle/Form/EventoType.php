@@ -18,7 +18,9 @@ class EventoType extends AbstractType
         $builder
             ->add('nombre')
             ->add('descripcion')
-            ->add('fecha', DateTimeType::class)
+            ->add('fecha_inicio', DateTimeType::class)
+            ->add('fecha_fin', DateTimeType::class)
+            ->add('allDay')
             ->add('categoria')
         ;
     }

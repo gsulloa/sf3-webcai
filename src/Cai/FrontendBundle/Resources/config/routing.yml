@@ -25,5 +25,8 @@ cai_frontend_entrada:
 user_activation:
     path:     /activar/{token}
     defaults: { _controller: CaiFrontendBundle:Registro:activeUser }
+cai_frontend_api:
+    resource: "@CaiFrontendBundle/Resources/config/routing/api.yml"
+    prefix:   /api
 
 

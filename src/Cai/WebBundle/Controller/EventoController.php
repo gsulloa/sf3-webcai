@@ -60,7 +60,7 @@ class EventoController extends Controller
     public function showAction(Evento $evento)
     {
         $deleteForm = $this->createDeleteForm($evento);
-
+        var_dump($evento->getFechaInicio()->getTimestamp());
         return $this->render('CaiWebBundle:evento:show.html.twig', array(
             'evento' => $evento,
             'delete_form' => $deleteForm->createView(),
