@@ -24,13 +24,11 @@ class ClubType extends AbstractType
             ->add('facebook')
             ->add('twitter')
             ->add('instagram')
-            ->add('aprobado')
             ->add('file', null, array(
                 'required' => false,
                 'label' => "Imágen"
             ))
             ->add('categoria')
-            ->add('etiquetas')
             ->add('admin')
         ;
     }

@@ -16,7 +16,6 @@ class CategoriaType extends AbstractType
     {
         $builder
             ->add('etiqueta')
-            ->add('slug')
         ;
     }
     

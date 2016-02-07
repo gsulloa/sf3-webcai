@@ -23,7 +23,7 @@ class EtiquetaController extends Controller
 
         $etiquetas = $em->getRepository('CaiClubesBundle:Etiqueta')->findAll();
 
-        return $this->render('etiqueta/index.html.twig', array(
+        return $this->render('CaiClubesBundle:etiqueta:index.html.twig', array(
             'etiquetas' => $etiquetas,
         ));
     }
@@ -35,7 +35,7 @@ class EtiquetaController extends Controller
     public function showAction(Etiqueta $etiquetum)
     {
 
-        return $this->render('etiqueta/show.html.twig', array(
+        return $this->render('CaiClubesBundle:etiqueta:show.html.twig', array(
             'etiquetum' => $etiquetum,
         ));
     }

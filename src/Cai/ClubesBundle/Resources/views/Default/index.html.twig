@@ -1,1 +1,10 @@
-Hello World!
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Opciones</h1>
+    <ul>
+        <li><a href="{{ path('club_index') }}">Clubes</a> </li>
+        <li><a href="{{ path('clubes_categoria_index') }}">Categorias</a> </li>
+        <li><a href="{{ path('etiqueta_index') }}">Etiquetas</a> </li>
+    </ul>
+{% endblock %}

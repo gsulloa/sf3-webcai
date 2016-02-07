@@ -486,7 +486,7 @@ class Club
             $kernel = $kernel->getKernel();
         }
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
-        $imgEditor->smart_resize_image($imagen, null, 300, 300, true, $imagen, true, false, 100);
+        $imgEditor->smart_resize_image($imagen, null, 300, 300, false, $imagen, true, false, 100);
         $this->file = null;
     }
 
@@ -640,5 +640,10 @@ class Club
     public function getAdmin()
     {
         return $this->admin;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }

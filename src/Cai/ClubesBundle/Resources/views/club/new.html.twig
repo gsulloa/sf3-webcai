@@ -1,0 +1,81 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+{% form_theme form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
+{% block body %}
+    <h1>Nuevo Club</h1>
+    <p>Bienvenido y muchas gracias por tomar la iniciativa de crear un club. A continuación hay un par de datos que debes rellenar para crear un club.</p>
+    {{ form_start(form) }}
+    {{ form_row(form.nombre) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Escoge un nombre atractivo y único.
+    </p>
+    {{ form_row(form.descripcion) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Describe por qué tu club es el mejor, qué hacen, cuál es su objetivo y por qué alguien debería unirse.
+    </p>
+    {{ form_row(form.file) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Escoge un logo que represente a tu club (debe ser cuadrada, ojala no mayor a 300 x 300 px, o se cortará automáticamente).
+    </p>
+    {{ form_row(form.contacto) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Este es el correo al que escribirán los interesados en unirse al club.
+    </p>
+    {{ form_row(form.hora) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        ¿Cuándo suelen juntarse? (opcional)
+    </p>
+    {{ form_row(form.lugar) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        ¿Dónde suelen juntarse? (opcional)
+    </p>
+    {{ form_row(form.web) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Página web/grupo facebook (opcional)
+    </p>
+    {{ form_row(form.facebook) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+       https://www.facebook.com/<b>{facebook}</b> (opcional)
+    </p>
+    {{ form_row(form.twitter) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        https://www.twitter.com/<b>{twitter}</b> (opcional)
+    </p>
+    {{ form_row(form.instagram) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        https://www.instagram.com/<b>{instagram}</b> (opcional)
+    </p>
+    <div class="form-group">
+        <label class="col-sm-2 control-label required" for="etiquetas">Etiquetas</label>
+        <div class="col-sm-10">
+            <input  id="etiquetas" name="etiquetas" class="form-control">
+        </div>
+        <p class="help-block col-sm-offset-2 col-sm-10">
+            Escribelas separadas por "," (opcional)
+        </p>
+        <p class="help-block col-sm-offset-2 col-sm-10">
+            Estas etiquetas ayudarán a la gente a encontrar tu club. Ej: música, artes marciales, etc.
+        </p>
+    </div>
+    {{ form_row(form.categoria) }}
+    <p class="help-block col-sm-offset-2 col-sm-10">
+        Selecciona una categoría.
+    </p>
+        {{ form_widget(form) }}
+    {{ form_row(form.admin) }}
+    <br>
+        <input type="submit" value="Create" class="btn btn-default col-sm-offset-2" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('club_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    <style>
+        .form-group{
+            margin-bottom: 0;
+        }
+    </style>
+{% endblock %}

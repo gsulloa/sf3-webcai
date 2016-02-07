@@ -139,4 +139,9 @@ class Etiqueta
     {
         return $this->clubes;
     }
+
+    public function __toString()
+    {
+        return $this->titulo;
+    }
 }

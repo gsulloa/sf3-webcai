@@ -138,4 +138,8 @@ class Categoria
     {
         return $this->clubes;
     }
+    public function __toString()
+    {
+        return $this->etiqueta;
+    }
 }
