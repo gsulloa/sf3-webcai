@@ -1,0 +1,12 @@
+etiqueta_index:
+    path:     /
+    defaults: { _controller: "CaiClubesBundle:Etiqueta:index" }
+    methods:  GET
+
+etiqueta_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiClubesBundle:Etiqueta:show" }
+    methods:  GET
+
+
+

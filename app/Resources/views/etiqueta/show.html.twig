@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etiqueta</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etiquetum.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ etiquetum.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ etiquetum.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('etiqueta_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

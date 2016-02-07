@@ -1,0 +1,24 @@
+clubes_categoria_index:
+    path:     /
+    defaults: { _controller: "CaiClubesBundle:Categoria:index" }
+    methods:  GET
+
+clubes_categoria_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiClubesBundle:Categoria:show" }
+    methods:  GET
+
+clubes_categoria_new:
+    path:     /new
+    defaults: { _controller: "CaiClubesBundle:Categoria:new" }
+    methods:  [GET, POST]
+
+clubes_categoria_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiClubesBundle:Categoria:edit" }
+    methods:  [GET, POST]
+
+clubes_categoria_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiClubesBundle:Categoria:delete" }
+    methods:  DELETE

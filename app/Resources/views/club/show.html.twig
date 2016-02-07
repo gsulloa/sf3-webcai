@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Club</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ club.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ club.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ club.slug }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ club.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Contacto</th>
+                <td>{{ club.contacto }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ club.hora }}</td>
+            </tr>
+            <tr>
+                <th>Lugar</th>
+                <td>{{ club.lugar }}</td>
+            </tr>
+            <tr>
+                <th>Web</th>
+                <td>{{ club.web }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ club.facebook }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ club.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Instagram</th>
+                <td>{{ club.instagram }}</td>
+            </tr>
+            <tr>
+                <th>Aprobado</th>
+                <td>{% if club.aprobado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ club.filename }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('club_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('club_edit', { 'id': club.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

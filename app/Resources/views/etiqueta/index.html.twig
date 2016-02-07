@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etiqueta list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etiquetum in etiquetas %}
+            <tr>
+                <td><a href="{{ path('etiqueta_show', { 'id': etiquetum.id }) }}">{{ etiquetum.id }}</a></td>
+                <td>{{ etiquetum.titulo }}</td>
+                <td>{{ etiquetum.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('etiqueta_show', { 'id': etiquetum.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

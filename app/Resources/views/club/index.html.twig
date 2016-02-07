@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Club list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Slug</th>
+                <th>Descripcion</th>
+                <th>Contacto</th>
+                <th>Hora</th>
+                <th>Lugar</th>
+                <th>Web</th>
+                <th>Facebook</th>
+                <th>Twitter</th>
+                <th>Instagram</th>
+                <th>Aprobado</th>
+                <th>Filename</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+                <td><a href="{{ path('club_show', { 'id': club.id }) }}">{{ club.id }}</a></td>
+                <td>{{ club.nombre }}</td>
+                <td>{{ club.slug }}</td>
+                <td>{{ club.descripcion }}</td>
+                <td>{{ club.contacto }}</td>
+                <td>{{ club.hora }}</td>
+                <td>{{ club.lugar }}</td>
+                <td>{{ club.web }}</td>
+                <td>{{ club.facebook }}</td>
+                <td>{{ club.twitter }}</td>
+                <td>{{ club.instagram }}</td>
+                <td>{% if club.aprobado %}Yes{% else %}No{% endif %}</td>
+                <td>{{ club.filename }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('club_show', { 'id': club.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('club_edit', { 'id': club.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('club_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

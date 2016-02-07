@@ -1,3 +1,13 @@
+cai_clubes_etiqueta:
+    resource: "@CaiClubesBundle/Resources/config/routing/etiqueta.yml"
+    prefix:   /etiqueta
+cai_clubes_categoria:
+    resource: "@CaiClubesBundle/Resources/config/routing/categoria.yml"
+    prefix:   /categoria
+cai_clubes_club:
+    resource: "@CaiClubesBundle/Resources/config/routing/club.yml"
+    prefix:   /club
+
 cai_clubes_homepage:
     path:     /
     defaults: { _controller: CaiClubesBundle:Default:index }

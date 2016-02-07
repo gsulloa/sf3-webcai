@@ -89,6 +89,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $seguimientos;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Cai\ClubesBundle\Entity\Club", mappedBy="admin")
+     */
+    private $clubes;
+
+    /**
      * Get id
      *
      * @return integer
@@ -576,5 +581,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function getSeguimientos()
     {
         return $this->seguimientos;
+    }
+
+    /**
+     * Add clube
+     *
+     * @param \Cai\ClubesBundle\Entity\Club $clube
+     *
+     * @return User
+     */
+    public function addClube(\Cai\ClubesBundle\Entity\Club $clube)
+    {
+        $this->clubes[] = $clube;
+
+        return $this;
+    }
+
+    /**
+     * Remove clube
+     *
+     * @param \Cai\ClubesBundle\Entity\Club $clube
+     */
+    public function removeClube(\Cai\ClubesBundle\Entity\Club $clube)
+    {
+        $this->clubes->removeElement($clube);
+    }
+
+    /**
+     * Get clubes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClubes()
+    {
+        return $this->clubes;
     }
 }
