@@ -14,7 +14,7 @@ class SecurityController extends Controller
     {
         $contacto = $this->getDoctrine()->getManager()->getRepository('CaiWebBundle:Contacto')->find(1);
 
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             return $this->redirect($this->generateUrl('default_target'));
         }
         $authenticationUtils = $this->get('security.authentication_utils');
