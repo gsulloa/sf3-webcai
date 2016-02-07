@@ -1,3 +1,7 @@
+cai_frontend_clubes:
+    resource: "@CaiFrontendBundle/Resources/config/routing/clubes.yml"
+    prefix:   /clubes
+
 cai_frontend_profile:
     resource: "@CaiFrontendBundle/Resources/config/routing/profile.yml"
     prefix:   /perfil
@@ -28,5 +32,3 @@ user_activation:
 cai_frontend_api:
     resource: "@CaiFrontendBundle/Resources/config/routing/api.yml"
     prefix:   /api
-
-

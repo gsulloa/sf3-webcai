@@ -1,0 +1,25 @@
+{% extends "CaiFrontendBundle::layout.html.twig" %}
+
+{% block title %}Clubes{% endblock %}
+
+{% block content %}
+<h1>Portal de Clubes</h1>
+    <div class="container-fluid">
+        <div class="row">
+            {% for club in clubes %}
+                <div class="col-md-4">
+                    <img src="{{ asset('uploads/biblioteca/clubes/') ~ club.filename }}" class="img-responsive center-block img-thumbnail">
+                    <a href="{{ path('frontend_clubes_show', {'slug': club.slug}) }}"> <h4 class="text-right">{{ club }}</h4></a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a href="#" class="btn-default btn">Crear Club</a>
+                <a href="#" class="btn btn-default">Ver todos</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

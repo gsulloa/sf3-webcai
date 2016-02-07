@@ -1,0 +1,7 @@
+frontend_clubes:
+    path:     /
+    defaults: { _controller: CaiFrontendBundle:Club:index }
+
+frontend_clubes_show:
+    path:     /{slug}
+    defaults: { _controller: CaiFrontendBundle:Club:show }

@@ -1,0 +1,40 @@
+
+{% extends "CaiFrontendBundle::layout.html.twig" %}
+
+{% block title %}{{ club }}{% endblock %}
+
+{% block content %}
+<h1>{{ club }}</h1>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+                <div class="col-md-5">
+                    <img src="{{ asset('uploads/biblioteca/clubes/') ~ club.filename }}" class="img-responsive center-block img-thumbnail">
+                </div>
+                <div class="col-md-7">
+                    <p>
+                        {{ club.descripcion }}
+                    </p>
+                    <p>
+                        Si te interesa este club, puedes participar comunicándote en:
+                    </p>
+                    <p>
+                    <i class="fa fa-envelope-o"></i><a href="mail:{{ club.contacto }}">{{ club.contacto }}</a> &nbsp;
+                    {% if club.facebook %}<a href="https://www.facebook.com/{{ club.facebook }}"><i class="fa fa-facebook-square"></i></a>&nbsp;{% endif %}
+                    {% if club.twitter %}<a href="https://www.twitter.com/{{ club.twitter }}"><i class="fa fa-twitter-square"></i></a>&nbsp;{% endif %}
+                    {% if club.instagram %}<a href="https://www.instagram.com/{{ club.instagram }}"><i class="fa fa-instagram"></i></a>&nbsp; {% endif %}
+                    </p>
+                    {% if club.hora %}<p><i class="fa fa-clock-o"></i> {{ club.hora }}</p>{% endif %}
+                    {% if club.lugar %}<p><i class="fa fa-map-marker"></i> {{ club.lugar }} </p> {% endif %}
+                    <p class="text-right">
+                        Categoria: <a href="#">{{ club.categoria }}</a> | Etiquetas: {% for etiqueta in club.etiquetas %} <a href="#"><kbd>{{ etiqueta }}</kbd></a>{% endfor %}
+                    </p>
+
+
+
+                </div>
+        </div>
+    </div>
+
+
+{% endblock %}
