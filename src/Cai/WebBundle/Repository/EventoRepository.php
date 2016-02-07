@@ -10,4 +10,16 @@ namespace Cai\WebBundle\Repository;
  */
 class EventoRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBetween($start, $end){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT evento
+                FROM CaiWebBundle:Evento evento
+                WHERE evento.fecha_inicio BETWEEN :start AND :end
+                OR evento.fecha_fin BETWEEN :start AND :end
+                "
+            )->setParameter('start',$start)
+            ->setParameter('end',$end)
+            ->getResult();
+    }
 }
