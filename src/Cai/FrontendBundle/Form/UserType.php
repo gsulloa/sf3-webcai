@@ -19,10 +19,10 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username',null,array(
-                'label'=>'Nombre de Usuario'
+                'label'=>'Nombre de Usuario (*)'
             ))
             ->add('password', PasswordType::class,array(
-                'label'=>'Contraseña'
+                'label'=>'Contraseña (*)'
             ))
             ->add('categorias',null,array(
                 'expanded' => true,

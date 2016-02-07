@@ -50,11 +50,12 @@
 {% block content %}
 
     <h1>Registro</h1>
+    <p class="text-right"><small>(*): Campos obligatorios</small></p>
     {{ form_start(form_profile) }}
     {{ form_row(form_user.username, {'attr':{'placeholder':'username'} }) }}
     {{ form_row(form_user.password, {'attr':{'placeholder':'password'} }) }}
     <div class="form-group">
-        <label class="col-sm-2 control-label required" for="second_password">Repite tu contraseña</label>
+        <label class="col-sm-2 control-label required" for="second_password">Repite tu contraseña (*)</label>
         <div class="col-sm-10">
             <input type="password" id="second_password" name="second_password" required="required" maxlength="255" class="form-control" placeholder="password">
         </div>
