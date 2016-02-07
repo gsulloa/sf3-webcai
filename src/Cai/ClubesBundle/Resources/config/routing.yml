@@ -1,0 +1,3 @@
+cai_clubes_homepage:
+    path:     /
+    defaults: { _controller: CaiClubesBundle:Default:index }

@@ -1,6 +1,9 @@
 gulloa_security:
     resource: "@GulloaSecurityBundle/Resources/config/routing.yml"
     prefix:   /
+cai_clubes:
+    resource: "@CaiClubesBundle/Resources/config/routing.yml"
+    prefix:   /clubes
 cai_web:
     resource: "@CaiWebBundle/Resources/config/routing.yml"
     prefix:   /backend

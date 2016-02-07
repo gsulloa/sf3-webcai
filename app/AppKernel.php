@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Gulloa\SecurityBundle\GulloaSecurityBundle(),
             new Cai\FrontendBundle\CaiFrontendBundle(),
             new Cai\WebBundle\CaiWebBundle(),
+            new Cai\ClubesBundle\CaiClubesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
