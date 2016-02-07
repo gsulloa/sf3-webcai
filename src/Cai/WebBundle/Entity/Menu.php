@@ -137,4 +137,9 @@ class Menu
     {
         return $this->submenu;
     }
+
+    public function __toString()
+    {
+        return $this->titulo;
+    }
 }

@@ -15,12 +15,14 @@ class ProfileController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
 
         return $this->render('CaiFrontendBundle:profile:my_profile.html.twig', array(
             'categorias'    => $categorias,
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
+            'menu'        => $menu
         ));
     }
 
@@ -57,13 +59,15 @@ class ProfileController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:profile:change_user_password.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'menu'  => $menu
         ));
     }
     public function changeInfoAction(Request $request){
@@ -109,6 +113,7 @@ class ProfileController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:profile:change_user_info.html.twig', array(
             'profile' => $profile,
             'user'    => $user,
@@ -117,7 +122,8 @@ class ProfileController extends Controller
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'menu'  => $menu
         ));
     }
 
@@ -145,13 +151,15 @@ class ProfileController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:profile:change_user_photo.html.twig', array(
             'profile' => $profile,
             'form' => $form->createView(),
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'menu'  => $menu
         ));
     }
 }

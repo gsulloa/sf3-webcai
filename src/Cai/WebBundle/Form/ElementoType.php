@@ -17,6 +17,7 @@ class ElementoType extends AbstractType
         $builder
             ->add('titulo')
             ->add('path')
+            ->add('menu')
         ;
     }
     

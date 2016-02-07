@@ -26,6 +26,7 @@ class RegistroController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
 
         $userProfile = new UserProfile();
         $user = new User();
@@ -109,7 +110,8 @@ class RegistroController extends Controller
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias'    => $categorias
+            'categorias'    => $categorias,
+            'menu'  => $menu
         ));
     }
 
@@ -138,6 +140,7 @@ class RegistroController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         $profile = new UserProfile();
 
         $form_rut = $this->createForm('Cai\FrontendBundle\Form\RecoverRutType', $profile);
@@ -176,7 +179,8 @@ class RegistroController extends Controller
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'menu'      => $menu
         ));
     }
 
@@ -213,13 +217,15 @@ class RegistroController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:profile:change_password.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'menu'      => $menu
         ));
     }
 

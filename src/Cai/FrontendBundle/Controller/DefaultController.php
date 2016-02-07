@@ -32,6 +32,7 @@ class DefaultController extends Controller
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $principal = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Principal');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         if($this->isGranted('IS_AUTHENTICATED_FULLY')){
             $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForUser($this->getUser());
         }
@@ -44,7 +45,8 @@ class DefaultController extends Controller
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
             'principal'   => $principal,
-            'noticias'    => $noticias
+            'noticias'    => $noticias,
+            'menu'        => $menu
         ));
     }
 
@@ -67,6 +69,7 @@ class DefaultController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
 
         return $this->render('CaiFrontendBundle:Default:entrada.html.twig', array(
             'entrada'       => $entrada,
@@ -74,6 +77,7 @@ class DefaultController extends Controller
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
+            'menu'        => $menu,
         ));
     }
 
@@ -84,6 +88,7 @@ class DefaultController extends Controller
         $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         if($categoria == null){
             $seguimiento = new Seguimiento();
             $seguimiento->setEtiqueta('noticias')
@@ -110,6 +115,7 @@ class DefaultController extends Controller
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
+            'menu' => $menu,
         ));
     }
     public function buscarAction(Request $request){
@@ -128,12 +134,14 @@ class DefaultController extends Controller
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $entradas = $em->getRepository('CaiWebBundle:Entrada')->findBySearchedText($texto);
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
             'noticias'       => $entradas,
             'categorias' => $categorias,
             'contacto'  => $contacto,
             'auspicios_1' => $auspicios_1,
             'auspicios_2' => $auspicios_2,
+            'menu'  => $menu
         ));
     }
 }
