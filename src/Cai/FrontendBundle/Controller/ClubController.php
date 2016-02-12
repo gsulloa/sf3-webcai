@@ -60,7 +60,9 @@ class ClubController extends Controller
 
             $aux = $this->get('cai_web.auxiliar');
             $club->setSlug($aux->toAscii($club->getNombre()))
-                ->setAprobado(false);
+                ->setAprobado(false)
+                ->setAdmin($this->getUser())
+            ;
             $etiquetas = trim($request->request->get('etiquetas'));
             if ($etiquetas != "") {
                 $etiquetas = explode(',', $etiquetas);

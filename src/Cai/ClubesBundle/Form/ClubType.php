@@ -17,7 +17,6 @@ class ClubType extends AbstractType
         $builder
             ->add('nombre')
             ->add('descripcion')
-            ->add('contacto')
             ->add('hora')
             ->add('lugar')
             ->add('web')
@@ -29,7 +28,6 @@ class ClubType extends AbstractType
                 'label' => "Imágen"
             ))
             ->add('categoria')
-            ->add('admin')
         ;
     }
     

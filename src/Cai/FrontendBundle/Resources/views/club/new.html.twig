@@ -18,10 +18,6 @@
     <p class="help-block col-sm-offset-2 col-sm-10">
         Escoge un logo que represente a tu club (debe ser cuadrada, ojala no mayor a 300 x 300 px, o se cortará automáticamente).
     </p>
-    {{ form_row(form.contacto) }}
-    <p class="help-block col-sm-offset-2 col-sm-10">
-        Este es el correo al que escribirán los interesados en unirse al club.
-    </p>
     {{ form_row(form.hora) }}
     <p class="help-block col-sm-offset-2 col-sm-10">
         ¿Cuándo suelen juntarse? (opcional)
@@ -62,10 +58,8 @@
     <p class="help-block col-sm-offset-2 col-sm-10">
         Selecciona una categoría.
     </p>
-        {{ form_widget(form) }}
-    {{ form_row(form.admin) }}
     <br>
-        <input type="submit" value="Create" class="btn btn-default col-sm-offset-2" />
+        <input type="submit" value="Crear" class="btn btn-default col-sm-offset-2" />
     {{ form_end(form) }}
     <style>
         .form-group{

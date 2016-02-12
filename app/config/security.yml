@@ -3,8 +3,8 @@
 security:
     role_hierarchy:
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
-        ROLE_ADMIN:   ['ROLE_USER', 'ROLE_EDITOR', 'ROLE_PROYECTOS']
-        ROLE_EDITOR: ROLE_JEFE_DE_COMISION
+        ROLE_ADMIN:   ['ROLE_USER', 'ROLE_DIRECTIVA', 'ROLE_PROYECTOS']
+        ROLE_DIRECTIVA: ROLE_JEFE_DE_COMISION
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -58,16 +58,19 @@ security:
         - { path: ^/backend/user, roles: ROLE_ADMIN }
         - { path: ^/backend/categoria, roles: ROLE_ADMIN }
 
-        - { path: ^/backend/menu, roles: ROLE_EDITOR }
-        - { path: ^/backend/tipo, roles: ROLE_EDITOR }
-        - { path: ^/backend/menu, roles: ROLE_EDITOR }
-        - { path: ^/backend/persona, roles: ROLE_EDITOR }
-        - { path: ^/backend/slider, roles: ROLE_EDITOR }
-        - { path: ^/backend/menu, roles: ROLE_EDITOR }
-        - { path: ^/backend/contacto, roles: ROLE_EDITOR }
+        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/tipo, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/persona, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/slider, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/contacto, roles: ROLE_DIRECTIVA }
 
         - { path: ^/backend, roles: ROLE_JEFE_DE_COMISION }
+
+        - { path: ^/perfil, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/clubes/crear, roles: IS_AUTHENTICATED_FULLY }
+
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/perfil, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
