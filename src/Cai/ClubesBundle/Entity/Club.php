@@ -44,7 +44,7 @@ class Club
      * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
-    
+
 
     /**
      * @var string

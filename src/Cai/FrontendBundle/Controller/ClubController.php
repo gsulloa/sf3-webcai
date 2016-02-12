@@ -17,7 +17,7 @@ class ClubController extends Controller
         $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
-        $clubes = $em->getRepository('CaiClubesBundle:Club')->findAll();
+        $clubes = $em->getRepository('CaiClubesBundle:Club')->findAllAprobados();
         return $this->render('CaiFrontendBundle:club:index.html.twig', array(
             'categorias' => $categorias,
             'contacto'  => $contacto,

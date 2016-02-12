@@ -10,4 +10,12 @@ namespace Cai\ClubesBundle\Repository;
  */
 class ClubRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllAprobados(){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT club
+                FROM CaiClubesBundle:Club club
+                WHERE club.aprobado = true'
+            )->getResult();
+    }
 }

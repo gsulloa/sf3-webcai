@@ -22,3 +22,7 @@ club_delete:
     path:     /{id}/delete
     defaults: { _controller: "CaiClubesBundle:Club:delete" }
     methods:  DELETE
+
+club_cambiar_estado:
+    path:     /{id}/estado
+    defaults: { _controller: CaiClubesBundle:Club:estado}

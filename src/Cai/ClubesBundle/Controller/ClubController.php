@@ -152,4 +152,11 @@ class ClubController extends Controller
             ->getForm()
         ;
     }
+
+    public function estadoAction(Club $club){
+        $em = $this->getDoctrine()->getEntityManager();
+        $club->setAprobado(!$club->getAprobado());
+        $em->flush();
+        return $this->redirectToRoute('club_index');
+    }
 }
