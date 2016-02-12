@@ -4,8 +4,9 @@
 <head lang="es">
     <meta charset="UTF-8"/>
     <title>Login</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/bootstrap-3.3.6/css/bootstrap.css') }}" >
+    {{ include('CaiWebBundle:utils:css_base.html.twig') }}
+    {{ include('CaiWebBundle:utils:js_base.html.twig') }}
+    {{ include('CaiWebBundle:utils:icono.html.twig') }}
     <link href="{{ asset('public/css/login.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -35,8 +36,6 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
 </div>
-<script src="{{ asset('public/js/jquery.min.js') }}"></script>
-<script src="{{ asset('public/bootstrap-3.3.6/js/bootstrap.js') }}"></script>
 </body>
 <footer>
 
