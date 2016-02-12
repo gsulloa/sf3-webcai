@@ -44,13 +44,7 @@ class Club
      * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contacto", type="string", length=255)
-     */
-    private $contacto;
+    
 
     /**
      * @var string
