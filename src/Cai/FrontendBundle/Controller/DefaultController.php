@@ -81,7 +81,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function noticiasAction($categoria){
+    public function noticiasAction(Request $request, $categoria){
 
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
@@ -107,8 +107,15 @@ class DefaultController extends Controller
             ;
             $em->persist($seguimiento);
             $em->flush();
+
             $entradas = $em->getRepository('CaiWebBundle:Entrada')->findOrderedByCategoria($categoria);
         }
+        $paginator  = $this->get('knp_paginator');
+        $entradas = $paginator->paginate(
+            $entradas,
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
             'noticias'       => $entradas,
             'categorias' => $categorias,
@@ -135,6 +142,12 @@ class DefaultController extends Controller
         $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $entradas = $em->getRepository('CaiWebBundle:Entrada')->findBySearchedText($texto);
         $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $paginator  = $this->get('knp_paginator');
+        $entradas = $paginator->paginate(
+            $entradas,
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
             'noticias'       => $entradas,
             'categorias' => $categorias,
