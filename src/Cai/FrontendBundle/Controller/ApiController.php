@@ -16,10 +16,22 @@ class ApiController extends Controller
         $eventos_array = array();
         foreach($eventos as $evento){
 
-            $inicio = (new \DateTime($evento->getFechaInicio()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H'))->format("Ymd\THis");
-            $fin = (new \DateTime($evento->getFechaFin()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H30S'))->format("Ymd\THis");
+            $formato = "Ymd\THis";
+            $fullDay = false;
+            if($evento->getAllDay()) {
+                $formato = "Ymd";
+                $fullDay = true;
+            }
+            $inicio = (new \DateTime($evento->getFechaInicio()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H'))->format($formato);
+            $fin = (new \DateTime($evento->getFechaFin()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H30S'))->format($formato);
+            if(!$fullDay){
+                $inicio = $inicio . 'Z';
+                $fin = $fin . 'Z';
+            }
             //agregar control AllDay
-            $url = "https://www.google.com/calendar/render?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."Z/".$fin."Z&details=".$evento->getDescripcion()."&sf=true&output=xml";
+            $url = "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=&trp=false&sprop=name:sf=true";;
+            "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=&trp=false&sprop=name:sf=true";
+
             $eventos_array[] = array(
                 "start" => date_format($evento->getFechaInicio(), "Y-m-d\TH:i:s"),
                 "end"   => date_format($evento->getFechaFin(), "Y-m-d\TH:i:s"),
