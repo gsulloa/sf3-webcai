@@ -18,6 +18,7 @@ class ElementoType extends AbstractType
             ->add('titulo')
             ->add('path')
             ->add('menu')
+            ->add('submenu')
         ;
     }
     
