@@ -14,17 +14,30 @@
             <td>{{ imagen.filename }}</td>
         </tr>
         <tr>
+            <th>Auspicio</th>
+            <td>
+                <a target="_blank" href="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/auspicio-{{ imagen.filename }}" ><img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/auspicio-{{ imagen.filename }}"></a>
+            </td>
+        </tr>
+        <tr>
+            <th>Noticia</th>
+            <td>
+                <a target="_blank" href="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/noticia-{{ imagen.filename }}" ><img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/noticia-{{ imagen.filename }}"></a>
+            </td>
+        </tr>
+        <tr>
             <th>Small</th>
             <td>
                 <a target="_blank" href=" {{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/small-{{ imagen.filename }}"><img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/small-{{ imagen.filename }}"></a>
             </td>
         </tr>
         <tr>
-            <th>Medium</th>
+            <th>Slider</th>
             <td>
-                <a target="_blank" href="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/medium-{{ imagen.filename }}" ><img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/medium-{{ imagen.filename }}"></a>
+                <a target="_blank" href="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/slider-{{ imagen.filename }}" ><img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ imagen.filenamebinary }}/slider-{{ imagen.filename }}"></a>
             </td>
         </tr>
+
         <tr>
             <th>Original</th>
             <td>
