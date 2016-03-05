@@ -115,3 +115,10 @@ div.dropdown{
 .left-caret:after
 {	border-right: 5px solid #ffaf46;
 }
+
+h1{
+    font-family: "Segoe UI Light"
+}
+a{
+    font-family: "Segoe UI";
+}
