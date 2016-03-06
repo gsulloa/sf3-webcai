@@ -150,10 +150,12 @@
 
         var pos = $('#custom-bootstrap-menu').position().top;
         $(window).bind('scroll', function () {
-            if ($(window).scrollTop() > pos) {
+            if ($(window).scrollTop() > pos+100) {
                 $('#custom-bootstrap-menu').addClass('fixed');
+                $('#custom-bootstrap-menu').css('border-radius',0)
             } else {
                 $('#custom-bootstrap-menu').removeClass('fixed');
+                $('#custom-bootstrap-menu').css('border-radius',50)
             }
         });
     </script>
