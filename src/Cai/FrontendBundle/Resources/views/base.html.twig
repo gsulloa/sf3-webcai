@@ -114,18 +114,20 @@
     {% block body %}{% endblock %}
     <br>
     <div class="container footer">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <h3 class="footer-text">Centro de Alumnos de Ingeniería</h3>
+        <div class="row" style="padding: 15px;">
+            <div class="col-md-4">
+                <h3 class="footer-text">Contáctanos</h3>
+                <h4 class="footer-text"><i class="fa icon-phone fa-phone" style="color:#fff"></i>&nbsp {{ contacto.telefono }}</h4>
+                <h4 class="footer-text"><i class="fa fa-envelope-o" style="color:#fff"></i>&nbsp {{ contacto.mail }}</h4>
+                <h4 class="footer-text"><i class="fa fa-map-marker" style="color:#fff"></i>&nbsp {{ contacto.direccion }}</h4>
+            </div>
+            <div class="col-md-4">
+                <img src="{{ asset('public/images/logo-letras-claras.png') }}" style="width: 400px" class="img-responsive center-block" />
                 <hr>
                 <p class="footer-text">{{ contacto.descripcion }}</p>
             </div>
-            <div class="col-md-4 text-right">
-                <h3 class="footer-text">Contacto</h3>
-                <h4 class="footer-text"><i class="fa fa-envelope-o"></i>&nbsp {{ contacto.mail }}</h4>
-                <h4 class="footer-text"><i class="fa fa-map-marker"></i>&nbsp {{ contacto.direccion }}</h4>
-                <h4 class="footer-text"><i class="fa fa-phone-square"></i>&nbsp {{ contacto.telefono }}</h4>
-
+            <div class="col-md-4">
+                <h3 class="footer-text">Links útiles</h3>
             </div>
         </div>
     </div>

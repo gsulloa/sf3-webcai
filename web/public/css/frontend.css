@@ -20,10 +20,10 @@
     border: solid;
 }
 .footer{
-    background-color: grey;
+    background-color: #1e1618 ;
 }
 .footer-text{
-    color: whitesmoke;
+    color: #6b6b6b;
 }
 .fixed {
     position:fixed;
@@ -119,6 +119,6 @@ div.dropdown{
 h1{
     font-family: "Segoe UI Light"
 }
-a{
+a,p,h3,h4{
     font-family: "Segoe UI";
 }
