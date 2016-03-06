@@ -122,3 +122,6 @@ h1{
 a,p,h3,h4{
     font-family: "Segoe UI";
 }
+.bx-viewport > ul{
+    padding-left: 0;
+}
