@@ -89,7 +89,7 @@ class PaginaController extends Controller
             $em->persist($pagina);
             $em->flush();
 
-            return $this->redirectToRoute('pagina_edit', array('id' => $pagina->getId()));
+            return $this->redirectToRoute('pagina_show', array('id' => $pagina->getId()));
         }
 
         return $this->render('CaiWebBundle:pagina:edit.html.twig', array(

@@ -3,41 +3,21 @@
 {% block body %}
     <h1>Persona list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Mail</th>
-                <th>Twitter</th>
-                <th>Facebook</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container-fluid">
         {% for persona in personas %}
-            <tr>
-                <td><a href="{{ path('persona_show', { 'id': persona.id }) }}">{{ persona.id }}</a></td>
-                <td>{{ persona.nombre }}</td>
-                <td>{{ persona.descripcion }}</td>
-                <td>{{ persona.mail }}</td>
-                <td>{{ persona.twitter }}</td>
-                <td>{{ persona.facebook }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('persona_show', { 'id': persona.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('persona_edit', { 'id': persona.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            {% if loop.index0  % 4 == 0 %}
+                <div class="row">
+            {% endif %}
+            <div class="col-md-3">
+                <img class="img-responsive img-rounded center-block" style="max-width: 80%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
+                <p class="text-center"><a href="{{ path('persona_show', {'id':persona.id}) }}">{{ persona.id }}. {{ persona.nombre }}</a></p>
+            </div>
+            {% if loop.index % 4 == 0 or loop.last %}
+                </div>
+            {% endif %}
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+
 
     <ul>
         <li>
