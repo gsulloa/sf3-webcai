@@ -18,11 +18,17 @@ class PersonaController extends Controller
      * Lists all Persona entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $personas = $em->getRepository('CaiWebBundle:Persona')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $personas = $paginator->paginate(
+            $personas,
+            $request->query->getInt('page', 1)/*page number*/,
+            20/*limit per page*/
+        );
 
         return $this->render('CaiWebBundle:persona:index.html.twig', array(
             'personas' => $personas,
