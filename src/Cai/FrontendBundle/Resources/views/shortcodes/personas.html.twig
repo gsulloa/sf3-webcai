@@ -9,10 +9,20 @@
                 <img class="img-responsive img-rounded center-block" style="max-width: 80%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
             </div>
             <div class="row">
-                <h3 class="text-center">{{ persona.nombre }}</h3>
-                {% if persona.descripcionCorta %}<h5 class="text-right">{{ persona.descripcionCorta }}</h5>{% endif %}
-                {% if persona.descripcion %}<p class="text-info">{{ persona.descripcion }}</p>{% endif %}
+                <div class="pull-left">
+                    <h4>{{ persona.nombre }}</h4>
+                    {% if persona.descripcionCorta %}<h5>{{ persona.descripcionCorta }}</h5>{% endif %}
+                    {% if persona.mail %}<h5><i class="fa fa-envelope"></i> {{ persona.mail }}</h5>{% endif %}
+                </div>
+                <div class="pull-right">
+
+                </div>
             </div>
+            {% if persona.descripcion %}
+                <div class="row">
+                    <p class="text-info">{{ persona.descripcion }}</p>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
     {% if loop.index % data.por_fila == 0 or loop.last %}
