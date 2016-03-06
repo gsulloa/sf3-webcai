@@ -19,8 +19,8 @@
                 </div>
             </div>
             {% if persona.descripcion %}
-                <div class="row" style="padding: 15px">
-                    <p class="text-info text-justify">{{ persona.descripcion | raw }}</p>
+                <div class="row text-justify text-info" style="padding: 15px">
+                    {{ persona.descripcion | raw }}
                 </div>
             {% endif %}
         {% endif %}
