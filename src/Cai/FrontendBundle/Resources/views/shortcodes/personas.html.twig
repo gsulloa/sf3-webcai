@@ -3,9 +3,9 @@
     {% if loop.index0  % data.por_fila == 0 %}
         <div class="row">
     {% endif %}
-    <div
+
         {% if n == 4 %}
-            class="col-md-4 {% if loop.index0 % data.por_fila == 0 %}{% if loop.revindex0 == 1 %}col-md-offset-2{% elseif loop.revindex0 == 0 %}col-md-offset-4{% endif %}{% endif %}">
+            <div class="col-md-4 {% if loop.index0 % data.por_fila == 0 %}{% if loop.revindex0 == 1 %}col-md-offset-2{% elseif loop.revindex0 == 0 %}col-md-offset-4{% endif %}{% endif %}">
             <div class="row">
                 <img class="img-responsive img-rounded center-block" style="max-width: 80%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
             </div>
@@ -23,6 +23,23 @@
                     {{ persona.descripcion | raw }}
                 </div>
             {% endif %}
+        {% elseif n == 12 %}
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive img-rounded center-block" style="max-width: 90%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
+                    </div>
+                    <div class="col-md-7">
+                        <h2 class="text-center">{{ persona.nombre }}</h2>
+                        {% if persona.descripcionCorta %}<p class="text-center text-info">{{ persona.descripcionCorta }}</p>{% endif %}
+                        {% if persona.descripcion %}
+                            <div class="text-justify text-info" style="padding: 15px">
+                                {{ persona.descripcion | raw }}
+                            </div>
+                        {% endif %}
+                        <h3>Contáctanos: {% if persona.facebook %}<a href="https://www.facebook.com{{ persona.facebook }}"><i class="fa fa-facebook-square"></i></a> {% endif %}</h3>
+                    </div>
+                </div>
         {% endif %}
     </div>
     {% if loop.index % data.por_fila == 0 or loop.last %}
