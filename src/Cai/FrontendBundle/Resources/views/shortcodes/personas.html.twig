@@ -26,19 +26,26 @@
         {% elseif n == 12 %}
             <div class="col-md-12">
                 <div class="row">
+                    {% if loop.index0 % 2 == 0 %}
                     <div class="col-md-5">
                         <img class="img-responsive img-rounded center-block" style="max-width: 90%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
                     </div>
+                    {% endif %}
                     <div class="col-md-7">
                         <h2 class="text-center">{{ persona.nombre }}</h2>
                         {% if persona.descripcionCorta %}<p class="text-center text-info">{{ persona.descripcionCorta }}</p>{% endif %}
                         {% if persona.descripcion %}
-                            <div class="text-justify text-info" style="padding: 15px">
+                            <div class="text-justify" style="padding: 15px">
                                 {{ persona.descripcion | raw }}
                             </div>
                         {% endif %}
-                        <h3>Contáctanos: {% if persona.facebook %}<a href="https://www.facebook.com{{ persona.facebook }}"><i class="fa fa-facebook-square"></i></a> {% endif %}</h3>
+                        <h4>Contáctanos: {% if persona.facebook %}<a href="https://www.facebook.com{{ persona.facebook }}"><i class="fa fa-facebook-square"></i></a> {% endif %}</h4>
                     </div>
+                    {% if loop.index0 % 2 != 0 %}
+                        <div class="col-md-5">
+                            <img class="img-responsive img-rounded center-block" style="max-width: 90%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
+                        </div>
+                    {% endif %}
                 </div>
         {% endif %}
     </div>
