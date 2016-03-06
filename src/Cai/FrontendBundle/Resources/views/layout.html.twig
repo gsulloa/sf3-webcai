@@ -1,5 +1,13 @@
 {% extends 'CaiFrontendBundle::base.html.twig' %}
 {% block stylesheets %}
+{{ parent() }}
+    <style>
+        .fb-page,
+        .fb-page span,
+        .fb-page span iframe[style] {
+            width: 100% !important;
+        }
+    </style>
 
 {% endblock %}
 {% block javascripts %}
