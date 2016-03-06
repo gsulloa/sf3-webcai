@@ -80,6 +80,38 @@ class DefaultController extends Controller
             'menu'        => $menu,
         ));
     }
+    public function paginaAction($slug){
+        $em = $this->getDoctrine()->getManager();
+
+        $pagina = $em->getRepository('CaiWebBundle:Pagina')->findOneBySlug($slug);
+        if(!$pagina){
+            throw $this->createNotFoundException();
+        }
+
+        $seguimiento = new Seguimiento();
+        $seguimiento->setEtiqueta('pagina')
+            ->setFecha(new \DateTime())
+            ->setUser($this->getUser())
+            ->setEtiquetaId($pagina->getId())
+        ;
+        $em->persist($seguimiento);
+        $em->flush();
+        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
+        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $aux = $this->get('cai_web.auxiliar');
+        $pagina->setCuerpo($aux->getShortcodesInfo($pagina->getCuerpo()));
+        return $this->render('CaiFrontendBundle:Default:pagina.html.twig', array(
+            'pagina'       => $pagina,
+            'categorias'    => $categorias,
+            'contacto'  => $contacto,
+            'auspicios_1' => $auspicios_1,
+            'auspicios_2' => $auspicios_2,
+            'menu'        => $menu,
+        ));
+    }
 
     public function noticiasAction(Request $request, $categoria){
 

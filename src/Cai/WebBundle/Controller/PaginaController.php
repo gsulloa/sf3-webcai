@@ -68,7 +68,6 @@ class PaginaController extends Controller
         //informacion de shortcodes
         $aux = $this->get('cai_web.auxiliar');
         $pagina->setCuerpo($aux->getShortcodesInfo($pagina->getCuerpo()));
-        //$test = $this->render('CaiFrontendBundle:shortcodes:personas.html.twig')->getContent();
         return $this->render('CaiWebBundle:pagina:show.html.twig', array(
             'pagina' => $pagina,
             'delete_form' => $deleteForm->createView(),

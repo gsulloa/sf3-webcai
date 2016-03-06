@@ -29,6 +29,10 @@ user_activation:
 cai_frontend_api:
     resource: "@CaiFrontendBundle/Resources/config/routing/api.yml"
     prefix:   /api
+cai_frontend_page:
+    path:     /{slug}
+    defaults: { _controller: CaiFrontendBundle:Default:pagina}
+
 cai_frontend_homepage:
     path:     /
     defaults: { _controller: CaiFrontendBundle:Default:index }
