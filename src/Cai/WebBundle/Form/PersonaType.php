@@ -16,12 +16,16 @@ class PersonaType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('apellido')
-            ->add('cargo')
+            ->add('categoria')
+            ->add('descripcion_corta')
             ->add('descripcion')
             ->add('mail')
             ->add('twitter')
             ->add('facebook')
+            ->add('file', null, array(
+                'required' => false,
+                'label' => "Imágen"
+            ))
         ;
     }
     

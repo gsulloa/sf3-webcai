@@ -1,0 +1,21 @@
+{% set n = 12 // data.por_fila %}
+{% for persona in data.personas %}
+    {% if loop.index0  % data.por_fila == 0 %}
+        <div class="row">
+    {% endif %}
+    <div class="col-md-{{ n }}">
+        {% if n == 4 %}
+            <div class="row">
+                <img class="img-responsive img-rounded center-block" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
+            </div>
+            <div class="row">
+                <h3 class="text-center">{{ persona.nombre }}</h3>
+                {% if persona.descripcionCorta %}<h5 class="text-right">{{ persona.descripcionCorta }}</h5>{% endif %}
+                {% if persona.descripcion %}<p class="text-info">{{ persona.descripcion }}</p>{% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% if loop.index % data.por_fila == 0 or loop.last %}
+        </div>
+    {% endif %}
+{% endfor %}

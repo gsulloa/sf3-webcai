@@ -2,8 +2,7 @@
 
 {% block body %}
     <h1>Pagina</h1>
-
-    <table>
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -19,7 +18,7 @@
             </tr>
             <tr>
                 <th>Cuerpo</th>
-                <td>{{ pagina.cuerpo }}</td>
+                <td>{{ pagina.cuerpo | raw }}</td>
             </tr>
             <tr>
                 <th>Fecha</th>

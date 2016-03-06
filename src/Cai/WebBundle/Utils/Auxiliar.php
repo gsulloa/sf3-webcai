@@ -9,10 +9,18 @@
 namespace Cai\WebBundle\Utils;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 class Auxiliar extends Controller
 {
     private $em;
+    private $templating;
+    public function __construct($entityManager, EngineInterface $templating)
+    {
+        $this->em = $entityManager;
+        $this->templating = $templating;
+    }
+
     //Genera Slug unico, agregandole un numero en caso de que ya exista
     // ej: ruta, ruta-2, ruta-3....
     public function slugGenerator($slug,$array){
@@ -55,10 +63,7 @@ class Auxiliar extends Controller
         return $images;
     }
 
-    public function __construct($entityManager)
-    {
-        $this->em = $entityManager;
-    }
+
 
     public function stripAccents($str) {
         return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
@@ -71,5 +76,76 @@ class Auxiliar extends Controller
             $s = ($s + $r % 10 * (9 - $m++ % 6)) % 11;
         return chr($s ? $s + 47 : 75);
     }
+
+    public function getShortcodesInfo($text){
+        $aux_text = $text;
+        $array = array();
+        while(strpos($text,'[[[') !== false){
+            //HACER ALGO PARA OBTENER LOS DATOS
+            $shortcode = substr($text,3 + strpos($text,'[[['), strpos($text,']]]')- strpos($text,'[[[') - 4 );
+            $info = explode(' ', $shortcode);
+            $data = array(
+                'type'      => $info[0],
+                'info'      => array_slice($info,1),
+                'shortcode' => '[[['.$shortcode.' ]]]'
+            );
+
+            $text = substr($text,3 + strpos($text,']]]'));
+            $array[] = $data;
+        }
+        $array = $this->getRealInfo($array);
+        $text = $this->replacingText($aux_text, $array);
+
+        return $text;
+
+    }
+
+    private function getRealInfo($array)
+    {
+        $new_array = array();
+        foreach($array as $data){
+            if ($data['type'] == "personas"){
+                foreach($data['info'] as $info){
+                    $info = explode('=',$info);
+                    if($info[0] == 'ids'){
+                        $data['personas'] = $this->getPersonas(substr($info[1],1,-1));
+                    }elseif($info[0]=='por_fila'){
+                        $data['por_fila'] = substr($info[1],1,-1);
+                    }
+                }
+            }
+            $new_array[] = $data;
+        }
+        return $new_array;
+    }
+
+    private function getPersonas($ids)
+    {
+        $ids = explode(',',$ids);
+        $personas = array();
+        foreach($ids as $id) {
+
+            $persona = $this->em->getRepository('CaiWebBundle:Persona')->find($id);
+            if($persona){
+                $personas[$id] = $persona;
+            }
+        }
+        return $personas;
+    }
+
+    private function replacingText($text, $array)
+    {
+        foreach($array as $data){
+            if($data['type'] == 'personas'){
+                $content = $this->templating->render('CaiFrontendBundle:shortcodes:personas.html.twig', array(
+                    'data'  => $data
+                ));
+                $text = str_replace($data['shortcode'],$content,$text);
+            }
+        }
+        return $text;
+
+    }
+
 
 }

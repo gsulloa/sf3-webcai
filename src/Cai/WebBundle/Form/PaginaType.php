@@ -18,7 +18,7 @@ class PaginaType extends AbstractType
             ->add('titulo')
             ->add('slug')
             ->add('cuerpo')
-            ->add('fecha', 'datetime')
+            ->add('fecha')
         ;
     }
     
