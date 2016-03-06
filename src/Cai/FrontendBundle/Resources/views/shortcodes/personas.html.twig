@@ -3,8 +3,9 @@
     {% if loop.index0  % data.por_fila == 0 %}
         <div class="row">
     {% endif %}
-    <div class="col-md-{{ n }}">
+    <div
         {% if n == 4 %}
+            class="col-md-4 {% if loop.index0 % data.por_fila == 0 %}{% if loop.revindex0 == 1 %}col-md-offset-2{% elseif loop.revindex0 == 0 %}col-md-offset-3{% endif %}">
             <div class="row">
                 <img class="img-responsive img-rounded center-block" style="max-width: 80%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
             </div>
