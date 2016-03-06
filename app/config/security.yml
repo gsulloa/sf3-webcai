@@ -3,8 +3,9 @@
 security:
     role_hierarchy:
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
-        ROLE_ADMIN:   ['ROLE_USER', 'ROLE_DIRECTIVA', 'ROLE_PROYECTOS','ROLE_EDITOR']
+        ROLE_ADMIN:   [ 'ROLE_DIRECTIVA', 'ROLE_PROYECTOS']
         ROLE_DIRECTIVA: ROLE_JEFE_DE_COMISION
+        ROLE_JEFE_DE_COMISION: ROLE_USER
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:

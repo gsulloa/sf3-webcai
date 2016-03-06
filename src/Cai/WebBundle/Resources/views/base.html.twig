@@ -43,7 +43,7 @@
                 <li {{ tab == 'pagina_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('pagina_index') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
                 </li>
-                {% if is_granted('ROLE_EDITOR') %}
+                {% if is_granted('ROLE_DIRECTIVA') %}
                 <li {{ tab == 'menu_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('menu_index') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
                 </li>

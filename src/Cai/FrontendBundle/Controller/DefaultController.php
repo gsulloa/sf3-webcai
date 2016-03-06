@@ -11,6 +11,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        return $this->redirectToRoute('cai_frontend_home');
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         return $this->render('CaiFrontendBundle:Default:mantenimiento.html.twig',array(
