@@ -9,7 +9,7 @@
                 <img class="img-responsive img-rounded center-block" style="max-width: 80%" src="{{ asset('uploads/biblioteca/persona/') ~ persona.filename }}">
             </div>
             <div class="row">
-                <div class="pull-left">
+                <div class="pull-left" style="padding-left: 15%">
                     <h4>{{ persona.nombre }}</h4>
                     {% if persona.descripcionCorta %}<h5>{{ persona.descripcionCorta }}</h5>{% endif %}
                     {% if persona.mail %}<h5><i class="fa fa-envelope"></i> {{ persona.mail }}</h5>{% endif %}
