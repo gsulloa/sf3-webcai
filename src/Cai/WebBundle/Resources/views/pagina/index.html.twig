@@ -9,7 +9,6 @@
                 <th>Id</th>
                 <th>Titulo</th>
                 <th>Slug</th>
-                <th>Cuerpo</th>
                 <th>Fecha</th>
                 <th>Actions</th>
             </tr>
@@ -20,7 +19,6 @@
                 <td><a href="{{ path('pagina_show', { 'id': pagina.id }) }}">{{ pagina.id }}</a></td>
                 <td>{{ pagina.titulo }}</td>
                 <td>{{ pagina.slug }}</td>
-                <td>{{ pagina.cuerpo }}</td>
                 <td>{% if pagina.fecha %}{{ pagina.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>

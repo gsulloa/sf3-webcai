@@ -19,3 +19,11 @@
         </li>
     </ul>
 {% endblock %}
+{% block stylesheets %}
+    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        CKEDITOR.replace( 'pagina_cuerpo' );
+    </script>
+{% endblock %}
