@@ -116,8 +116,11 @@ div.dropdown{
 {	border-right: 5px solid #ffaf46;
 }
 
-h1,h2,h3,h4,h5,a,p{
+h1,h2,h3,h4,h5,a{
     font-family: "Segoe UI Light"
+}
+p{
+    font-family: "Segoe UI";
 }
 .bx-viewport > ul{
     padding-left: 0;
