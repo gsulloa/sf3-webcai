@@ -2,10 +2,30 @@
 
 {% block body %}
     <h1>Seguimiento</h1>
-    <ul>
-        <li><a href="{{ path('seguimiento_entradas') }}">Entradas</a></li>
-        <li><a href="#">Paginas</a></li>
-        <li><a href="#">Noticias</a></li>
-        <li><a href="#">Busqueda</a></li>
-    </ul>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Visitas</th>
+        </tr>
+        <tr>
+            <th>Inicio</th>
+            <td>{{ info['inicio'] }}</td>
+        </tr>
+        <tr>
+            <th><a href="{{ path('seguimiento_entradas') }}">Entradas</a></th>
+            <td>{{ info['entrada'] }}</td>
+        </tr>
+        <tr>
+            <th><a href="{{ path('seguimiento_paginas') }}">Paginas</a></th>
+            <td>{{ info['pagina'] }}</td>
+        </tr>
+        <tr>
+            <th><a href="#">Noticias</a></th>
+            <td>{{ info['noticias'] }}</td>
+        </tr>
+        <tr>
+            <th><a href="#">Busqueda</a></th>
+            <td>{{ info['buscar'] }}</td>
+        </tr>
+    </table>
 {% endblock %}

@@ -8,7 +8,20 @@ use Symfony\Component\HttpFoundation\Response;
 class SeguimientoController extends Controller
 {
     public function indexAction(){
-        return $this->render('CaiWebBundle:seguimiento:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $dql = "
+            SELECT seguimiento.etiqueta, count(seguimiento.etiqueta)
+            FROM CaiWebBundle:Seguimiento seguimiento
+            GROUP BY seguimiento.etiqueta
+        ";
+        $result = $em->createQuery($dql)->getResult();
+        $array = array();
+        foreach($result as $element){
+            $array[$element['etiqueta']] = $element[1];
+        }
+        return $this->render('CaiWebBundle:seguimiento:index.html.twig',array(
+            'info'      => $array
+        ));
     }
 
     public function entradasAction(){
