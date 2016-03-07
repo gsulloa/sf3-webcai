@@ -57,4 +57,18 @@ class SeguimientoController extends Controller
             'type'      => 'pagina'
         ));
     }
+    public function buscarAction(){
+        $em = $this->getDoctrine()->getManager();
+        $dql = "
+            SELECT seguimiento.text, count(seguimiento.text)
+            FROM CaiWebBundle:Seguimiento seguimiento
+            WHERE seguimiento.etiqueta = 'buscar'
+            GROUP BY seguimiento.text
+        ";
+        $result = $em->createQuery($dql)->getResult();
+        return $this->render('CaiWebBundle:seguimiento:detail-2.html.twig',array(
+            'detalle'   => $result,
+            'type'      => 'busqueda'
+        ));
+    }
 }

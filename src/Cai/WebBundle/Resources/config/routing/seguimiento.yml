@@ -8,3 +8,6 @@ seguimiento_entradas:
 seguimiento_paginas:
     path:     /paginas
     defaults: { _controller: CaiWebBundle:Seguimiento:paginas }
+seguimiento_busquedas:
+    path:     /busquedas
+    defaults: { _controller: CaiWebBundle:Seguimiento:buscar }
