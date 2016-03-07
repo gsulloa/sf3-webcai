@@ -3,6 +3,8 @@
     <h1>{{ type | capitalize }}</h1>
     {% if type == "entradas" %}
         {% set ruta = 'cai_frontend_entrada' %}
+    {% elseif type == "pagina"%}
+        {% set ruta = 'cai_frontend_page' %}
     {% endif %}
     <table class="table">
         <tr>

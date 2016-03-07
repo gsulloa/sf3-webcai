@@ -4,3 +4,7 @@ seguimiento_index:
 seguimiento_entradas:
     path:     /entradas
     defaults: { _controller: CaiWebBundle:Seguimiento:entradas }
+
+seguimiento_paginas:
+    path:     /paginas
+    defaults: { _controller: CaiWebBundle:Seguimiento:paginas }

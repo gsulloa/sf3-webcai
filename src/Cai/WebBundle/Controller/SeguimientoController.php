@@ -21,10 +21,24 @@ class SeguimientoController extends Controller
             GROUP BY entrada.id
         ";
         $result = $em->createQuery($dql)->getResult();
-        //var_dump($result);exit;
         return $this->render('CaiWebBundle:seguimiento:detail.html.twig',array(
                 'detalle'   => $result,
                 'type'      => 'entradas'
             ));
+    }
+    public function paginasAction(){
+        $em = $this->getDoctrine()->getManager();
+        $dql = "
+            SELECT pagina.id,pagina.titulo,pagina.slug, count(pagina.id)
+            FROM CaiWebBundle:Seguimiento seguimiento, CaiWebBundle:Pagina pagina
+            WHERE seguimiento.etiqueta_id = pagina.id
+            AND seguimiento.etiqueta = 'pagina'
+            GROUP BY pagina.id
+        ";
+        $result = $em->createQuery($dql)->getResult();
+        return $this->render('CaiWebBundle:seguimiento:detail.html.twig',array(
+            'detalle'   => $result,
+            'type'      => 'pagina'
+        ));
     }
 }
