@@ -12,7 +12,7 @@
 {% block content %}
     <img class="center-block img-responsive"  src="{{ asset('uploads/biblioteca/imagenes/' ~ entrada.imagen.filenamebinary ~ '/' ~ entrada.imagen.filename) }}" />
     <h1 class="text-center">{{ entrada.titulo }}</h1>
-    <p class="text-right">{{ entrada.user }} ({{ entrada.fecha | date('Y-m-d h:i:s') }})</p>
+    <p class="text-right">{{ entrada.user }} ({{ entrada.fecha | date('Y-m-d H:i:s') }})</p>
     <div>
         {{ entrada.cuerpo | raw }}
     </div>
