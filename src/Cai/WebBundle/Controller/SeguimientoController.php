@@ -16,11 +16,14 @@ class SeguimientoController extends Controller
         ";
         $result = $em->createQuery($dql)->getResult();
         $array = array();
+        $total  = 0;
         foreach($result as $element){
             $array[$element['etiqueta']] = $element[1];
+            $total += intval($element[1]);
         }
         return $this->render('CaiWebBundle:seguimiento:index.html.twig',array(
-            'info'      => $array
+            'info'      => $array,
+            'total'     => $total
         ));
     }
 
