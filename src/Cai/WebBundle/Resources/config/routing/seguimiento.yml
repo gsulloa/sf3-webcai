@@ -1,0 +1,6 @@
+seguimiento_index:
+    path:     /
+    defaults: { _controller: CaiWebBundle:Seguimiento:index }
+seguimiento_entradas:
+    path:     /entradas
+    defaults: { _controller: CaiWebBundle:Seguimiento:entradas }

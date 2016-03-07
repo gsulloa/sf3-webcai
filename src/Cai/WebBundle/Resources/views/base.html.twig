@@ -73,6 +73,9 @@
                 <li {{ tab == 'cai_clubes_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_clubes_homepage') }}"><i class="fa fa-list-alt fa-fw"></i> Clubes</a>
                 </li>
+                <li {{ tab == 'seguimiento_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('seguimiento_index') }}"><i class="fa fa-users fa-fw"></i> Seguimiento</a>
+                </li>
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <li {{ tab == 'role_index' ? 'class="active"' : '' }}>

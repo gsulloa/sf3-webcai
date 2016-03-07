@@ -43,6 +43,9 @@ cai_web_tipo:
 cai_web_userprofile:
     resource: "@CaiWebBundle/Resources/config/routing/userprofile.yml"
     prefix:   /userprofile
+cai_web_seguimiento:
+    resource: "@CaiWebBundle/Resources/config/routing/seguimiento.yml"
+    prefix:   /seguimiento
 
 
 cai_web_homepage:

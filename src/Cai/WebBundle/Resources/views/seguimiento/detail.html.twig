@@ -1,0 +1,23 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+{% block body %}
+    <h1>{{ type | capitalize }}</h1>
+    {% if type == "entradas" %}
+        {% set ruta = 'cai_frontend_entrada' %}
+    {% endif %}
+    <table class="table">
+        <tr>
+            <th>Titulo</th>
+            <th># Visitas</th>
+        </tr>
+        {% for seguimiento in detalle %}
+            <tr>
+                <th>
+                    <a href="{{ path(ruta,{'slug':seguimiento.slug}) }}">{{ seguimiento.titulo }}</a>
+                </th>
+                <td>
+                    {{ seguimiento[1] }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
