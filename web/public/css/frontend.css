@@ -1,3 +1,9 @@
+body{
+    background-image: url('../images/background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+}
 #calendar {
     max-width: 90%;
     margin: 0 auto;
@@ -116,11 +122,20 @@ div.dropdown{
 {	border-right: 5px solid #ffaf46;
 }
 
+@font-face {
+    font-family: segoe-ui;
+    src: url('../fonts/SEGOEUI.TTF');
+}
+@font-face {
+    font-family: segoe-ui-light;
+    src: url('../fonts/Segoe-UI-Light.ttf')
+}
+
 h1,h2,h3,h4,h5,a{
-    font-family: "Segoe UI Light"
+    font-family: segoe-ui-light;
 }
 p{
-    font-family: "Segoe UI";
+    font-family: segoe-ui;
 }
 .bx-viewport > ul{
     padding-left: 0;
