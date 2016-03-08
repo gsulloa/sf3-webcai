@@ -1,3 +1,6 @@
+cai_web_documentos:
+    resource: "@CaiWebBundle/Resources/config/routing/documento.yml"
+    prefix:   /documentos
 cai_web_uploader:
     resource: "@CaiWebBundle/Resources/config/routing/uploader.yml"
     prefix:   /upload

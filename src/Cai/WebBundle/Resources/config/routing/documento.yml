@@ -1,0 +1,24 @@
+documento_index:
+    path:     /
+    defaults: { _controller: "CaiWebBundle:Documento:index" }
+    methods:  GET
+
+documento_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiWebBundle:Documento:show" }
+    methods:  GET
+
+documento_new:
+    path:     /new
+    defaults: { _controller: "CaiWebBundle:Documento:new" }
+    methods:  [GET, POST]
+
+documento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiWebBundle:Documento:edit" }
+    methods:  [GET, POST]
+
+documento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiWebBundle:Documento:delete" }
+    methods:  DELETE

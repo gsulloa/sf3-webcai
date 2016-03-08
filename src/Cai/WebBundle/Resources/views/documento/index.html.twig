@@ -1,0 +1,39 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Documento list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Filename</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for documento in documentos %}
+            <tr>
+                <td><a href="{{ path('documento_show', { 'id': documento.id }) }}">{{ documento.id }}</a></td>
+                <td>{{ documento.filename }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('documento_show', { 'id': documento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('documento_edit', { 'id': documento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('documento_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
