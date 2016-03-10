@@ -1,0 +1,24 @@
+reclamos_categoria_index:
+    path:     /
+    defaults: { _controller: "CaiReclamosBundle:Categoria:index" }
+    methods:  GET
+
+reclamos_categoria_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiReclamosBundle:Categoria:show" }
+    methods:  GET
+
+reclamos_categoria_new:
+    path:     /new
+    defaults: { _controller: "CaiReclamosBundle:Categoria:new" }
+    methods:  [GET, POST]
+
+reclamos_categoria_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiReclamosBundle:Categoria:edit" }
+    methods:  [GET, POST]
+
+reclamos_categoria_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiReclamosBundle:Categoria:delete" }
+    methods:  DELETE

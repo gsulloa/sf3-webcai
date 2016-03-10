@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Cai\WebBundle\CaiWebBundle(),
             new Cai\ClubesBundle\CaiClubesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Cai\ReclamosBundle\CaiReclamosBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

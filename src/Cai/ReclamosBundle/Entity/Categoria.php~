@@ -1,0 +1,77 @@
+<?php
+
+namespace Cai\ReclamosBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Categoria
+ *
+ * @ORM\Table(name="reclamos_categoria")
+ * @ORM\Entity(repositoryClass="Cai\ReclamosBundle\Repository\CategoriaRepository")
+ */
+class Categoria
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Etiqueta", type="string", length=255)
+     */
+    private $etiqueta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reclamo", mappedBy="categoria")
+     */
+    private $reclamos;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etiqueta
+     *
+     * @param string $etiqueta
+     *
+     * @return Categoria
+     */
+    public function setEtiqueta($etiqueta)
+    {
+        $this->etiqueta = $etiqueta;
+
+        return $this;
+    }
+
+    /**
+     * Get etiqueta
+     *
+     * @return string
+     */
+    public function getEtiqueta()
+    {
+        return $this->etiqueta;
+    }
+
+    public function __toString()
+    {
+        return $this->etiqueta;
+    }
+
+}
+

@@ -1,0 +1,41 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Reclamo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contacto</th>
+                <th>Texto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamo in reclamos %}
+            <tr>
+                <td><a href="{{ path('reclamo_show', { 'id': reclamo.id }) }}">{{ reclamo.id }}</a></td>
+                <td>{{ reclamo.contacto }}</td>
+                <td>{{ reclamo.texto }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reclamo_show', { 'id': reclamo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reclamo_edit', { 'id': reclamo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+{% block body %}
+<h1>Reclamos Admin</h1>
+    <ul>
+        <li><a href="{{ path('reclamos_categoria_index') }}">Categorías</a> </li>
+        <li><a href="{{ path('reclamo_index') }}">Reclamos</a> </li>
+    </ul>
+{% endblock %}

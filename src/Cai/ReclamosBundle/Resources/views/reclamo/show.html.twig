@@ -1,0 +1,36 @@
+{% extends 'CaiWebBundle::base.html.twig' %}
+
+{% block body %}
+    <h1>Reclamo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reclamo.id }}</td>
+            </tr>
+            <tr>
+                <th>Contacto</th>
+                <td>{{ reclamo.contacto }}</td>
+            </tr>
+            <tr>
+                <th>Texto</th>
+                <td>{{ reclamo.texto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reclamo_edit', { 'id': reclamo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

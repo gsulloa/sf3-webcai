@@ -1,0 +1,24 @@
+reclamo_index:
+    path:     /
+    defaults: { _controller: "CaiReclamosBundle:Reclamo:index" }
+    methods:  GET
+
+reclamo_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiReclamosBundle:Reclamo:show" }
+    methods:  GET
+
+reclamo_new:
+    path:     /new
+    defaults: { _controller: "CaiReclamosBundle:Reclamo:new" }
+    methods:  [GET, POST]
+
+reclamo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiReclamosBundle:Reclamo:edit" }
+    methods:  [GET, POST]
+
+reclamo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiReclamosBundle:Reclamo:delete" }
+    methods:  DELETE

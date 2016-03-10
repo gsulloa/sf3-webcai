@@ -33,7 +33,6 @@
                 <li {{ tab == 'cai_web_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_web_homepage') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
-
                 <li {{ tab == 'imagen_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('imagen_index') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
                 </li>
@@ -49,9 +48,6 @@
                 {% if is_granted('ROLE_DIRECTIVA') %}
                 <li {{ tab == 'menu_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('menu_index') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
-                </li>
-                <li {{ tab == 'tipo_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('tipo_index') }}"><i class="fa fa-bookmark fa-fw"></i> Tipo</a>
                 </li>
                 <li {{ tab == 'persona_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('persona_index') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
@@ -75,6 +71,9 @@
                 </li>
                 <li {{ tab == 'cai_clubes_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_clubes_homepage') }}"><i class="fa fa-list-alt fa-fw"></i> Clubes</a>
+                </li>
+                <li {{ tab == 'cai_reclamos_homepage' ? 'class="active"' : '' }}>
+                    <a href="{{ path('cai_reclamos_homepage') }}"><i class="fa fa-list-alt fa-fw"></i> Reclamos</a>
                 </li>
                 <li {{ tab == 'seguimiento_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('seguimiento_index') }}"><i class="fa fa-users fa-fw"></i> Seguimiento</a>

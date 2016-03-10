@@ -1,3 +1,7 @@
+cai_reclamos:
+    resource: "@CaiReclamosBundle/Resources/config/routing.yml"
+    prefix:   /backend/reclamos
+
 gulloa_security:
     resource: "@GulloaSecurityBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,11 @@
+cai_reclamos_reclamo:
+    resource: "@CaiReclamosBundle/Resources/config/routing/reclamo.yml"
+    prefix:   /reclamo
+
+cai_reclamos_categoria:
+    resource: "@CaiReclamosBundle/Resources/config/routing/categoria.yml"
+    prefix:   /categoria
+
+cai_reclamos_homepage:
+    path:     /
+    defaults: { _controller: CaiReclamosBundle:Default:index }
