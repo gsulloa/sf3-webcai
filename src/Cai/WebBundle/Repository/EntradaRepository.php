@@ -61,7 +61,7 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 FROM CaiWebBundle:Entrada e
                 WHERE e.fecha < :now
                 ORDER BY e.fecha DESC"
-            )->setMaxResults(12)
+            )->setMaxResults(8)
             ->setParameter('now',new \DateTime())
             ->getResult();
     }
@@ -85,7 +85,7 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 WHERE e.fecha < :now
                 AND categoria in (:categorias)
                 ORDER BY e.fecha DESC"
-            )->setMaxResults(12)
+            )->setMaxResults(8)
             ->setParameter('now',new \DateTime())
             ->setParameter('categorias',$user->getCategorias())
             ->getResult();
