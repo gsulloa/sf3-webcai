@@ -39,7 +39,7 @@
                                 {{ persona.descripcion | raw }}
                             </div>
                         {% endif %}
-                        <h4>Contáctanos: {% if persona.facebook %}<a href="https://www.facebook.com{{ persona.facebook }}"><i class="fa fa-facebook-square"></i></a> {% endif %}</h4>
+                        <h4>Contáctanos: {% if persona.facebook %}<a href="https://www.facebook.com{{ persona.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i></a> {% endif %}</h4>
                     </div>
                     {% if loop.index0 % 2 != 0 %}
                         <div class="col-md-5">
