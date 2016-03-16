@@ -182,6 +182,15 @@ class Imagen
 
         $resize_images = [
             [
+                'final_name'    => $imagen,
+                'width'         => 1000,
+                'height'        => 1000
+            ],[
+                'final_name'    => $imagen_final_slider,
+                'width'         => 1000,
+                'height'        => 500
+            ],
+            [
                 'final_name'    => $imagen_final_small,
                 'width'         => 200,
                 'height'        => 200
@@ -189,14 +198,6 @@ class Imagen
                 'final_name'    => $imagen_final_auspicio,
                 'width'         => 250,
                 'height'        => 50
-            ],[
-                'final_name'    => $imagen_final_slider,
-                'width'         => 1000,
-                'height'        => 500
-            ],[
-                'final_name'    => $imagen,
-                'width'         => 1000,
-                'height'        => 1000
             ],
         ];
         $crop_images =[
