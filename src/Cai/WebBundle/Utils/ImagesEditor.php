@@ -36,12 +36,12 @@ class ImagesEditor
      * ]
      */
     function crop($image, $final_images){
-        $thumb = new \Imagick($image);
         foreach($final_images as $final_image){
+            $thumb = new \Imagick($image);
             $thumb->cropThumbnailImage($final_image['width'], $final_image['height']);
             $thumb->writeImage($final_image['final_name']);
+            $thumb->destroy();
         }
-        $thumb->destroy();
     }
 
 

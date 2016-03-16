@@ -383,7 +383,7 @@ class Persona
                 'height'        => 300
             ]
         ];
-        $imgEditor->resize($imagen,$resize_images);
+        $imgEditor->crop($imagen,$resize_images);
 
 
 
