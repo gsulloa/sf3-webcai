@@ -56,5 +56,5 @@ cai_web_homepage:
     defaults: { _controller: CaiWebBundle:Default:index }
 
 testing_mail:
-    path:     /test/{text}
+    path:     /test
     defaults: { _controller: CaiWebBundle:Test:mail }
