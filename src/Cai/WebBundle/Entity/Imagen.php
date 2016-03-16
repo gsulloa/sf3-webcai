@@ -213,8 +213,8 @@ class Imagen
         }
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
-        $imgEditor->crop($imagen, $crop_images);
         $imgEditor->resize($imagen, $resize_images);
+        $imgEditor->crop($imagen, $crop_images);
         $this->file = null;
     }
 
