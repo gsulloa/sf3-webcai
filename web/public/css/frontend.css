@@ -124,11 +124,11 @@ div.dropdown{
 
 @font-face {
     font-family: segoe-ui;
-    src: url('../fonts/SEGOEUI.TTF');
+    src: url('../fonts/segoe-ui.ttf');
 }
 @font-face {
     font-family: segoe-ui-light;
-    src: url('../fonts/Segoe-UI-Light.ttf')
+    src: url('../fonts/segoue-ui-light.ttf')
 }
 
 h1,h2,h3,h4,h5,a{

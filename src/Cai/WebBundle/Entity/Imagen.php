@@ -194,12 +194,16 @@ class Imagen
         $imgEditor->smart_resize_image($imagen,null,250,50,true,$imagen_final_auspicio,false,false,100);
         $imgEditor->smart_resize_image($imagen,null,1000,500,true,$imagen_final_slider,false,false,100);
         $imgEditor->smart_resize_image($imagen,null,150,150,true,$imagen_final_noticia,false,false,100);
-
+/*
         $size =getimagesize($this->getUploadRootDir() . $this->filename);
         if( $size[0] > 1000 || $size[1] > 1000){
             $imgEditor->smart_resize_image($imagen,null,1000,1000,true,$this->getUploadRootDir() . $this->filename,true,false,100);
         }
-
+*/
+        $thumb = new \Imagick($imagen);
+        $thumb->resizeImage(1000,1000,\Imagick::COMPOSITE_DEFAULT,1,true);
+        $thumb->writeImage($imagen);
+        $thumb->destroy();
         /*
         if (!is_dir($this->getUploadRootDir().'/small/')) {
             mkdir($this->getUploadRootDir().'/small/', 0777, true);
