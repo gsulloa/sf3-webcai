@@ -18,15 +18,16 @@ class ImagesEditor
      * ]
      */
     function resize($image, $final_images){
-        $thumb = new \Imagick($image);
         foreach($final_images as $final_image){
+            $thumb = new \Imagick($image);
             $size = $thumb->getImageGeometry();
             if($size['width'] > $final_image['width'] || $size['height'] > $final_image['height'] ) {
                 $thumb->scaleImage($final_image['width'], $final_image['height'], true);
             }
             $thumb->writeImage($final_image['final_name']);
+            $thumb->destroy();
         }
-        $thumb->destroy();
+
     }
     /***
      * Crop Images with Imagick
