@@ -201,7 +201,7 @@ class Imagen
         }
 */
         $thumb = new \Imagick($imagen);
-        $thumb->resizeImage(1000,1000,\Imagick::COMPOSITE_DEFAULT,1,true);
+        $thumb->scaleImage(1000,1000,true);
         $thumb->writeImage($imagen);
         $thumb->destroy();
         /*
