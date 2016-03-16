@@ -180,7 +180,32 @@ class Imagen
         $imagen_final_slider = $this->getUploadRootDir() . 'slider-' . $this->filename;
         $imagen_final_noticia = $this->getUploadRootDir() . 'noticia-' . $this->filename;
 
-
+        $resize_images = [
+            [
+                'final_name'    => $imagen_final_small,
+                'width'         => 200,
+                'height'        => 200
+            ],[
+                'final_name'    => $imagen_final_auspicio,
+                'width'         => 250,
+                'height'        => 50
+            ],[
+                'final_name'    => $imagen_final_slider,
+                'width'         => 1000,
+                'height'        => 500
+            ],[
+                'final_name'    => $imagen,
+                'width'         => 1000,
+                'height'        => 1000
+            ],
+        ];
+        $crop_images =[
+                [
+                'final_name'    => $imagen_final_noticia,
+                'width'         => 150,
+                'height'        => 150
+            ]
+        ];
         global $kernel;
 
         if ('AppCache' == get_class($kernel)) {
@@ -188,41 +213,8 @@ class Imagen
         }
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
-
-
-        $imgEditor->smart_resize_image($imagen,null,200,200,true,$imagen_final_small,false,false,50);
-        $imgEditor->smart_resize_image($imagen,null,250,50,true,$imagen_final_auspicio,false,false,100);
-        $imgEditor->smart_resize_image($imagen,null,1000,500,true,$imagen_final_slider,false,false,100);
-        $imgEditor->smart_resize_image($imagen,null,150,150,true,$imagen_final_noticia,false,false,100);
-/*
-        $size =getimagesize($this->getUploadRootDir() . $this->filename);
-        if( $size[0] > 1000 || $size[1] > 1000){
-            $imgEditor->smart_resize_image($imagen,null,1000,1000,true,$this->getUploadRootDir() . $this->filename,true,false,100);
-        }
-*/
-        $thumb = new \Imagick($imagen);
-        $thumb->scaleImage(1000,1000,true);
-        $thumb->writeImage($imagen);
-        $thumb->cropThumbnailImage(150,150);
-        $thumb->writeImage($imagen_final_noticia);
-        $thumb->destroy();
-        /*
-        if (!is_dir($this->getUploadRootDir().'/small/')) {
-            mkdir($this->getUploadRootDir().'/small/', 0777, true);
-        }*/
-        ## FIN CONFIGURACION #############################
-
-
-
-        // check if we have an old image
-        /*
-        if (isset($this->temp)) {
-            // delete the old image
-            unlink($this->getUploadRootDir().'/big'.$this->temp);
-            unlink($this->getUploadRootDir().'/small'.$this->temp);
-            // clear the temp image path
-            $this->temp = null;
-        }*/
+        $imgEditor->crop($imagen, $crop_images);
+        $imgEditor->resize($imagen, $resize_images);
         $this->file = null;
     }
 

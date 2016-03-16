@@ -11,6 +11,37 @@ namespace Cai\WebBundle\Utils;
 
 class ImagesEditor
 {
+    /***
+     * Resize Images with Imagick
+     * final_images = [
+     *         [final_name => name, width=> n, height=>m]
+     * ]
+     */
+    function resize($image, $final_images){
+        $thumb = new \Imagick($image);
+        foreach($final_images as $final_image){
+            $thumb->scaleImage($final_image['width'], $final_image['height'],true);
+            $thumb->writeImage($final_image['final_name']);
+        }
+        $thumb->destroy();
+    }
+    /***
+     * Crop Images with Imagick
+     * final_images = [
+     *         [final_name => name, width=> n, height=>m]
+     * ]
+     */
+    function crop($image, $final_images){
+        $thumb = new \Imagick($image);
+        foreach($final_images as $final_image){
+            $thumb->cropThumbnailImage($final_image['width'], $final_image['height']);
+            $thumb->writeImage($final_image['final_name']);
+        }
+        $thumb->destroy();
+    }
+
+
+
     /**
      * easy image resize function
      * https://github.com/Nimrod007/PHP_image_resize
