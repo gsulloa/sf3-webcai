@@ -376,7 +376,16 @@ class Persona
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
 
-        $imgEditor->smart_resize_image($imagen, null, 500, 500, true, $imagen, true, false, 100);
+        $resize_images = [
+            [
+                'final_name'    => $imagen,
+                'width'         => 300,
+                'height'        => 300
+            ]
+        ];
+        $imgEditor->resize($imagen,$resize_images);
+
+
 
         ## FIN CONFIGURACION #############################
 

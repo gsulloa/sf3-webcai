@@ -301,25 +301,14 @@ class UserProfile
         }
 
         $imgEditor = $kernel->getContainer()->get('cai_web.images');
-
-        $imgEditor->smart_resize_image($imagen, null, 200, 200, true, $imagen, true, false, 100);
-
-        /*
-        if (!is_dir($this->getUploadRootDir().'/small/')) {
-            mkdir($this->getUploadRootDir().'/small/', 0777, true);
-        }*/
-        ## FIN CONFIGURACION #############################
-
-
-        // check if we have an old image
-        /*
-        if (isset($this->temp)) {
-            // delete the old image
-            unlink($this->getUploadRootDir().'/big'.$this->temp);
-            unlink($this->getUploadRootDir().'/small'.$this->temp);
-            // clear the temp image path
-            $this->temp = null;
-        }*/
+        $resize_images = [
+            [
+                'final_name'    => $imagen,
+                'width'         => 200,
+                'height'        => 200
+            ]
+        ];
+        $imgEditor->resize($imagen,$resize_images);
         $this->file = null;
     }
 
