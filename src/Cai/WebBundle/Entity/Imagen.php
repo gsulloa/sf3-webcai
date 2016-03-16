@@ -203,7 +203,7 @@ class Imagen
         $thumb = new \Imagick($imagen);
         $thumb->scaleImage(1000,1000,true);
         $thumb->writeImage($imagen);
-        $thumb->scaleImage(150,150);
+        $thumb->cropThumbnailImage(150,150);
         $thumb->writeImage($imagen_final_noticia);
         $thumb->destroy();
         /*
