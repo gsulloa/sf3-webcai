@@ -10,6 +10,16 @@
                 <td>{{ documento.id }}</td>
             </tr>
             <tr>
+                <th>
+                    URL
+                </th>
+                <td>
+                    <a href="{{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filenamebinary }}" target="_blank">
+                        {{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filenamebinary }}
+                    </a>
+                </td>
+            </tr>
+            <tr>
                 <th>Filename</th>
                 <td>{{ documento.filename }}</td>
             </tr>
