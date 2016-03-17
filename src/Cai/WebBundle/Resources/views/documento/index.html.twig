@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Filename</th>
+                <th>URL</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,6 +17,11 @@
             <tr>
                 <td><a href="{{ path('documento_show', { 'id': documento.id }) }}">{{ documento.id }}</a></td>
                 <td>{{ documento.filename }}</td>
+                <td>
+                    <a href="{{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename }}" target="_blank">
+                        {{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename }}
+                    </a>
+                </td>
                 <td>
                     <ul>
                         <li>
