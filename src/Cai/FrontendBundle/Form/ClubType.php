@@ -1,6 +1,6 @@
 <?php
 
-namespace Cai\ClubesBundle\Form;
+namespace Cai\FrontendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +28,6 @@ class ClubType extends AbstractType
                 'label' => "Imágen"
             ))
             ->add('categoria')
-            ->add('admin')
         ;
     }
     

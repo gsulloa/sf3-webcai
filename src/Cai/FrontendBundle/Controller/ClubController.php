@@ -53,7 +53,7 @@ class ClubController extends Controller
     public function newAction(Request $request)
     {
         $club = new Club();
-        $form = $this->createForm('Cai\ClubesBundle\Form\ClubType', $club);
+        $form = $this->createForm('Cai\FrontendBundle\Form\ClubType', $club);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
