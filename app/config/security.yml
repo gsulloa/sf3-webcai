@@ -55,10 +55,8 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/backend/role, roles: ROLE_SUPER_ADMIN }
-
         - { path: ^/backend/user, roles: ROLE_ADMIN }
         - { path: ^/backend/categoria, roles: ROLE_ADMIN }
-
         - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
         - { path: ^/backend/tipo, roles: ROLE_DIRECTIVA }
         - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
@@ -66,7 +64,6 @@ security:
         - { path: ^/backend/slider, roles: ROLE_DIRECTIVA }
         - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
         - { path: ^/backend/contacto, roles: ROLE_DIRECTIVA }
-
         - { path: ^/backend, roles: ROLE_JEFE_DE_COMISION }
 
         - { path: ^/perfil, roles: IS_AUTHENTICATED_FULLY }
