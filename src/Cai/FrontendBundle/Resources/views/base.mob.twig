@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    {% block meta %}{% endblock %}
+    <title>{% block title %}Centro de Alumnos de Ingeniería UC{% endblock %}</title>
+    {{ include('CaiWebBundle:utils:css_base.html.twig') }}
+    {{ include('CaiWebBundle:utils:js_base.html.twig') }}
+    <link href="{{ asset('public/css/frontend.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+    {{ include('CaiWebBundle:utils:icono.html.twig') }}
+</head>
+<body>
+<div class="container" style="background: white;width: 95%">
+    <div id="custom-bootstrap-menu" class="navbar navbar-default fixed" role="navigation" style="border-radius: 0">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span
+                                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menubuilder">
+                    <ul class="nav navbar-nav navbar-left">
+                        {% include "CaiFrontendBundle:menu:submenu.html.twig" with {'menu':menu} only %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding: 65px 0 0 0">
+        <div class="center-block">
+            <a href="{{ path('cai_frontend_home') }}"><img src="{{ asset('public/images/Logo-letras-web.png') }}"
+                                                           style="width: 400px"
+                                                           class="img-responsive center-block"/></a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        {% if app.user %}
+            <h1 class="text-center">Hola {{ app.user }}</h1>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="center-block">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default " data-toggle="dropdown"><i
+                                class="fa fa-bars"></i> Categorias <strong class="caret"></strong></a>
+                    <ul class="dropdown-menu" role="menu">
+                        {% for categoria in categorias %}
+                            <li>
+                                <a href="{{ path('cai_frontend_noticias', {'categoria':categoria.slug}) }}">{{ categoria }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    &nbsp;&nbsp;
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><i
+                                class="fa fa-search"></i> Buscar<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <form method="get" action="{{ path('cai_frontend_busqueda') }}">
+                                <div class="container-fluid">
+                                    <input type="text" name="texto" class="form-control" placeholder="Texto...">
+                                    <input type="submit" class="btn btn-primary btn-xs">
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                &nbsp; &nbsp;
+                {% if app.user %}
+                    <a href="{{ path('profile') }}" class="btn btn-default">Ver Perfil</a> &nbsp; &nbsp;<a
+                        href="{{ path('logout') }}" class="btn btn-danger">Logout</a>
+                {% else %}
+                    <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
+                    <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+</div>
+<div class="container" style="background: white;width: 95%">
+    {% block content %}{% endblock %}
+</div>
+<br>
+<div class="container footer" style="width: 95%">
+    <div class="row" style="padding: 15px;">
+        <div class="col-xs-12" style="padding: 0 0 30px 0">
+            <h3 class="footer-text">Contáctanos</h3>
+            <h4 class="footer-text"><i class="fa icon-phone fa-phone"
+                                       style="color:#fff"></i>&nbsp {{ contacto.telefono }}</h4>
+            <h4 class="footer-text"><i class="fa fa-envelope-o" style="color:#fff"></i>&nbsp {{ contacto.mail }}</h4>
+            <h4 class="footer-text"><i class="fa fa-map-marker" style="color:#fff"></i>&nbsp {{ contacto.direccion }}
+            </h4>
+        </div>
+        <div class="col-xs-12">
+            <img src="{{ asset('public/images/logo-letras-claras.png') }}" style="width: 400px"
+                 class="img-responsive center-block"/>
+            <hr>
+            <p class="footer-text">{{ contacto.descripcion }}</p>
+        </div>
+        <div class="col-xs-12">
+            <h3 class="footer-text">Links útiles</h3>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".dropdown-menu > li > a.trigger").on("click", function (e) {
+            var current = $(this).next();
+            var grandparent = $(this).parent().parent();
+            if ($(this).hasClass('left-caret') || $(this).hasClass('right-caret'))
+                $(this).toggleClass('right-caret left-caret');
+            grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+            grandparent.find(".sub-menu:visible").not(current).hide();
+            current.toggle();
+            e.stopPropagation();
+        });
+        $(".dropdown-menu > li > a:not(.trigger)").on("click", function () {
+            var root = $(this).closest('.dropdown');
+            root.find('.left-caret').toggleClass('right-caret left-caret');
+            root.find('.sub-menu:visible').hide();
+        });
+    });
+</script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-75464278-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
