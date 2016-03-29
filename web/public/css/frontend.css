@@ -134,8 +134,9 @@ div.dropdown{
 h1,h2,h3,h4,h5,a{
     font-family: segoe-ui-light;
 }
-p{
+p, body, blockquote{
     font-family: segoe-ui;
+    font-size: 14px;
 }
 .bx-viewport > ul{
     padding-left: 0;
