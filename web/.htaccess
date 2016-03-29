@@ -66,3 +66,13 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+#Gzip
+<ifmodule mod_deflate.c>
+<ifmodule mod_mime.c>   #Checks if your server supports Addtype
+Addtype font/opentype .otf
+Addtype font/eot .eot
+Addtype font/truetype .ttf
+</ifmodule>
+AddOutputFilterByType DEFLATE font/opentype font/truetype font/eot
+</ifmodule>
+#End Gzip
