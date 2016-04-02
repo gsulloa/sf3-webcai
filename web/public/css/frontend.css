@@ -131,11 +131,13 @@ div.dropdown{
     src: url('../fonts/segoe-ui-light.woff');
 }
 
-h1,h2,h3,h4,h5,a{
+h1,h2,h3,h4,h5{
     font-family: segoe-ui-light;
 }
-p, body, blockquote{
+p, body, blockquote,a{
     font-family: segoe-ui;
+}
+blockquote{
     font-size: 14px;
 }
 .bx-viewport > ul{
