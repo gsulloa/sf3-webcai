@@ -31,7 +31,7 @@ class EntradaController extends Controller
         $entradas = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
+            10/*limit per page*/
         );
 
         return $this->render('CaiWebBundle:entrada:index.html.twig', array(
