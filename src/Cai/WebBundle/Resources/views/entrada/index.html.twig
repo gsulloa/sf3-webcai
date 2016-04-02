@@ -6,11 +6,11 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Titulo</th>
+            <th>{{ knp_pagination_sortable(entradas, 'Titulo', 'entrada.titulo') }}</th>
             <th>Imágen</th>
-            <th>Autor</th>
+            <th>{{ knp_pagination_sortable(entradas, 'Autor', 'entrada.user') }}</th>
             <th>Categorías</th>
-            <th>Fecha publicación</th>
+            <th>{{ knp_pagination_sortable(entradas, 'Fecha publicacion', 'entrada.fecha') }}</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -42,7 +42,9 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="text-center">
+        {{ knp_pagination_render(entradas) }}
+    </div>
     <ul>
         <li>
             <a href="{{ path('entrada_new') }}">

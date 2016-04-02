@@ -18,11 +18,21 @@ class EntradaController extends Controller
      * Lists all Entrada entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entradas = $em->getRepository('CaiWebBundle:Entrada')->findAll();
+        $query = "SELECT entrada
+                  FROM CaiWebBundle:Entrada entrada";
+        $query = $em->createQuery($query);
+
+
+        $paginator  = $this->get('knp_paginator');
+        $entradas = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
 
         return $this->render('CaiWebBundle:entrada:index.html.twig', array(
             'entradas' => $entradas,
