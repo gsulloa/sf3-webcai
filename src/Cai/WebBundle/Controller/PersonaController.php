@@ -21,8 +21,12 @@ class PersonaController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $personas = $em->getRepository('CaiWebBundle:Persona')->findAll();
+        $query = $request->query->get('q');
+        if($query !== null){
+            $personas = $em->getRepository('CaiWebBundle:Persona')->findAllBySearch($query);
+        }else{
+            $personas = $em->getRepository('CaiWebBundle:Persona')->findAll();
+        }
         $paginator  = $this->get('knp_paginator');
         $personas = $paginator->paginate(
             $personas,
@@ -32,6 +36,7 @@ class PersonaController extends Controller
 
         return $this->render('CaiWebBundle:persona:index.html.twig', array(
             'personas' => $personas,
+            'query'     => $query,
         ));
     }
 
@@ -131,4 +136,6 @@ class PersonaController extends Controller
             ->getForm()
         ;
     }
+    
+    
 }

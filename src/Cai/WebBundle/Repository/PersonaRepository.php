@@ -10,4 +10,20 @@ namespace Cai\WebBundle\Repository;
  */
 class PersonaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllBySearch($text){
+        return $this->getEntityManager()
+            ->createQuery("
+                SELECT persona
+                FROM CaiWebBundle:Persona persona
+                WHERE persona.id like :text
+                OR persona.nombre like :text
+                OR persona.categoria like :text
+                OR persona.descripcion_corta like :text
+                OR persona.descripcion like :text
+                OR persona.mail like :text
+                OR persona.twitter like :text
+                OR persona.facebook like :text 
+            ")->setParameter('text','%'.$text.'%')
+            ->getResult();
+    }
 }
