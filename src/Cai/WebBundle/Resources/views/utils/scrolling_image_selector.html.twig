@@ -1,0 +1,50 @@
+<script>
+    //Imagenes actualmente cargadas
+    var images_count = 12;
+    //Detecta final del div
+    $('#image_selector_div').scroll(function() {
+        if($(this).scrollTop() +$(this).outerHeight() >=  $(this)[0].scrollHeight) {
+            //Ajax para cargar nuevas imagenes
+            $.ajax({
+                url: '{{ path('scroll_pagination_image') }}/' + images_count,//Routing.generate('scroll_pagination_image',{'start':images_count}),
+                type: "GET",
+                success: function(data) {
+                    //entregar de a 12 imagenes
+                    images_count = images_count + 12;
+                    //formar JSON con data recibida
+                    data = JSON.parse(data);
+                    var rows = [];
+                    //Crear las rows necesarias
+                    for (i = 0; i < data.length / 4; i++) {
+                        rows.push($('<div class="row"></div>'))
+                    }
+
+                    var created_images_count = 0;
+                    var new_image;
+                    //Crear las imagenes del json
+                    for(image in data){
+                        new_col = $('<div class="col-md-3 col_selecting_image"></div>');
+                        new_image = $('<img id="image_'+data[image].id+'" class="selecting_image img-responsive" src="{{ asset('uploads/biblioteca/imagenes/') }}'+data[image].filenamebinary+'/small-'+data[image].filename+'">');
+                        //Asigna los eventos para seleccionarlas
+                        $(new_image).click(function () {
+                            $('.col_selecting_image').css('background-color','white');
+                            $(this).parent().css('background-color','blue');
+                            selected_image = $(this)[0];
+                        });
+                        $(new_image).dblclick(function () {
+                            changeImage();
+                        });
+                        new_col.append(new_image);
+                        //Agrega a la row indicada
+                        rows[parseInt(created_images_count++ / 4)].append(new_col);
+                    }
+                    //agrega las rows al div
+                    for(row in rows){
+                        $('#image_selector_div').append(rows[row]);
+                    }
+                }
+            });
+
+        }
+    });
+</script>
