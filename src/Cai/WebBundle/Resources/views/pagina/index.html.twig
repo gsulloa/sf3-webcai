@@ -1,9 +1,13 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Pagina list</h1>
-
-    <table>
+    <h1>Páginas</h1>
+    <ul class="pull-right">
+        <li>
+            <a class="btn btn-primary" href="{{ path('pagina_new') }}">Crear nueva Página</a>
+        </li>
+    </ul>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,9 +39,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pagina_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

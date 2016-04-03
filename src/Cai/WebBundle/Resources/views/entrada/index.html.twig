@@ -2,7 +2,13 @@
 
 {% block body %}
     <h1>Entradas</h1>
-
+    <ul class="pull-right">
+        <li>
+            <a class="btn btn-primary" href="{{ path('entrada_new') }}">
+                Crear nueva Entrada
+            </a>
+        </li>
+    </ul>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -45,11 +51,5 @@
     <div class="text-center">
         {{ knp_pagination_render(entradas) }}
     </div>
-    <ul>
-        <li>
-            <a href="{{ path('entrada_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+
 {% endblock %}
