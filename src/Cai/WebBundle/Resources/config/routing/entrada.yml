@@ -22,3 +22,7 @@ entrada_delete:
     path:     /{id}/delete
     defaults: { _controller: "CaiWebBundle:Entrada:delete" }
     methods:  DELETE
+
+entrada_public:
+    path:     /{id}/publicar
+    defaults: { _controller: CaiWebBundle:Entrada:public }

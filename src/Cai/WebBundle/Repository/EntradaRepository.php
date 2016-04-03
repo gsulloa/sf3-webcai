@@ -24,11 +24,13 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery("SELECT e
                 FROM CaiWebBundle:Entrada e
                 LEFT JOIN e.categorias categorias
-                WHERE categorias.id = " . $categoria->getId(). "
+                WHERE categorias.id = :categoria
                 AND e.fecha < :now
+                AND e.publico = TRUE 
                 ORDER BY e.fecha DESC
                 "
             )->setParameter('now', new \DateTime())
+            ->setParameter('categoria', $categoria->getId())
             ->getResult();
     }
     public function findAllOrdered(){
@@ -37,6 +39,7 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 FROM CaiWebBundle:Entrada e
                 WHERE e.fecha < :now
                 ORDER BY e.fecha DESC
+                AND e.publico = true
                 '
             )->setParameter('now', new \DateTime())
             ->getResult();
@@ -47,8 +50,9 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 "SELECT e
             FROM CaiWebBundle:Entrada e
             WHERE e.titulo LIKE :texto
-            AND e.fecha < :now
             OR e.cuerpo LIKE :texto
+            AND e.fecha < :now
+            AND e.publico = true
           "
             )->setParameter('texto','%'.$text.'%')
             ->setParameter('now',new \DateTime())
@@ -60,7 +64,9 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 "SELECT e
                 FROM CaiWebBundle:Entrada e
                 WHERE e.fecha < :now
-                ORDER BY e.fecha DESC"
+                AND e.publico = true
+                ORDER BY e.fecha DESC
+                "
             )->setMaxResults(8)
             ->setParameter('now',new \DateTime())
             ->getResult();
@@ -71,7 +77,8 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 "SELECT e
                 FROM CaiWebBundle:Entrada e
                 WHERE e.slug = :slug
-                AND e.fecha < :now"
+                AND e.fecha < :now
+                AND e.publico = true"
             )->setParameter('slug',$slug)
             ->setParameter('now', new \DateTime())
             ->getOneOrNullResult();
@@ -84,6 +91,7 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
                 LEFT JOIN e.categorias categoria
                 WHERE e.fecha < :now
                 AND categoria in (:categorias)
+                AND e.publico = true
                 ORDER BY e.fecha DESC"
             )->setMaxResults(8)
             ->setParameter('now',new \DateTime())

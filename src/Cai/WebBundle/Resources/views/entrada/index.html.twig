@@ -17,6 +17,7 @@
             <th>{{ knp_pagination_sortable(entradas, 'Autor', 'entrada.user') }}</th>
             <th>Categorías</th>
             <th>{{ knp_pagination_sortable(entradas, 'Fecha publicacion', 'entrada.fecha') }}</th>
+            <th>Publicado</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
                     </ul>
                 </td>
                 <td>{% if entrada.fecha %}{{ entrada.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ entrada.publico == 1 ? 'Si' : 'No' }}</td>
                 <td>
                     <ul>
                         <li>
@@ -42,6 +44,11 @@
                         <li>
                             <a href="{{ path('entrada_edit', { 'id': entrada.id }) }}">edit</a>
                         </li>
+                        {% if is_granted('ROLE_COMUNICACIONES') and is_granted('ROLE_DIRECTIVA') %}
+                            <li>
+                                <a class="btn btn-{{ entrada.publico == 1 ? "danger" : "primary" }}" href="{{ path('entrada_public', {'id':entrada.id }) }}">{{ entrada.publico == 1 ? "Ocultar" : "Publicar" }}</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>

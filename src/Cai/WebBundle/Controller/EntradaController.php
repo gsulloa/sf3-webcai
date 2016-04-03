@@ -23,7 +23,8 @@ class EntradaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = "SELECT entrada
-                  FROM CaiWebBundle:Entrada entrada";
+                  FROM CaiWebBundle:Entrada entrada
+                  ORDER BY entrada.fecha DESC";
         $query = $em->createQuery($query);
 
 
@@ -136,6 +137,17 @@ class EntradaController extends Controller
             $em->flush();
         }
 
+        return $this->redirectToRoute('entrada_index');
+    }
+
+    public function publicAction(Entrada $entrada){
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICAIONES')
+            && !$this->get('security.authorization_checker')->isGranted('ROLE_DIRECTIVA')) {
+            return $this->redirectToRoute('entrada_index');
+        }
+        $entrada->setPublico(!$entrada->getPublico());
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
         return $this->redirectToRoute('entrada_index');
     }
 
