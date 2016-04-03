@@ -17,6 +17,7 @@ function changeImage(){
     var imagen =  $('.row#'+row_changing).children(".col-md-4").children().children();
     imagen.attr('src',selected_image.src);
     console.log(imagen[0].id);
+    console.log(imagen);
     $('input#'+imagen[0].id).attr('value',selected_image.id);
 
 }

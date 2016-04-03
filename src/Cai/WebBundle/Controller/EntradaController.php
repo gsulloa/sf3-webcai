@@ -95,22 +95,29 @@ class EntradaController extends Controller
      */
     public function editAction(Request $request, Entrada $entrada)
     {
+        $auxiliar = $this->get('cai_web.auxiliar');
         $deleteForm = $this->createDeleteForm($entrada);
         $editForm = $this->createForm('Cai\WebBundle\Form\EntradaType', $entrada);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //generar Slug
+            $this->generatingSlug($entrada);
+            //agregar imagen
+            $image = $em->getRepository('CaiWebBundle:Imagen')->find(substr($request->request->get('img_slide_0'),6));
+            $entrada->setImagen($image);
             $em->persist($entrada);
             $em->flush();
 
             return $this->redirectToRoute('entrada_edit', array('id' => $entrada->getId()));
         }
-
+        $images = $auxiliar->getImages();
         return $this->render('CaiWebBundle:entrada:edit.html.twig', array(
             'entrada' => $entrada,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'images' => $images,
         ));
     }
 

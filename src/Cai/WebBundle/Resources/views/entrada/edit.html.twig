@@ -6,9 +6,26 @@
     <h1>Entrada edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+    {{ form_row(edit_form.titulo) }}
+    {{ form_row(edit_form.cuerpo) }}
+    {{ form_row(edit_form.fecha) }}
+    <div class="row form-group" id="0">
+        <div class="col-md-4 col-sm-offset-2">
+            <div id="slide_0" class="slide_img">
+                <img class="img" id="img_slide_0" src="{{ asset('uploads/biblioteca/imagenes/') }}{{ entrada.imagen.filenamebinary }}/small-{{ entrada.imagen.filename }}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="img_selector btn btn-primary" id="img_selector_slide_0">Escoger imágen</div>
+            </div>
+            <input name="img_slide_0" id="img_slide_0" type="hidden" value="image_{{ entrada.imagen.id }}">
+        </div>
+    </div>
+    {{ form_row(edit_form.categorias) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
+    {% include 'CaiWebBundle:ImageSelector:selector.html.twig' %}
 
     <ul>
         <li>
@@ -26,5 +43,7 @@
     {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'entrada_fecha' } %}
     <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
     {% include 'CaiWebBundle:utils:scrolling_image_selector.html.twig' %}
-
+{% endblock %}
+{% block stylesheets %}
+    {% include 'CaiWebBundle:utils:image_selector_css.html.twig' %}
 {% endblock %}
