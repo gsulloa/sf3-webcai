@@ -67,6 +67,12 @@ class Entrada
      */
     private $imagen;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="publico", type="boolean")
+     */
+    private $publico = false;
 
     /**
      * Get id
@@ -261,5 +267,29 @@ class Entrada
     public function getImagen()
     {
         return $this->imagen;
+    }
+
+    /**
+     * Set publico
+     *
+     * @param \bool $publico
+     *
+     * @return Entrada
+     */
+    public function setPublico($publico)
+    {
+        $this->publico = $publico;
+
+        return $this;
+    }
+
+    /**
+     * Get publico
+     *
+     * @return \bool
+     */
+    public function getPublico()
+    {
+        return $this->publico;
     }
 }
