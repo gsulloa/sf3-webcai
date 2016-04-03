@@ -1,5 +1,7 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
-
+{% form_theme form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
 
 {% block body -%}
     <h1>Crear Entrada</h1>
@@ -8,13 +10,13 @@
     {{ form_row(form.titulo) }}
     {{ form_row(form.cuerpo) }}
     {{ form_row(form.fecha) }}
-    <div class="row" id="0">
-        <div class="col-md-4">
+    <div class="row form-group" id="0">
+        <div class="col-md-4 col-sm-offset-2">
             <div id="slide_0" class="slide_img">
                 <img class="img" id="img_slide_0" src="{{ asset('public/images/no-foto.png') }}" >
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="row">
                 <div class="img_selector btn btn-primary" id="img_selector_slide_0">Escoger imágen</div>
             </div>
@@ -35,7 +37,6 @@
     </ul>
 {% endblock %}
 {% block stylesheets %}
-    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
     <style>
         .slide_img{
             width:220px;
@@ -52,9 +53,8 @@
     <link rel="stylesheet" href="{{ asset('public/css/image_selector.css') }}" type="text/css">
 {% endblock %}
 {% block javascripts %}
-    <script>
-        CKEDITOR.replace( 'entrada_cuerpo' );
-    </script>
+    {% include 'CaiWebBundle:utils:ckeditor.html.twig' with {'id': 'entrada_cuerpo' } %}
+    {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'entrada_fecha' } %}
     <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
     <script>
         //Imagenes actualmente cargadas

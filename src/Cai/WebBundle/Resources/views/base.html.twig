@@ -7,6 +7,8 @@
     <title>{% block title %}CAi - Backend{% endblock %}</title>
     {{ include('CaiWebBundle:utils:css_base.html.twig') }}
     {{ include('CaiWebBundle:utils:js_base.html.twig') }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/datetimepicker-master/') }}jquery.datetimepicker.css"/ >
+    <script src="{{ asset('public/datetimepicker-master/build/') }}jquery.datetimepicker.full.min.js"></script>
     {% block stylesheets %}{% endblock %}
     {{ include('CaiWebBundle:utils:icono.html.twig') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/sb-admin.css') }}"/>

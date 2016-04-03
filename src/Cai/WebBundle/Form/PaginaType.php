@@ -3,6 +3,8 @@
 namespace Cai\WebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +20,10 @@ class PaginaType extends AbstractType
             ->add('titulo')
             ->add('slug')
             ->add('cuerpo')
-            ->add('fecha')
+            ->add('fecha',DateTimeType::class, array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd HH:mm',
+            ))
         ;
     }
     

@@ -1,5 +1,7 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
-
+{% form_theme edit_form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
 {% block body %}
     <h1>Entrada edit</h1>
 
@@ -18,4 +20,9 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+    {% include 'CaiWebBundle:utils:ckeditor.html.twig' with {'id': 'entrada_cuerpo' } %}
+    {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'entrada_fecha' } %}
+
 {% endblock %}

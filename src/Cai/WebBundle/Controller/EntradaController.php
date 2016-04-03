@@ -47,6 +47,7 @@ class EntradaController extends Controller
     {
         $auxiliar = $this->get('cai_web.auxiliar');
         $entrada = new Entrada();
+        $entrada->setFecha(new \DateTime('now'));
         $form = $this->createForm('Cai\WebBundle\Form\EntradaType', $entrada);
         $form->handleRequest($request);
 
@@ -65,6 +66,7 @@ class EntradaController extends Controller
             return $this->redirectToRoute('entrada_show', array('id' => $entrada->getId()));
         }
         $images = $auxiliar->getImages();
+
 
         return $this->render('CaiWebBundle:entrada:new.html.twig', array(
             'entrada' => $entrada,

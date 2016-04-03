@@ -3,8 +3,10 @@
 namespace Cai\WebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class EntradaType extends AbstractType
 {
@@ -17,7 +19,10 @@ class EntradaType extends AbstractType
         $builder
             ->add('titulo')
             ->add('cuerpo')
-            ->add('fecha')
+            ->add('fecha',DateTimeType::class, array(
+                'widget' => 'single_text',
+                'format' => 'yyyy/MM/dd HH:mm',
+            ))
             ->add('categorias')
         ;
     }

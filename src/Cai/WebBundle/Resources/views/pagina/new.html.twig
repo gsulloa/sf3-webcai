@@ -14,11 +14,8 @@
         </li>
     </ul>
 {% endblock %}
-{% block stylesheets %}
-    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
-{% endblock %}
+
 {% block javascripts %}
-    <script>
-        CKEDITOR.replace( 'pagina_cuerpo' );
-    </script>
+    {% include 'CaiWebBundle:utils:ckeditor.html.twig' with {'id': 'pagina_cuerpo' } %}
+    {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'pagina_fecha' } %}
 {% endblock %}
