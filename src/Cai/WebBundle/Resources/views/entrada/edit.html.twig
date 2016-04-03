@@ -24,5 +24,7 @@
 {% block javascripts %}
     {% include 'CaiWebBundle:utils:ckeditor.html.twig' with {'id': 'entrada_cuerpo' } %}
     {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'entrada_fecha' } %}
+    <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
+    {% include 'CaiWebBundle:utils:scrolling_image_selector.html.twig' %}
 
 {% endblock %}
