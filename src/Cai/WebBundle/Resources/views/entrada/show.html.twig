@@ -38,6 +38,8 @@
                 Edit
             </a>
         </li>
+    {% if is_granted('ROLE_COMUNICACIONES') and is_granted('ROLE_DIRECTIVA') %}
         <li>{{ form(delete_form) }}</li>
+        {% endif %}
     </ul>
 {% endblock %}

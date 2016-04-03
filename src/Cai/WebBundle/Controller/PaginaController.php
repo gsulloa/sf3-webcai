@@ -106,6 +106,10 @@ class PaginaController extends Controller
      */
     public function deleteAction(Request $request, Pagina $pagina)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICAIONES')
+            && !$this->get('security.authorization_checker')->isGranted('ROLE_DIRECTIVA')) {
+            return $this->redirectToRoute('pagina_index');
+        }
         $form = $this->createDeleteForm($pagina);
         $form->handleRequest($request);
 

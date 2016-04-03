@@ -34,10 +34,12 @@
         <li>
             <a href="{{ path('pagina_edit', { 'id': pagina.id }) }}">Edit</a>
         </li>
+        {% if is_granted('ROLE_COMUNICACIONES') and is_granted('ROLE_DIRECTIVA') %}
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
 {% endblock %}

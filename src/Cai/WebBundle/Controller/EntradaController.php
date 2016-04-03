@@ -128,6 +128,10 @@ class EntradaController extends Controller
      */
     public function deleteAction(Request $request, Entrada $entrada)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICAIONES')
+            && !$this->get('security.authorization_checker')->isGranted('ROLE_DIRECTIVA')) {
+            return $this->redirectToRoute('entrada_index');
+        }
         $form = $this->createDeleteForm($entrada);
         $form->handleRequest($request);
 
