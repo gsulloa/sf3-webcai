@@ -35,51 +35,63 @@
                 <li {{ tab == 'cai_web_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_web_homepage') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
-                <li {{ tab == 'imagen_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('imagen_index') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
-                </li>
-                <li {{ tab == 'documento_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('documento_index') }}"><i class="fa fa-pagelines fa-fw"></i> Documentos</a>
-                </li>
-                <li {{ tab == 'entrada_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('entrada_index') }}"><i class="fa fa-file-text fa-fw"></i> Entradas</a>
-                </li>
-                <li {{ tab == 'pagina_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('pagina_index') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
-                </li>
                 {% if is_granted('ROLE_DIRECTIVA') %}
-                <li {{ tab == 'menu_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('menu_index') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
-                </li>
-                <li {{ tab == 'persona_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('persona_index') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
-                </li>
-                <li {{ tab == 'slider_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('slider_index') }}"><i class="fa fa-book fa-fw"></i> Slider</a>
-                </li>
-                <li {{ tab == 'contacto_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('contacto_index') }}"><i class="fa fa-info-circle fa-fw"></i> Contacto</a>
-                </li>
-                <li {{ tab == 'evento_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('evento_index') }}"><i class="fa fa-calendar fa-fw"></i> Eventos</a>
-                </li>
-                {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                <li {{ tab == 'user_index' ? 'class="active"' : '' }}>
-                    <a href="{{ path('user_index') }}"><i class="fa fa-user-plus fa-fw"></i> User</a>
-                </li>
                 <li {{ tab == 'categoria_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('categoria_index') }}"><i class="fa fa-list-alt fa-fw"></i> Categoria</a>
                 </li>
                 <li {{ tab == 'cai_clubes_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_clubes_homepage') }}"><i class="fa fa-list-alt fa-fw"></i> Clubes</a>
                 </li>
+                {% endif %}
+                {% if is_granted('ROLE_DIRECTIVA') %}
+                <li {{ tab == 'contacto_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('contacto_index') }}"><i class="fa fa-info-circle fa-fw"></i> Contacto</a>
+                </li>
+                {% endif %}
+                <li {{ tab == 'documento_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('documento_index') }}"><i class="fa fa-pagelines fa-fw"></i> Documentos</a>
+                </li>
+                <li {{ tab == 'entrada_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('entrada_index') }}"><i class="fa fa-file-text fa-fw"></i> Entradas</a>
+                </li>
+                {% if is_granted('ROLE_DIRECTIVA') %}
+                <li {{ tab == 'evento_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('evento_index') }}"><i class="fa fa-calendar fa-fw"></i> Eventos</a>
+                </li>
+                {% endif %}
+                <li {{ tab == 'imagen_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('imagen_index') }}"><i class="fa fa-photo fa-fw"></i> Imágenes</a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li {{ tab == 'menu_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('menu_index') }}"><i class="fa fa-list fa-fw"></i> Menu</a>
+                </li>
+                {% endif %}                
+                <li {{ tab == 'pagina_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('pagina_index') }}"><i class="fa fa-file fa-fw"></i> Páginas</a>
+                </li>
+                {% if is_granted('ROLE_DIRECTIVA') %}
+                <li {{ tab == 'persona_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('persona_index') }}"><i class="fa fa-user fa-fw"></i> Personas</a>
+                </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <li {{ tab == 'cai_reclamos_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_reclamos_homepage') }}"><i class="fa fa-list-alt fa-fw"></i> Reclamos</a>
                 </li>
                 <li {{ tab == 'seguimiento_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('seguimiento_index') }}"><i class="fa fa-users fa-fw"></i> Seguimiento</a>
                 </li>
+                {% endif %}
+                {% if is_granted('ROLE_DIRECTIVA') %}
+                <li {{ tab == 'slider_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('slider_index') }}"><i class="fa fa-book fa-fw"></i> Slider</a>
+                </li>    
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li {{ tab == 'user_index' ? 'class="active"' : '' }}>
+                    <a href="{{ path('user_index') }}"><i class="fa fa-user-plus fa-fw"></i> User</a>
+                </li>        
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <li {{ tab == 'role_index' ? 'class="active"' : '' }}>
