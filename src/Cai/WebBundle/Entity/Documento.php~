@@ -103,7 +103,7 @@ class Documento
     {
         return null === $this->filenamebinary
             ? null
-            : $this->getUploadDir() . $this->filename . '.' . $this->extension;
+            : $this->getUploadDir() . '/' . $this->filenamebinary;
     }
 
     protected function getUploadRootDir()
@@ -161,7 +161,7 @@ class Documento
             return;
         }
 
-        $this->getFile()->move($this->getUploadRootDir(), $this->filename . '.' . $this->extension);
+        $this->getFile()->move($this->getUploadRootDir(), $this->filename);
 
     }
 
@@ -224,7 +224,7 @@ class Documento
 
     public function __toString()
     {
-        return $this->filename . '.' . $this->extension;
+        return $this->filename;
     }
 
     /**
