@@ -128,7 +128,7 @@ class Documento
             }
 
             // do whatever you want to generate a unique name
-            $filename = sha1(uniqid(mt_rand(), true));
+            $filename = date_format(new \DateTime('now'),"Y/m/d");
             $this->filenamebinary = $filename;
             global $kernel;
             if ('AppCache' == get_class($kernel)) {
@@ -164,7 +164,6 @@ class Documento
     {
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
-            rmdir($this->getUploadDir());
         }
     }
 
