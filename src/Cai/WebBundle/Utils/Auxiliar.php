@@ -35,6 +35,24 @@ class Auxiliar extends Controller
         return $slug;
     }
 
+    public function documentosGet($file){
+        $dql = "
+            SELECT documento.filename
+            FROM CaiWebBundle:Documento documento
+            WHERE documento.filename LIKE :filename
+            AND documento.filenamebinary = :filenamebinary
+        ";
+        $documentos = $this->em->createQuery($dql)
+                        ->setParameter('filename', $file->getFilename() . '%')
+                        ->setParameter('filenamebinary', $file->getFilenamebinary())
+                        ->getResult();
+        for($i = 0;$i< sizeof($documentos); $i++){
+            $documentos[$i] = $documentos[$i]['filename'];
+        }
+        return $documentos;
+
+    }
+
     //http://cubiq.org/the-perfect-php-clean-url-generator
     public function toAscii($str, $replace=array(), $delimiter='-') {
         if( !empty($replace) ) {

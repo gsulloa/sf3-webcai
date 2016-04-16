@@ -148,6 +148,7 @@ class Documento
             }else {
                 $this->filename = $auxiliar->toAscii(str_replace('.' . $this->extension, '', $this->getFile()->getClientOriginalName()));
             }
+            $this->filename = $auxiliar->slugGenerator($this->filename,$auxiliar->documentosGet($this));
         }
     }
 
