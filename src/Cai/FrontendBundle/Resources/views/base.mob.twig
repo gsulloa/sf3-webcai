@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, intitial-scale=1, maximum-scale=1">
     {% block meta %}{% endblock %}
     <title>{% block title %}Centro de Alumnos de Ingeniería UC{% endblock %}</title>
     {{ include('CaiWebBundle:utils:css_base.html.twig') }}
@@ -10,7 +11,9 @@
     {% block stylesheets %}{% endblock %}
     {{ include('CaiWebBundle:utils:icono.html.twig') }}
 </head>
-<body>
+<body {% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
+    {% set base = "base.mob.twig" %}
+{% endif %}>
 <div class="container" style="background: white;width: 95%">
     <div id="custom-bootstrap-menu" class="navbar navbar-default fixed" role="navigation" style="border-radius: 0">
         <div class="container-fluid">

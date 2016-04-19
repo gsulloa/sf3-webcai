@@ -66,13 +66,14 @@
         </ul>
     </div>
     <div class="row">
+    <div class="container-fluid">
         <h1 class="text-center">{% if app.user %}Mis {% endif %}Noticias<p style="font-size: 14px" class=""><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></p></h1>
         {% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
             {% for noticia in noticias %}
                 {% if loop.index0  % 2 == 0 %}
                     <div class="row">
                 {% endif %}
-                <div class="col-md-6" style="padding: 0 0 15px 0">
+                <div class="col-md-6 col-xs-12" style="padding: 0 0 15px 0">
                     <div class="row">
                         <div class="col-xs-5">
                             <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
@@ -112,6 +113,7 @@
             {% endfor %}
         </ul>
         {% endif %}
+    </div>
     </div>
     {% if not (is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet()) %}
     <div class="row ">
