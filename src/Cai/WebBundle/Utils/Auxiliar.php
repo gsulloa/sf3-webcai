@@ -41,10 +41,12 @@ class Auxiliar extends Controller
             FROM CaiWebBundle:Documento documento
             WHERE documento.filename LIKE :filename
             AND documento.filenamebinary = :filenamebinary
+            AND documento.id != :id
         ";
         $documentos = $this->em->createQuery($dql)
                         ->setParameter('filename', $file->getFilename() . '%')
                         ->setParameter('filenamebinary', $file->getFilenamebinary())
+                        ->setParameter('id', $file->getId() == null ? 0 : $file->getId())
                         ->getResult();
         for($i = 0;$i< sizeof($documentos); $i++){
             $documentos[$i] = $documentos[$i]['filename'];

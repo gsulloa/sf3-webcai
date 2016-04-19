@@ -72,14 +72,6 @@ class Documento
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-        // check if we have an old image path
-        if (isset($this->filenamebinary)) {
-            // store the old name to delete after the update
-            $this->temp = $this->filenamebinary;
-            $this->filenamebinary = null;
-        } else {
-            $this->filenamebinary = 'initial';
-        }
     }
 
     /**
@@ -136,8 +128,9 @@ class Documento
             $this->extension = $extension;
 
             // do whatever you want to generate a unique name
-            
-            $this->filenamebinary = date_format(new \DateTime('now'),"Y/m/d");
+            if($this->filenamebinary === null){
+                $this->filenamebinary = date_format(new \DateTime('now'),"Y/m/d");
+            }
             global $kernel;
             if ('AppCache' == get_class($kernel)) {
                 $kernel = $kernel->getKernel();
