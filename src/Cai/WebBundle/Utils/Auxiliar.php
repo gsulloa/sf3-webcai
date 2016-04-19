@@ -172,11 +172,13 @@ class Auxiliar extends Controller
         $categorias = $this->em->getRepository('CaiWebBundle:Categoria')->findAll();
         $auspicios_1 = $this->em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
         $menu = $this->em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $utiles = $this->em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Links Utiles');
         return array(
             'contacto'      =>  $contacto,
             'categorias'    =>  $categorias, 
             'auspicios_1'   =>  $auspicios_1, 
-            'menu'          =>  $menu
+            'menu'          =>  $menu,
+            'utiles'        =>  $utiles
             );
     }
 

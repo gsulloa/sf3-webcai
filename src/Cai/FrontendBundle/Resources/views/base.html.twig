@@ -127,6 +127,11 @@
             </div>
             <div class="col-md-4">
                 <h3 class="footer-text">Links útiles</h3>
+                <ul>
+                {% for link in public.utiles.elemento %}
+                    <li><a href="{{ link.path }}">{{ link.titulo }}</a></li>
+                {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
