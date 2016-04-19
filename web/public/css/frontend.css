@@ -154,3 +154,9 @@ blockquote{
 .bx-wrapper {
     margin-bottom: 20px
 }
+
+.middle {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
