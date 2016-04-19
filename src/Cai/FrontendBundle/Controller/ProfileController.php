@@ -10,19 +10,10 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class ProfileController extends Controller
 {
     public function myProfileAction(){
-        $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
 
         return $this->render('CaiFrontendBundle:profile:my_profile.html.twig', array(
-            'categorias'    => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'        => $menu
+            'public' => $public
         ));
     }
 
@@ -55,19 +46,11 @@ class ProfileController extends Controller
                 $session->getFlashBag()->add('success','El cambio de contraseña se ha realizado correctamente.');
             }
         }
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:profile:change_user_password.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias,
-            'menu'  => $menu
+            'public' => $public
         ));
     }
     public function changeInfoAction(Request $request){
@@ -109,21 +92,13 @@ class ProfileController extends Controller
                 $session->getFlashBag()->add('success','El cambio de la información se ha completado con éxito.');
             }
         }
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:profile:change_user_info.html.twig', array(
             'profile' => $profile,
             'user'    => $user,
             'form' => $form->createView(),
             'form_cat' => $form_cat->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias,
-            'menu'  => $menu
+            'public' => $public
         ));
     }
 
@@ -147,19 +122,11 @@ class ProfileController extends Controller
                 $session->getFlashBag()->add('success','El cambio de foto de perfil se ha completado con éxito.');
             }
         }
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:profile:change_user_photo.html.twig', array(
             'profile' => $profile,
             'form' => $form->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias,
-            'menu'  => $menu
+            'public'    => $public
         ));
     }
 }

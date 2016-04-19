@@ -151,3 +151,6 @@ blockquote{
 .bx-viewport > ul{
     padding-left: 0;
 }
+.bx-wrapper {
+    margin-bottom: 20px
+}

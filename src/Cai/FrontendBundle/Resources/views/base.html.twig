@@ -32,7 +32,7 @@
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle btn btn-default " data-toggle="dropdown"><i class="fa fa-bars"></i> Categorias <strong class="caret"></strong></a>
                             <ul class="dropdown-menu" role="menu">
-                                {% for categoria in categorias %}
+                                {% for categoria in public.categorias %}
                                 <li>
                                     <a href="{{ path('cai_frontend_noticias', {'categoria':categoria.slug}) }}">{{ categoria }}</a>
                                 </li>
@@ -73,15 +73,15 @@
                 </div>
                 <div class="row pull-right">
                     <div class="col-xs-12">
-                        <a target="_blank" href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/{{ public.contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
                         &nbsp;
-                        <a target="_blank" href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
+                        <a target="_blank" href="https://twitter.com/{{ public.contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
                         &nbsp;
-                        <a target="_blank" href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/{{ public.contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
                         &nbsp;
-                        <a target="_blank" href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
+                        <a target="_blank" href="https://www.youtube.com/{{ public.contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
                         &nbsp;
-                        <a target="_blank" href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
+                        <a target="_blank" href="https://www.vimeo.com/{{ public.contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
                         &nbsp;
                         <a target="_blank" href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
                         &nbsp;
@@ -103,7 +103,7 @@
                     </div>
                     <div class="collapse navbar-collapse navbar-menubuilder">
                         <ul class="nav navbar-nav navbar-left">
-                            {% include "CaiFrontendBundle:menu:submenu.html.twig" with {'menu':menu} only %}
+                            {% include "CaiFrontendBundle:menu:submenu.html.twig" with {'menu':public.menu} only %}
                         </ul>
                     </div>
                 </div>
@@ -116,14 +116,14 @@
         <div class="row" style="padding: 15px;">
             <div class="col-md-4">
                 <h3 class="footer-text">Contáctanos</h3>
-                <h4 class="footer-text"><i class="fa icon-phone fa-phone" style="color:#fff"></i>&nbsp {{ contacto.telefono }}</h4>
-                <h4 class="footer-text"><i class="fa fa-envelope-o" style="color:#fff"></i>&nbsp {{ contacto.mail }}</h4>
-                <h4 class="footer-text"><i class="fa fa-map-marker" style="color:#fff"></i>&nbsp {{ contacto.direccion }}</h4>
+                <h4 class="footer-text"><i class="fa icon-phone fa-phone" style="color:#fff"></i>&nbsp {{ public.contacto.telefono }}</h4>
+                <h4 class="footer-text"><i class="fa fa-envelope-o" style="color:#fff"></i>&nbsp {{ public.contacto.mail }}</h4>
+                <h4 class="footer-text"><i class="fa fa-map-marker" style="color:#fff"></i>&nbsp {{ public.contacto.direccion }}</h4>
             </div>
             <div class="col-md-4">
                 <img src="{{ asset('public/images/logo-letras-claras.png') }}" style="width: 400px" class="img-responsive center-block" />
                 <hr>
-                <p class="footer-text">{{ contacto.descripcion }}</p>
+                <p class="footer-text">{{ public.contacto.descripcion }}</p>
             </div>
             <div class="col-md-4">
                 <h3 class="footer-text">Links útiles</h3>

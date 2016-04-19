@@ -28,26 +28,18 @@ class DefaultController extends Controller
             ->setUser($this->getUser());
         $em->persist($seguimiento);
         $em->flush();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
         $principal = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Principal');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         if($this->isGranted('IS_AUTHENTICATED_FULLY')){
             $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForUser($this->getUser());
         }
         else {
             $noticias = $em->getRepository('CaiWebBundle:Entrada')->findAllForHome();
         }
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:Default:index.html.twig',array(
-            'contacto'  => $contacto,
-            'categorias' => $categorias,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
+            'public'      => $public,
             'principal'   => $principal,
             'noticias'    => $noticias,
-            'menu'        => $menu
         ));
     }
 
@@ -66,19 +58,11 @@ class DefaultController extends Controller
         ;
         $em->persist($seguimiento);
         $em->flush();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
 
         return $this->render('CaiFrontendBundle:Default:entrada.html.twig', array(
             'entrada'       => $entrada,
-            'categorias'    => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'        => $menu,
+            'public'        => $public
         ));
     }
     public function paginaAction($slug){
@@ -97,31 +81,20 @@ class DefaultController extends Controller
         ;
         $em->persist($seguimiento);
         $em->flush();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         $aux = $this->get('cai_web.auxiliar');
         $pagina->setCuerpo($aux->getShortcodesInfo($pagina->getCuerpo()));
         return $this->render('CaiFrontendBundle:Default:pagina.html.twig', array(
             'pagina'       => $pagina,
-            'categorias'    => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'        => $menu,
-        ));
+            'public'       => $public
+            )
+        );
     }
 
     public function noticiasAction(Request $request, $categoria){
 
         $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         if($categoria == null){
             $seguimiento = new Seguimiento();
             $seguimiento->setEtiqueta('noticias')
@@ -151,11 +124,7 @@ class DefaultController extends Controller
         );
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
             'noticias'       => $entradas,
-            'categorias' => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu' => $menu,
+            'public'         => $public
         ));
     }
     public function buscarAction(Request $request){
@@ -169,12 +138,8 @@ class DefaultController extends Controller
         ;
         $em->persist($seguimiento);
         $em->flush();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         $entradas = $em->getRepository('CaiWebBundle:Entrada')->findBySearchedText($texto);
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
         $paginator  = $this->get('knp_paginator');
         $entradas = $paginator->paginate(
             $entradas,
@@ -183,11 +148,7 @@ class DefaultController extends Controller
         );
         return $this->render('CaiFrontendBundle:Default:noticias.html.twig', array(
             'noticias'       => $entradas,
-            'categorias' => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'  => $menu
+            'public'         => $public
         ));
     }
 }

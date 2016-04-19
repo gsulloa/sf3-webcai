@@ -164,7 +164,20 @@ class Auxiliar extends Controller
             }
         }
         return $text;
+    }
 
+    public function getPublicInfo()
+    {
+        $contacto = $this->em->getRepository('CaiWebBundle:Contacto')->find(1);
+        $categorias = $this->em->getRepository('CaiWebBundle:Categoria')->findAll();
+        $auspicios_1 = $this->em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
+        $menu = $this->em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        return array(
+            'contacto'      =>  $contacto,
+            'categorias'    =>  $categorias, 
+            'auspicios_1'   =>  $auspicios_1, 
+            'menu'          =>  $menu
+            );
     }
 
 

@@ -16,18 +16,7 @@
         $(document).ready(function(){
             $('.auspicios-slider-1').bxSlider({
                 ticker: true,
-                speed: {{ auspicios_1.slides | length * auspicios_1.time }},
-                minSlides: 1,
-                maxSlides: 1,
-                tickerHover: true,
-                useCSS: false,
-                slideMargin: 15,
-                slideWidth: 250,
-                slideHeight: 50
-            });
-            $('.auspicios-slider-2').bxSlider({
-                ticker: true,
-                speed: {{ auspicios_2.slides | length * auspicios_2.time }},
+                speed: {{ public.auspicios_1.slides | length * public.auspicios_1.time }},
                 minSlides: 1,
                 maxSlides: 1,
                 tickerHover: true,
@@ -51,23 +40,16 @@
             <div class="col-md-3">
                 <div class="row">
                     <h1 class="text-center">Auspiciadores</h1>
+                    <hr>
                     <ul class="auspicios-slider-1">
-                        {% for auspicio in auspicios_1.slides %}
+                        {% for auspicio in public.auspicios_1.slides %}
                             <li>
                                 <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/auspicio-' ~ auspicio.imagen.filename) }}" /></a>
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="row">
-                    <ul class="auspicios-slider-2">
-                        {% for auspicio in auspicios_2.slides %}
-                            <li>
-                                <a href="{{ auspicio.path }}"><img class="img-responsive" src="{{ asset('uploads/biblioteca/imagenes/' ~ auspicio.imagen.filenamebinary ~ '/auspicio-' ~ auspicio.imagen.filename) }}" /></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            
                 <div class="row" style="width:100%;margin:auto">
                     <h1 class="text-center">Facebook</h1>
                     <hr>

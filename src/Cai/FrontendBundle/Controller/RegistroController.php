@@ -22,11 +22,7 @@ class RegistroController extends Controller
             return $this->redirectToRoute('default_target');
         }
         $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
 
         $userProfile = new UserProfile();
         $user = new User();
@@ -107,11 +103,7 @@ class RegistroController extends Controller
             'user'  => $user,
             'form_profile' => $form_profile->createView(),
             'form_user' => $form_user->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias'    => $categorias,
-            'menu'  => $menu
+            'public'    => $public
         ));
     }
 
@@ -136,11 +128,7 @@ class RegistroController extends Controller
             return $this->redirectToRoute('default_target');
         }
         $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         $profile = new UserProfile();
 
         $form_rut = $this->createForm('Cai\FrontendBundle\Form\RecoverRutType', $profile);
@@ -176,11 +164,7 @@ class RegistroController extends Controller
             'profile' => $profile,
             'form_mail' => $form_mail->createView(),
             'form_rut'  => $form_rut->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias,
-            'menu'      => $menu
+            'public'    => $public
         ));
     }
 
@@ -213,19 +197,11 @@ class RegistroController extends Controller
             }
             $form->get('password')->addError(new FormError('Las contraseñas no son iguales'));
         }
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:profile:change_password.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'categorias' => $categorias,
-            'menu'      => $menu
+            'public' => $public
         ));
     }
 

@@ -12,18 +12,10 @@ class ClubController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         $clubes = $em->getRepository('CaiClubesBundle:Club')->findAllAprobados();
         return $this->render('CaiFrontendBundle:club:index.html.twig', array(
-            'categorias' => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'  => $menu,
+            'public' => $public,
             'clubes' => $clubes
         ));
     }
@@ -41,11 +33,7 @@ class ClubController extends Controller
             throw $this->createNotFoundException('No se ha encontrado el Club');
         }
         return $this->render('CaiFrontendBundle:club:show.html.twig', array(
-            'categorias' => $categorias,
-            'contacto'  => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu'  => $menu,
+            'public' => $public,
             'club' => $club
         ));
     }
@@ -89,19 +77,11 @@ class ClubController extends Controller
 
             return $this->redirectToRoute('frontend_clubes');
         }
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        $categorias = $em->getRepository('CaiWebBundle:Categoria')->findAll();
-        $auspicios_1 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_1');
-        $auspicios_2 = $em->getRepository('CaiWebBundle:Slider')->findOneByTitulo('Auspicios_2');
-        $menu = $em->getRepository('CaiWebBundle:Menu')->findOneByTitulo('Principal');
+        $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiFrontendBundle:club:new.html.twig', array(
             'club' => $club,
             'form' => $form->createView(),
-            'categorias' => $categorias,
-            'contacto' => $contacto,
-            'auspicios_1' => $auspicios_1,
-            'auspicios_2' => $auspicios_2,
-            'menu' => $menu,
+            'public' => $public
         ));
 
     }
