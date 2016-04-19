@@ -130,12 +130,20 @@ div.dropdown{
     font-family: segoe-ui-light;
     src: url('../fonts/segoe-ui-light.woff');
 }
+@font-face {
+    font-family: bebas-neue;
+    src: url('../fonts/bebas-neue.woff');
+}
+@font-face: {
+    font-family: ubuntu
+    src: url('../fonts/ubuntu.woff');
+}
 
 h1,h2,h3,h4,h5{
-    font-family: segoe-ui-light;
+    font-family: bebas-neue;
 }
-p, body, blockquote,a{
-    font-family: segoe-ui;
+p, body, blockquote,a, .user{
+    font-family: ubuntu;
 }
 blockquote{
     font-size: 14px;

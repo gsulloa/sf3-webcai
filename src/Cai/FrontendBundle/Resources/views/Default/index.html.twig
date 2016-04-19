@@ -66,7 +66,7 @@
         </ul>
     </div>
     <div class="row">
-        <h1 class="text-center">{% if app.user %}Mis {% endif %}Noticias</h1>
+        <h1 class="text-center">{% if app.user %}Mis {% endif %}Noticias<p style="font-size: 14px" class=""><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></p></h1>
         {% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
             {% for noticia in noticias %}
                 {% if loop.index0  % 2 == 0 %}
@@ -113,7 +113,6 @@
         </ul>
         {% endif %}
     </div>
-    <p class="pull-right"><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></p>
     {% if not (is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet()) %}
     <div class="row ">
         <h1 class="text-center">Calendario</h1>

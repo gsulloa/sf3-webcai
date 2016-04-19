@@ -64,7 +64,7 @@
                 <div class="row pull-right">
                     <div class="col-xs-12">
                         {% if app.user %}
-                        <h4 class="text-right">Hola {{ app.user }} &nbsp;{% if is_granted('ROLE_JEFE_DE_COMISION') %}<a href="{{ path('cai_web_homepage') }}" class="btn btn-default">Backend</a> {% endif %} <a href="{{ path('profile') }}" class="btn btn-default">Ver Perfil</a><a href="{{ path('logout') }}" class="btn btn-danger">Logout</a></h4>
+                        <h4 class="text-right user">Hola {{ app.user }} &nbsp;{% if is_granted('ROLE_JEFE_DE_COMISION') %}<a href="{{ path('cai_web_homepage') }}" class="btn btn-default">Backend</a> {% endif %} <a href="{{ path('profile') }}" class="btn btn-default">Ver Perfil</a><a href="{{ path('logout') }}" class="btn btn-danger">Logout</a></h4>
                         {% else %}
                         <a href="{{ path('registro') }}" class="btn btn-default">Registrate</a> &nbsp; &nbsp;
                         <a href="{{ path('login_route') }}" class="btn btn-default">Login</a>
@@ -73,21 +73,21 @@
                 </div>
                 <div class="row pull-right">
                     <div class="col-xs-12">
-                        <a href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/{{ contacto.facebook }}/" class="red-social"><i class="fa fa-facebook-square"></i></a>
                         &nbsp;
-                        <a href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
+                        <a target="_blank" href="https://twitter.com/{{ contacto.twitter }}" class="red-social"><i class="fa fa-twitter-square"></i></a>
                         &nbsp;
-                        <a href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/{{ contacto.instagram }}/" class="red-social"><i class="fa fa-instagram"></i></a>
                         &nbsp;
-                        <a href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
+                        <a target="_blank" href="https://www.youtube.com/{{ contacto.youtube }}/" class="red-social"><i class="fa fa-youtube-square"></i></a>
                         &nbsp;
-                        <a href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
+                        <a target="_blank" href="https://www.vimeo.com/{{ contacto.vimeo }}/" class="red-social"><i class="fa fa-vimeo"></i></a>
                         &nbsp;
-                        <a href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
+                        <a target="_blank" href="https://www.flickr.com/photos/cai2009/albums" class="red-social"><i class="fa fa-flickr"></i></a>
                         &nbsp;
-                        <a href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
+                        <a target="_blank" href="https://es.wikipedia.org/wiki/Centro_de_Alumnos_de_Ingenier%C3%ADa" class="red-social"><i class="fa fa-wikipedia-w"></i></a>
                         &nbsp;
-                        <a href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/centro-de-alumnos-de-ingeniería-uc" class="red-social"><i class="fa fa-linkedin-square"></i></a>
                     </div>
                 </div>
             </div>
