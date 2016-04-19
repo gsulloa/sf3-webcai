@@ -38,8 +38,8 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery('SELECT e
                 FROM CaiWebBundle:Entrada e
                 WHERE e.fecha < :now
-                ORDER BY e.fecha DESC
                 AND e.publico = true
+                ORDER BY e.fecha DESC
                 '
             )->setParameter('now', new \DateTime())
             ->getResult();
