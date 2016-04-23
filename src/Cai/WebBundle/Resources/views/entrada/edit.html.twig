@@ -3,7 +3,7 @@
 'bootstrap_3_horizontal_layout.html.twig'
 ] %}
 {% block body %}
-    <h1>Entrada edit</h1>
+    <h1>Editar Entrada</h1>
 
     {{ form_start(edit_form) }}
     {{ form_row(edit_form.titulo) }}
@@ -29,12 +29,12 @@
 
     <ul>
         <li>
-            <a href="{{ path('entrada_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('entrada_index') }}">Volver</a>
         </li>
         {% if is_granted('ROLE_COMUNICACIONES') and is_granted('ROLE_DIRECTIVA') %}
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
         {% endif %}

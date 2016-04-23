@@ -25,7 +25,7 @@
         {% for entrada in entradas %}
             <tr>
                 <td>{{ entrada.titulo }}</td>
-                <td>{% if entrada.imagen is not null %}<img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ entrada.imagen.filenamebinary }}/small-{{ entrada.imagen.filename }}">{% endif %}</td>
+                <td>{% if entrada.imagen is not null %}<img src="{{ asset('uploads/biblioteca/imagenes/') }}{{ entrada.imagen.filenamebinary }}/noticia-{{ entrada.imagen.filename }}">{% endif %}</td>
                 <td>{{ entrada.user }}</td>
                 <td>
                     <ul>
@@ -39,10 +39,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('entrada_show', { 'id': entrada.id }) }}">show</a>
+                            <a class="btn btn-default" href="{{ path('entrada_show', { 'id': entrada.id }) }}">Ver</a>
                         </li>
                         <li>
-                            <a href="{{ path('entrada_edit', { 'id': entrada.id }) }}">edit</a>
+                            <a class="btn btn-warning" href="{{ path('entrada_edit', { 'id': entrada.id }) }}">Editar</a>
                         </li>
                         {% if is_granted('ROLE_COMUNICACIONES') and is_granted('ROLE_DIRECTIVA') %}
                             <li>

@@ -1,36 +1,20 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 {% block body -%}
-    <h1>Entrada</h1>
+    {% if entrada.imagen is not null %}<img class="center-block" src="{{ asset('uploads/biblioteca/imagenes/') }}{{ entrada.imagen.filenamebinary }}/{{ entrada.imagen.filename }}">{% endif %}
+    <h1 class="text-center">{{ entrada.titulo }}</h1>
+    <div class="container-fluid">
+        {{ entrada.cuerpo | raw }}
+    </div>
 
-    <table class="record_properties">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entrada.id }}</td>
-        </tr>
-        <tr>
-            <th>Titulo</th>
-            <td>{{ entrada.titulo }}</td>
-        </tr>
-        <tr>
-            <th>Slug</th>
-            <td>{{ entrada.slug }}</td>
-        </tr>
-        <tr>
-            <th>Cuerpo</th>
-            <td>{{ entrada.cuerpo | raw }}</td>
-        </tr>
-        <tr>
-            <th>Fecha</th>
-            <td>{{ entrada.fecha|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <hr>
+    <ul>
+        <li><strong>Fecha</strong>: {{ entrada.fecha|date('Y-m-d H:i') }}</li>
+    </ul>
 
     <ul class="record_actions">
         <li>
             <a href="{{ path('entrada_index') }}">
-                Back to the list
+                Volver
             </a>
         </li>
         <li>
