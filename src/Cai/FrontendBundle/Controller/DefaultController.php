@@ -11,16 +11,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->redirectToRoute('cai_frontend_home');
-        $em = $this->getDoctrine()->getManager();
-        $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
-        return $this->render('CaiFrontendBundle:Default:mantenimiento.html.twig',array(
-            'contacto'  => $contacto
-        ));
-    }
-
-    public function homeAction()
-    {
         $em = $this->getDoctrine()->getManager();
         $seguimiento = new Seguimiento();
         $seguimiento->setEtiqueta('inicio')
@@ -41,6 +31,11 @@ class DefaultController extends Controller
             'principal'   => $principal,
             'noticias'    => $noticias,
         ));
+    }
+
+    public function homeAction()
+    {
+        return $this->redirectToRoute('cai_frontend_homepage');
     }
 
     public function entradaAction($slug){
