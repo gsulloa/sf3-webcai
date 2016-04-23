@@ -139,11 +139,18 @@ div.dropdown{
     src: url('../fonts/ubuntu.woff');
 }
 
-h1,h2,h3,h4,h5{
+h1,h2,h3,h4,h5,.menu{
     font-family: bebas-neue;
+}
+.menu{
+    font-size: 20px;
 }
 p, body, blockquote,a, .user{
     font-family: ubuntu;
+    font-size: 15px;
+}
+.newsTitle{
+    font-size: 24px
 }
 blockquote{
     font-size: 14px;
