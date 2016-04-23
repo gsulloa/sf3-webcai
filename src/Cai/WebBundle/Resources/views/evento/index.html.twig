@@ -11,6 +11,7 @@
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Fecha Inicio</th>
+                <th>Fecha Termino</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{% if evento.fechaInicio %}{{ evento.fechaInicio|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if evento.fechaFin %}{{ evento.fechaFin|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>

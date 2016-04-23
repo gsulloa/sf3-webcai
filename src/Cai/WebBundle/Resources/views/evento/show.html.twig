@@ -14,8 +14,12 @@
                 <td>{{ evento.descripcion }}</td>
             </tr>
             <tr>
-                <th>Fecha</th>
+                <th>Fecha Inicio</th>
                 <td>{% if evento.fechaInicio %}{{ evento.fechaInicio|date('Y-m-d H:i') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecha Termino</th>
+                <td>{% if evento.fechaFin %}{{ evento.fechaFin|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
