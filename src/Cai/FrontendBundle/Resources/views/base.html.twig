@@ -5,8 +5,8 @@
         {% block meta %}{% endblock %}
         <title>{% block title %}Centro de Alumnos de Ingeniería UC{% endblock %}</title>
         {{ include('CaiWebBundle:utils:css_base.html.twig') }}
-        {{ include('CaiWebBundle:utils:js_base.html.twig') }}
         <link href="{{ asset('public/css/frontend.css') }}" rel="stylesheet">
+        {{ include('CaiWebBundle:utils:js_base.html.twig') }}
         {% block stylesheets %}{% endblock %}
         {{ include('CaiWebBundle:utils:icono.html.twig') }}
     </head>
