@@ -134,8 +134,8 @@ div.dropdown{
     font-family: bebas-neue;
     src: url('../fonts/bebas-neue.woff');
 }
-@font-face: {
-    font-family: ubuntu
+@font-face {
+    font-family: ubuntu;
     src: url('../fonts/ubuntu.woff');
 }
 
@@ -159,4 +159,8 @@ blockquote{
     display: inline-block;
     vertical-align: middle;
     float: none;
+}
+
+.fc-day-grid-event > .fc-content {
+    white-space: normal;
 }
