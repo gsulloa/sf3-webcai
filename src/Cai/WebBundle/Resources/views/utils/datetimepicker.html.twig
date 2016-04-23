@@ -1,7 +1,10 @@
+{% if step is not defined %}
+{% set step = 5 %}
+{% endif %}
 <script>
     $.datetimepicker.setLocale('es');
     $('#{{ id }}').datetimepicker({
-        step: 5
+        step: {{ step }}
 
     });
 </script>

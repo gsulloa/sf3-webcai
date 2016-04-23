@@ -1,12 +1,13 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Evento list</h1>
-
-    <table>
+    <h1>Eventos</h1>
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ path('evento_new') }}">Crear nuevo Evento</a>
+    </div>
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Fecha Inicio</th>
@@ -14,19 +15,18 @@
             </tr>
         </thead>
         <tbody>
-        {% for evento in eventos %}
+        {% for evento in eventos|reverse %}
             <tr>
-                <td><a href="{{ path('evento_show', { 'id': evento.id }) }}">{{ evento.id }}</a></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
-                <td>{% if evento.fechaInicio %}{{ evento.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if evento.fechaInicio %}{{ evento.fechaInicio|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('evento_show', { 'id': evento.id }) }}">show</a>
+                            <a class="btn btn-default" href="{{ path('evento_show', { 'id': evento.id }) }}">Ver</a>
                         </li>
                         <li>
-                            <a href="{{ path('evento_edit', { 'id': evento.id }) }}">edit</a>
+                            <a class="btn btn-warning" href="{{ path('evento_edit', { 'id': evento.id }) }}">Editar</a>
                         </li>
                     </ul>
                 </td>
@@ -35,9 +35,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('evento_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

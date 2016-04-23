@@ -1,7 +1,10 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
+{% form_theme form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
 
 {% block body %}
-    <h1>Evento creation</h1>
+    <h1>Crear Evento</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -13,4 +16,8 @@
             <a href="{{ path('evento_index') }}">Back to the list</a>
         </li>
     </ul>
+{% endblock %}
+{% block javascripts %}
+    {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'evento_fecha_inicio', 'step':30 } %}
+    {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'evento_fecha_fin', 'step':30 } %}
 {% endblock %}
