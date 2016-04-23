@@ -1,23 +1,25 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>User list</h1>
+    <h1>Usuarios</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nombre</th>
                 <th>Username</th>
-                <th>Password</th>
+                <th>Mail</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
-            <tr>
+            <tr {% if user.active == 0 %}class="danger"{% endif %}>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
+                <td>{{ user.profile.mail }}</td>
                 <td>
                     <ul>
                         <li>

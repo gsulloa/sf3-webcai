@@ -3,19 +3,35 @@
 {% block body %}
     <h1>User</h1>
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
+                <th>Nombre</th>
+                <td>{{ user }}</td>
             </tr>
             <tr>
                 <th>Username</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
+                <th>Activo</th>
+                <td>{{ user.active ? "Si" : "No" }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ user.profile.mail }}</td>
+            </tr>
+            <tr>
+                <th>Celular</th>
+                <td>{{ user.profile.celular }}</td>
+            </tr>
+            <tr>
+                <th>RUT</th>
+                <td>{{ user.profile.rut }}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ user.profile.sexo }}</td>
             </tr>
             <tr>
                 <th>Foto</th>
