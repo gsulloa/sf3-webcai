@@ -3,6 +3,7 @@
 namespace Cai\WebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,12 @@ class PersonaType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('categoria')
+            ->add('categoria',ChoiceType::class,array(
+                'choices' => array(
+                    'Persona' => "Persona",
+                    "Proyecto" => "Proyecto"
+                )
+            ))
             ->add('descripcion_corta')
             ->add('descripcion')
             ->add('mail')
