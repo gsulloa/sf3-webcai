@@ -18,7 +18,6 @@ class PaginaType extends AbstractType
     {
         $builder
             ->add('titulo')
-            ->add('slug')
             ->add('cuerpo')
             ->add('fecha',DateTimeType::class, array(
                 'widget' => 'single_text',
