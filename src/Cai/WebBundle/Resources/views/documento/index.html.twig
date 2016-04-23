@@ -1,34 +1,35 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Documento list</h1>
+    <h1>Documentos</h1>
 
-    <table>
+    <div class="pull-right">
+            <a class="btn btn-primary" href="{{ path('documento_new') }}">Subir nuevo Documento</a>
+    </div>
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Filename</th>
                 <th>URL</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for documento in documentos %}
+        {% for documento in documentos|reverse %}
             <tr>
-                <td><a href="{{ path('documento_show', { 'id': documento.id }) }}">{{ documento.id }}</a></td>
                 <td>{{ documento.filename }}</td>
                 <td>
-                    <a href="{{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename ~ '.' ~ documento.extension}}" target="_blank">
+                    <a href="{{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename ~ '.' ~ documento.extension }}">
                         {{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename ~ '.' ~ documento.extension }}
                     </a>
                 </td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('documento_show', { 'id': documento.id }) }}">show</a>
+                            <a class="btn btn-warning" href="{{ path('documento_edit', { 'id': documento.id }) }}">edit</a>
                         </li>
                         <li>
-                            <a href="{{ path('documento_edit', { 'id': documento.id }) }}">edit</a>
+                            <a class="btn btn-default" href="{{ asset('uploads/biblioteca/documentos/') ~ documento.filenamebinary ~ '/' ~ documento.filename ~ '.' ~ documento.extension }}">Abrir</a>
                         </li>
                     </ul>
                 </td>
@@ -37,9 +38,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('documento_new') }}">Create a new entry</a>
-        </li>
-    </ul>
 {% endblock %}
+

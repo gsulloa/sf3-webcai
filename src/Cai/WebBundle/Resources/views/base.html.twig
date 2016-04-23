@@ -35,7 +35,7 @@
                 <li {{ tab == 'cai_web_homepage' ? 'class="active"' : '' }}>
                     <a href="{{ path('cai_web_homepage') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                 </li>
-                {% if is_granted('ROLE_DIRECTIVA') %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <li {{ tab == 'categoria_index' ? 'class="active"' : '' }}>
                     <a href="{{ path('categoria_index') }}"><i class="fa fa-list-alt fa-fw"></i> Categoria</a>
                 </li>
