@@ -76,7 +76,7 @@
                 <div class="col-md-6 col-xs-12" style="padding: 0 0 15px 0">
                     <div class="row">
                         <div class="col-xs-5 middle">
-                            <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                            <img style="max-width: 150px;max-height: 150px" class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
                         </div>
                         <div class="col-xs-6 middle">
                             <h3><a class="newsTitle" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
@@ -98,7 +98,7 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-xs-5">
-                                    <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
+                                    <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" style="max-width: 150px;max-height: 150px"/>
                                 </div>
                                 <div class="col-xs-6">
                                     <h3><a class="newsTitle" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
