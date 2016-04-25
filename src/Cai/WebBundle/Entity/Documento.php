@@ -56,6 +56,12 @@ class Documento
 
     /**
      *
+     * @ORM\Column(name="fullname", type="string", length=255)
+     */
+    protected $fullname;
+
+    /**
+     *
      * @Assert\File(
      *  maxSize="15360k"
      * )
@@ -72,6 +78,14 @@ class Documento
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        // check if we have an old image path
+        if (isset($this->fullname)) {
+            // store the old name to delete after the update
+            $this->temp = $this->fullname;
+            $this->fullname = null;
+        } else {
+            $this->fullname = 'initial';
+        }
     }
 
     /**
@@ -126,23 +140,28 @@ class Documento
                 $extension = 'bin';
             }
             $this->extension = $extension;
+            $this->settingFilename();
 
-            // do whatever you want to generate a unique name
-            if($this->filenamebinary === null){
-                $this->filenamebinary = date_format(new \DateTime('now'),"Y/m/d");
-            }
-            global $kernel;
-            if ('AppCache' == get_class($kernel)) {
-                $kernel = $kernel->getKernel();
-            }
-            $auxiliar = $kernel->getContainer()->get('cai_web.auxiliar');
-            if ($this->filename != null) {
-                $this->filename = $auxiliar->toAscii($this->filename);
-            }else {
-                $this->filename = $auxiliar->toAscii(str_replace('.' . $this->extension, '', $this->getFile()->getClientOriginalName()));
-            }
-            $this->filename = $auxiliar->slugGenerator($this->filename,$auxiliar->documentosGet($this));
         }
+    }
+
+    public function settingFilename(){
+        // do whatever you want to generate a unique name
+        if($this->filenamebinary === null){
+            $this->filenamebinary = date_format(new \DateTime('now'),"Y/m/d");
+        }
+        global $kernel;
+        if ('AppCache' == get_class($kernel)) {
+            $kernel = $kernel->getKernel();
+        }
+        $auxiliar = $kernel->getContainer()->get('cai_web.auxiliar');
+        if ($this->filename != null) {
+            $this->filename = $auxiliar->toAscii($this->filename);
+        }else {
+            $this->filename = $auxiliar->toAscii(str_replace('.' . $this->extension, '', $this->getFile()->getClientOriginalName()));
+        }
+        $this->filename = $auxiliar->slugGenerator($this->filename,$auxiliar->documentosGet($this));
+        $this->fullname = $this->filename . '.' . $this->extension;
     }
 
     /**
@@ -155,7 +174,20 @@ class Documento
             return;
         }
 
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->getUploadRootDir() . $this->temp);
+            // clear the temp image path
+            $this->temp = null;
+
+        }
         $this->getFile()->move($this->getUploadRootDir(), $this->filename . '.' . $this->extension);
+        // check if we have an old image
+
+        $this->file = null;
 
     }
 
