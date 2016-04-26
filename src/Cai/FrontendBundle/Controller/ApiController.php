@@ -21,6 +21,9 @@ class ApiController extends Controller
             if($evento->getAllDay()) {
                 $formato = "Ymd";
                 $fullDay = true;
+                $date = $evento->getFechaFin();
+                date_add($date, date_interval_create_from_date_string('1 days'));
+                $evento->setFechaFin($date);
             }
             $inicio = (new \DateTime($evento->getFechaInicio()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H'))->format($formato);
             $fin = (new \DateTime($evento->getFechaFin()->format(\DateTime::ISO8601)))->add(new \DateInterval('PT3H30S'))->format($formato);
