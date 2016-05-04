@@ -24,9 +24,16 @@ class Reclamo
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
-    private $contacto;
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @var string
@@ -122,5 +129,53 @@ class Reclamo
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Reclamo
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Reclamo
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

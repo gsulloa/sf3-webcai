@@ -24,9 +24,16 @@ class Reclamo
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
-    private $contacto;
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @var string
@@ -37,7 +44,7 @@ class Reclamo
 
     /**
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="reclamos")
-     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id", nullable=false)
      */
     private $categoria;
 
@@ -99,5 +106,28 @@ class Reclamo
     {
         return $this->texto;
     }
-}
 
+    /**
+     * Set categoria
+     *
+     * @param \Cai\ReclamosBundle\Entity\Categoria $categoria
+     *
+     * @return Reclamo
+     */
+    public function setCategoria(\Cai\ReclamosBundle\Entity\Categoria $categoria = null)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return \Cai\ReclamosBundle\Entity\Categoria
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+}
