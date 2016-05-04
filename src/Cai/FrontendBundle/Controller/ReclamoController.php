@@ -38,7 +38,10 @@ class ReclamoController extends Controller
             if($this->getUser()){
                 $this->setUser($reclamo);
             }
-            $domains = array('gmail.com', 'uc.cl', 'ing.puc.cl');
+            $domains = array('gmail.com',
+                                'uc.cl',
+                                'ing.puc.cl'
+            );
             $i = 0;
             $email = $reclamo->getEmail();
             while($i < sizeof($domains) && preg_match("/$domains[$i]$/", $email) != 1){

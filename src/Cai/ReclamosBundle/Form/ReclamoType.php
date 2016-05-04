@@ -3,6 +3,7 @@
 namespace Cai\ReclamosBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,13 @@ class ReclamoType extends AbstractType
                 'label' =>  "Nombre"))
             ->add('email',EmailType::class,array(
                 'label' =>  "Email"))
+            ->add('tipo',ChoiceType::class,array(
+                'choices' => array(
+                    'Alumno'        => "alumno",
+                    'Funcionario'   => "funcionario",
+                    'Profesor'      => "profesor"),
+                'label' => "Soy: "
+            ))
             ->add('categoria')
             ->add('texto')
         ;

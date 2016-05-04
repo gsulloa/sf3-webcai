@@ -1,24 +1,26 @@
 {% extends 'CaiWebBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Reclamo list</h1>
+    <h1>Reclamos</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Mail</th>
+                <th>Tipo</th>
                 <th>Texto</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for reclamo in reclamos %}
+        {% for reclamo in reclamos | reverse%}
             <tr>
                 <td><a href="{{ path('reclamo_show', { 'id': reclamo.id }) }}">{{ reclamo.id }}</a></td>
                 <td>{{ reclamo.nombre }}</td>
                 <td>{{ reclamo.email }}</td>
+                <td>{{ reclamo.tipo }}</td>
                 <td>{{ reclamo.texto }}</td>
                 <td>
                     <ul>

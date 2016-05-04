@@ -27,6 +27,12 @@ class Reclamo
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=255, nullable=false)
+     */
+    private $tipo;
 
     /**
      * @var string
@@ -177,5 +183,29 @@ class Reclamo
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     *
+     * @return Reclamo
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
     }
 }
