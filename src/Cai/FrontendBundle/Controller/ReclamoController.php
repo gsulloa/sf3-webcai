@@ -16,6 +16,10 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 class ReclamoController extends Controller
 {
+    private function setUser(Reclamo $reclamo){
+        $reclamo->setNombre(strval($this->getUser()))
+            ->setEmail($this->getUser()->getProfile()->getMail());
+    }
     /**
      * Creates a new Reclamo entity.
      *
@@ -23,11 +27,17 @@ class ReclamoController extends Controller
     public function newAction(Request $request)
     {
         $reclamo = new Reclamo();
+        if($this->getUser()){
+            $this->setUser($reclamo);
+        }
         $form = $this->createForm('Cai\ReclamosBundle\Form\ReclamoType', $reclamo);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $contacto = $em->getRepository('CaiWebBundle:Contacto')->find(1);
         if ($form->isSubmitted()) {
+            if($this->getUser()){
+                $this->setUser($reclamo);
+            }
             $domains = array('gmail.com', 'uc.cl', 'ing.puc.cl');
             $i = 0;
             $email = $reclamo->getEmail();
@@ -45,6 +55,7 @@ class ReclamoController extends Controller
                 unset($reclamo);
                 unset($form);
                 $reclamo = new Reclamo();
+                $this->setUser($reclamo);
                 $form = $this->createForm('Cai\ReclamosBundle\Form\ReclamoType', $reclamo);
             }
         }

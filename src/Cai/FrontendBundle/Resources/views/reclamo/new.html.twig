@@ -19,3 +19,11 @@
 
     {{ form_end(form) }}
 {% endblock %}
+{% block javascripts %}
+    {% if app.user %}
+    <script>
+        $('#reclamo_nombre').prop('readonly',true)
+        $('#reclamo_email').prop('readonly',true)
+    </script>
+    {% endif %}
+{% endblock %}

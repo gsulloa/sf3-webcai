@@ -7,7 +7,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Contacto</th>
+                <th>Nombre</th>
+                <th>Mail</th>
                 <th>Texto</th>
                 <th>Actions</th>
             </tr>
@@ -16,7 +17,8 @@
         {% for reclamo in reclamos %}
             <tr>
                 <td><a href="{{ path('reclamo_show', { 'id': reclamo.id }) }}">{{ reclamo.id }}</a></td>
-                <td>{{ reclamo.contacto }}</td>
+                <td>{{ reclamo.nombre }}</td>
+                <td>{{ reclamo.email }}</td>
                 <td>{{ reclamo.texto }}</td>
                 <td>
                     <ul>
