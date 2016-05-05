@@ -29,7 +29,7 @@ cai_frontend_api:
     resource: "@CaiFrontendBundle/Resources/config/routing/api.yml"
     prefix:   /api
 cai_frontend_reclamos:
-    path:     /reclamos
+    path:     /buzon
     defaults: { _controller: CaiFrontendBundle:Reclamo:new }
 cai_frontend_page:
     path:     /{slug}
