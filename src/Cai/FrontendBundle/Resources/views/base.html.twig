@@ -159,9 +159,11 @@
             if ($(window).scrollTop() > pos+100) {
                 $('#custom-bootstrap-menu').addClass('fixed');
                 $('#custom-bootstrap-menu').css('border-radius',0)
+                $('body').css('padding-top','50px')
             } else {
                 $('#custom-bootstrap-menu').removeClass('fixed');
                 $('#custom-bootstrap-menu').css('border-radius',50)
+                $('body').css('padding-top','0')
             }
         });
     </script>
