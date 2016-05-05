@@ -85,7 +85,9 @@ class PaginaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $pagina->setCuerpo(str_replace('&quot;','"',$pagina->getCuerpo()));
+            $pagina->setCuerpo($pagina->getCuerpo());
+            //generar Slug
+            $this->generatingSlug($pagina);
             $em = $this->getDoctrine()->getManager();
             $em->persist($pagina);
             $em->flush();
