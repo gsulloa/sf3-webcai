@@ -20,6 +20,7 @@
     {{ form_end(form) }}
 {% endblock %}
 {% block javascripts %}
+    {{ parent() }}
     {% if app.user %}
     <script>
         $('#reclamo_nombre').prop('readonly',true);
