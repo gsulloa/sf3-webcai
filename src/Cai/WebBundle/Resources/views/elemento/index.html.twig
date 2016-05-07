@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Titulo</th>
                 <th>Path</th>
+                <th>Orden</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td><a href="{{ path('elemento_show', { 'id': elemento.id }) }}">{{ elemento.id }}</a></td>
                 <td>{{ elemento.titulo }}</td>
                 <td>{{ elemento.path }}</td>
+                <td>{{ elemento.orden }}</td>
                 <td>
                     <ul>
                         <li>

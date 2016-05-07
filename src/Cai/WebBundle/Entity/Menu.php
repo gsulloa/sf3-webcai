@@ -2,6 +2,7 @@
 
 namespace Cai\WebBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,8 +112,19 @@ class Menu
      */
     public function getElemento()
     {
-        return $this->elemento;
+        $sorting =$this->elemento->toArray();
+        usort($sorting, function($a, $b)
+        {
+            if($a->getOrden() == $b->getOrden())return 0;
+            else if($a->getOrden()  > $b->getOrden())return 1;
+            else return -1;
+        }
+        );
+        return new ArrayCollection($sorting);
     }
+
+
+
 
     /**
      * Set submenu

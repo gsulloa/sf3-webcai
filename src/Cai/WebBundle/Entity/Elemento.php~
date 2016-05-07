@@ -160,28 +160,4 @@ class Elemento
     {
         return $this->submenu;
     }
-
-    /**
-     * Set orden
-     *
-     * @param integer $orden
-     *
-     * @return Elemento
-     */
-    public function setOrden($orden)
-    {
-        $this->orden = $orden;
-
-        return $this;
-    }
-
-    /**
-     * Get orden
-     *
-     * @return integer
-     */
-    public function getOrden()
-    {
-        return $this->orden;
-    }
 }
