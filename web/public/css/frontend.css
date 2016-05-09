@@ -138,6 +138,10 @@ div.dropdown{
     font-family: ubuntu;
     src: url('../fonts/ubuntu.woff');
 }
+@font-face {
+    font-family: ubuntu-light;
+    src: url('../fonts/ubuntu-light.woff');
+}
 
 h1,h2,h3,h4,h5,.menu{
     font-family: bebas-neue;
@@ -146,11 +150,12 @@ h1,h2,h3,h4,h5,.menu{
     font-size: 20px;
 }
 p, body, blockquote,a, .user{
-    font-family: ubuntu;
+    font-family: ubuntu-light;
     font-size: 15px;
 }
 .newsTitle{
-    font-size: 24px
+    font-family: ubuntu;
+    font-size: 24px;
 }
 blockquote{
     font-size: 14px;
