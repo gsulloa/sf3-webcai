@@ -1,4 +1,8 @@
-{% extends 'CaiFrontendBundle::layout.html.twig' %}
+{% set  base = "layout.html.twig" %}
+{% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
+    {% set base = "base.mob.twig" %}
+{% endif %}
+{% extends 'CaiFrontendBundle::' ~ base %}
 {% form_theme form_user with [
             'bootstrap_3_horizontal_layout.html.twig'
     ] %}
