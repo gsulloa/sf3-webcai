@@ -185,7 +185,6 @@ class Imagen
         $imagen_final_auspicio = $this->getUploadRootDir() . 'auspicio-' . $this->filename;
         $imagen_final_slider = $this->getUploadRootDir() . 'slider-' . $this->filename;
         $imagen_final_noticia = $this->getUploadRootDir() . 'noticia-' . $this->filename;
-        $imagen_final_mobile = $this->getUploadRootDir() . 'mobile-' . $this->filename;
 
         $resize_images = [
             [
@@ -208,11 +207,7 @@ class Imagen
             ],
         ];
         $crop_images =[
-            [
-                'final_name'    => $imagen_final_mobile,
-                'width'         => 300,
-                'height'        => 300
-            ],[
+                [
                 'final_name'    => $imagen_final_noticia,
                 'width'         => 150,
                 'height'        => 150
@@ -241,7 +236,6 @@ class Imagen
             unlink($this->getUploadRootDir() . '/auspicio-' . $this->filename);
             unlink($this->getUploadRootDir() . '/slider-' . $this->filename);
             unlink($this->getUploadRootDir() . '/noticia-' . $this->filename);
-            unlink($this->getUploadRootDir() . '/mobile-' . $this->filename);
             rmdir($this->getUploadDir());
         }
     }
@@ -313,7 +307,6 @@ class Imagen
     public function __construct()
     {
         $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->evento = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -380,39 +373,5 @@ class Imagen
     public function getSlide()
     {
         return $this->slide;
-    }
-
-    /**
-     * Add evento
-     *
-     * @param \Cai\WebBundle\Entity\Evento $evento
-     *
-     * @return Imagen
-     */
-    public function addEvento(\Cai\WebBundle\Entity\Evento $evento)
-    {
-        $this->evento[] = $evento;
-
-        return $this;
-    }
-
-    /**
-     * Remove evento
-     *
-     * @param \Cai\WebBundle\Entity\Evento $evento
-     */
-    public function removeEvento(\Cai\WebBundle\Entity\Evento $evento)
-    {
-        $this->evento->removeElement($evento);
-    }
-
-    /**
-     * Get evento
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getEvento()
-    {
-        return $this->evento;
     }
 }

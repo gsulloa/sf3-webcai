@@ -8,16 +8,41 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+    <div class="row form-group" id="0">
+        <div class="col-md-4 col-sm-offset-2">
+            <div id="slide_0" class="slide_img">
+                <img class="img" id="img_slide_0" src="
+                {% if evento.image is defined %}
+                {{ asset('uploads/biblioteca/imagenes/') }}{{ evento.imagen.filenamebinary }}/small-{{ evento.imagen.filename }}
+                {% else %}
+                {{ asset('public/images/no-foto-800px.png') }}
+                {% endif %}
+                ">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="img_selector btn btn-primary" id="img_selector_slide_0">Escoger imágen</div>
+            </div>
+            <input name="img_slide_0" id="img_slide_0" type="hidden">
+        </div>
+    </div>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
+    {% include 'CaiWebBundle:ImageSelector:selector.html.twig' %}
     <ul>
         <li>
             <a href="{{ path('evento_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}
+{% block stylesheets %}
+    {% include 'CaiWebBundle:utils:image_selector_css.html.twig' %}
+{% endblock %}
 {% block javascripts %}
     {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'evento_fecha_inicio', 'step':30 } %}
     {% include 'CaiWebBundle:utils:datetimepicker.html.twig' with {'id': 'evento_fecha_fin', 'step':30 } %}
+    <script type="text/javascript" src="{{ asset('public/js/image_selector.js') }}"></script>
+    {% include 'CaiWebBundle:utils:scrolling_image_selector.html.twig' %}
 {% endblock %}

@@ -41,15 +41,22 @@ class EventoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //agregar imagen
+            $image = $em->getRepository('CaiWebBundle:Imagen')->find(substr($request->request->get('img_slide_0'),6));
+            if($image!==null) {
+                $evento->setImagen($image);
+            }
             $em->persist($evento);
             $em->flush();
 
             return $this->redirectToRoute('evento_show', array('id' => $evento->getId()));
         }
-
+        $auxiliar = $this->get('cai_web.auxiliar');
+        $images = $auxiliar->getImages();
         return $this->render('CaiWebBundle:evento:new.html.twig', array(
             'evento' => $evento,
             'form' => $form->createView(),
+            'images' => $images,
         ));
     }
 
@@ -79,16 +86,23 @@ class EventoController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //agregar imagen
+            $image = $em->getRepository('CaiWebBundle:Imagen')->find(substr($request->request->get('img_slide_0'),6));
+            if($image!==null) {
+                $evento->setImagen($image);
+            }
             $em->persist($evento);
             $em->flush();
 
             return $this->redirectToRoute('evento_edit', array('id' => $evento->getId()));
         }
-
+        $auxiliar = $this->get('cai_web.auxiliar');
+        $images = $auxiliar->getImages();
         return $this->render('CaiWebBundle:evento:edit.html.twig', array(
             'evento' => $evento,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'images' => $images,
         ));
     }
 
