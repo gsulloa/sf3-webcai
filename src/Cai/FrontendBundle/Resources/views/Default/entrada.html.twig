@@ -25,16 +25,16 @@
         </div>
         <div class="panel-body">
             <ul>
-                <li>Publicada el: {{ entrada.fecha|date('Y-m-d') }} a las {{ entrada.fecha|date('H:i') }} horas</li>
+                <li><strong>Publicada el</strong>: {{ entrada.fecha|date('d-m-Y') }} a las {{ entrada.fecha|date('H:i') }} horas</li>
                 <li>
-                    Categorías:
+                    <strong>Categorías</strong>:
                     <ul>
                         {% for categoria in entrada.categorias %}
                         <li>{{ categoria }}</li>
                         {% endfor %}
                     </ul>
                 </li>
-                <li>Autor: {{ entrada.user }}</li>
+                <li><strong>Autor</strong>: {{ entrada.user }}</li>
 
             </ul>
         </div>
