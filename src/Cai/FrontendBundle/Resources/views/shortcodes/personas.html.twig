@@ -18,11 +18,15 @@
                 <div class="pull-right">
                 </div>
             </div>
-            {% if persona.descripcion %}
+            {% if persona.descripcion and data.descripcion_larga=="si" %}
                 <div class="row text-justify text-info" style="padding: 15px">
                     {{ persona.descripcion | raw }}
                 </div>
             {% endif %}
+
+
+
+
         {% elseif n == 12 %}
             <div class="col-md-12">
                 <div class="row">

@@ -125,12 +125,14 @@ class Auxiliar extends Controller
         $new_array = array();
         foreach($array as $data){
             if ($data['type'] == "personas"){
+                $data['descripcion_larga'] = "si";
+                $data['por_fila'] = "3";
                 foreach($data['info'] as $info){
                     $info = explode('=',$info);
                     if($info[0] == 'ids'){
                         $data['personas'] = $this->getPersonas(substr($info[1],1,-1));
-                    }elseif($info[0]=='por_fila'){
-                        $data['por_fila'] = substr($info[1],1,-1);
+                    }else {
+                       $data[$info[0]] =  substr($info[1],1,-1);
                     }
                 }
             }
