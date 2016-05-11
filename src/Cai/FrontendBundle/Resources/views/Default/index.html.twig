@@ -68,42 +68,41 @@
     <div class="row">
     <div class="container-fluid">
         <h1 class="text-center">{% if app.user %}Mis {% endif %}Noticias<p style="font-size: 14px" class=""><a href="{{ path('cai_frontend_noticias') }}">Ver todas</a></p></h1>
+
         {% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
             {% for noticia in noticias %}
                 {% if loop.index0  % 2 == 0 %}
                     <div class="row">
                 {% endif %}
-                <div class="col-md-6 col-xs-12" style="padding: 0 0 15px 0">
-                    <div class="row">
-                        <div class="col-xs-5 middle">
-                            <img style="max-width: 150px;max-height: 150px" class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" />
-                        </div>
-                        <div class="col-xs-6 middle">
-                            <h3><a class="newsTitle" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
-                            <p>{{ noticia.fecha|date('Y-m-d H:i') }}</p>
-                        </div>
+                <div class="media col-md-6" style="margin: 0 0 15px 0">
+                    <div class="media-left media-middle">
+                        <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" style="max-width: 150px;max-height: 150px"/>
+                    </div>
+                    <div class="media-body">
+                        <h3><a class="newsTitle media-heading" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                        <p>{{ noticia.fecha|date('Y-m-d H:i') }}</p>
                     </div>
                 </div>
                 {% if loop.index % 2 == 0 or loop.last %}
                     </div>
                 {% endif %}
             {% endfor %}
+
         {% else %}
+
         <ul class="news-slider">
             {% for noticia in noticias %}
                 {% if loop.index0  % 2 == 0 %}
             <li>
                 <div class="row" style="padding: 10px">
                 {% endif %}
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" style="max-width: 150px;max-height: 150px"/>
-                                </div>
-                                <div class="col-xs-6">
-                                    <h3><a class="newsTitle" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
-                                    <p>{{ noticia.fecha|date('Y-m-d H:i') }}</p>
-                                </div>
+                        <div class="media col-md-6" style="margin: 0">
+                            <div class="media-left">
+                                <img class="img-responsive center-block img-thumbnail"  src="{{ asset('uploads/biblioteca/imagenes/' ~ noticia.imagen.filenamebinary ~ '/noticia-' ~ noticia.imagen.filename) }}" style="max-width: 150px;max-height: 150px"/>
+                            </div>
+                            <div class="media-body">
+                                <h3><a class="newsTitle media-heading" href="{{ path('cai_frontend_entrada',{slug: noticia.slug}) }}">{{ noticia.titulo }}</a></h3>
+                                <p>{{ noticia.fecha|date('Y-m-d H:i') }}</p>
                             </div>
                         </div>
                 {% if loop.index % 2 == 0 or loop.last %}
