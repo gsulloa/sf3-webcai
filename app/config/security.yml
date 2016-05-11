@@ -68,8 +68,8 @@ security:
         - { path: ^/backend/contacto, roles: ROLE_DIRECTIVA }
         - { path: ^/backend, roles: ROLE_JEFE_DE_COMISION }
 
-        - { path: ^/perfil, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/clubes/crear, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/perfil, roles: ROLE_USER }
+        - { path: ^/clubes/crear, roles: ROLE_USER }
 
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
