@@ -114,10 +114,10 @@ class Imagen
     {
         return null === $this->filenamebinary
             ? null
-            : $this->getUploadDir() . '/' . $this->filenamebinary;
+            : $this->getUploadDir();
     }
 
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
