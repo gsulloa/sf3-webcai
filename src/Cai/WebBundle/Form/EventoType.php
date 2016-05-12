@@ -26,6 +26,7 @@ class EventoType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd HH:mm',
             ))
+            ->add('lugar')
             ->add('allDay')
             ->add('categoria')
         ;

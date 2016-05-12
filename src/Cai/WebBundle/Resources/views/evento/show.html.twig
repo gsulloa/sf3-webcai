@@ -21,6 +21,20 @@
                 <th>Fecha Termino</th>
                 <td>{% if evento.fechaFin %}{{ evento.fechaFin|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Lugar</th>
+                <td>{{ evento.lugar }}</td>
+            </tr>
+            <tr>
+                <th>Imágen</th>
+                <td> <img class="img-responsive" src="
+                    {% if evento.imagen %}
+                {{ asset('uploads/biblioteca/imagenes/') }}{{ evento.imagen.filenamebinary }}/small-{{ evento.imagen.filename }}
+                {% else %}
+                {{ asset('public/images/no-foto-800px.png') }}
+                {% endif %}
+                    " style="max-width: 300px"></td>
+            </tr>
         </tbody>
     </table>
 

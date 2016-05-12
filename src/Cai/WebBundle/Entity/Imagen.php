@@ -63,7 +63,7 @@ class Imagen
      *
      * @ORM\OneToMany(targetEntity="Evento", mappedBy="imagen")
      */
-    protected $evento;
+    protected $eventos;
 
     /**
      *
@@ -313,7 +313,7 @@ class Imagen
     public function __construct()
     {
         $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->evento = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -383,15 +383,15 @@ class Imagen
     }
 
     /**
-     * Add evento
+     * Add eventos
      *
-     * @param \Cai\WebBundle\Entity\Evento $evento
+     * @param \Cai\WebBundle\Entity\Evento $eventos
      *
      * @return Imagen
      */
     public function addEvento(\Cai\WebBundle\Entity\Evento $evento)
     {
-        $this->evento[] = $evento;
+        $this->eventos[] = $evento;
 
         return $this;
     }
@@ -403,7 +403,7 @@ class Imagen
      */
     public function removeEvento(\Cai\WebBundle\Entity\Evento $evento)
     {
-        $this->evento->removeElement($evento);
+        $this->eventos->removeElement($evento);
     }
 
     /**
@@ -411,8 +411,8 @@ class Imagen
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEvento()
+    public function getEventos()
     {
-        return $this->evento;
+        return $this->eventos;
     }
 }

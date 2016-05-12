@@ -12,7 +12,7 @@
         <div class="col-md-4 col-sm-offset-2">
             <div id="slide_0" class="slide_img">
                 <img class="img" id="img_slide_0" src="
-                {% if evento.imagen is defined %}
+                {% if evento.imagen %}
                 {{ asset('uploads/biblioteca/imagenes/') }}{{ evento.imagen.filenamebinary }}/small-{{ evento.imagen.filename }}
                 {% else %}
                 {{ asset('public/images/no-foto-800px.png') }}

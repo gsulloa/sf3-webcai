@@ -71,6 +71,12 @@ class Evento
      */
     private $imagen;
 
+    /**
+     * @var string
+     * @ORM\Column(name="lugar", type="string", length=255, nullable=true)
+     */
+    private $lugar;
+
 
 
     /**
@@ -251,5 +257,29 @@ class Evento
     public function getImagen()
     {
         return $this->imagen;
+    }
+
+    /**
+     * Set lugar
+     *
+     * @param string $lugar
+     *
+     * @return Evento
+     */
+    public function setLugar($lugar)
+    {
+        $this->lugar = $lugar;
+
+        return $this;
+    }
+
+    /**
+     * Get lugar
+     *
+     * @return string
+     */
+    public function getLugar()
+    {
+        return $this->lugar;
     }
 }

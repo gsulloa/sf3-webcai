@@ -5,6 +5,7 @@ namespace Cai\FrontendBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Cai\WebBundle\Entity\Evento;
 
 class ApiController extends Controller
 {
@@ -15,7 +16,6 @@ class ApiController extends Controller
         $eventos = $em->getRepository('CaiWebBundle:Evento')->findAllBetween($start,$end);
         $eventos_array = array();
         foreach($eventos as $evento){
-
             $formato = "Ymd\THis";
             $fullDay = false;
             if($evento->getAllDay()) {
@@ -32,8 +32,8 @@ class ApiController extends Controller
                 $fin = $fin . 'Z';
             }
             //agregar control AllDay
-            $url = "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=&trp=false&sprop=name:sf=true";;
-            "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=&trp=false&sprop=name:sf=true";
+            $url = "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=".$evento->getLugar()."&trp=false&sprop=name:sf=true";;
+            "http://www.google.com/calendar/event?action=TEMPLATE&ctz=America/Santiago&text=".$evento->getNombre()."&dates=".$inicio."/".$fin."&details=".$evento->getDescripcion()."&location=&trp=false &sprop=name:sf=true";
 
             $eventos_array[] = array(
                 "start" => date_format($evento->getFechaInicio(), "Y-m-d\TH:i:s"),

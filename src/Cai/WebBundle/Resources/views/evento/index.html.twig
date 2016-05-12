@@ -12,6 +12,8 @@
                 <th>Descripcion</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Termino</th>
+                <th>Lugar</th>
+                <th></th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,6 +24,16 @@
                 <td>{{ evento.descripcion }}</td>
                 <td>{% if evento.fechaInicio %}{{ evento.fechaInicio|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>{% if evento.fechaFin %}{{ evento.fechaFin|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{{ evento.lugar }}</td>
+                <td>
+                    <img class="img-responsive" src="
+                    {% if evento.imagen %}
+                {{ asset('uploads/biblioteca/imagenes/') }}{{ evento.imagen.filenamebinary }}/small-{{ evento.imagen.filename }}
+                {% else %}
+                {{ asset('public/images/no-foto-800px.png') }}
+                {% endif %}
+                    ">
+                </td>
                 <td>
                     <ul>
                         <li>
