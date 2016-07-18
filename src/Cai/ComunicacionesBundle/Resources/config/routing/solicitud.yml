@@ -1,0 +1,24 @@
+solicitud_index:
+    path:     /
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:index" }
+    methods:  GET
+
+solicitud_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:show" }
+    methods:  GET
+
+solicitud_new:
+    path:     /new
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:new" }
+    methods:  [GET, POST]
+
+solicitud_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:edit" }
+    methods:  [GET, POST]
+
+solicitud_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:delete" }
+    methods:  DELETE

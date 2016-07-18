@@ -1,0 +1,24 @@
+material_index:
+    path:     /
+    defaults: { _controller: "CaiComunicacionesBundle:Material:index" }
+    methods:  GET
+
+material_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiComunicacionesBundle:Material:show" }
+    methods:  GET
+
+material_new:
+    path:     /new
+    defaults: { _controller: "CaiComunicacionesBundle:Material:new" }
+    methods:  [GET, POST]
+
+material_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiComunicacionesBundle:Material:edit" }
+    methods:  [GET, POST]
+
+material_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiComunicacionesBundle:Material:delete" }
+    methods:  DELETE

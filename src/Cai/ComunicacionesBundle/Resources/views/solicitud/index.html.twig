@@ -1,0 +1,53 @@
+{% set  base = "layout-no-sidebar.html.twig" %}
+{% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
+    {% set base = "base.mob.twig" %}
+{% endif %}
+{% extends 'CaiFrontendBundle::' ~ base %}
+
+{% block content %}
+    <h1>Solicitud list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Texto</th>
+                <th>Ideas</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for solicitud in solicituds %}
+            <tr>
+                <td><a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.id }}</a></td>
+                <td>{{ solicitud.titulo }}</td>
+                <td>{{ solicitud.tipo }}</td>
+                <td>{{ solicitud.descripcion }}</td>
+                <td>{{ solicitud.texto }}</td>
+                <td>{{ solicitud.ideas }}</td>
+                <td>{% if solicitud.fecha %}{{ solicitud.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('solicitud_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,3 +1,7 @@
-cai_comunicaciones_homepage:
-    path:     /
-    defaults: { _controller: CaiComunicacionesBundle:Default:index }
+cai_comunicaciones_material:
+    resource: "@CaiComunicacionesBundle/Resources/config/routing/material.yml"
+    prefix:   /material
+
+cai_comunicaciones_solicitudes:
+    resource: "@CaiComunicacionesBundle/Resources/config/routing/solicitud.yml"
+    prefix:   /

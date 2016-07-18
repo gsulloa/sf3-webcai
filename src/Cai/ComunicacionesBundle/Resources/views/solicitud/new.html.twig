@@ -1,0 +1,20 @@
+{% set  base = "layout-no-sidebar.html.twig" %}
+{% if is_mobile_view() or is_tablet_view() or is_mobile() or is_tablet() %}
+    {% set base = "base.mob.twig" %}
+{% endif %}
+{% extends 'CaiFrontendBundle::' ~ base %}
+
+{% block content %}
+    <h1>Solicitud creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('solicitud_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
