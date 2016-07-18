@@ -5,7 +5,7 @@
 {% extends 'CaiFrontendBundle::' ~ base %}
 
 {% block content %}
-    <h1 class="text-center">Solicitudes</h1>
+    <h1 class="text-center">Mis Solicitudes</h1>
     <a class="pull-right btn btn-primary" href="{{ path('solicitud_new') }}">Nueva Solicitud</a>
     <table class="table table-hover table-striped">
         <thead>
@@ -14,7 +14,6 @@
                 <th>Titulo</th>
                 <th>Tipo</th>
                 <th>Fecha</th>
-                <th>Solicitante</th>
                 <th>Categoría</th>
                 <th>Estado</th>
                 <th>Actions</th>
@@ -39,36 +38,71 @@
                     {% endif %}
                 </td>
                 <td>{% if solicitud.fecha %}{{ solicitud.fecha|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ solicitud.user }}</td>
                 <td>{{ solicitud.categoria }}</td>
                 <td>
-                    {% if solicitud.revisada %}
-                        {% if solicitud.aceptada %}
-                            {{ solicitud.completada ? "Realizada" : "Por realizar"}}
-                        {% else %}
-                            Rechazada
-                        {% endif %}
-                    {% else %}
-                        <p>En Revisión</p>
-                    {% endif %}
+                    {{ ['En Revisión','Rechazada','Por Realizar','Completada'][solicitud.estado] }}
+
                 </td>
                 <td>
                     <a style="width: 100%" href="{{ path('solicitud_show', { 'id': solicitud.id }) }}" class="btn btn-default">Ver</a>
-                    <a style="width: 100%" href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}" class="btn btn-warning">Editar</a>
-                    {% if solicitud.revisada %}
-                        {% if solicitud.aceptada %}
-                            {% if not solicitud.completada %}
-                                <a style="width: 100%" class="btn btn-default" href="{{ path('solicitud_completar', { 'id': solicitud.id }) }}">Completar</a>4
-                            {% endif %}
-                        {% endif %}
+                    {% if solicitud.estado == 0 %}<a style="width: 100%" href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}" class="btn btn-warning">Editar</a>{% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% if is_granted('ROLE_COMUNICACIONES') %}
+    <h1 class="text-center">Pendientes</h1>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Solicitante</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for solicitud in all %}
+            <tr>
+                <td><a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.id }}</a></td>
+                <td>{{ solicitud.titulo }}</td>
+                <td>
+                    {% if solicitud.tipo == 1 %}
+                        Macroproyecto
+                    {% elseif solicitud.tipo == 2 %}
+                        Importante
+                    {% elseif solicitud.tipo == 3 %}
+                        Media Importancia
+                    {% elseif solicitud.tipo == 4 %}
+                        No tan Importante
                     {% else %}
+                        ERROR
+                    {% endif %}
+                </td>
+                <td>{% if solicitud.fecha %}{{ solicitud.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ solicitud.user }}</td>
+                <td>{{ solicitud.categoria }}</td>
+                <td>
+                    {{ ['En Revisión','Rechazada','Por Realizar','Completada'][solicitud.estado] }}
+
+                </td>
+                <td>
+                    <a style="width: 100%" href="{{ path('solicitud_show', { 'id': solicitud.id }) }}" class="btn btn-default">Ver</a>
+                    {% if solicitud.estado == 0 %}
                         <a style="width: 100%" class="btn btn-primary" href="{{ path('solicitud_aceptar', { 'id': solicitud.id }) }}">Aceptar</a>
                         <a style="width: 100%" class="btn btn-danger" href="{{ path('solicitud_rechazar', { 'id': solicitud.id }) }}">Rechazar</a>
+                    {% elseif solicitud.estado == 2 %}
+                        <a style="width: 100%" class="btn btn-primary" href="{{ path('solicitud_completar', { 'id': solicitud.id }) }}">Completar</a>
                     {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+{% endif %}
 {% endblock %}
-07'0.+

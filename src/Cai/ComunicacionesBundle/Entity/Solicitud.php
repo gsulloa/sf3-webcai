@@ -434,4 +434,27 @@ class Solicitud
     {
         return $this->revisada;
     }
+
+    /**
+     * @return int
+     * 0: no esta revisada
+     * 1: rechazada
+     * 2: aceptada pero por realizar
+     * 3: completada
+     */
+    public function getEstado(){
+        if(!$this->revisada){
+            return 0;
+        }else{
+            if(!$this->aceptada){
+                return 1;
+            }else{
+                if(!$this->completada){
+                    return 2;
+                }else{
+                    return 3;
+                }
+            }
+        }
+    }
 }

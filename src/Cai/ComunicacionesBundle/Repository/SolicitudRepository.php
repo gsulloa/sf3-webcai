@@ -10,4 +10,25 @@ namespace Cai\ComunicacionesBundle\Repository;
  */
 class SolicitudRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByUserOrderedbyFecha($id){
+        return $this->getEntityManager()
+            ->createQuery("SELECT solicitud
+                           FROM CaiComunicacionesBundle:Solicitud solicitud
+                           WHERE solicitud.user = :user
+                           AND solicitud.completada = false
+                           ORDER BY solicitud.aceptada, solicitud.fecha ASC
+            ")
+            ->setParameter('user',$id)
+            ->getResult();
+    }
+    public function findAllOrderedbyFecha(){
+        return $this->getEntityManager()
+            ->createQuery("SELECT solicitud
+                           FROM CaiComunicacionesBundle:Solicitud solicitud
+                           WHERE (solicitud.revisada = true and solicitud.aceptada = true and solicitud.completada = false)
+                           OR (solicitud.revisada = false)
+                           ORDER BY solicitud.fecha ASC
+            ")
+            ->getResult();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Cai\ComunicacionesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -22,11 +23,17 @@ class SolicitudController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $solicituds = $em->getRepository('CaiComunicacionesBundle:Solicitud')->findAll();
+        $solicituds = $em->getRepository('CaiComunicacionesBundle:Solicitud')->findByUserOrderedByFecha($this->getUser()->getId());
+
+        $all = [];
+        if($this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
+            $all = $em->getRepository('CaiComunicacionesBundle:Solicitud')->findAllOrderedByFecha();
+        }
         $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiComunicacionesBundle:solicitud:index.html.twig', array(
             'public'     => $public,
             'solicituds' => $solicituds,
+            'all'        => $all
         ));
     }
 
@@ -62,6 +69,11 @@ class SolicitudController extends Controller
      */
     public function showAction(Solicitud $solicitud)
     {
+        if(($solicitud->getUser() != $this->getUser() &&
+            !$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES'))
+        ){
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
         $deleteForm = $this->createDeleteForm($solicitud);
         $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiComunicacionesBundle:solicitud:show.html.twig', array(
@@ -77,6 +89,12 @@ class SolicitudController extends Controller
      */
     public function editAction(Request $request, Solicitud $solicitud)
     {
+        if(($solicitud->getUser() != $this->getUser() &&
+            !$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')) ||
+            $solicitud->getEstado() > 0
+        ){
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
         $deleteForm = $this->createDeleteForm($solicitud);
         $editForm = $this->createForm('Cai\ComunicacionesBundle\Form\SolicitudType', $solicitud);
         $editForm->handleRequest($request);
@@ -97,50 +115,21 @@ class SolicitudController extends Controller
         ));
     }
 
-    /**
-     * Deletes a Solicitud entity.
-     *
-     */
-    public function deleteAction(Request $request, Solicitud $solicitud)
-    {
-        $form = $this->createDeleteForm($solicitud);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($solicitud);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('solicitud_index');
-    }
-
-    /**
-     * Creates a form to delete a Solicitud entity.
-     *
-     * @param Solicitud $solicitud The Solicitud entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Solicitud $solicitud)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('solicitud_delete', array('id' => $solicitud->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-
     public function aceptarAction(Solicitud $solicitud){
-        //ToDo: SEGURIDAD
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
         $solicitud->aceptar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
+        
         return $this->redirectToRoute('solicitud_index');
     }
 
     public function rechazarAction(Solicitud $solicitud){
-        //ToDo: SEGURIDAD
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
         $solicitud->rechazar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
@@ -148,7 +137,9 @@ class SolicitudController extends Controller
     }
 
     public function completarAction(Solicitud $solicitud){
-        //ToDo: SEGURIDAD
+        if(!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
         $solicitud->completar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
