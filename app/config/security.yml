@@ -54,23 +54,24 @@ security:
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
-        - { path: ^/backend/role, roles: ROLE_SUPER_ADMIN }
-        - { path: ^/backend/user, roles: ROLE_ADMIN }
-        - { path: ^/backend/reclamos, roles: ROLE_COMUNIDAD }
-        - { path: ^/backend/clubes, roles: ROLE_PROYECTOS }
-        - { path: ^/backend/categoria, roles: ROLE_ADMIN }
-        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/tipo, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/persona, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/slider, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/menu, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend/contacto, roles: ROLE_DIRECTIVA }
-        - { path: ^/backend, roles: ROLE_JEFE_DE_COMISION }
+        - { path: ^/backend/role,         roles: ROLE_SUPER_ADMIN }
+        - { path: ^/backend/user,         roles: ROLE_ADMIN }
+        - { path: ^/backend/reclamos,     roles: ROLE_COMUNIDAD }
+        - { path: ^/backend/clubes,       roles: ROLE_PROYECTOS }
+        - { path: ^/backend/categoria,    roles: ROLE_ADMIN }
+        - { path: ^/backend/menu,         roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/tipo,         roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/menu,         roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/persona,      roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/slider,       roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/menu,         roles: ROLE_DIRECTIVA }
+        - { path: ^/backend/contacto,     roles: ROLE_DIRECTIVA }
+        - { path: ^/backend,              roles: ROLE_JEFE_DE_COMISION }
 
-        - { path: ^/perfil, roles: ROLE_USER }
-        - { path: ^/clubes/crear, roles: ROLE_USER }
+        - { path: ^/perfil,               roles: ROLE_USER }
+        - { path: ^/clubes/crear,         roles: ROLE_USER }
+        - { path: ^/comunicaciones,       roles: ROLE_USER }
 
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login,                roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/registro,             roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,                     roles: IS_AUTHENTICATED_ANONYMOUSLY }

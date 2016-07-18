@@ -94,6 +94,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $clubes;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Cai\ComunicacionesBundle\Entity\Solicitud", mappedBy="user")
+     */
+    private $solicitudes;
+
+    /**
      * Get id
      *
      * @return integer
@@ -615,5 +620,39 @@ class User implements AdvancedUserInterface, \Serializable
     public function getClubes()
     {
         return $this->clubes;
+    }
+
+    /**
+     * Add solicitude
+     *
+     * @param \Cai\ComunicacionesBundle\Entity\Solicitud $solicitude
+     *
+     * @return User
+     */
+    public function addSolicitude(\Cai\ComunicacionesBundle\Entity\Solicitud $solicitude)
+    {
+        $this->solicitudes[] = $solicitude;
+
+        return $this;
+    }
+
+    /**
+     * Remove solicitude
+     *
+     * @param \Cai\ComunicacionesBundle\Entity\Solicitud $solicitude
+     */
+    public function removeSolicitude(\Cai\ComunicacionesBundle\Entity\Solicitud $solicitude)
+    {
+        $this->solicitudes->removeElement($solicitude);
+    }
+
+    /**
+     * Get solicitudes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSolicitudes()
+    {
+        return $this->solicitudes;
     }
 }

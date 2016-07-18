@@ -32,6 +32,11 @@ class Material
      * @ORM\ManyToMany(targetEntity="Solicitud", mappedBy="materiales")
      */
     private $solicitudes;
+    
+    public function __toString()
+    {
+        return $this->etiqueta;
+    }
 
     /**
      * Get id

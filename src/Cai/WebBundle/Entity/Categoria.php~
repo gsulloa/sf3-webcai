@@ -268,38 +268,4 @@ class Categoria
     {
         return $this->eventos;
     }
-
-    /**
-     * Add solicitude
-     *
-     * @param \Cai\ComunicacionesBundle\Entity\Solicitud $solicitude
-     *
-     * @return Categoria
-     */
-    public function addSolicitude(\Cai\ComunicacionesBundle\Entity\Solicitud $solicitude)
-    {
-        $this->solicitudes[] = $solicitude;
-
-        return $this;
-    }
-
-    /**
-     * Remove solicitude
-     *
-     * @param \Cai\ComunicacionesBundle\Entity\Solicitud $solicitude
-     */
-    public function removeSolicitude(\Cai\ComunicacionesBundle\Entity\Solicitud $solicitude)
-    {
-        $this->solicitudes->removeElement($solicitude);
-    }
-
-    /**
-     * Get solicitudes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSolicitudes()
-    {
-        return $this->solicitudes;
-    }
 }
