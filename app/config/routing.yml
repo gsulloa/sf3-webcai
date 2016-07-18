@@ -1,3 +1,7 @@
+cai_comunicaciones:
+    resource: "@CaiComunicacionesBundle/Resources/config/routing.yml"
+    prefix:   /comunicaciones
+
 cai_reclamos:
     resource: "@CaiReclamosBundle/Resources/config/routing.yml"
     prefix:   /backend/reclamos
