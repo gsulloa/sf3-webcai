@@ -16,6 +16,7 @@
                 <th>Fecha</th>
                 <th>Solicitante</th>
                 <th>Categoría</th>
+                <th>Estado</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -41,11 +42,33 @@
                 <td>{{ solicitud.user }}</td>
                 <td>{{ solicitud.categoria }}</td>
                 <td>
+                    {% if solicitud.revisada %}
+                        {% if solicitud.aceptada %}
+                            {{ solicitud.completada ? "Realizada" : "Por realizar"}}
+                        {% else %}
+                            Rechazada
+                        {% endif %}
+                    {% else %}
+                        <p>En Revisión</p>
+                    {% endif %}
+                </td>
+                <td>
                     <a style="width: 100%" href="{{ path('solicitud_show', { 'id': solicitud.id }) }}" class="btn btn-default">Ver</a>
                     <a style="width: 100%" href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}" class="btn btn-warning">Editar</a>
+                    {% if solicitud.revisada %}
+                        {% if solicitud.aceptada %}
+                            {% if not solicitud.completada %}
+                                <a style="width: 100%" class="btn btn-default" href="{{ path('solicitud_completar', { 'id': solicitud.id }) }}">Completar</a>4
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <a style="width: 100%" class="btn btn-primary" href="{{ path('solicitud_aceptar', { 'id': solicitud.id }) }}">Aceptar</a>
+                        <a style="width: 100%" class="btn btn-danger" href="{{ path('solicitud_rechazar', { 'id': solicitud.id }) }}">Rechazar</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 {% endblock %}
+07'0.+

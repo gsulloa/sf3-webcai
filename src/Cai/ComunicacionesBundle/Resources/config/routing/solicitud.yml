@@ -22,3 +22,15 @@ solicitud_delete:
     path:     /{id}/delete
     defaults: { _controller: "CaiComunicacionesBundle:Solicitud:delete" }
     methods:  DELETE
+
+solicitud_aceptar:
+    path:     /{id}/aceptar
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:aceptar" }
+
+solicitud_rechazar:
+    path:     /{id}/rechazar
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:rechazar" }
+
+solicitud_completar:
+    path:     /{id}/completar
+    defaults: { _controller: "CaiComunicacionesBundle:Solicitud:completar" }

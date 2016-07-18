@@ -82,6 +82,26 @@ class Solicitud
      */
     private $categoria;
 
+    /**
+     * @ORM\Column(name="revisada", type="boolean")
+     */
+    private $revisada;
+    /**
+     * @ORM\Column(name="aceptada", type="boolean", nullable=true)
+     */
+    private $aceptada;
+
+    /**
+     * @ORM\Column(name="completada", type="boolean")
+     */
+    private $completada = false;
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->titulo;
+    }
 
     /**
      * Get id
@@ -242,6 +262,7 @@ class Solicitud
     public function __construct()
     {
         $this->materiales = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fecha = new \DateTime();
     }
 
     /**
@@ -300,5 +321,91 @@ class Solicitud
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set categoria
+     *
+     * @param \Cai\WebBundle\Entity\Categoria $categoria
+     *
+     * @return Solicitud
+     */
+    public function setCategoria(\Cai\WebBundle\Entity\Categoria $categoria = null)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return \Cai\WebBundle\Entity\Categoria
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * Set aceptada
+     *
+     * @param boolean $aceptada
+     *
+     * @return Solicitud
+     */
+    public function setAceptada($aceptada)
+    {
+        $this->aceptada = $aceptada;
+
+        return $this;
+    }
+
+    /**
+     * Get aceptada
+     *
+     * @return boolean
+     */
+    public function getAceptada()
+    {
+        return $this->aceptada;
+    }
+
+    /**
+     * Set completada
+     *
+     * @param boolean $completada
+     *
+     * @return Solicitud
+     */
+    public function setCompletada($completada)
+    {
+        $this->completada = $completada;
+
+        return $this;
+    }
+
+    /**
+     * Get completada
+     *
+     * @return boolean
+     */
+    public function getCompletada()
+    {
+        return $this->completada;
+    }
+    
+    public function aceptar(){
+        $this->aceptada = true;
+        return $this;
+    }
+    
+    public function rechazar(){
+        $this->aceptada = false;
+        return $this;
+    }
+    
+    public function completar(){
+        $this->completada = true;
     }
 }

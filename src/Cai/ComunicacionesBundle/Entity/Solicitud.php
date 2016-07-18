@@ -82,6 +82,22 @@ class Solicitud
      */
     private $categoria;
 
+    /**
+     * @ORM\Column(name="revisada", type="boolean")
+     */
+    private $revisada = false;
+    /**
+     * @ORM\Column(name="aceptada", type="boolean", nullable=true)
+     */
+    private $aceptada;
+
+    /**
+     * @ORM\Column(name="completada", type="boolean")
+     */
+    private $completada = false;
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->titulo;
@@ -329,5 +345,93 @@ class Solicitud
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * Set aceptada
+     *
+     * @param boolean $aceptada
+     *
+     * @return Solicitud
+     */
+    public function setAceptada($aceptada)
+    {
+        $this->aceptada = $aceptada;
+
+        return $this;
+    }
+
+    /**
+     * Get aceptada
+     *
+     * @return boolean
+     */
+    public function getAceptada()
+    {
+        return $this->aceptada;
+    }
+
+    /**
+     * Set completada
+     *
+     * @param boolean $completada
+     *
+     * @return Solicitud
+     */
+    public function setCompletada($completada)
+    {
+        $this->completada = $completada;
+
+        return $this;
+    }
+
+    /**
+     * Get completada
+     *
+     * @return boolean
+     */
+    public function getCompletada()
+    {
+        return $this->completada;
+    }
+    
+    public function aceptar(){
+        $this->revisada = true;
+        $this->aceptada = true;
+        return $this;
+    }
+    
+    public function rechazar(){
+        $this->revisada = true;
+        $this->aceptada = false;
+        return $this;
+    }
+    
+    public function completar(){
+        $this->completada = true;
+    }
+
+    /**
+     * Set revisada
+     *
+     * @param boolean $revisada
+     *
+     * @return Solicitud
+     */
+    public function setRevisada($revisada)
+    {
+        $this->revisada = $revisada;
+
+        return $this;
+    }
+
+    /**
+     * Get revisada
+     *
+     * @return boolean
+     */
+    public function getRevisada()
+    {
+        return $this->revisada;
     }
 }

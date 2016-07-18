@@ -130,4 +130,29 @@ class SolicitudController extends Controller
             ->getForm()
         ;
     }
+
+    public function aceptarAction(Solicitud $solicitud){
+        //ToDo: SEGURIDAD
+        $solicitud->aceptar();
+        $this->getDoctrine()->getManager()->persist($solicitud);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('solicitud_index');
+    }
+
+    public function rechazarAction(Solicitud $solicitud){
+        //ToDo: SEGURIDAD
+        $solicitud->rechazar();
+        $this->getDoctrine()->getManager()->persist($solicitud);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('solicitud_index');
+    }
+
+    public function completarAction(Solicitud $solicitud){
+        //ToDo: SEGURIDAD
+        $solicitud->completar();
+        $this->getDoctrine()->getManager()->persist($solicitud);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('solicitud_index');
+    }
+    
 }
