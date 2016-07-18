@@ -3,6 +3,8 @@
 namespace Cai\ComunicacionesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,14 +18,27 @@ class SolicitudType extends AbstractType
     {
         $builder
             ->add('titulo')
-            ->add('tipo')
+            ->add('tipo', ChoiceType::class, array(
+                'choices'   => array(
+                    "Macroproyecto"     => 1,
+                    "Importante"        => 2,
+                    "Media Importancia" => 3,
+                    "No tan importante" => 4
+                )
+            ))
+            ->add('materiales',null,array(
+                'expanded' => true
+            ))
             ->add('descripcion')
-            ->add('texto')
+            ->add('texto', null, array(
+                'label' => "Informacion Importante"
+            ))
             ->add('ideas')
-            ->add('fecha', 'date')
-            ->add('materiales')
-            ->add('user')
-            ->add('categoria')
+            ->add('fecha', DateType::class)
+
+            ->add('categoria', null , array(
+                'required' => true
+            ))
         ;
     }
     

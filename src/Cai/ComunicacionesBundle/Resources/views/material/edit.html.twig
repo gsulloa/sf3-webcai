@@ -3,6 +3,10 @@
     {% set base = "base.mob.twig" %}
 {% endif %}
 {% extends 'CaiFrontendBundle::' ~ base %}
+
+{% form_theme edit_form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
 {% block content %}
     <h1>Material edit</h1>
 

@@ -4,6 +4,10 @@
 {% endif %}
 {% extends 'CaiFrontendBundle::' ~ base %}
 
+{% form_theme form with [
+'bootstrap_3_horizontal_layout.html.twig'
+] %}
+
 {% block content %}
     <h1>Solicitud creation</h1>
 

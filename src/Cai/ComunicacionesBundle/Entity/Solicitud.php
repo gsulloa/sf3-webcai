@@ -246,6 +246,7 @@ class Solicitud
     public function __construct()
     {
         $this->materiales = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fecha = new \DateTime();
     }
 
     /**

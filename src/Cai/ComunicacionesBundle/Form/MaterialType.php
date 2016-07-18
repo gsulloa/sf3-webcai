@@ -16,7 +16,6 @@ class MaterialType extends AbstractType
     {
         $builder
             ->add('etiqueta')
-            ->add('solicitudes')
         ;
     }
     

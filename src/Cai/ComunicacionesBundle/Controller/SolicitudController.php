@@ -41,6 +41,7 @@ class SolicitudController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $solicitud->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($solicitud);
             $em->flush();
