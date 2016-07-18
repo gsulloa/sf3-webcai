@@ -16,13 +16,14 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Gulloa\SecurityBundle\GulloaSecurityBundle(),
             new Cai\FrontendBundle\CaiFrontendBundle(),
             new Cai\WebBundle\CaiWebBundle(),
             new Cai\ClubesBundle\CaiClubesBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Cai\ReclamosBundle\CaiReclamosBundle(),
-            new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new Cai\ComunicacionesBundle\CaiComunicacionesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
