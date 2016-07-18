@@ -5,18 +5,17 @@
 {% extends 'CaiFrontendBundle::' ~ base %}
 
 {% block content %}
-    <h1>Solicitud list</h1>
-
-    <table>
+    <h1 class="text-center">Solicitudes</h1>
+    <a class="pull-right btn btn-primary" href="{{ path('solicitud_new') }}">Nueva Solicitud</a>
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Titulo</th>
                 <th>Tipo</th>
-                <th>Descripcion</th>
-                <th>Texto</th>
-                <th>Ideas</th>
                 <th>Fecha</th>
+                <th>Solicitante</th>
+                <th>Categoría</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,29 +24,28 @@
             <tr>
                 <td><a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.id }}</a></td>
                 <td>{{ solicitud.titulo }}</td>
-                <td>{{ solicitud.tipo }}</td>
-                <td>{{ solicitud.descripcion }}</td>
-                <td>{{ solicitud.texto }}</td>
-                <td>{{ solicitud.ideas }}</td>
-                <td>{% if solicitud.fecha %}{{ solicitud.fecha|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    {% if solicitud.tipo == 1 %}
+                    Macroproyecto
+                    {% elseif solicitud.tipo == 2 %}
+                    Importante
+                    {% elseif solicitud.tipo == 3 %}
+                    Media Importancia
+                    {% elseif solicitud.tipo == 4 %}
+                    No tan Importante
+                    {% else %}
+                    ERROR
+                    {% endif %}
+                </td>
+                <td>{% if solicitud.fecha %}{{ solicitud.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ solicitud.user }}</td>
+                <td>{{ solicitud.categoria }}</td>
+                <td>
+                    <a style="width: 100%" href="{{ path('solicitud_show', { 'id': solicitud.id }) }}" class="btn btn-default">Ver</a>
+                    <a style="width: 100%" href="{{ path('solicitud_edit', { 'id': solicitud.id }) }}" class="btn btn-warning">Editar</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('solicitud_new') }}">Create a new entry</a>
-        </li>
-    </ul>
 {% endblock %}
