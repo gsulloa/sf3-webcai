@@ -85,7 +85,7 @@ class Solicitud
     /**
      * @ORM\Column(name="revisada", type="boolean")
      */
-    private $revisada;
+    private $revisada = false;
     /**
      * @ORM\Column(name="aceptada", type="boolean", nullable=true)
      */
@@ -95,6 +95,11 @@ class Solicitud
      * @ORM\Column(name="completada", type="boolean")
      */
     private $completada = false;
+
+    /**
+     * @ORM\Column(name="mensaje",type="text", nullable=true )
+     */
+    private $mensaje;
     /**
      * @return string
      */
@@ -396,16 +401,65 @@ class Solicitud
     }
     
     public function aceptar(){
+        $this->revisada = true;
         $this->aceptada = true;
         return $this;
     }
     
     public function rechazar(){
+        $this->revisada = true;
         $this->aceptada = false;
         return $this;
     }
     
     public function completar(){
         $this->completada = true;
+    }
+
+    /**
+     * Set revisada
+     *
+     * @param boolean $revisada
+     *
+     * @return Solicitud
+     */
+    public function setRevisada($revisada)
+    {
+        $this->revisada = $revisada;
+
+        return $this;
+    }
+
+    /**
+     * Get revisada
+     *
+     * @return boolean
+     */
+    public function getRevisada()
+    {
+        return $this->revisada;
+    }
+
+    /**
+     * @return int
+     * 0: no esta revisada
+     * 1: rechazada
+     * 2: aceptada pero por realizar
+     * 3: completada
+     */
+    public function getEstado(){
+        if(!$this->revisada){
+            return 0;
+        }else{
+            if(!$this->aceptada){
+                return 1;
+            }else{
+                if(!$this->completada){
+                    return 2;
+                }else{
+                    return 3;
+                }
+            }
+        }
     }
 }

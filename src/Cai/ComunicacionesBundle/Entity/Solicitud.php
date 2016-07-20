@@ -95,6 +95,11 @@ class Solicitud
      * @ORM\Column(name="completada", type="boolean")
      */
     private $completada = false;
+
+    /**
+     * @ORM\Column(name="mensaje",type="text", nullable=true )
+     */
+    private $mensaje;
     /**
      * @return string
      */
@@ -456,5 +461,29 @@ class Solicitud
                 }
             }
         }
+    }
+
+    /**
+     * Set mensaje
+     *
+     * @param string $mensaje
+     *
+     * @return Solicitud
+     */
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+
+        return $this;
+    }
+
+    /**
+     * Get mensaje
+     *
+     * @return string
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
     }
 }

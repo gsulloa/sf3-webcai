@@ -1,4 +1,7 @@
 services:
+    mailing:
+       class: Cai\WebBundle\ServicesClass\ServiceMail
+       arguments: [ "@mailer", "@templating" ]
     cai_web.auxiliar:
        class: Cai\WebBundle\Utils\Auxiliar
        arguments: [ "@doctrine.orm.entity_manager", '@templating']

@@ -221,37 +221,27 @@ class RegistroController extends Controller
     }
 
     private function registrationMail(User $user){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('[CAi] Registro con exito !')
-            ->setFrom('no-reply@caiuc.cl')
-            ->setTo($user->getProfile()->getMail())
-            ->setBody(
-                $this->renderView(
-                // app/Resources/views/Emails/registration.html.twig
-                    'CaiFrontendBundle:mailing:activation.html.twig',
-                    array('user' => $user)
-                ),
-                'text/html'
+        $params = array(
+            "subject"       => "[CAi] Registro con exito !",
+            "to"            => $user->getProfile()->getMail(),
+            "type"          => "activation",
+            "renderParams"  => array(
+                "user"  => $user
             )
-        ;
-        $this->get('mailer')->send($message);
+        );
+        $this->get('mailing')->send($params);
     }
 
     private function recoverPasswordMail(User $user){
-        $message = \Swift_Message::newInstance()
-            ->setSubject('[CAi] Recuperar Contraseña')
-            ->setFrom('no-reply@caiuc.cl')
-            ->setTo($user->getProfile()->getMail())
-            ->setBody(
-                $this->renderView(
-                // app/Resources/views/Emails/registration.html.twig
-                    'CaiFrontendBundle:mailing:recovering.html.twig',
-                    array('user' => $user)
-                ),
-                'text/html'
+        $params = array(
+            "subject"       => "[CAi] Recuperar Contraseña",
+            "to"            => $user->getProfile()->getMail(),
+            "type"          => "recovering",
+            "renderParams"  => array(
+                "user"  => $user
             )
-        ;
-        $this->get('mailer')->send($message);
+        );
+        $this->get('mailing')->send($params);
     }
 
 }

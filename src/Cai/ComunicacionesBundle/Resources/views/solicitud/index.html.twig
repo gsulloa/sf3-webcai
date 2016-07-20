@@ -6,6 +6,16 @@
 
 {% block content %}
     <h1 class="text-center">Mis Solicitudes</h1>
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     <a class="pull-right btn btn-primary" href="{{ path('solicitud_new') }}">Nueva Solicitud</a>
     <table class="table table-hover table-striped">
         <thead>

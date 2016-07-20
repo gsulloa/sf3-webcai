@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Cai\ComunicacionesBundle\Entity\Solicitud;
 use Cai\ComunicacionesBundle\Form\SolicitudType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Solicitud controller.
@@ -122,6 +124,11 @@ class SolicitudController extends Controller
         $solicitud->aceptar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
+
+
+        $session = new Session();
+        $id = $solicitud->getId();
+        $session->getFlashBag()->add("success","Solicitud $id aceptada");
         
         return $this->redirectToRoute('solicitud_index');
     }
@@ -133,6 +140,11 @@ class SolicitudController extends Controller
         $solicitud->rechazar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
+
+        $session = new Session();
+        $id = $solicitud->getId();
+        $session->getFlashBag()->add("error","Solicitud $id rechazada");
+        
         return $this->redirectToRoute('solicitud_index');
     }
 
@@ -140,10 +152,88 @@ class SolicitudController extends Controller
         if(!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
         }
+
+        $this->completarMail($solicitud);
         $solicitud->completar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
+
+        $session = new Session();
+        $id = $solicitud->getId();
+        $session->getFlashBag()->add("success","Solicitud $id completada");
+
+        return new Response();
         return $this->redirectToRoute('solicitud_index');
+    }
+    private function completarMail(Solicitud $solicitud){
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud Completada",
+            "to"            => $this->getUser()->getProfile()->getMail(),
+            "type"          => "solicitud_completar_user",
+            "renderParams"  => array(
+                "user"  => $this->getUser()
+            )
+        );
+        $mailing = $this->get('mailing');
+        $mailing->send($params);
+
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud Completada",
+            "to"            => "comunicaciones@cai.cl",
+            "type"          => "solicitud_completar_com",
+            "renderParams"  => array(
+                "id_solicitud"  => $solicitud->getId()
+            )
+        );
+        $mailing->send($params);
+    }
+
+    private function aceptarMail(Solicitud $solicitud){
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud aceptada",
+            "to"            => $this->getUser()->getProfile()->getMail(),
+            "type"          => "solicitud_aceptar_user",
+            "renderParams"  => array(
+                "user"  => $this->getUser()
+            )
+        );
+        $mailing = $this->get('mailing');
+        $mailing->send($params);
+
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud Aceptada",
+            "to"            => "comunicaciones@cai.cl",
+            "type"          => "solicitud_aceptar_com",
+            "renderParams"  => array(
+                "id_solicitud"  => $solicitud->getId()
+            )
+        );
+        $mailing->send($params);
+    }
+
+    private function rechazarMail(Solicitud $solicitud){
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud Rechazada",
+            "to"            => $this->getUser()->getProfile()->getMail(),
+            "type"          => "solicitud_rechazar_user",
+            "renderParams"  => array(
+                "user"    => $this->getUser(),
+                "mensaje" => $solicitud->getMensaje()
+            )
+        );
+        $mailing = $this->get('mailing');
+        $mailing->send($params);
+
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Solicitud Rechazada",
+            "to"            => "comunicaciones@cai.cl",
+            "type"          => "solicitud_rechazar_com",
+            "renderParams"  => array(
+                "id_solicitud"  => $solicitud->getId(),
+                "mensaje"       => $solicitud->getMensaje()
+            )
+        );
+        $mailing->send($params);
     }
     
 }
