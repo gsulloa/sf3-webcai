@@ -55,7 +55,7 @@ class SolicitudController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($solicitud);
             $em->flush();
-
+            $this->newMail($solicitud);
             return $this->redirectToRoute('solicitud_show', array('id' => $solicitud->getId()));
         }
         $public = $this->get('cai_web.auxiliar')->getPublicInfo();
@@ -232,6 +232,30 @@ class SolicitudController extends Controller
             "renderParams"  => array(
                 "id_solicitud"  => $solicitud->getId(),
                 "mensaje"       => $solicitud->getMensaje()
+            )
+        );
+        $mailing->send($params);
+    }
+
+    private function newMail(Solicitud $solicitud){
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Nueva Solicitud",
+            "to"            => $this->getUser()->getProfile()->getMail(),
+            "type"          => "solicitud_new_user",
+            "renderParams"  => array(
+                "user"          => $this->getUser(),
+                'id_solicitud'  => $solicitud->getId()
+            )
+        );
+        $mailing = $this->get('mailing');
+        $mailing->send($params);
+
+        $params = array(
+            "subject"       => "[CAi/Comunicaciones] Nueva Solicitud",
+            "to"            => self::MAIL_COMUNICACIONES,
+            "type"          => "solicitud_new_com",
+            "renderParams"  => array(
+                "id_solicitud"  => $solicitud->getId(),
             )
         );
         $mailing->send($params);
