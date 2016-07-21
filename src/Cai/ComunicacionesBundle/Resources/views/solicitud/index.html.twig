@@ -105,7 +105,7 @@
                     <a style="width: 100%" href="{{ path('solicitud_show', { 'id': solicitud.id }) }}" class="btn btn-default">Ver</a>
                     {% if solicitud.estado == 0 %}
                         <a style="width: 100%" class="btn btn-primary" href="{{ path('solicitud_aceptar', { 'id': solicitud.id }) }}">Aceptar</a>
-                        <a style="width: 100%" class="btn btn-danger" href="{{ path('solicitud_rechazar', { 'id': solicitud.id }) }}">Rechazar</a>
+                        <btn id="{{ solicitud.id }}" style="width: 100%" class="btn btn-danger rechazar" href="{{ path('solicitud_rechazar', { 'id': solicitud.id }) }}">Rechazar</btn>
                     {% elseif solicitud.estado == 2 %}
                         <a style="width: 100%" class="btn btn-primary" href="{{ path('solicitud_completar', { 'id': solicitud.id }) }}">Completar</a>
                     {% endif %}
@@ -114,5 +114,15 @@
         {% endfor %}
         </tbody>
     </table>
+    {% include 'CaiComunicacionesBundle:solicitud:rechazar.html.twig' with {'solicitudes': all} %}
 {% endif %}
 {% endblock %}
+
+{% if is_granted('ROLE_COMUNICACIONES') %}
+{% block stylesheets %}
+    {% include 'CaiWebBundle:utils:css_rechazar_solicitud.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    {% include 'CaiWebBundle:utils:js_rechazar_solicitud.html.twig' %}
+{% endblock %}
+{% endif %}

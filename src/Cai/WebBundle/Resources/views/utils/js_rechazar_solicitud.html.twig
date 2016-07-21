@@ -1,0 +1,14 @@
+<script>
+    $('.rechazar').click(function () {
+        $('.rechazar_form').hide();
+        $('#rechazar_background').fadeIn();
+        $('#rechazar_div').show(500);
+        console.log(this.id);
+        $('#form_'+ this.id).show();
+    });
+    $('#rechazar_background').click(hideBackgroundAndDiv);
+    function hideBackgroundAndDiv() {
+        $('#rechazar_background').fadeOut();
+        $('#rechazar_div').hide(500);
+    }
+</script>

@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 class SolicitudController extends Controller
 {
+    const MAIL_COMUNICACIONES = "comunicaciones@cai.cl";
     /**
      * Lists all Solicitud entities.
      *
@@ -76,12 +77,10 @@ class SolicitudController extends Controller
         ){
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
         }
-        $deleteForm = $this->createDeleteForm($solicitud);
         $public = $this->get('cai_web.auxiliar')->getPublicInfo();
         return $this->render('CaiComunicacionesBundle:solicitud:show.html.twig', array(
             'public'     => $public,
             'solicitud' => $solicitud,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -97,7 +96,6 @@ class SolicitudController extends Controller
         ){
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
         }
-        $deleteForm = $this->createDeleteForm($solicitud);
         $editForm = $this->createForm('Cai\ComunicacionesBundle\Form\SolicitudType', $solicitud);
         $editForm->handleRequest($request);
 
@@ -113,7 +111,6 @@ class SolicitudController extends Controller
             'public'     => $public,
             'solicitud' => $solicitud,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -129,22 +126,26 @@ class SolicitudController extends Controller
         $session = new Session();
         $id = $solicitud->getId();
         $session->getFlashBag()->add("success","Solicitud $id aceptada");
-        
+
+        $this->aceptarMail($solicitud);
         return $this->redirectToRoute('solicitud_index');
     }
 
-    public function rechazarAction(Solicitud $solicitud){
+    public function rechazarAction(Request $request, Solicitud $solicitud){
         if(!$this->get('security.authorization_checker')->isGranted('ROLE_COMUNICACIONES')){
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
         }
-        $solicitud->rechazar();
+        $solicitud->rechazar()
+            ->setMensaje($request->request->get('mensaje'))
+        ;
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
 
         $session = new Session();
         $id = $solicitud->getId();
         $session->getFlashBag()->add("error","Solicitud $id rechazada");
-        
+
+        $this->rechazarMail($solicitud);
         return $this->redirectToRoute('solicitud_index');
     }
 
@@ -153,7 +154,7 @@ class SolicitudController extends Controller
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
         }
 
-        $this->completarMail($solicitud);
+
         $solicitud->completar();
         $this->getDoctrine()->getManager()->persist($solicitud);
         $this->getDoctrine()->getManager()->flush();
@@ -162,7 +163,7 @@ class SolicitudController extends Controller
         $id = $solicitud->getId();
         $session->getFlashBag()->add("success","Solicitud $id completada");
 
-        return new Response();
+        $this->completarMail($solicitud);
         return $this->redirectToRoute('solicitud_index');
     }
     private function completarMail(Solicitud $solicitud){
@@ -179,7 +180,7 @@ class SolicitudController extends Controller
 
         $params = array(
             "subject"       => "[CAi/Comunicaciones] Solicitud Completada",
-            "to"            => "comunicaciones@cai.cl",
+            "to"            => self::MAIL_COMUNICACIONES,
             "type"          => "solicitud_completar_com",
             "renderParams"  => array(
                 "id_solicitud"  => $solicitud->getId()
@@ -202,7 +203,7 @@ class SolicitudController extends Controller
 
         $params = array(
             "subject"       => "[CAi/Comunicaciones] Solicitud Aceptada",
-            "to"            => "comunicaciones@cai.cl",
+            "to"            => self::MAIL_COMUNICACIONES,
             "type"          => "solicitud_aceptar_com",
             "renderParams"  => array(
                 "id_solicitud"  => $solicitud->getId()
@@ -226,7 +227,7 @@ class SolicitudController extends Controller
 
         $params = array(
             "subject"       => "[CAi/Comunicaciones] Solicitud Rechazada",
-            "to"            => "comunicaciones@cai.cl",
+            "to"            => self::MAIL_COMUNICACIONES,
             "type"          => "solicitud_rechazar_com",
             "renderParams"  => array(
                 "id_solicitud"  => $solicitud->getId(),
