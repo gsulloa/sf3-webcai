@@ -1,9 +1,9 @@
-body{
+/*body{
     background-image: url('../images/background.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;
-}
+}*/
 #calendar {
     max-width: 90%;
     margin: 0 auto;
@@ -51,7 +51,6 @@ div.dropdown{
     font-size: 15px;
     background-color: rgba(251, 211, 7, 1);
     border-width: 1px;
-    border-radius: 50px;
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
     color: rgba(36, 36, 36, 1);
