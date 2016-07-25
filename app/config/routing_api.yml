@@ -1,0 +1,3 @@
+cai_api:
+    resource: "@CaiApiBundle/Resources/config/routing.yml"
+    prefix:   /

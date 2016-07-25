@@ -3,18 +3,9 @@ imports:
 
 framework:
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource: "%kernel.root_dir%/config/routing_api.yml"
         strict_requirements: ~
-#    validation:
-#        cache: validator.mapping.cache.apc
-#    serializer:
-#        cache: serializer.mapping.cache.apc
-
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+    profiler: { only_exceptions: false }
 
 monolog:
     handlers:
