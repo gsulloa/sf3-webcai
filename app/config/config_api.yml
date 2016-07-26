@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+    - { resource: "@CaiApiBundle/Resources/config/services.yml"}
 
 framework:
     router:

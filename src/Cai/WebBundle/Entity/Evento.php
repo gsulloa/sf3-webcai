@@ -282,4 +282,25 @@ class Evento
     {
         return $this->lugar;
     }
+
+    public function toArray(){
+        setlocale (LC_TIME, "es_ES");
+        $imagen = "https://www.cai.cl/public/images/no-foto-300px.png";
+        if($this->imagen){
+            $imagen = "https://www.cai.cl/uploads/biblioteca/imagenes/". $this->imagen->getFilenamebinary()."/mobile-". $this->imagen->getFilename();
+        }
+        return array(
+            "id"            => $this->id,
+            "nombre"        => $this->nombre,
+            "descripcion"   => $this->descripcion,
+            "fecha_inicio"  => date_format($this->fecha_inicio,"d/m/Y"),
+            "dia_inicio"    => date_format($this->fecha_inicio,"l"),
+            "hora_inicio"   => date_format($this->fecha_inicio,"H:i:s"),
+            "fecha_fin"     => date_format($this->fecha_fin,"d/m/Y"),
+            "dia_fin"       => date_format($this->fecha_fin,"l"),
+            "hora_fin"      => date_format($this->fecha_fin,"H:i:s"),
+            "categoria"     => $this->categoria->toArray(),
+            "imagen"        => $imagen
+        );
+    }
 }

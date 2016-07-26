@@ -302,4 +302,11 @@ class Categoria
     {
         return $this->solicitudes;
     }
+
+    public function toArray(){
+        return [
+            "id"        => $this->id,
+            "etiqueta"  => $this->etiqueta
+        ];
+    }
 }

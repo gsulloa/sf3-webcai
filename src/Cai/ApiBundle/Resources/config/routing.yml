@@ -1,3 +1,23 @@
 cai_api_homepage:
     path:     /
     defaults: { _controller: CaiApiBundle:Default:index }
+#Entrega todas los eventos asociados a las categorias seleccionadas por un Usuario
+cai_api_users_all_eventos:
+    path:      /events/
+    defaults: { _controller: "CaiApiBundle:Default:allEvents" }
+cai_api_users_my_eventos:
+    path:      /events/my
+    defaults: { _controller: "CaiApiBundle:Default:myEvents" }
+cai_api_users_specific_eventos:
+    path:      /events/{id}
+    defaults: { _controller: "CaiApiBundle:Default:event" }
+
+#Entrega todos los eventos creados despues del evento "n"
+#cai_api_last_eventos:
+#    path:     /eventos/last/{n}
+#    defaults: { _controller: CaiApiBundle:Api:lastEvents }
+
+#Si recibe la infromacion de login correcta, devuelve la información del usuario
+#cai_api_login:
+#    path:      /login/{username}/{password}
+#    defaults: { _controller: "CaiApiBundle:Api:login"}

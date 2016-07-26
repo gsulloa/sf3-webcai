@@ -33,7 +33,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
-        if(in_array($this->getEnvironment(), ['api'], true)){
+        if(in_array($this->getEnvironment(), ['api','dev'], true)){
             $bundles[] = new Cai\ApiBundle\CaiApiBundle();
         }
 

@@ -655,4 +655,25 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->solicitudes;
     }
+
+    public function toArray(){
+        $array = array(
+            "username"  => $this->username,
+            "token"     => $this->token,
+            "categorias"=> array()
+        );
+        foreach($this->getCategorias() as $categoria){
+            $array['categorias'][] = $categoria->toArray();
+        }
+        return $array;
+    }
+    public function getEventos(){
+        $eventos = array();
+        foreach($this->categorias as $categoria){
+            foreach($categoria->getEventos() as $evento){
+                $eventos[] = $evento;
+            }
+        }
+        return $eventos;
+    }
 }
