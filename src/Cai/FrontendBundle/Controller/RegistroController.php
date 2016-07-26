@@ -3,6 +3,7 @@
 namespace Cai\FrontendBundle\Controller;
 
 use Cai\WebBundle\Entity\UserProfile;
+use Cai\WebBundle\Utils\Token;
 use Gulloa\SecurityBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
@@ -85,8 +86,8 @@ class RegistroController extends Controller
                 $encoder = $this->container->get('security.password_encoder');
                 $encoded = $encoder->encodePassword($user, $user->getPassword());
                 $user->setPassword($encoded)
-                    ->setToken(bin2hex(random_bytes(25)))
-                    ->setActivationToken(bin2hex(random_bytes(25)))
+                    ->setToken(Token::generator())
+                    ->setActivationToken(Token::generator())
                     ->setActive(false)
                 ;
                 $em->persist($user);

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: gulloa
+ * Date: 26-07-16
+ * Time: 13:18
+ */
+
+namespace Cai\WebBundle\Utils;
+
+
+class Token
+{
+    CONST length = 30;
+    static public function generator(){
+        return bin2hex(random_bytes(self::length));
+    }
+}
