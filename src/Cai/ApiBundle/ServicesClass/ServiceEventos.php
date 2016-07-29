@@ -16,7 +16,7 @@ class ServiceEventos
         $this->auth = $auth->getToken();
     }
     public function getMyEvents(){
-        $user = $this->auth->getUser('gulloa');
+        $user = $this->auth->getUser();
         $eventos = $this->eventosToArray($user->getEventos());
         return $eventos;
     }
