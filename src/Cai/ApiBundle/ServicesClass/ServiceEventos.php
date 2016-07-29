@@ -13,7 +13,7 @@ class ServiceEventos
     public function __construct($em, $auth)
     {
         $this->em = $em;
-        $this->auth = $auth;
+        $this->auth = $auth->getToken();
     }
     public function getMyEvents(){
         $user = $this->auth->getUser('gulloa');

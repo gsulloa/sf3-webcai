@@ -1,7 +1,10 @@
 services:
     api.eventos:
         class: Cai\ApiBundle\ServicesClass\ServiceEventos
-        arguments: ["@doctrine.orm.entity_manager", "@api.auth"]
+        arguments: ["@doctrine.orm.entity_manager", "@security.token_storage"]
     api.auth:
         class: Cai\ApiBundle\ServicesClass\ServiceAuth
+        arguments: ["@doctrine.orm.entity_manager", "@request_stack"]
+    api_key_user_provider:
+        class: Cai\ApiBundle\Security\ApiKeyUserProvider
         arguments: ["@doctrine.orm.entity_manager"]

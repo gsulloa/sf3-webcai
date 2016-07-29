@@ -9,9 +9,10 @@ _profiler:
 _errors:
     resource: "@TwigBundle/Resources/config/routing/errors.xml"
     prefix:   /_error
-#HAY QUE QUITARLO AL TRABAJAR EN WEB
 _api:
     resource: routing_api.yml
+    prefix:   /
 
 _main:
     resource: routing.yml
+    prefix:   /web

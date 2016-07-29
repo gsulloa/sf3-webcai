@@ -2,21 +2,15 @@
 
 namespace Cai\ApiBundle\Controller;
 
+use Cai\WebBundle\Utils\Token;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     public function indexAction(){
-        return new Response(json_encode(array()));
-    }
-
-    /*
-     * si id es nulo entrega json con todos los usuarios
-     * si id no es nulo, entrega el usuario especificado en caso de encotrarlo
-     */
-    public function usersAction($username){
-        return new Response(json_encode());
+        $user = $this->getUser()->getUsername();
+        return new Response(json_encode(array($user )));
     }
     /*
      * si id es nulo entrega json con todos los eventos
@@ -30,6 +24,9 @@ class DefaultController extends Controller
     }
     public function eventAction($id){
         return new Response(json_encode($this->get('api.eventos')->getEvent($id)));
+    }
+    public function testAction(){
+        return new Response(json_encode(Token::generator("gulloa")));
     }
 
 

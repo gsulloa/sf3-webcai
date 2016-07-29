@@ -23,5 +23,12 @@ class ValidateData {
 
         return $data;
     }
+    public static function validateToken($token){
+        $token = trim($token);              // Elimina espacio en blanco del inicio y el final de la cadena
+        $token = stripslashes($token);      // Quita las barras de un string con comillas escapadas
+        $token = strip_tags($token);        // Retira las etiquetas HTML y PHP de un string
+
+        return $token;
+    }
 
 }

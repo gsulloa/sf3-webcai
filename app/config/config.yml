@@ -1,6 +1,5 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@GulloaSecurityBundle/Resources/config/services.yml" }
 
@@ -8,7 +7,10 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-
+services:
+    apikey_authenticator:
+        class:  Cai\ApiBundle\Security\ApiKeyAuthenticator
+        public: false
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
