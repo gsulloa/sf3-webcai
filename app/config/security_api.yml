@@ -11,6 +11,7 @@ security:
             simple_preauth:
                 authenticator: apikey_authenticator
             provider: api_key_user_provider
+            anonymous: ~
             # activate different ways to authenticate
 
             # http_basic: ~

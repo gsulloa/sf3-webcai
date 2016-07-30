@@ -10,6 +10,7 @@ parameters:
 services:
     apikey_authenticator:
         class:  Cai\ApiBundle\Security\ApiKeyAuthenticator
+        arguments: ["@security.http_utils"]
         public: false
 framework:
     #esi:             ~

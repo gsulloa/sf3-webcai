@@ -2,15 +2,16 @@
 
 namespace Cai\ApiBundle\Controller;
 
+use Cai\ApiBundle\Utils\ValidateData;
 use Cai\WebBundle\Utils\Token;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     public function indexAction(){
-        $user = $this->getUser()->getUsername();
-        return new Response(json_encode(array($user )));
+        return new Response(json_encode(array()));
     }
     /*
      * si id es nulo entrega json con todos los eventos
@@ -30,16 +31,18 @@ class DefaultController extends Controller
     }
 
 
-    public function loginAction($username,$password){
+    public function loginAction(Request $request){
+        $username = ValidateData::validateData($request->request->get('username'));
+        $password = ValidateData::validateData($request->request->get('password'));
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('CaiApiBundle:User')->findOneByUsername($username);
+        $user = $em->getRepository('GulloaSecurityBundle:User')->findOneByUsername($username);
         if($user === null){
             return new Response(json_encode(array('error'=>'User no encontrado')),404);
         }
         if (!password_verify($password, $user->getPassword())) {
             return new Response(json_encode(array('error'=>"Contraseña incorrecta")),400);
         }
-        return new Response(json_encode($user->toArray()));
+        return new Response(json_encode(array("apikey" => $user->getToken())));
     }
 
     public function lastEventsAction($n){

@@ -11,11 +11,26 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
 use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterface;
+use Symfony\Component\Security\Http\HttpUtils;
+
 
 class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface, AuthenticationFailureHandlerInterface
 {
+    protected $httpUtils;
+
+    public function __construct(HttpUtils $httpUtils)
+    {
+        $this->httpUtils = $httpUtils;
+    }
+
     public function createToken(Request $request, $providerKey)
     {
+        // set the only URL where we should look for auth information
+        // and only return the token if we're at that URL
+        $targetUrl = '/login/check';
+        if (!$this->httpUtils->checkRequestPath($request, $targetUrl)) {
+            return;
+        }
 
         $apiKey = $request->headers->get('apikey');
 
