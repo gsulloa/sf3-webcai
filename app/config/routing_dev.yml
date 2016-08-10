@@ -11,8 +11,8 @@ _errors:
     prefix:   /_error
 _api:
     resource: routing_api.yml
-    prefix:   /
+    prefix:   /api
 
 _main:
     resource: routing.yml
-    prefix:   /web
+    prefix:   /
