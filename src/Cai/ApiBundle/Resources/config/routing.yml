@@ -1,20 +1,24 @@
 cai_api_homepage:
     path:     /
     defaults: { _controller: CaiApiBundle:Default:index }
+    methods:  POST
 #Entrega todas los eventos asociados a las categorias seleccionadas por un Usuario
 cai_api_users_all_eventos:
     path:      /events/
     defaults: { _controller: "CaiApiBundle:Default:allEvents" }
+    methods:  POST
 cai_api_users_my_eventos:
     path:      /events/my
     defaults: { _controller: "CaiApiBundle:Default:myEvents" }
+    methods:  POST
 cai_api_users_specific_eventos:
     path:      /events/{id}
     defaults: { _controller: "CaiApiBundle:Default:event" }
+    methods:  POST
 cai_api_login:
     path:      /login
     defaults: { _controller: "CaiApiBundle:Default:login"}
-    #methods:  POST
+    methods:  POST
 #Entrega todos los eventos creados despues del evento "n"
 #cai_api_last_eventos:
 #    path:     /eventos/last/{n}
