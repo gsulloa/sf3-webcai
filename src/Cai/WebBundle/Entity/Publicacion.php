@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     "publicacion" = "Publicacion",
  *     "entrada" = "Entrada",
  *     "pagina"="Pagina",
+ *     "columna"="Cai\ColumnasBundle\Entity\Columna"
  * })
  * @ORM\HasLifecycleCallbacks()
  */
@@ -311,6 +312,13 @@ class Publicacion
     public function setLastUpdateAtValue()
     {
         $this->lastUpdateAt = new \DateTime();
+    }
+
+    public function getCreatedAt(){
+        return $this->createdAt;
+    }
+    public function getLastUpdateAt(){
+        return $this->lastUpdateAt;
     }
 
 }

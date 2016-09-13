@@ -2,6 +2,9 @@ services:
     mailing:
        class: Cai\WebBundle\ServicesClass\ServiceMail
        arguments: [ "@mailer", "@templating" ]
+    slug_generator.columna:
+           class: Cai\WebBundle\ServicesClass\SlugGenerators\ColumnaSlugGeneratorService
+           arguments: ["@doctrine.orm.entity_manager"]
     slug_generator.entrada:
            class: Cai\WebBundle\ServicesClass\SlugGenerators\EntradaSlugGeneratorService
            arguments: ["@doctrine.orm.entity_manager"]

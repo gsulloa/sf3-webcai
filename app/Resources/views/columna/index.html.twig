@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Columna list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Cuerpo</th>
+                <th>Fecha</th>
+                <th>Publico</th>
+                <th>Createdat</th>
+                <th>Lastupdateat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for columna in columnas %}
+            <tr>
+                <td><a href="{{ path('columna_show', { 'id': columna.id }) }}">{{ columna.id }}</a></td>
+                <td>{{ columna.titulo }}</td>
+                <td>{{ columna.slug }}</td>
+                <td>{{ columna.cuerpo }}</td>
+                <td>{% if columna.fecha %}{{ columna.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if columna.publico %}Yes{% else %}No{% endif %}</td>
+                <td>{% if columna.createdAt %}{{ columna.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if columna.lastUpdateAt %}{{ columna.lastUpdateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('columna_show', { 'id': columna.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('columna_edit', { 'id': columna.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('columna_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Cai\ClubesBundle\CaiClubesBundle(),
             new Cai\ReclamosBundle\CaiReclamosBundle(),
             new Cai\ComunicacionesBundle\CaiComunicacionesBundle(),
+            new Cai\ColumnasBundle\CaiColumnasBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

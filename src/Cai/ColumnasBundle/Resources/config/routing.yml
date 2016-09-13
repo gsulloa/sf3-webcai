@@ -1,0 +1,7 @@
+cai_columnas_columna:
+    resource: "@CaiColumnasBundle/Resources/config/routing/columna.yml"
+    prefix:   /columna
+
+cai_columnas_homepage:
+    path:     /
+    defaults: { _controller: CaiColumnasBundle:Default:index }

@@ -16,7 +16,7 @@ class Entrada extends Publicacion
      * @ORM\ManyToOne(targetEntity="Imagen",inversedBy="entradas")
      * @ORM\JoinColumn(name="imagen_id", referencedColumnName="id")
      */
-    private $imagen;
+    protected $imagen;
 
     /**
      * Set imagen

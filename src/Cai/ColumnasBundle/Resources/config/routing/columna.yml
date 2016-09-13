@@ -1,0 +1,24 @@
+columna_index:
+    path:     /
+    defaults: { _controller: "CaiColumnasBundle:Columna:index" }
+    methods:  GET
+
+columna_show:
+    path:     /{id}/show
+    defaults: { _controller: "CaiColumnasBundle:Columna:show" }
+    methods:  GET
+
+columna_new:
+    path:     /new
+    defaults: { _controller: "CaiColumnasBundle:Columna:new" }
+    methods:  [GET, POST]
+
+columna_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CaiColumnasBundle:Columna:edit" }
+    methods:  [GET, POST]
+
+columna_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CaiColumnasBundle:Columna:delete" }
+    methods:  DELETE

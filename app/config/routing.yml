@@ -1,3 +1,7 @@
+cai_columnas:
+    resource: "@CaiColumnasBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 
 cai_comunicaciones:

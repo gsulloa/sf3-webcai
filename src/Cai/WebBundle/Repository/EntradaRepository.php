@@ -103,9 +103,9 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery(
                 "SELECT entrada
                 FROM CaiWebBundle:Entrada entrada
-                WHERE entrada.slug LIKE :slug
+                WHERE REGEXP(col.slug, :slug) = TRUE 
             "
-            )->setParameter('slug',$slug.'%')
+            )->setParameter('slug',"^$slug-*[0-9]*$")
             ->getResult();
     }
 }
