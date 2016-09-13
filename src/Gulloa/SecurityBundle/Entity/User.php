@@ -69,14 +69,9 @@ class User implements AdvancedUserInterface, \Serializable
     private $categorias;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Cai\WebBundle\Entity\Entrada", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="\Cai\WebBundle\Entity\Publicacion", mappedBy="user")
      */
-    private $entradas;
-
-    /**
-     * @ORM\OneToMany(targetEntity="\Cai\WebBundle\Entity\Pagina", mappedBy="user")
-     */
-    private $paginas;
+    private $publicaciones;
 
     /**
      * @ORM\OneToOne(targetEntity="\Cai\WebBundle\Entity\UserProfile",mappedBy="user")
@@ -238,7 +233,7 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->publicaciones = new \Doctrine\Common\Collections\ArrayCollection();
         $this->paginas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->seguimientos = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -300,69 +295,36 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Add entradas
+     * Add publicaciones
      *
-     * @param \Cai\WebBundle\Entity\Entrada $entradas
+     * @param \Cai\WebBundle\Entity\Publicacion $publicaciones
      * @return User
      */
-    public function addEntrada(\Cai\WebBundle\Entity\Entrada $entradas)
+    public function addPublicacion(\Cai\WebBundle\Entity\Publicacion $publicaciones)
     {
-        $this->entradas[] = $entradas;
+        $this->publicaciones[] = $publicaciones;
 
         return $this;
     }
 
     /**
-     * Remove entradas
+     * Remove publicaciones
      *
-     * @param \Cai\WebBundle\Entity\Entrada $entradas
+     * @param \Cai\WebBundle\Entity\Publicacion $publicaciones
      */
-    public function removeEntrada(\Cai\WebBundle\Entity\Entrada $entradas)
+    public function removePublicacion(\Cai\WebBundle\Entity\Publicacion $publicaciones)
     {
-        $this->entradas->removeElement($entradas);
+        $this->publicaciones->removeElement($publicaciones);
     }
 
     /**
-     * Get entradas
+     * Get publicaciones
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntradas()
+    public function getPublicaciones()
     {
-        return $this->entradas;
-    }
-
-    /**
-     * Add paginas
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $paginas
-     * @return User
-     */
-    public function addPagina(\Cai\WebBundle\Entity\Pagina $paginas)
-    {
-        $this->paginas[] = $paginas;
-
-        return $this;
-    }
-
-    /**
-     * Remove paginas
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $paginas
-     */
-    public function removePagina(\Cai\WebBundle\Entity\Pagina $paginas)
-    {
-        $this->paginas->removeElement($paginas);
-    }
-
-    /**
-     * Get paginas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPaginas()
-    {
-        return $this->paginas;
+        return $this->publicaciones;
     }
 
     /*

@@ -42,7 +42,8 @@ class PaginaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             //generar Slug
-            $this->generatingSlug($pagina);
+            $pagina->setSlugGenerator($this->get('slug_generator.pagina'))
+                ->generateSlug();
             //agregar creado por usuario logeado
             $pagina->setUser($this->getUser());
 
@@ -87,7 +88,8 @@ class PaginaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $pagina->setCuerpo($pagina->getCuerpo());
             //generar Slug
-            $this->generatingSlug($pagina);
+            $pagina->setSlugGenerator($this->get('slug_generator.pagina'))
+                ->generateSlug();
             $em = $this->getDoctrine()->getManager();
             $em->persist($pagina);
             $em->flush();
@@ -138,36 +140,5 @@ class PaginaController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
-
-    /**
-     * @param Pagina $entity
-     * Generar Slug unico
-     */
-    private function generatingSlug(Pagina $entity)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $aux = $this->get('cai_web.auxiliar');
-        $slug = $aux->toAscii($entity->getTitulo());
-        $querySlug = $slug . '%';
-        $paginas = $em->createQuery("
-                    SELECT pagina
-                    FROM CaiWebBundle:Pagina pagina
-                    WHERE pagina.slug LIKE '$querySlug'
-            ")->getResult();
-        $generateSlug = true;
-        for ($i = 0; $i < sizeof($paginas); $i++) {
-            if ($paginas[$i]->getId() == $entity->getId()) {
-                $generateSlug = false;
-            }
-            $paginas[$i] = $paginas[$i]->getSlug();
-        }
-        if ($generateSlug) {
-            $slug = $aux->slugGenerator($slug, $paginas);
-        } else {
-            $slug = $entity->getSlug();
-        }
-        $entity->setSlug($slug);
-        //
     }
 }
