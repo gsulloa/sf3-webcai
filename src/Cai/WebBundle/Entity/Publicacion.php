@@ -16,9 +16,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     "entrada" = "Entrada",
  *     "pagina"="Pagina",
  * })
+ * @ORM\HasLifecycleCallbacks()
  */
 class Publicacion
 {
+    protected $slugGenerator;
     /**
      * @var int
      *
@@ -26,54 +28,68 @@ class Publicacion
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="titulo", type="string", length=255)
      */
-    private $titulo;
+    protected $titulo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string
      *
      * @ORM\Column(name="cuerpo", type="text")
      */
-    private $cuerpo;
+    protected $cuerpo;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="datetime")
      */
-    private $fecha;
+    protected $fecha;
 
     /**
      * @ORM\ManyToMany(targetEntity="Categoria", inversedBy="publicaciones")
      * @ORM\JoinTable(name="web_publicacion_categoria")
      */
-    private $categorias;
+    protected $categorias;
 
     /**
      * @ORM\ManyToOne(targetEntity="\Gulloa\SecurityBundle\Entity\User", inversedBy="publicaciones")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+    protected $user;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="publico", type="boolean")
      */
-    private $publico = false;
+    protected $publico = false;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_at", type="datetime")
+     */
+    protected $lastUpdateAt;
 
     /**
      * Get id
@@ -269,4 +285,32 @@ class Publicacion
     {
         return $this->publico;
     }
+
+    public function setSlugGenerator($slugGenerator){
+        $this->slugGenerator = $slugGenerator;
+        return $this;
+    }
+
+    public function generateSlug(){
+        $this->slug = $this->slugGenerator->generateSlug($this);
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->lastUpdateAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setLastUpdateAtValue()
+    {
+        $this->lastUpdateAt = new \DateTime();
+    }
+
 }

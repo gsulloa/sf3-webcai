@@ -98,4 +98,14 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('categorias',$user->getCategorias())
             ->getResult();
     }
+    public function findLikeSlug($slug){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT entrada
+                FROM CaiWebBundle:Entrada entrada
+                WHERE entrada.slug LIKE :slug
+            "
+            )->setParameter('slug',$slug.'%')
+            ->getResult();
+    }
 }

@@ -1,4 +1,10 @@
 services:
+    slug_generator.entrada:
+           class: Cai\WebBundle\ServicesClass\SlugGenerators\EntradaSlugGeneratorService
+           arguments: ["@doctrine.orm.entity_manager"]
+    slug_generator.pagina:
+           class: Cai\WebBundle\ServicesClass\SlugGenerators\PaginaSlugGeneratorService
+           arguments: ["@doctrine.orm.entity_manager"]
     cai_web.auxiliar:
        class: Cai\WebBundle\Utils\Auxiliar
        arguments: [ "@doctrine.orm.entity_manager", '@templating']

@@ -10,4 +10,14 @@ namespace Cai\WebBundle\Repository;
  */
 class PaginaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLikeSlug($slug){
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT pagina
+                FROM CaiWebBundle:Pagina pagina
+                WHERE pagina.slug LIKE :slug
+            "
+            )->setParameter('slug',$slug.'%')
+            ->getResult();
+    }
 }
