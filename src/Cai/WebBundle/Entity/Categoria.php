@@ -41,14 +41,10 @@ class Categoria
     private $users;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Entrada", mappedBy="categorias")
+     * @ORM\ManyToMany(targetEntity="Publicacion", mappedBy="categorias")
      */
-    private $entradas;
+    private $publicaciones;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Pagina", mappedBy="categorias")
-     */
-    private $paginas;
 
     /**
      * @ORM\OneToMany(targetEntity="Evento",mappedBy="categoria")
@@ -119,7 +115,7 @@ class Categoria
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->entradas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->publicacions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->paginas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->eventos = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -163,71 +159,37 @@ class Categoria
     }
 
     /**
-     * Add entrada
+     * Add publicacion
      *
-     * @param \Cai\WebBundle\Entity\Entrada $entrada
+     * @param \Cai\WebBundle\Entity\Entrada $publicacion
      *
      * @return Categoria
      */
-    public function addEntrada(\Cai\WebBundle\Entity\Entrada $entrada)
+    public function addPublicacion(\Cai\WebBundle\Entity\Publicacion $publicacion)
     {
-        $this->entradas[] = $entrada;
+        $this->publicaciones[] = $publicacion;
 
         return $this;
     }
 
     /**
-     * Remove entrada
+     * Remove Publicacion
      *
-     * @param \Cai\WebBundle\Entity\Entrada $entrada
+     * @param \Cai\WebBundle\Entity\Publicacion $publicacion
      */
-    public function removeEntrada(\Cai\WebBundle\Entity\Entrada $entrada)
+    public function removeEntrada(\Cai\WebBundle\Entity\Publicacion $publicacion)
     {
-        $this->entradas->removeElement($entrada);
+        $this->publicaciones->removeElement($publicacion);
     }
 
     /**
-     * Get entradas
+     * Get publicaciones
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEntradas()
+    public function getPublicaciones()
     {
-        return $this->entradas;
-    }
-
-    /**
-     * Add pagina
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $pagina
-     *
-     * @return Categoria
-     */
-    public function addPagina(\Cai\WebBundle\Entity\Pagina $pagina)
-    {
-        $this->paginas[] = $pagina;
-
-        return $this;
-    }
-
-    /**
-     * Remove pagina
-     *
-     * @param \Cai\WebBundle\Entity\Pagina $pagina
-     */
-    public function removePagina(\Cai\WebBundle\Entity\Pagina $pagina)
-    {
-        $this->paginas->removeElement($pagina);
-    }
-
-    /**
-     * Get paginas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPaginas()
-    {
-        return $this->paginas;
+        return $this->publicaciones;
     }
 
     /**
