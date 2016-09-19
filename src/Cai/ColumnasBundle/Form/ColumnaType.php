@@ -18,10 +18,6 @@ class ColumnaType extends AbstractType
         $builder
             ->add('titulo')
             ->add('cuerpo')
-            ->add('fecha', DateTimeType::class)
-            ->add('imagen')
-            ->add('categorias')
-            ->add('user')
         ;
     }
     

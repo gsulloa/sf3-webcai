@@ -42,7 +42,9 @@ class ColumnaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             //generar Slug
-            $columna->setSlugGenerator($this->get('slug_generator.columna'))
+            $columna
+                ->setFecha(new \DateTime())
+                ->setSlugGenerator($this->get('slug_generator.columna'))
                 ->generateSlug();
             $em->persist($columna);
             $em->flush();
