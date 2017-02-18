@@ -19,6 +19,3 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     root_password: root
-
-    database_url: ~
-    monolog_action_level: error
