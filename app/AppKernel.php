@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Cai\ClubesBundle\CaiClubesBundle(),
             new Cai\ReclamosBundle\CaiReclamosBundle(),
             new Cai\ComunicacionesBundle\CaiComunicacionesBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -31,7 +32,6 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
         if(in_array($this->getEnvironment(), ['api','dev'], true)){
             $bundles[] = new Cai\ApiBundle\CaiApiBundle();
