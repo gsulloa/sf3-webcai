@@ -40,7 +40,7 @@ twig:
     strict_variables: "%kernel.debug%"
 
 # Doctrine Configuration
-#doctrine:
+doctrine:
 #    dbal:
 #        driver:   pdo_mysql
 #        host:     "%database_host%"
