@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * User
  *
- * @ORM\Table(schema="symfony",name="user")
+ * @ORM\Table(schema="public",name="user")
  * @ORM\Entity(repositoryClass="Gulloa\SecurityBundle\Repository\UserRepository")
  */
 class User implements AdvancedUserInterface, \Serializable
