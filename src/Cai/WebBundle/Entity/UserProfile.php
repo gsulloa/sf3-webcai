@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * UserProfile
  *
- * @ORM\Table(schema="admin",name="user_profile")
+ * @ORM\Table(schema="symfony",name="user_profile")
  * @ORM\Entity(repositoryClass="Cai\WebBundle\Repository\UserProfileRepository")
  * @ORM\HasLifecycleCallbacks
  */
