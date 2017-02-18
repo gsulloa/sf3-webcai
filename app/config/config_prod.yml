@@ -29,8 +29,3 @@ monolog:
             level: debug
         console:
             type:  console
-
-doctrine:
-    dbal:
-        driver: "pdo_pgsql"
-        url: "%database_url%"
