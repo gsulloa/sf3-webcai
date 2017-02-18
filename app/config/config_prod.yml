@@ -32,4 +32,5 @@ monolog:
 
 doctrine:
     dbal:
+        driver: "pdo_pgsql"
         url: "%database_url%"
