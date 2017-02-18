@@ -30,7 +30,8 @@
         "sensio/generator-bundle": "^3.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "suncat/mobile-detect-bundle": "1.0.*"
+        "suncat/mobile-detect-bundle": "1.0.*",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^2.7"
